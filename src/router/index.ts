@@ -2,21 +2,27 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../components/Home.vue';
 
+import Listdog from '../components/Listdog.vue';
+import AddUpdate from '../components/AddUpdateDog.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home,
+    name: 'listdog',
+    component: Listdog,
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/About.vue'),
+    path: '/listdog',
+    name: 'listdog',
+    component: Listdog,
+  },
+  {
+    path: '/add-update',
+    name: 'add-update',
+    component: AddUpdate,
+    props: true,
   },
 ];
 
