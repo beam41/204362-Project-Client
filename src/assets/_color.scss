@@ -1,0 +1,13 @@
+@use "sass:color";
+
+@function darker($color) {
+    @return color.adjust($color, $lightness: -20%);
+}
+
+@function lighter($color) {
+    @return color.adjust($color, $lightness: 10%);
+}
+
+@function for-hightlight($color) {
+    @return color.adjust($color, $alpha: -0.4%);
+}

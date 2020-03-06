@@ -1,5 +1,5 @@
-@use "./_var.scss";
+@use "./var";
 
 %animate-all {
-    transition: all $animation-time;
+    transition: all var.$animation-time;
 }
