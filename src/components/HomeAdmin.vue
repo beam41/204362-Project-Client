@@ -30,7 +30,7 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style scoped>
 .layout-nav{
   width: auto;
   margin: 50px 50px auto;

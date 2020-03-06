@@ -1,0 +1,132 @@
+@use "./_var.scss";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+    user-select: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+// Normalize
+html,
+body {
+    margin: 0;
+}
+
+div,
+span,
+button,
+input,
+select,
+textarea {
+    box-sizing: border-box;
+}
+
+// Text-Normalize
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    display: block;
+    margin: 0 0 0.5rem 0;
+    word-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+label,
+th,
+td,
+button,
+input,
+select,
+textarea {
+    font-family: 'Roboto', sans-serif;
+}
+
+p,
+a,
+button,
+label,
+th,
+td,
+h6,
+input,
+select,
+textarea {
+    font-size: 1rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h1 {
+    font-size: 2.25rem;
+}
+
+// button
+button {
+    box-sizing: border-box;
+    padding: 2px 15px;
+    border-radius: 100px;
+    color: white;
+}
+
+.btn-default {
+    border: $border-width solid $default;
+    background-color: $default;
+}
+
+.btn-success {
+    border: $border-width solid $success;
+    background-color: $success;
+}
+
+.btn-warn {
+    border: $border-width solid $warn;
+    background-color: $warn;
+}
+
+// input
+.form-control {
+    margin-bottom: 1rem;
+}
+
+input[type="text"],
+textarea {
+    padding: 2px 15px;
+    border: $border-width solid $gray;
+    border-radius: 20px;
+}
+
+textarea {
+    display: block;
+    resize: none;
+    overflow: hidden;
+}

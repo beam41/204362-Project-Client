@@ -1,0 +1,5 @@
+@use "./_var.scss";
+
+%animate-all {
+    transition: all $animation-time;
+}
