@@ -5,8 +5,9 @@ $success: #97DC4A;
 $warn: #FF4F4F;
 
 // border
-$border-width: 1.75px;
+$border-width: 1px;
 $hightlight-width: 2.5px;
+$b-radius: 10px;
 
 // animation
 $animation-time: 0.25s;
@@ -14,3 +15,8 @@ $animation-time: 0.25s;
 //font
 $font-fam: 'Roboto',
 sans-serif;
+$font-scaler: 0.5;
+
+//scrollbar
+$scrollbar-width: 6px;
+$scrollbar-track-color: #f0f0f0;

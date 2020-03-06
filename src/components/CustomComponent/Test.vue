@@ -55,18 +55,12 @@
       <div class="form-control">
         <label>Select</label>
         <span class="select">
-          <select>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-          </select>
+          <Select />
         </span>
       </div>
 
       <div class="form-control">
-        <label>Checkbox</label>
-        <input type="checkbox" value="Bike" />
+        <CheckBox>Checkbox</CheckBox>
       </div>
 
       <div class="form-control">
@@ -76,6 +70,20 @@
     </form>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue';
+import CheckBox from './CheckBox.vue';
+import Select from './Select.vue';
+
+export default Vue.extend({
+  name: 'Test',
+  components: {
+    CheckBox,
+    Select,
+  },
+});
+</script>
 
 <style scoped>
 .test-component {
