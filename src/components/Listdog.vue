@@ -1,16 +1,7 @@
 <template>
-  <div id="listdog">
-    <div>
-      <router-link to="/listdog">
-        <Button type="list">list</Button>
-      </router-link>
-      <h :style="{margin: '0 30px'}"></h>
-
-      <router-link to="/add-update">
-        <Button type="new">+ new</Button>
-      </router-link>
-      <router-view></router-view>
-    </div>
+  <div class="listdog">
+    <div class="headstyle">head</div>
+    <div> list dog table</div>
   </div>
 </template>
 
@@ -23,6 +14,15 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style scoped>
+.listdog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
+.headstyle {
+  border-color: #f44336!important;
+  border-bottom: 1px solid
+}
 </style>

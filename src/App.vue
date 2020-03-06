@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HomeAdmin/>
+    <HomeAdmin></HomeAdmin>
   </div>
 </template>
 
@@ -18,25 +18,17 @@ export default {
 
 <!--style-->
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  color: #2c3e50;
-
-}
-.layout{
-  border: 1px solid #d7dde4;
-  background: #f5f7f9;
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.layout-header-bar{
-  background: #fff;
-  box-shadow: 0 2px 3px 2px rgba(0,0,0,.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
-
+a {
+  color: inherit;
+  text-decoration: none;
+}
 </style>

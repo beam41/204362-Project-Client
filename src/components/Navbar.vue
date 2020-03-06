@@ -1,25 +1,11 @@
 <template>
-  <div id="navbar">
-    <nav>
-    <Menu active-name="1"
-          theme="dark" width="auto">
-
-      <MenuItem name="1">
-        <span>News</span>
-      </MenuItem>
-
-      <router-link to="/listdog">
-      <MenuItem name="2">
-        <span>Dog</span>
-      </MenuItem>
-      </router-link>
-
-      <MenuItem name="3">
-        <span>Reports</span>
-      </MenuItem>
-
-    </Menu>
-    </nav>
+  <div class="navbar">
+    <ul>
+      <li><router-link to='/listdog'>News</router-link></li>
+      <li><router-link to='/listdog'>Dog</router-link></li>
+      <li><router-link to='/listdog'>Report</router-link></li>
+      <li><router-link to='/listdog'>Donate</router-link></li>
+    </ul>
   </div>
 </template>
 
@@ -27,13 +13,43 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'Navbar',
+  name: 'navbar',
 
 });
 </script>
 
-<style scoped>
-#navbar {
-  text-align: center;
+<style>
+
+.navbar {
+  background: #6d6d6d;
+  height: 100vh;
+  width: 30vh;
 }
+
+li {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+ul {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+li a {
+  display: block;
+  color: #efefef;
+  padding: 8px 16px;
+  transition: all 0.25s;
+}
+
+li a:hover {
+  background-color: #424242;
+  color: white;
+}
+
 </style>
