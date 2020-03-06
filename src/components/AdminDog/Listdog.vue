@@ -1,10 +1,12 @@
 <template>
-  <div class="listdog">
+  <div class="listdog rightbox">
     <div class="headstyle">
       <p class="headtext">Dog</p>
     </div>
     <div>
-      <div>btn</div>
+      <div>
+        <router-link to="/add-update" tag="button" class="btn-default">new</router-link>
+      </div>
       <div>table</div>
     </div>
   </div>
@@ -23,7 +25,6 @@ export default Vue.extend({
 .listdog {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .headstyle {

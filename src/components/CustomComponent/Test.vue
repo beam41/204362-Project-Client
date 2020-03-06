@@ -14,7 +14,7 @@
       ParagraphParagraphParagraph ParagraphParagraphParagraph
     </p>
 
-    <button class="btn-default" href="#">Button</button>
+    <button class="btn-default" router-link to="/listdog">Button</button>
     <button class="btn-success" href="#">Button</button>
     <button class="btn-warn" href="#">Button</button>
 
