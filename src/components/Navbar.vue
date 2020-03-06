@@ -17,7 +17,7 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style lang="scss">
 
 .navbar {
   background: #6d6d6d;
@@ -28,6 +28,18 @@ export default Vue.extend({
 li {
   margin-top: 100px;
   margin-bottom: 100px;
+
+  a {
+  display: block;
+  color: #efefef;
+  padding: 8px 16px;
+  transition: all 0.25s;
+
+  &:hover {
+    background-color: #424242;
+    color: white;
+    }
+  }
 }
 
 ul {
@@ -37,18 +49,6 @@ ul {
   text-align: center;
   margin: 0;
   padding: 0;
-}
-
-li a {
-  display: block;
-  color: #efefef;
-  padding: 8px 16px;
-  transition: all 0.25s;
-}
-
-li a:hover {
-  background-color: #424242;
-  color: white;
 }
 
 </style>
