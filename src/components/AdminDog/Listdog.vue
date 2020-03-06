@@ -35,7 +35,7 @@ export default Vue.extend({
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   color: #1b1b1b;
-  font-size: 25px;
+  font-size: 1.5rem;
   text-align: left;
   margin : 15px 0 0 40px;
 }
