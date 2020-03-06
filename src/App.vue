@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <HomeAdmin></HomeAdmin>
+    <HomeAdmin />
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import HomeAdmin from '@/components/HomeAdmin.vue';
 
-export default {
+export default Vue.extend({
   name: 'app',
   components: {
     HomeAdmin,
   },
-
-};
+});
 </script>
 
 <!--style-->
