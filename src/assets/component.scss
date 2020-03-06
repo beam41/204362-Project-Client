@@ -1,10 +1,6 @@
-@use "./_var.scss";
-
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
-* {
-    user-select: none;
-}
+@use "./var";
+@use "./color";
+@use "./animation";
 
 *:focus {
     outline: none;
@@ -54,7 +50,7 @@ button,
 input,
 select,
 textarea {
-    font-family: 'Roboto', sans-serif;
+    font-family: var.$font-fam;
 }
 
 p,
@@ -98,19 +94,32 @@ button {
     color: white;
 }
 
+@mixin btn($color) {
+    border: var.$border-width solid $color;
+    background-color: $color;
+    @extend %animate-all;
+
+    &:hover {
+        cursor: pointer;
+        border: var.$border-width solid color.darker($color);
+        background-color: color.darker($color);
+    }
+
+    &:active {
+        box-shadow: 0px 0px 0px var.$hightlight-width color.for-hightlight($color);
+    }
+}
+
 .btn-default {
-    border: $border-width solid $default;
-    background-color: $default;
+    @include btn(var.$default);
 }
 
 .btn-success {
-    border: $border-width solid $success;
-    background-color: $success;
+    @include btn(var.$success);
 }
 
 .btn-warn {
-    border: $border-width solid $warn;
-    background-color: $warn;
+    @include btn(var.$warn);
 }
 
 // input
@@ -120,9 +129,18 @@ button {
 
 input[type="text"],
 textarea {
+    @extend %animate-all;
     padding: 2px 15px;
-    border: $border-width solid $gray;
+    border: var.$border-width solid var.$gray;
     border-radius: 20px;
+
+    &:hover {
+        border-color: color.darker(var.$gray);
+    }
+
+    &:focus {
+        box-shadow: 0px 0px 0px var.$hightlight-width color.for-hightlight(var.$gray);
+    }
 }
 
 textarea {

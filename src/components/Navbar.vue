@@ -1,10 +1,10 @@
 <template>
   <div class="navbar">
     <ul>
-      <li><router-link to='/listdog'>News</router-link></li>
-      <li><router-link to='/listdog'>Dog</router-link></li>
-      <li><router-link to='/listdog'>Report</router-link></li>
-      <li><router-link to='/listdog'>Donate</router-link></li>
+      <li><router-link to="/listdog">News</router-link></li>
+      <li><router-link to="/listdog">Dog</router-link></li>
+      <li><router-link to="/listdog">Report</router-link></li>
+      <li><router-link to="/listdog">Donate</router-link></li>
     </ul>
   </div>
 </template>
@@ -17,10 +17,12 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style lang="scss">
+@use "../assets/color";
+@use "../assets/var";
 
 .navbar {
-  background: #6d6d6d;
+  background: var.$gray;
   height: 100vh;
   width: 30vh;
 }
@@ -28,6 +30,17 @@ export default Vue.extend({
 li {
   margin-top: 100px;
   margin-bottom: 100px;
+
+  a {
+    display: block;
+    color: #ffffff;
+    padding: 8px 16px;
+    transition: all 0.25s;
+
+    &:hover {
+      background-color: color.darker(var.$gray);
+    }
+  }
 }
 
 ul {
@@ -38,17 +51,4 @@ ul {
   margin: 0;
   padding: 0;
 }
-
-li a {
-  display: block;
-  color: #efefef;
-  padding: 8px 16px;
-  transition: all 0.25s;
-}
-
-li a:hover {
-  background-color: #424242;
-  color: white;
-}
-
 </style>
