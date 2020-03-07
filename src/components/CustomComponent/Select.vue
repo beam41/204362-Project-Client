@@ -1,5 +1,5 @@
 <template>
-  <div class="cs" style="width: 150px">
+  <div class="cs">
     <!-- hidden select for form to use -->
     <select>
       <option value="pls_select" disabled :selected="currSelect === -1">{{ customText }}</option>
@@ -87,7 +87,8 @@ export default Vue.extend({
 
   .showbox,
   .dropdown,
-  .new-select {
+  .new-select,
+  & {
     width: inherit;
   }
 
