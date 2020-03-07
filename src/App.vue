@@ -22,6 +22,7 @@ export default Vue.extend({
 <!--style-->
 <style lang="scss">
 @use './assets/component';
+@use './assets/class';
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 #app {
   min-width: 100%;

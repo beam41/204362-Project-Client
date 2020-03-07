@@ -1,7 +1,14 @@
 <template>
-  <div class="listdog">
-    <div class="headstyle">head</div>
-    <div> list dog table</div>
+  <div class="listdog rightbox">
+    <div class="headstyle">
+      <p class="headtext">Dog</p>
+    </div>
+    <div>
+      <div>
+        <router-link to="/add-update" tag="button" class="btn-default">new</router-link>
+      </div>
+      <div>table</div>
+    </div>
   </div>
 </template>
 
@@ -18,11 +25,20 @@ export default Vue.extend({
 .listdog {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .headstyle {
-  border-color: #f44336!important;
-  border-bottom: 1px solid
+  height: 8vh;
+  box-shadow: 0 5px 5px 0 #bcbcbc;
 }
+
+.headtext {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #1b1b1b;
+  font-size: 1.5rem;
+  text-align: left;
+  margin : 15px 0 0 40px;
+}
+
 </style>
