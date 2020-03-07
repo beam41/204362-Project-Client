@@ -9,7 +9,7 @@
 *.html  text eol=lf
 *.txt   text eol=lf
 
-*.jpg		binary
-*.png	  binary
-*.ico	  binary
-*.otf	  binary
+*.jpg   binary
+*.png	binary
+*.ico	binary
+*.otf	binary
