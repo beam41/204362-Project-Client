@@ -1,5 +1,5 @@
 @use 'var';
 
 .adminbox {
-    width: 80vw;
+    width: 100vw - var.$navbar-width;
 }

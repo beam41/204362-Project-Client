@@ -1,7 +1,7 @@
 <template>
-  <div class="listdog">
+  <div class="listdog adminbox">
     <div class="headstyle">head</div>
-    <div> list dog table</div>
+    <div>list dog table</div>
   </div>
 </template>
 
@@ -10,7 +10,6 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'Listdog',
-
 });
 </script>
 
@@ -21,7 +20,6 @@ export default Vue.extend({
 }
 
 .headstyle {
-  border-color: #f44336!important;
-  border-bottom: 1px solid
+  border-bottom: 1px solid #f44336;
 }
 </style>

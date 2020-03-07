@@ -29,7 +29,7 @@ export default Vue.extend({
 .navbar {
   background: var.$gray;
   height: 100vh;
-  width: 30vh;
+  width: var.$navbar-width;
 }
 
 li {
