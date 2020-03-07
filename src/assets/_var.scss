@@ -12,11 +12,30 @@ $b-radius: 10px;
 // animation
 $animation-time: 0.25s;
 
-//font
-$font-fam: 'Roboto',
-sans-serif;
+// font
+$font-fam: ('Roboto', sans-serif);
 $font-scaler: 0.5;
 
-//scrollbar
+// margin padding
+$txt-m-bot: 0.5rem;
+$label-m-right: 0.5rem;
+$txt-box-pad: 2px;
+$form-comtrol-bot: 1rem;
+
+// scrollbar
 $scrollbar-width: 6px;
 $scrollbar-track-color: #f0f0f0;
+
+// CheckBox
+$label-pad-left: 30px;
+$cb-size: 25px;
+$cb-top: -3px;
+$cb-left: 0;
+
+// cb tick
+$tick-short-length: 3px;
+$tick-long-length: 10px;
+$tick-left: 8.5px;
+$tick-top: 4px;
+$tick-width: 3px;
+$tick-rotate: 40deg;

@@ -38,7 +38,7 @@ li {
     transition: all 0.25s;
 
     &:hover {
-      background-color: color.darker(var.$gray);
+      background-color: color.lightness(var.$gray, -20%);
     }
   }
 }

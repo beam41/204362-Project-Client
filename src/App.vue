@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <HomeAdmin />
-    <!-- <TestCom /> -->
+    <!-- <HomeAdmin /> -->
+    <TestCom />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HomeAdmin from '@/components/HomeAdmin.vue';
-// import TestCom from '@/components/CustomComponent/Test.vue';
+// import HomeAdmin from '@/components/HomeAdmin.vue';
+import TestCom from '@/components/CustomComponent/Test.vue';
 
 export default Vue.extend({
   name: 'app',
   components: {
-    HomeAdmin,
-    // TestCom,
+    // HomeAdmin,
+    TestCom,
   },
 });
 </script>

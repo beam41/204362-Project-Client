@@ -87,16 +87,16 @@ export default Vue.extend({
     position: relative;
     box-sizing: border-box;
     width: fit-content;
-    padding: 2px var.$b-radius;
+    padding: var.$txt-box-pad var.$b-radius;
     border: var.$border-width solid var.$gray;
     border-radius: var.$b-radius;
     cursor: pointer;
     z-index: 10001;
 
     &:hover {
-      border-color: color.darker(var.$gray);
+      border-color: color.lightness(var.$gray, -20%);
       &::after {
-        color: color.darker(var.$gray);
+        color: color.lightness(var.$gray, -20%);
       }
     }
 
@@ -140,15 +140,15 @@ export default Vue.extend({
   .dd-element {
     @extend %animate-all;
     position: relative;
-    padding: 2px var.$b-radius;
+    padding: var.$txt-box-pad var.$b-radius;
     background: white;
 
     &:hover {
-      background: color.lighter40(var.$gray);
+      background: color.lightness(var.$gray, 40%);
     }
 
     &[selected] {
-      background: color.lighter25(var.$gray);
+      background: color.lightness(var.$gray, 20%);
     }
   }
 }
