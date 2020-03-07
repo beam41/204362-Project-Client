@@ -1,14 +1,12 @@
 <template>
-  <div class="listdog adminbox">
-
-  </div>
+  <div class="listdog adminbox"></div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'Listdog',
+  name: 'DogList',
 });
 </script>
 

@@ -1,0 +1,53 @@
+@use 'var';
+@use 'color';
+@use 'partial-class';
+
+$top-warp-height: 20%;
+
+.admin {
+  .adminbox {
+    height: 100 - var.$top-part-h;
+    padding: 20px 100px;
+  }
+
+  .table-top {
+    height: $top-warp-height;
+  }
+
+  // table
+  .table-wrapper {
+    height: 100 - $top-warp-height;
+    overflow-y: auto;
+  }
+
+  .datalist {
+    border-collapse: collapse;
+    width: 100%;
+
+    th {
+      position: sticky;
+      top: 0;
+      background: white;
+      border-bottom: 2px solid color.lightness(var.$gray, 40%);
+      box-shadow: 0 2px 0px 0px color.lightness(var.$gray, 40%);
+    }
+
+    & th,
+    & td {
+      text-align: center;
+      padding: 0.5em 1em;
+    }
+
+    td {
+      border-bottom: 1px solid color.lightness(var.$gray, 40%);
+    }
+
+    tr {
+      @extend %animate-all
+    }
+
+    tr:hover {
+      background-color: color.lightness(var.$gray, 55%);
+    }
+  }
+}

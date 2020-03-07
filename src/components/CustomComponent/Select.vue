@@ -90,11 +90,9 @@ export default Vue.extend({
 
   .showbox {
     @extend %animate-all;
+    @extend %grayblock;
     position: relative;
     box-sizing: border-box;
-    padding: var.$txt-box-pad var.$b-radius;
-    border: var.$border-width solid var.$gray;
-    border-radius: var.$b-radius;
     cursor: pointer;
     z-index: 10001;
 

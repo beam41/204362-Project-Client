@@ -1,8 +1,8 @@
 @use 'var';
 @use 'color';
-@use 'animation';
+@use 'partial-class';
 
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sarabun:400,700&display=swap');
 
 ::-webkit-scrollbar {
   width: var.$scrollbar-width;
@@ -38,7 +38,7 @@
 html,
 body {
   margin: 0;
-  overflow-x: hidden;
+  //overflow: hidden;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -129,9 +129,8 @@ label {
 
 // button
 button {
+  @extend %blockpadd;
   box-sizing: border-box;
-  padding: var.$txt-box-pad var.$b-radius;
-  border-radius: var.$b-radius;
   color: white;
   user-select: none;
 }
@@ -179,10 +178,11 @@ button {
 input[type="text"],
 textarea {
   @extend %animate-all;
+  @extend %grayblock;
+
   box-sizing: border-box;
-  padding: var.$txt-box-pad var.$b-radius;
   border: var.$border-width solid var.$gray;
-  border-radius: var.$b-radius;
+
 
   &:hover {
     border-color: color.lightness(var.$gray, -20%);

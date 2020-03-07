@@ -3,7 +3,8 @@ function getDogs() {
     {
       Name: ['มาเฟีย', 'กุ๊บกิ๊บ'],
       Breed: 'ผสม',
-      Age: '8',
+      Age: 8,
+      AgeUnit: 'ปี',
       Sex: 'F',
       Description: 'ดำ อกขาว',
       IsAlive: true,
@@ -16,6 +17,7 @@ function getDogs() {
       Name: ['ตู้เย็น', 'น้ำตาล'],
       Breed: 'ผสม',
       Age: '8',
+      AgeUnit: 'ปี',
       Sex: 'M',
       Description: 'ขาว หัวน้ำตาล',
       IsAlive: true,

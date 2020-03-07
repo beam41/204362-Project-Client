@@ -25,8 +25,7 @@ export default Vue.extend({
 <style lang="scss">
 // non partial import here
 // to prevent redundant import if import in loader
-@use 'src/assets/admin_util';
-@use 'src/assets/component';
+@use 'src/assets/styles/component';
 
 #app {
   min-width: 100%;

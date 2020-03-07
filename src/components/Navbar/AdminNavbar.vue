@@ -43,6 +43,7 @@ li {
     color: #ffffff;
     padding: 8px 16px;
     transition: all 0.25s;
+    text-decoration: none;
 
     &:hover {
       text-decoration: none;

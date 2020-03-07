@@ -1,16 +1,12 @@
 import Vue from 'vue';
 import './registerServiceWorker';
-
-import AdminLayout from './components/Layout/Admin.vue';
-import UserLayout from './components/Layout/User.vue';
-import DefaultLayout from './components/Layout/Default.vue';
 import App from './App.vue';
 
 import router from './router';
 
-Vue.component('admin-layout', AdminLayout);
-Vue.component('user-layout', UserLayout);
-Vue.component('default-layout', DefaultLayout);
+Vue.component('admin-layout', () => import('./components/Layout/Admin.vue'));
+Vue.component('user-layout', () => import('./components/Layout/User.vue'));
+Vue.component('default-layout', () => import('./components/Layout/Default.vue'));
 
 Vue.config.productionTip = false;
 

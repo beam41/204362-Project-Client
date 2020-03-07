@@ -4,9 +4,9 @@ module.exports = {
       sass: {
         // partial scss import
         prependData: `
-          @use 'src/assets/var';
-          @use 'src/assets/color';
-          @use 'src/assets/animation';
+          @use 'src/assets/styles/var';
+          @use 'src/assets/styles/color';
+          @use 'src/assets/styles/partial-class';
         `,
       },
     },

@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <div class="rightbox">
       <div class="headstyle">
-        <p>name</p>
+        <h2>{{title}}</h2>
       </div>
       <slot></slot>
     </div>
@@ -19,30 +19,38 @@ export default Vue.extend({
   components: {
     Navbar,
   },
+  computed: {
+    title() {
+      return this.$route.meta.title;
+    },
+  },
 });
 </script>
 
-<style scoped lang="scss">
-.admin,
-.rightbox {
-  display: flex;
-}
+<style lang="scss">
+@use 'src/assets/styles/admin_util';
 
-.headstyle {
-  box-shadow: 0px -1px 12px 0px black;
-  height: var.$top-part-h;
-}
+.admin {
+  &,
+  & .rightbox,
+  & .headstyle {
+    display: flex;
+  }
 
-p {
-  font-family: var.$font-fam;
-  font-weight: bold;
-  margin: 15px;
-  padding: 0;
-}
+  .headstyle {
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+    height: var.$top-part-h;
+    align-items: center;
+    h2 {
+      font-size: 1.75rem;
+      margin: 0 1em;
+    }
+  }
 
-.rightbox {
-  display: flex;
-  flex-direction: column;
-  width: 100vw - var.$navbar-width;
+  .rightbox {
+    display: flex;
+    flex-direction: column;
+    width: 100 - var.$navbar-width;
+  }
 }
 </style>
