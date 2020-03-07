@@ -1,10 +1,18 @@
 <template>
   <div class="navbar">
     <ul>
-      <li><router-link to="/listdog">News</router-link></li>
-      <li><router-link to="/listdog">Dog</router-link></li>
-      <li><router-link to="/listdog">Report</router-link></li>
-      <li><router-link to="/listdog">Donate</router-link></li>
+      <li>
+        <router-link to="/admin/news/list">News</router-link>
+      </li>
+      <li>
+        <router-link to="/admin/dog/list">Dog</router-link>
+      </li>
+      <li>
+        <router-link to="/admin/report/list">Report</router-link>
+      </li>
+      <li>
+        <router-link to="/admin/donate/list">Donate</router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -13,18 +21,15 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'Navbar',
+  name: 'AdminNavbar',
 });
 </script>
 
 <style lang="scss">
-@use "../assets/color";
-@use "../assets/var";
-
 .navbar {
   background: var.$gray;
   height: 100vh;
-  width: 20vw;
+  width: var.$navbar-width;
 }
 
 li {
@@ -38,7 +43,7 @@ li {
     transition: all 0.25s;
 
     &:hover {
-      background-color: color.darker(var.$gray);
+      background-color: color.lightness(var.$gray, -20%);
     }
   }
 }

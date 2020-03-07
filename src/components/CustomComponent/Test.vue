@@ -19,6 +19,10 @@
     <button class="btn-warn" href="#">Button</button>
 
     <a href="#">link</a>
+    <br />
+    <button class="btn-default" href="#" disabled>Button</button>
+    <button class="btn-success" href="#" disabled>Button</button>
+    <button class="btn-warn" href="#" disabled>Button</button>
 
     <table>
       <tr>
@@ -54,7 +58,7 @@
 
       <div class="form-control">
         <label>Select</label>
-        <span class="select">
+        <span class="select" style="width: 200px">
           <Select />
         </span>
       </div>

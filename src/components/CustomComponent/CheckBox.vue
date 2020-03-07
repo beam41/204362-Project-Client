@@ -7,14 +7,10 @@
 </template>
 
 <style lang="scss" scoped>
-@use "../../assets/var";
-@use "../../assets/color";
-@use "../../assets/animation";
-
 label {
   display: inline-block;
   position: relative;
-  padding-left: 30px + var.$border-width;
+  padding-left: var.$label-pad-left + var.$border-width;
   cursor: pointer;
   user-select: none;
 
@@ -23,10 +19,10 @@ label {
     @extend %animate-all;
     box-sizing: border-box;
     position: absolute;
-    top: -3px;
-    left: 0;
-    height: 25px;
-    width: 25px;
+    top: var.$cb-top;
+    left: var.$cb-left;
+    height: var.$cb-size;
+    width: var.$cb-size;
     border: var.$border-width solid var.$gray;
     border-radius: var.$b-radius;
 
@@ -36,18 +32,18 @@ label {
       content: '';
       position: absolute;
       opacity: 0;
-      left: 8.5px;
-      top: 4px;
-      width: 3px;
-      height: 10px;
+      left: var.$tick-left;
+      top: var.$tick-top;
+      width: var.$tick-short-length;
+      height: var.$tick-long-length;
       border: solid white;
-      border-width: 0 3px 3px 0;
-      transform: scale(0) rotate(-40deg);
+      border-width: 0 var.$tick-width var.$tick-width 0;
+      transform: scale(0) rotate(-1 * var.$tick-rotate);
     }
   }
 
   &:hover .cb {
-    border: var.$border-width solid color.darker(var.$gray);
+    border: var.$border-width solid color.lightness(var.$gray, -20%);
   }
 
   input {
@@ -62,13 +58,13 @@ label {
     &:checked {
       & ~ .cb:after {
         opacity: 1;
-        transform: scale(1) rotate(40deg);
+        transform: scale(1) rotate(var.$tick-rotate);
       }
 
       &:hover {
         & ~ .cb {
-          background-color: color.darker(var.$gray);
-          border-color: color.darker(var.$gray);
+          background-color: color.lightness(var.$gray, -20%);
+          border-color: color.lightness(var.$gray, -20%);
         }
       }
 
