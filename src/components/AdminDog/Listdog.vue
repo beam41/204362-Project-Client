@@ -1,7 +1,6 @@
 <template>
-  <div class="listdog adminbox">
-    <div class="headstyle">head</div>
-    <div>list dog table</div>
+  <div class="listdog">
+
   </div>
 </template>
 

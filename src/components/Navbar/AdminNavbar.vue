@@ -43,6 +43,8 @@ li {
     transition: all 0.25s;
 
     &:hover {
+      text-decoration: none;
+      color: var.$white;
       background-color: color.lightness(var.$gray, -20%);
     }
   }
@@ -50,7 +52,6 @@ li {
 
 ul {
   font-weight: bold;
-  font-size: 25px;
   text-align: center;
   margin: 0;
   padding: 0;
