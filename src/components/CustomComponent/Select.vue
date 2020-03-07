@@ -1,5 +1,5 @@
 <template>
-  <div class="cs">
+  <div class="cs" style="width: 150px">
     <!-- hidden select for form to use -->
     <select>
       <option value="pls_select" disabled :selected="currSelect === -1">{{ customText }}</option>
@@ -14,15 +14,17 @@
     <!-- viewable custom select for user -->
     <div class="new-select">
       <div
-        class="showbox"
+        :class="'showbox' + (currSelect === -1 ? ' curr-disable' : '')"
         @click="toggleShowDropdown()"
         v-on-clickaway="hideDropdown"
         :show="isShow"
-        :style="{ width: `${width}px` }"
       >
         {{ currSelect === -1 ? customText : options[currSelect] }}
       </div>
-      <div class="dropdown" :show="isShow" :style="{ width: `${width}px` }">
+      <div class="dropdown" :show="isShow">
+        <div class="dd-element" disabled @click="clickDisabled = true">
+          {{ customText }}
+        </div>
         <div
           class="dd-element"
           v-for="(opt, index) in options"
@@ -49,12 +51,13 @@ export default Vue.extend({
     options: ['Mee', 'Moo', 'Maa'],
     currSelect: -1,
     isShow: false,
-    width: 202.08,
+    clickDisabled: false,
   }),
   mixins: [clickaway],
   methods: {
     hideDropdown() {
-      this.isShow = false;
+      if (!this.clickDisabled) this.isShow = false;
+      this.clickDisabled = false;
     },
     toggleShowDropdown() {
       this.isShow = !this.isShow;
@@ -82,11 +85,16 @@ export default Vue.extend({
     font-family: var.$font-fam;
   }
 
+  .showbox,
+  .dropdown,
+  .new-select {
+    width: inherit;
+  }
+
   .showbox {
     @extend %animate-all;
     position: relative;
     box-sizing: border-box;
-    width: fit-content;
     padding: var.$txt-box-pad var.$b-radius;
     border: var.$border-width solid var.$gray;
     border-radius: var.$b-radius;
@@ -113,6 +121,10 @@ export default Vue.extend({
       content: '\25bc';
       right: var.$b-radius;
       color: var.$gray;
+    }
+
+    &.curr-disable {
+      color: color.lightness(black, 50%);
     }
   }
 
@@ -142,6 +154,7 @@ export default Vue.extend({
     position: relative;
     padding: var.$txt-box-pad var.$b-radius;
     background: white;
+    user-select: none;
 
     &:hover {
       background: color.lightness(var.$gray, 40%);
@@ -149,6 +162,10 @@ export default Vue.extend({
 
     &[selected] {
       background: color.lightness(var.$gray, 20%);
+    }
+
+    &[disabled] {
+      color: color.lightness(black, 50%);
     }
   }
 }
