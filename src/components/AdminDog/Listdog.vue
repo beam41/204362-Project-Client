@@ -18,7 +18,6 @@ export default Vue.extend({
 .listdog {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .headstyle {

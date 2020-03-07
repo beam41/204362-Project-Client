@@ -1,26 +1,25 @@
 <template>
-  <div class="HomeAdmin">
-    <navbar></navbar>
-    <router-view></router-view>
+  <div class="admin">
+    <Navbar></Navbar>
+    <slot></slot>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import navbar from '@/components/Navbar.vue';
+import Navbar from '@/components/Navbar/AdminNavbar.vue';
 
 export default Vue.extend({
-  name: 'HomeAdmin',
+  name: 'AdminLayout',
   components: {
-    navbar,
-
+    Navbar,
   },
 });
 
 </script>
 
 <style scoped>
-.HomeAdmin {
+.admin {
   display: flex;
 }
 

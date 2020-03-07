@@ -70,10 +70,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@use "../../assets/var";
-@use "../../assets/color";
-@use "../../assets/animation";
-
 .cs {
   display: inline-block;
   // hide select

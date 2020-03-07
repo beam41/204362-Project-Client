@@ -7,10 +7,6 @@
 </template>
 
 <style lang="scss" scoped>
-@use "../../assets/var";
-@use "../../assets/color";
-@use "../../assets/animation";
-
 label {
   display: inline-block;
   position: relative;

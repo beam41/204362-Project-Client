@@ -1,6 +1,8 @@
-@use "./var";
-@use "./color";
-@use "./animation";
+@use 'var';
+@use 'color';
+@use 'animation';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 ::-webkit-scrollbar {
   width: var.$scrollbar-width;

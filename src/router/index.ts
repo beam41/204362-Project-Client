@@ -2,33 +2,28 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Listdog from '@/components/AdminDog/Listdog.vue';
-import AddUpdate from '@/components/AdminDog/AddUpdateDog.vue';
 import ListDonate from '@/components/AdminDonate/ListDonate.vue';
+import Test from '@/components/CustomComponent/Test.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'listdog',
+    path: '/admin/dog/list',
+    name: 'list-dog',
+    meta: { layout: 'admin' },
     component: Listdog,
   },
   {
-    path: '/listdog',
-    name: 'listdog',
-    component: Listdog,
-  },
-  {
-    path: '/add-update',
-    name: 'add-update',
-    component: AddUpdate,
-    props: true,
-  },
-  {
-    path: '/listdonate',
+    path: '/admin/donate/list',
     name: 'list-donate',
+    meta: { layout: 'admin' },
     component: ListDonate,
-    props: true,
+  },
+  {
+    path: '/hidden/test',
+    name: 'test',
+    component: Test,
   },
 ];
 

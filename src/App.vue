@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <!-- <HomeAdmin /> -->
-    <TestCom />
+    <component :is="layout">
+      <router-view />
+    </component>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-// import HomeAdmin from '@/components/HomeAdmin.vue';
-import TestCom from '@/components/CustomComponent/Test.vue';
+
+const defaultLayout = 'default';
 
 export default Vue.extend({
   name: 'app',
-  components: {
-    // HomeAdmin,
-    TestCom,
+  computed: {
+    layout() {
+      return `${this.$route.meta.layout || defaultLayout}-layout`;
+    },
   },
 });
 </script>
 
 <!--style-->
 <style lang="scss">
-@use './assets/component';
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@use 'src/assets/admin_util';
+@use 'src/assets/component';
+
 #app {
   min-width: 100%;
   min-height: 100%;
