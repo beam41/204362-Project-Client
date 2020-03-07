@@ -1,10 +1,12 @@
 <template>
   <div class="admin">
     <Navbar></Navbar>
-    <div class="headstyle adminbox">
-      <p>name</p>
+    <div class="rightbox">
+      <div class="headstyle">
+        <p>name</p>
+      </div>
+      <slot></slot>
     </div>
-    <slot></slot>
   </div>
 </template>
 
@@ -18,17 +20,17 @@ export default Vue.extend({
     Navbar,
   },
 });
-
 </script>
 
 <style scoped lang="scss">
-.admin {
+.admin,
+.rightbox {
   display: flex;
 }
 
 .headstyle {
-  box-shadow: 7px -1px 12px 0px var.$gray;
-  height: 6vh;
+  box-shadow: 0px -1px 12px 0px black;
+  height: var.$top-part-h;
 }
 
 p {
@@ -36,5 +38,11 @@ p {
   font-weight: bold;
   margin: 15px;
   padding: 0;
+}
+
+.rightbox {
+  display: flex;
+  flex-direction: column;
+  width: 100vw - var.$navbar-width;
 }
 </style>
