@@ -29,7 +29,6 @@ export default Vue.extend({
   color: #1b1b1b;
   font-size: 1.5rem;
   text-align: left;
-  margin : 15px 0 0 40px;
+  margin: 15px 0 0 40px;
 }
-
 </style>

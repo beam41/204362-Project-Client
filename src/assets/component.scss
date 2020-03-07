@@ -236,6 +236,9 @@ textarea {
 a {
   @extend %animate-all;
   text-decoration: underline rgba(255, 255, 255, 0) solid;
+}
+
+.link {
   text-underline-offset: 25%;
   color: inherit;
 

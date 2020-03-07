@@ -21,6 +21,18 @@ const routes = [
     component: ListDonate,
   },
   {
+    path: '/admin/report/list',
+    name: 'list-report',
+    meta: { layout: 'admin' },
+    component: ListDonate,
+  },
+  {
+    path: '/admin/news/list',
+    name: 'list-news',
+    meta: { layout: 'admin' },
+    component: ListDonate,
+  },
+  {
     path: '/hidden/test',
     name: 'test',
     component: Test,

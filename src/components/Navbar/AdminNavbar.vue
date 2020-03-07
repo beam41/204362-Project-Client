@@ -2,16 +2,16 @@
   <div class="navbar">
     <ul>
       <li>
-        <router-link to="/admin/news/list">News</router-link>
+        <router-link to="/admin/news/list" class="nav-link">News</router-link>
       </li>
       <li>
-        <router-link to="/admin/dog/list">Dog</router-link>
+        <router-link to="/admin/dog/list" class="nav-link">Dog</router-link>
       </li>
       <li>
-        <router-link to="/admin/report/list">Report</router-link>
+        <router-link to="/admin/report/list" class="nav-link">Report</router-link>
       </li>
       <li>
-        <router-link to="/admin/donate/list">Donate</router-link>
+        <router-link to="/admin/donate/list" class="nav-link">Donate</router-link>
       </li>
     </ul>
   </div>
@@ -36,7 +36,7 @@ li {
   margin-top: 100px;
   margin-bottom: 100px;
 
-  a {
+  .nav-link {
     display: block;
     color: #ffffff;
     padding: 8px 16px;
@@ -49,7 +49,6 @@ li {
 }
 
 ul {
-  font-family: 'Roboto', sans-serif;
   font-weight: bold;
   font-size: 25px;
   text-align: center;
