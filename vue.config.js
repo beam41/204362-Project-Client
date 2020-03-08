@@ -6,7 +6,7 @@ module.exports = {
         prependData: `
           @use 'src/assets/styles/var';
           @use 'src/assets/styles/color';
-          @use 'src/assets/styles/partial-class';
+          @use 'src/assets/styles/selector';
         `,
       },
     },

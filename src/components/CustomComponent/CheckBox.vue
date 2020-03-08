@@ -30,6 +30,7 @@ label {
     &:after {
       @extend %animate-all-bounceend;
       content: '';
+      box-sizing: content-box;
       position: absolute;
       opacity: 0;
       left: var.$tick-left;
