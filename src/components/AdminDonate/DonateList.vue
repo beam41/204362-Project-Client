@@ -14,7 +14,6 @@
           </tr>
         </table>
       </div>
-
       <div class="sub-table-wrapper">
         <table class="datalist">
           <tr v-for="d in donates" :key="d.id">

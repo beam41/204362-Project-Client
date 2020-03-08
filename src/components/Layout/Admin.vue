@@ -4,7 +4,9 @@
     <div class="headstyle">
       <h2>{{ title }}</h2>
     </div>
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -47,4 +49,5 @@ export default Vue.extend({
     }
   }
 }
+
 </style>

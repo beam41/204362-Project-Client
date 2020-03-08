@@ -1,4 +1,12 @@
-.rightbox {
-  width: 80vw;
-  height: 100vh;
+@use 'var';
+
+// class for fade transition
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var.$animation-time linear;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }

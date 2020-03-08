@@ -9,4 +9,5 @@
 // non partial import here
 // to prevent redundant import if import in loader
 @use 'src/assets/styles/component';
+@use 'src/assets/styles/class';
 </style>
