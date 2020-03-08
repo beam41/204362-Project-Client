@@ -10,7 +10,7 @@
 label {
   display: inline-block;
   position: relative;
-  padding-left: var.$label-pad-left + var.$border-width;
+  padding: var.$txt-box-pad 0 var.$txt-box-pad var.$label-pad-left + var.$border-width;
   cursor: pointer;
   user-select: none;
 

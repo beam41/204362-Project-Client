@@ -1,12 +1,10 @@
 <template>
   <div class="admin">
     <Navbar></Navbar>
-    <div class="rightbox">
-      <div class="headstyle">
-        <h2>{{title}}</h2>
-      </div>
-      <slot></slot>
+    <div class="headstyle">
+      <h2>{{ title }}</h2>
     </div>
+    <slot></slot>
   </div>
 </template>
 
@@ -31,26 +29,22 @@ export default Vue.extend({
 @use 'src/assets/styles/admin_util';
 
 .admin {
-  &,
-  & .rightbox,
+  display: grid;
+  height: 100vh;
+  grid-template-columns: var.$navbar-width 100fr;
+  grid-template-rows: var.$top-part-h 100fr;
+
   & .headstyle {
     display: flex;
   }
 
   .headstyle {
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
-    height: var.$top-part-h;
     align-items: center;
     h2 {
       font-size: 1.75rem;
       margin: 0 1em;
     }
-  }
-
-  .rightbox {
-    display: flex;
-    flex-direction: column;
-    width: 100 - var.$navbar-width;
   }
 }
 </style>

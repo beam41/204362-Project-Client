@@ -8,23 +8,18 @@
         :key="opt"
         :value="opt"
         :selected="index === currSelect"
-        >{{ opt }}</option
-      >
+      >{{ opt }}</option>
     </select>
     <!-- viewable custom select for user -->
     <div class="new-select">
       <div
-        :class="'showbox' + (currSelect === -1 ? ' curr-disable' : '')"
+        :class="'showbox' + (currSelect === -1 ? ' curr-disable' : '') + getClass"
         @click="toggleShowDropdown()"
         v-on-clickaway="hideDropdown"
         :show="isShow"
-      >
-        {{ currSelect === -1 ? customText : options[currSelect] }}
-      </div>
+      >{{ currSelect === -1 ? customText : options[currSelect] }}</div>
       <div class="dropdown" :show="isShow">
-        <div class="dd-element" disabled @click="clickDisabled = true">
-          {{ customText }}
-        </div>
+        <div class="dd-element" disabled @click="clickDisabled = true">{{ customText }}</div>
         <div
           class="dd-element"
           v-for="(opt, index) in options"
@@ -32,9 +27,7 @@
           :value="opt"
           :selected="index === currSelect"
           @click="selectMe(index)"
-        >
-          {{ opt }}
-        </div>
+        >{{ opt }}</div>
       </div>
     </div>
   </div>
@@ -47,13 +40,25 @@ import { mixin as clickaway } from 'vue-clickaway';
 export default Vue.extend({
   name: 'Select',
   data: () => ({
-    customText: 'Select your mee:',
-    options: ['Mee', 'Moo', 'Maa'],
-    currSelect: -1,
     isShow: false,
     clickDisabled: false,
+    currSelect: -1,
   }),
+  props: {
+    customText: String,
+    options: Array,
+    classN: String,
+  },
   mixins: [clickaway],
+  created() {
+    if (!this.customText) this.currSelect = 0;
+  },
+  computed: {
+    getClass() {
+      if (this.classN) return ` ${this.classN}`;
+      return '';
+    },
+  },
   methods: {
     hideDropdown() {
       if (!this.clickDisabled) this.isShow = false;
@@ -96,6 +101,10 @@ export default Vue.extend({
     cursor: pointer;
     z-index: 10001;
 
+    &.compound {
+      border-radius: var.$b-radius 0 0 var.$b-radius;
+    }
+
     &:hover {
       border-color: color.lightness(var.$gray, -20%);
       &::after {
@@ -105,12 +114,16 @@ export default Vue.extend({
 
     &[show] {
       border-radius: var.$b-radius var.$b-radius 0 0;
+
+      &.compound {
+        border-radius: var.$b-radius 0 0 0;
+      }
       &::after {
         transform: rotate(180deg);
       }
     }
 
-    &::after {
+    &:not(.compound)::after {
       @extend %animate-all-bounceend;
       position: absolute;
       content: '\25bc';

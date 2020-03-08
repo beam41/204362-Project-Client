@@ -1,6 +1,8 @@
 <template>
   <div class="adminbox">
-    <div class="table-top">hi</div>
+    <div class="listpage-top">
+      <button class="btn-default btn-big">+ New</button>
+    </div>
     <div class="table-wrapper">
       <table class="datalist">
         <tr class="head">
@@ -28,129 +30,25 @@ export default Vue.extend({
       {
         id: '14785',
         title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
+        creator: 'พี่ยิ้ม',
         accepted: true,
       },
       {
         id: '8747545',
-        title: 'บริจาคกันเตอะ',
+        title: 'เอาเงินมา',
         creator: 'หมี',
         accepted: true,
       },
       {
         id: '48255',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
+        title: 'หมาน้อยสู้ภัย Covid-19',
+        creator: 'คณะวิศวะ',
         accepted: true,
       },
       {
         id: '2585',
         title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
-        accepted: false,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'หมี',
+        creator: 'ด็อกเตอร์ อากาสะ',
         accepted: false,
       },
     ],
@@ -159,4 +57,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.btn-big {
+  font-size: 1.5rem;
+}
 </style>

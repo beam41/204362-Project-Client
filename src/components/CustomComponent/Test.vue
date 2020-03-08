@@ -59,7 +59,7 @@
       <div class="form-control">
         <label>Select</label>
         <span class="select" style="width: 200px">
-          <Select />
+          <Select customText="Select Your Mee:" :options="['Mee', 'Moo', 'Maa']" />
         </span>
       </div>
 
@@ -72,25 +72,33 @@
         <textarea></textarea>
       </div>
     </form>
+    <div class="form-control">
+      <label>Sorter</label>
+      <span class="Sorter">
+        <Sorter />
+      </span>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import CheckBox from './CheckBox.vue';
 import Select from './Select.vue';
+import CheckBox from './CheckBox.vue';
+import Sorter from './Sorter.vue';
 
 export default Vue.extend({
   name: 'Test',
   components: {
     CheckBox,
     Select,
+    Sorter,
   },
 });
 </script>
 
 <style scoped>
 .test-component {
-  width: 100vw;
+  height: 200vh;
 }
 </style>

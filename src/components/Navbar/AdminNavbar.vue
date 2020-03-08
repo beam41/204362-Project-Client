@@ -30,7 +30,6 @@ export default Vue.extend({
   position: relative;
   background: var.$gray;
   height: 100vh;
-  width: var.$navbar-width;
   z-index: 15000;
 }
 

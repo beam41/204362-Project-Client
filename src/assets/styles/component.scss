@@ -2,7 +2,7 @@
 @use 'color';
 @use 'selector';
 
-@import url('https://fonts.googleapis.com/css?family=Sarabun:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
 
 @import 'sanitize.css';
 
@@ -29,6 +29,14 @@
 :root {
   scrollbar-width: thin;
   scrollbar-color: var.$scrollbar-thumb-color var.$scrollbar-track-color;
+}
+
+::selection {
+  background: color.alpha(lightblue, -0.5%);
+}
+
+::-moz-selection {
+  background: color.alpha(lightblue, -0.5%);
 }
 
 *,
@@ -74,6 +82,7 @@ input,
 select,
 textarea {
   font-size: 1rem;
+  line-height: 1.5;
 }
 
 h5 {
@@ -180,7 +189,7 @@ textarea {
 }
 
 .input-group {
-  & > * {
+  &>* {
     position: relative;
     z-index: 0;
   }

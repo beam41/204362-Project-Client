@@ -8,30 +8,42 @@ const routes = [
     path: '/admin/dog/list',
     name: 'dog-list',
     meta: { layout: 'admin', title: 'Dog' },
-    component: () => import('@/components/AdminDog/DogList.vue'),
+    component: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "AdminDogList" */ '@/components/AdminDog/DogList.vue'),
   },
   {
     path: '/admin/donate/list',
     name: 'donate-list',
     meta: { layout: 'admin', title: 'Donate' },
-    component: () => import('@/components/AdminDonate/DonateList.vue'),
+    component: () =>
+      // eslint-disable-next-line
+      import(
+        /* webpackChunkName: "AdminDonateList" */
+        // eslint-disable-next-line
+        '@/components/AdminDonate/DonateList.vue'
+      ),
   },
   {
     path: '/admin/report/list',
     name: 'report-list',
     meta: { layout: 'admin', title: 'Report' },
-    component: () => import('@/components/AdminDonate/DonateList.vue'),
+    component: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "AdminReportList" */ '@/components/AdminReport/ReportList.vue'),
   },
   {
     path: '/admin/news/list',
     name: 'news-list',
     meta: { layout: 'admin', title: 'News' },
-    component: () => import('@/components/AdminDonate/DonateList.vue'),
+    component: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "AdminNewsList" */ '@/components/AdminNews/NewsList.vue'),
   },
   {
     path: '/hidden/test',
     name: 'test',
-    component: () => import('@/components/CustomComponent/Test.vue'),
+    component: () => import(/* webpackChunkName: "Test" */ '@/components/CustomComponent/Test.vue'),
   },
 ];
 

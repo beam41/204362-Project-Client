@@ -13,6 +13,15 @@ const defaultLayout = 'default';
 
 export default Vue.extend({
   name: 'app',
+  components: {
+    AdminLayout: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "AdminLayout" */ './components/Layout/Admin.vue'),
+    UserLayout: () => import(/* webpackChunkName: "UserLayout" */ './components/Layout/User.vue'),
+    DefaultLayout: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "DefaultLayout" */ './components/Layout/Default.vue'),
+  },
   computed: {
     layout() {
       return `${this.$route.meta.layout || defaultLayout}-layout`;
@@ -26,9 +35,4 @@ export default Vue.extend({
 // non partial import here
 // to prevent redundant import if import in loader
 @use 'src/assets/styles/component';
-
-#app {
-  min-width: 100%;
-  min-height: 100%;
-}
 </style>
