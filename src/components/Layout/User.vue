@@ -1,7 +1,7 @@
 <template>
   <div class="user">
     user
-    <slot></slot>
+    <router-view></router-view>
   </div>
 </template>
 

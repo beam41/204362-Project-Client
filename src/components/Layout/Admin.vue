@@ -4,7 +4,7 @@
     <div class="headstyle">
       <h2>{{ title }}</h2>
     </div>
-    <slot></slot>
+    <router-view></router-view>
   </div>
 </template>
 

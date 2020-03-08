@@ -29,19 +29,15 @@ $scrollbar-track-color: #f0f0f0;
 $scrollbar-thumb-color: #bdbdbd;
 
 // CheckBox
-$label-pad-left: 30px;
-$cb-size: 25px;
-$cb-top: 2px;
+$label-pad-left: 10px;
+$cb-size: 31px;
+$cb-top: -1px;
 $cb-left: 0;
 
 // cb tick
-$tick-short-length: 3px;
-$tick-long-length: 10px;
-$tick-left: 8.5px;
-$tick-top: 4px;
-$tick-width: 3px;
-$tick-rotate: 40deg;
+$tick-left: 6.25px;
+$tick-top: 2.8px;
 
 //admin thingy
 $navbar-width: 15vw;
-$top-part-h: 7vh;
+$top-part-h: 3rem;

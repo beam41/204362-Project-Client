@@ -3,47 +3,56 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-const routes = [
+const adminRoutes = [
   {
-    path: '/admin/dog/list',
-    name: 'dog-list',
-    meta: { layout: 'admin', title: 'Dog' },
+    path: 'dog/list',
+    meta: { title: 'Dog' },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "AdminDogList" */ '@/components/AdminDog/DogList.vue'),
+      import(/* webpackChunkName: "ADogList" */ '@/components/AdminDog/DogList.vue'),
   },
   {
-    path: '/admin/donate/list',
-    name: 'donate-list',
-    meta: { layout: 'admin', title: 'Donate' },
+    path: 'donate/list',
+    meta: { title: 'Donate' },
     component: () =>
       // eslint-disable-next-line
       import(
-        /* webpackChunkName: "AdminDonateList" */
         // eslint-disable-next-line
-        '@/components/AdminDonate/DonateList.vue'
+        /* webpackChunkName: "ADonateList" */ '@/components/AdminDonate/DonateList.vue'
       ),
   },
   {
-    path: '/admin/report/list',
-    name: 'report-list',
-    meta: { layout: 'admin', title: 'Report' },
+    path: 'report/list',
+    meta: { title: 'Report' },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "AdminReportList" */ '@/components/AdminReport/ReportList.vue'),
+      import(
+        // eslint-disable-next-line
+        /* webpackChunkName: "AReportList" */ '@/components/AdminReport/ReportList.vue'
+      ),
   },
   {
-    path: '/admin/news/list',
-    name: 'news-list',
-    meta: { layout: 'admin', title: 'News' },
+    path: 'news/list',
+    meta: { title: 'News' },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "AdminNewsList" */ '@/components/AdminNews/NewsList.vue'),
+      import(/* webpackChunkName: "ANewsList" */ '@/components/AdminNews/NewsList.vue'),
+  },
+];
+
+const routes = [
+  {
+    path: '/admin',
+    meta: { preTitle: 'Admin Dashboard' },
+    component: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "ALayout" */ '@/components/Layout/Admin.vue'),
+    children: adminRoutes,
   },
   {
     path: '/hidden/test',
     name: 'test',
-    component: () => import(/* webpackChunkName: "Test" */ '@/components/CustomComponent/Test.vue'),
+    component: () => import(/* webpackChunkName: "Test" */ '@/components/Shared/Test.vue'),
   },
 ];
 
@@ -51,6 +60,14 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  try {
+    document.title = `${to.matched[0].meta.preTitle}: ${to.matched[1].meta.title}`;
+  } finally {
+    next();
+  }
 });
 
 export default router;

@@ -4,41 +4,41 @@
 
 $top-warp-height: 10%;
 $bg-bd-color: color.lightness(var.$gray, 40%);
+$table-body-height: 46px;
 
 .admin {
   .adminbox {
-    grid-column-start: 2;
-    grid-row-start: 2;
+    grid-column: 2/3;
+    grid-row: 2/3;
     padding: 20px 100px;
+    min-height: 0;
   }
 
   .listpage-top {
     height: $top-warp-height;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding-bottom: 20px;
   }
 
   // table
   .table-wrapper {
     height: 100 - $top-warp-height;
-    overflow-y: auto;
     background: $bg-bd-color;
     border: 2px solid $bg-bd-color;
     border-radius: var.$b-radius;
+    overflow: hidden;
+  }
+
+  .sub-table-wrapper {
+    overflow-y: scroll;
+    height: calc(100% - #{$table-body-height});
   }
 
   .datalist {
     border-collapse: collapse;
     width: 100%;
-
-    th {
-      position: sticky;
-      top: 0;
-      background: white;
-      border-bottom: 2px solid $bg-bd-color;
-      box-shadow: 0 2px 0px 0px $bg-bd-color;
-    }
 
     & th,
     & td {
@@ -47,16 +47,29 @@ $bg-bd-color: color.lightness(var.$gray, 40%);
     }
 
     td {
-      background: white;
       border-bottom: 1px solid $bg-bd-color;
+      height: $table-body-height;
+
     }
 
-    tr {
-      @extend %animate-all
+    tr:not(.tablehead) {
+      @extend %animate-all;
+      background: white;
     }
 
-    tr:hover {
+    tr:not(.tablehead):hover {
       background: color.lightness(var.$gray, 55%);
     }
+
+    &.head {
+      height: 100%;
+    }
+  }
+
+  .head-wrapper {
+    background: white;
+    padding-right: var.$scrollbar-width;
+    border-bottom: 2px solid $bg-bd-color;
+    height: $table-body-height;
   }
 }

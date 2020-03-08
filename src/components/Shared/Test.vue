@@ -59,7 +59,11 @@
       <div class="form-control">
         <label>Select</label>
         <span class="select" style="width: 200px">
-          <Select customText="Select Your Mee:" :options="['Mee', 'Moo', 'Maa']" />
+          <Select
+            customText="Select Your Mee:"
+            :options="['Mee', 'Moo', 'Maa']"
+            @change="log($event)"
+          />
         </span>
       </div>
 
@@ -93,6 +97,11 @@ export default Vue.extend({
     CheckBox,
     Select,
     Sorter,
+  },
+  methods: {
+    log(me: any) {
+      // console.log(me);
+    },
   },
 });
 </script>

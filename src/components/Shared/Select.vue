@@ -8,7 +8,8 @@
         :key="opt"
         :value="opt"
         :selected="index === currSelect"
-      >{{ opt }}</option>
+        >{{ opt }}</option
+      >
     </select>
     <!-- viewable custom select for user -->
     <div class="new-select">
@@ -17,9 +18,13 @@
         @click="toggleShowDropdown()"
         v-on-clickaway="hideDropdown"
         :show="isShow"
-      >{{ currSelect === -1 ? customText : options[currSelect] }}</div>
+      >
+        {{ currSelect === -1 ? customText : options[currSelect] }}
+      </div>
       <div class="dropdown" :show="isShow">
-        <div class="dd-element" disabled @click="clickDisabled = true">{{ customText }}</div>
+        <div class="dd-element" v-if="customText" disabled @click="clickDisabled = true">
+          {{ customText }}
+        </div>
         <div
           class="dd-element"
           v-for="(opt, index) in options"
@@ -27,7 +32,9 @@
           :value="opt"
           :selected="index === currSelect"
           @click="selectMe(index)"
-        >{{ opt }}</div>
+        >
+          {{ opt }}
+        </div>
       </div>
     </div>
   </div>
@@ -69,6 +76,7 @@ export default Vue.extend({
     },
     selectMe(index) {
       this.currSelect = index;
+      this.$emit('change', { value: this.currSelect });
     },
   },
 });
@@ -99,10 +107,11 @@ export default Vue.extend({
     position: relative;
     box-sizing: border-box;
     cursor: pointer;
-    z-index: 10001;
+    z-index: 10002;
 
     &.compound {
       border-radius: var.$b-radius 0 0 var.$b-radius;
+      border-right: none;
     }
 
     &:hover {
@@ -125,8 +134,9 @@ export default Vue.extend({
 
     &:not(.compound)::after {
       @extend %animate-all-bounceend;
+      @extend %font-awesome;
       position: absolute;
-      content: '\25bc';
+      content: '\f078';
       right: var.$b-radius;
       color: var.$gray;
     }
@@ -163,6 +173,7 @@ export default Vue.extend({
     padding: var.$txt-box-pad var.$b-radius;
     background: white;
     user-select: none;
+    z-index: 10001;
 
     &:hover {
       background: color.lightness(var.$gray, 40%);

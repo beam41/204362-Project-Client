@@ -1,30 +1,42 @@
 <template>
   <div class="adminbox">
     <div class="listpage-top">
-      <button class="btn-default btn-big">+ New</button>
+      <button class="btn-default">+ New</button>
+      <Sorter />
     </div>
     <div class="table-wrapper">
-      <table class="datalist">
-        <tr class="head">
-          <th>ชื่อเรื่อง</th>
-          <th>ผู้สร้าง</th>
-          <th>อนุมัติแล้ว</th>
-        </tr>
-        <tr v-for="d in donates" :key="d.id">
-          <td>{{d.title}}</td>
-          <td>{{d.creator}}</td>
-          <td>{{d.accepted}}</td>
-        </tr>
-      </table>
+      <div class="head-wrapper">
+        <table class="datalist head">
+          <tr class="tablehead">
+            <th>ชื่อเรื่อง</th>
+            <th>ผู้สร้าง</th>
+            <th>อนุมัติแล้ว</th>
+          </tr>
+        </table>
+      </div>
+
+      <div class="sub-table-wrapper">
+        <table class="datalist">
+          <tr v-for="d in donates" :key="d.id">
+            <td>{{ d.title }}</td>
+            <td>{{ d.creator }}</td>
+            <td>{{ d.accepted }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import Sorter from '@/components/Shared/Sorter.vue';
 
 export default Vue.extend({
   name: 'ListDonate',
+  components: {
+    Sorter,
+  },
   data: () => ({
     donates: [
       {
@@ -57,7 +69,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.btn-big {
-  font-size: 1.5rem;
+.datalist {
+  @include selector.th-td-spacing(3);
 }
 </style>

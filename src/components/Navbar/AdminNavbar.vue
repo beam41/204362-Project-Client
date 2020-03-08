@@ -29,8 +29,8 @@ export default Vue.extend({
 .navbar {
   position: relative;
   background: var.$gray;
-  height: 100vh;
-  z-index: 15000;
+  z-index: 5000;
+  grid-row: 1/3;
 }
 
 li {
