@@ -1,10 +1,8 @@
 <template>
   <div class="listdog adminbox">
     <div class="listpage-top">
-      <button class="btn-default">
-        <i class="fas fa-plus"></i>New
-      </button>
-      <Sorter />
+      <button class="btn-default"><i class="fas fa-plus"></i>New</button>
+      <Sorter :options="['Hi']" />
     </div>
     <div class="table-wrapper">
       <div class="head-wrapper">
@@ -22,7 +20,7 @@
       </div>
       <div class="sub-table-wrapper">
         <table class="datalist">
-          <tr v-for="d in dogs" :key="d.id" @click="'plsdo'">
+          <tr v-for="d in dogs" :key="d.id" @click="dataDog(d.id)">
             <td>{{ getAllName(d.Name) }}</td>
             <td>{{ d.Age }} {{ d.AgeUnit }}</td>
             <td>{{ getSex(d.Sex) }}</td>
@@ -77,6 +75,9 @@ export default Vue.extend({
         return 'สีเหลือง';
       }
       return 'สีแดง';
+    },
+    dataDog(id: number) {
+      this.$router.push(`/admin/dog/${id}`);
     },
   },
 });
