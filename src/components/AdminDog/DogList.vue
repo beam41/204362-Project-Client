@@ -1,7 +1,9 @@
 <template>
   <div class="listdog adminbox">
     <div class="listpage-top">
-      <button class="btn-default"><i class="fas fa-plus"></i>New</button>
+      <button class="btn-default">
+        <i class="fas fa-plus"></i>New
+      </button>
       <Sorter />
     </div>
     <div class="table-wrapper">
@@ -20,7 +22,7 @@
       </div>
       <div class="sub-table-wrapper">
         <table class="datalist">
-          <tr v-for="d in dogs" :key="d.id">
+          <tr v-for="d in dogs" :key="d.id" @click="'plsdo'">
             <td>{{ getAllName(d.Name) }}</td>
             <td>{{ d.Age }} {{ d.AgeUnit }}</td>
             <td>{{ getSex(d.Sex) }}</td>

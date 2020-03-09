@@ -12,6 +12,13 @@ const adminRoutes = [
       import(/* webpackChunkName: "ADogList" */ '@/components/AdminDog/DogList.vue'),
   },
   {
+    path: 'dog/:id',
+    meta: { title: 'Dog', pos: 1 },
+    component: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "ADogList" */ '@/components/AdminDog/DogAddUpdate.vue'),
+  },
+  {
     path: 'donate/',
     meta: { title: 'Donate', pos: 3 },
     component: () =>
