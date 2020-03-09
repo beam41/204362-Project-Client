@@ -6,7 +6,7 @@
         <h2 :key="title">{{ title }}</h2>
       </transition>
     </div>
-    <transition name="fade">
+    <transition :name="transitionName">
       <router-view />
     </transition>
   </div>
@@ -18,12 +18,20 @@ import Navbar from '@/components/Navbar/AdminNavbar.vue';
 
 export default Vue.extend({
   name: 'AdminLayout',
+  data: () => ({
+    transitionName: '',
+  }),
   components: {
     Navbar,
   },
   computed: {
     title() {
       return this.$route.meta.title;
+    },
+  },
+  watch: {
+    $route(to, from) {
+      this.transitionName = to.meta.pos > from.meta.pos ? 'up' : 'down';
     },
   },
 });
@@ -35,8 +43,9 @@ export default Vue.extend({
 .admin {
   display: grid;
   height: 100vh;
-  grid-template-columns: var.$navbar-width 100fr;
+  grid-template-columns: max(#{var.$navbar-minwidth}, #{var.$navbar-width}) 100fr;
   grid-template-rows: var.$top-part-h 100fr;
+  overflow: hidden;
 
   & .headstyle {
     display: flex;

@@ -1,5 +1,10 @@
 @use 'var';
 
+%opacity-zero {
+  opacity: 0;
+}
+
+
 // class for fade transition
 .fade-enter-active,
 .fade-leave-active {
@@ -8,20 +13,58 @@
 
 .fade-enter,
 .fade-leave-to {
-  opacity: 0;
+  @extend %opacity-zero;
 }
 
-// for admin topbar
-.topbar-enter-active {
+%opacity-and-transform {
   transition: opacity var.$animation-time linear,
     transform var.$animation-time cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+// for admin topbar
+.topbar-enter-active {
+  @extend %opacity-and-transform;
+}
+
 .topbar-enter {
-  opacity: 0;
+  @extend %opacity-zero;
   transform: translateX(100%);
 }
 
-.topbar-leave-to {
-  opacity: 0;
+// up
+.up-enter-active,
+.up-leave-active {
+  @extend %opacity-and-transform;
+}
+
+.up-enter,
+.up-leave-to {
+  @extend %opacity-zero;
+}
+
+.up-enter {
+  transform: translateY(5%);
+}
+
+.up-leave-to {
+  transform: translateY(-5%);
+}
+
+// down
+.down-enter-active,
+.down-leave-active {
+  @extend %opacity-and-transform;
+}
+
+.down-enter,
+.down-leave-to {
+  @extend %opacity-zero;
+}
+
+.down-enter {
+  transform: translateY(-5%);
+}
+
+.down-leave-to {
+  transform: translateY(5%);
 }

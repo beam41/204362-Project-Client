@@ -4,16 +4,16 @@
       <h1>MheanMaa</h1>
     </div>
     <div class="center">
-      <router-link to="/admin/news/list" class="nav-link news">
+      <router-link to="/admin/news/" class="nav-link news">
         <i class="fas fa-newspaper"></i>News
       </router-link>
-      <router-link to="/admin/dog/list" class="nav-link dog">
+      <router-link to="/admin/dog/" class="nav-link dog">
         <i class="fas fa-paw"></i>Dog
       </router-link>
-      <router-link to="/admin/report/list" class="nav-link report">
+      <router-link to="/admin/report/" class="nav-link report">
         <i class="fas fa-inbox"></i>Report
       </router-link>
-      <router-link to="/admin/donate/list" class="nav-link donate">
+      <router-link to="/admin/donate/" class="nav-link donate">
         <i class="fas fa-donate"></i>Donate
       </router-link>
     </div>

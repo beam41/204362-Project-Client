@@ -5,15 +5,15 @@ Vue.use(VueRouter);
 
 const adminRoutes = [
   {
-    path: 'dog/list',
-    meta: { title: 'Dog' },
+    path: 'dog/',
+    meta: { title: 'Dog', pos: 1 },
     component: () =>
       // eslint-disable-next-line
       import(/* webpackChunkName: "ADogList" */ '@/components/AdminDog/DogList.vue'),
   },
   {
-    path: 'donate/list',
-    meta: { title: 'Donate' },
+    path: 'donate/',
+    meta: { title: 'Donate', pos: 3 },
     component: () =>
       // eslint-disable-next-line
       import(
@@ -22,8 +22,8 @@ const adminRoutes = [
       ),
   },
   {
-    path: 'report/list',
-    meta: { title: 'Report' },
+    path: 'report/',
+    meta: { title: 'Report', pos: 2 },
     component: () =>
       // eslint-disable-next-line
       import(
@@ -32,8 +32,8 @@ const adminRoutes = [
       ),
   },
   {
-    path: 'news/list',
-    meta: { title: 'News' },
+    path: 'news/',
+    meta: { title: 'News', pos: 0 },
     component: () =>
       // eslint-disable-next-line
       import(/* webpackChunkName: "ANewsList" */ '@/components/AdminNews/NewsList.vue'),

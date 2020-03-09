@@ -1,7 +1,7 @@
 <template>
   <div class="listdog adminbox">
     <div class="listpage-top">
-      <button class="btn-default">+ New</button>
+      <button class="btn-default"><i class="fas fa-plus"></i>New</button>
       <Sorter />
     </div>
     <div class="table-wrapper">
@@ -56,16 +56,24 @@ export default Vue.extend({
       return Allname.toString();
     },
     getSex(sex: string) {
-      if (sex === 'F') { return 'ตัวเมีย'; }
+      if (sex === 'F') {
+        return 'ตัวเมีย';
+      }
       return 'ตัวผู้';
     },
     IsAlive(IsAlive: boolean) {
-      if (IsAlive) { return 'มีชีวิต'; }
+      if (IsAlive) {
+        return 'มีชีวิต';
+      }
       return 'เสียชีวิต';
     },
     getCollarColor(CollarColor: string) {
-      if (CollarColor === 'G') { return 'สีเขียว'; }
-      if (CollarColor === 'Y') { return 'สีเหลือง'; }
+      if (CollarColor === 'G') {
+        return 'สีเขียว';
+      }
+      if (CollarColor === 'Y') {
+        return 'สีเหลือง';
+      }
       return 'สีแดง';
     },
   },
