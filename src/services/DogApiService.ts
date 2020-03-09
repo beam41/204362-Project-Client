@@ -28,3 +28,5 @@ function getDogs() {
     },
   ];
 }
+
+export default { getDogs };
