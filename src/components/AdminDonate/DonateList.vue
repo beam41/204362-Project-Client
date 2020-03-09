@@ -1,7 +1,9 @@
 <template>
   <div class="adminbox">
     <div class="listpage-top">
-      <button class="btn-default">+ New</button>
+      <button class="btn-default">
+        <i class="fas fa-plus"></i> New
+      </button>
       <Sorter />
     </div>
     <div class="table-wrapper">

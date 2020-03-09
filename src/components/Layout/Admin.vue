@@ -2,7 +2,9 @@
   <div class="admin">
     <Navbar></Navbar>
     <div class="headstyle">
-      <h2>{{ title }}</h2>
+      <transition name="topbar">
+        <h2 :key="title">{{ title }}</h2>
+      </transition>
     </div>
     <transition name="fade">
       <router-view />
@@ -46,8 +48,8 @@ export default Vue.extend({
     h2 {
       font-size: 1.75rem;
       margin: 0 1em;
+      position: absolute;
     }
   }
 }
-
 </style>

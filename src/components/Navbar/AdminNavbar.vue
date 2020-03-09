@@ -1,19 +1,22 @@
 <template>
   <div class="navbar">
-    <ul>
-      <li>
-        <router-link to="/admin/news/list" class="nav-link">News</router-link>
-      </li>
-      <li>
-        <router-link to="/admin/dog/list" class="nav-link">Dog</router-link>
-      </li>
-      <li>
-        <router-link to="/admin/report/list" class="nav-link">Report</router-link>
-      </li>
-      <li>
-        <router-link to="/admin/donate/list" class="nav-link">Donate</router-link>
-      </li>
-    </ul>
+    <div class="top">
+      <h1>MheanMaa</h1>
+    </div>
+    <div class="center">
+      <router-link to="/admin/news/list" class="nav-link news">
+        <i class="fas fa-newspaper"></i> News
+      </router-link>
+      <router-link to="/admin/dog/list" class="nav-link dog">
+        <i class="fas fa-paw"></i> Dog
+      </router-link>
+      <router-link to="/admin/report/list" class="nav-link report">
+        <i class="fas fa-inbox"></i> Report
+      </router-link>
+      <router-link to="/admin/donate/list" class="nav-link donate">
+        <i class="fas fa-donate"></i> Donate
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -26,36 +29,46 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+.top {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
 .navbar {
   position: relative;
   background: var.$gray;
   z-index: 5000;
   grid-row: 1/3;
+  display: flex;
+  flex-direction: column;
 }
 
-li {
-  margin-top: 100px;
-  margin-bottom: 100px;
+.nav-link {
+  display: block;
+  color: #ffffff;
+  transition: all 0.25s;
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 2rem 1em;
+  font-weight: 500;
 
-  .nav-link {
-    display: block;
-    color: #ffffff;
-    padding: 8px 16px;
-    transition: all 0.25s;
+  &:hover {
     text-decoration: none;
-
-    &:hover {
-      text-decoration: none;
-      color: var.$white;
-      background-color: color.lightness(var.$gray, -20%);
-    }
+    background-color: color.lightness(var.$gray, -20%);
   }
 }
 
-ul {
-  font-weight: bold;
-  text-align: center;
-  margin: 0;
-  padding: 0;
+.news:hover {
+  color: blue;
+}
+.dog:hover {
+  color: red;
+}
+.report:hover {
+  color: green;
+}
+.donate:hover {
+  color: yellow;
 }
 </style>
