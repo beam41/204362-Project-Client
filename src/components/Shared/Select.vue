@@ -8,7 +8,8 @@
         :key="opt"
         :value="opt"
         :selected="index === currSelect"
-      >{{ opt }}</option>
+        >{{ opt }}</option
+      >
     </select>
     <!-- viewable custom select for user -->
     <div class="new-select">
@@ -17,14 +18,13 @@
         @click="toggleShowDropdown()"
         v-on-clickaway="hideDropdown"
         :show="isShow"
-      >{{ currSelect === -1 ? customText : options[currSelect] }}</div>
+      >
+        {{ currSelect === -1 ? customText : options[currSelect] }}
+      </div>
       <div class="dropdown" :show="isShow">
-        <div
-          class="dd-element"
-          v-if="customText"
-          disabled
-          @click="clickDisabled = true"
-        >{{ customText }}</div>
+        <div class="dd-element" v-if="customText" disabled @click="clickDisabled = true">
+          {{ customText }}
+        </div>
         <div
           class="dd-element"
           v-for="(opt, index) in options"
@@ -32,7 +32,9 @@
           :value="opt"
           :selected="index === currSelect"
           @click="selectMe(index)"
-      >{{ opt }}</div>
+        >
+          {{ opt }}
+        </div>
       </div>
     </div>
   </div>
@@ -83,6 +85,11 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .cs {
   display: inline-block;
+
+  * {
+    user-select: none;
+  }
+
   // hide select
   select {
     display: none;
@@ -170,7 +177,7 @@ export default Vue.extend({
     position: relative;
     padding: var.$txt-box-pad var.$b-radius;
     background: white;
-    user-select: none;
+
     z-index: 10001;
 
     &:hover {

@@ -1,10 +1,10 @@
 <template>
   <span class="sorter-wrapper">
     <span class="sorter input-group" style="width: 100px;">
-      <Select classN="compound" :options="['ชื่อ', 'ทีอยู่', 'บ้านเลขที่']" />
+      <Select classN="compound" :options="options" @change="onChange($event)" />
       <button
-        :class="'btn-default' + (descending ? ' descending' : '')"
-        @click="descending = !descending"
+        :class="'btn-default' + (descending ? ' desc' : '')"
+        @click="onClick()"
       ></button>
     </span>
   </span>
@@ -16,12 +16,26 @@ import Select from './Select.vue';
 
 export default Vue.extend({
   name: 'Sorter',
+  props: {
+    options: Array,
+  },
   components: {
     Select,
   },
   data: () => ({
+    currOption: 0,
     descending: false,
   }),
+  methods: {
+    onChange(event: any) {
+      this.currOption = event.value;
+      this.$emit('change', { currOption: this.currOption, descending: this.descending });
+    },
+    onClick() {
+      this.descending = !this.descending;
+      this.$emit('change', { currOption: this.currOption, descending: this.descending });
+    },
+  },
 });
 </script>
 
@@ -35,7 +49,7 @@ button {
     @extend %animate-tf-bounceend;
   }
 }
-.descending {
+.desc {
   &::after {
     transform: rotate(180deg);
   }

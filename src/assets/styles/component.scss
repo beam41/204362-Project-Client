@@ -117,6 +117,10 @@ button,
   @extend %blockpadd;
   color: white;
   user-select: none;
+
+  & .fas {
+    margin-right: var.$b-radius;
+  }
 }
 
 @mixin btn($color) {

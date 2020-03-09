@@ -5,18 +5,19 @@
     </div>
     <div class="center">
       <router-link to="/admin/news/list" class="nav-link news">
-        <i class="fas fa-newspaper"></i> News
+        <i class="fas fa-newspaper"></i>News
       </router-link>
       <router-link to="/admin/dog/list" class="nav-link dog">
-        <i class="fas fa-paw"></i> Dog
+        <i class="fas fa-paw"></i>Dog
       </router-link>
       <router-link to="/admin/report/list" class="nav-link report">
-        <i class="fas fa-inbox"></i> Report
+        <i class="fas fa-inbox"></i>Report
       </router-link>
       <router-link to="/admin/donate/list" class="nav-link donate">
-        <i class="fas fa-donate"></i> Donate
+        <i class="fas fa-donate"></i>Donate
       </router-link>
     </div>
+    <div class="bot"></div>
   </div>
 </template>
 
@@ -28,11 +29,18 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .top {
   h1 {
+    color: white;
+    margin: 2rem 0;
     font-size: 2rem;
+    text-align: center;
   }
+}
+
+.fas {
+  margin: 0 1rem;
 }
 
 .navbar {
@@ -42,6 +50,7 @@ export default Vue.extend({
   grid-row: 1/3;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .nav-link {
@@ -49,26 +58,14 @@ export default Vue.extend({
   color: #ffffff;
   transition: all 0.25s;
   text-decoration: none;
-  font-size: 1.5rem;
-  padding: 2rem 1em;
+  font-size: 1.25rem;
   font-weight: 500;
+  margin: 2rem 0;
+  padding: 1rem 0;
 
   &:hover {
     text-decoration: none;
     background-color: color.lightness(var.$gray, -20%);
   }
-}
-
-.news:hover {
-  color: blue;
-}
-.dog:hover {
-  color: red;
-}
-.report:hover {
-  color: green;
-}
-.donate:hover {
-  color: yellow;
 }
 </style>

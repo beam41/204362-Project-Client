@@ -1,10 +1,8 @@
 <template>
   <div class="adminbox">
     <div class="listpage-top">
-      <button class="btn-default">
-        <i class="fas fa-plus"></i> New
-      </button>
-      <Sorter />
+      <button class="btn-default"><i class="fas fa-plus"></i>New</button>
+      <Sorter :options="by" @change="onChange($event)" />
     </div>
     <div class="table-wrapper">
       <div class="head-wrapper">
@@ -18,7 +16,7 @@
       </div>
       <div class="sub-table-wrapper">
         <table class="datalist">
-          <tr v-for="d in donates" :key="d.id">
+          <tr v-for="d in sortedArrays" :key="d.id">
             <td>{{ d.title }}</td>
             <td>{{ d.creator }}</td>
             <td>{{ d.accepted }}</td>
@@ -32,6 +30,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import Sorter from '@/components/Shared/Sorter.vue';
+import util from '@/util';
+import DonateServ from '@/services/DonateApiService';
+import _ from 'lodash';
 
 export default Vue.extend({
   name: 'ListDonate',
@@ -39,33 +40,26 @@ export default Vue.extend({
     Sorter,
   },
   data: () => ({
-    donates: [
-      {
-        id: '14785',
-        title: 'บริจาคกันเตอะ',
-        creator: 'พี่ยิ้ม',
-        accepted: true,
-      },
-      {
-        id: '8747545',
-        title: 'เอาเงินมา',
-        creator: 'หมี',
-        accepted: true,
-      },
-      {
-        id: '48255',
-        title: 'หมาน้อยสู้ภัย Covid-19',
-        creator: 'คณะวิศวะ',
-        accepted: true,
-      },
-      {
-        id: '2585',
-        title: 'บริจาคกันเตอะ',
-        creator: 'ด็อกเตอร์ อากาสะ',
-        accepted: false,
-      },
-    ],
+    by: ['ชื่อเรื่อง', 'ผู้สร้าง', 'อนุมัติแล้ว'],
+    field: ['title', 'creator', 'accepted'],
+    donates: null as Array<any> | null,
+    currOption: 0,
+    descending: false,
   }),
+  created() {
+    this.donates = DonateServ.getDonates();
+  },
+  computed: {
+    sortedArrays() {
+      return _.orderBy(this.donates, this.field[this.currOption], this.descending ? 'desc' : 'asc');
+    },
+  },
+  methods: {
+    onChange({ currOption, descending }: any) {
+      this.currOption = currOption;
+      this.descending = descending;
+    },
+  },
 });
 </script>
 
