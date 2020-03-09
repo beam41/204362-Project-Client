@@ -61,7 +61,7 @@ function getDog(id: number) {
       CaretakerPhone: ['0869136952'],
       Location: 'คณะวิศวกรรมศาสตร์ อาคาร 30 ปี มหาวิทยาลัยเชียงใหม่',
     },
-  ][id];
+  ].find(dog => dog.id === id);
 }
 
 export default { getDogs, getDog };
