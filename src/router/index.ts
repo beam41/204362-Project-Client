@@ -50,6 +50,14 @@ const routes = [
     children: adminRoutes,
   },
   {
+    path: '/',
+    meta: { preTitle: 'MheanMaa' },
+    component: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "ULayout" */ '@/components/Layout/User.vue'),
+    // children: userRoutes,
+  },
+  {
     path: '/hidden/test',
     name: 'test',
     component: () => import(/* webpackChunkName: "Test" */ '@/components/Shared/Test.vue'),
