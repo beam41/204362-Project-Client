@@ -1,7 +1,9 @@
 <template>
   <div class="listdog adminbox">
     <div class="listpage-top">
-      <button class="btn-default"><i class="fas fa-plus"></i>New</button>
+      <button class="btn-default" @click="addDog()">
+        <i class="fas fa-plus"></i>New
+      </button>
       <Sorter :options="['Hi']" />
     </div>
     <div class="table-wrapper">
@@ -21,13 +23,13 @@
       <div class="sub-table-wrapper">
         <table class="datalist">
           <tr v-for="d in dogs" :key="d.id" @click="dataDog(d.id)">
-            <td>{{ getAllName(d.Name) }}</td>
-            <td>{{ d.Age }} {{ d.AgeUnit }}</td>
-            <td>{{ getSex(d.Sex) }}</td>
-            <td>{{ d.Description }}</td>
-            <td>{{ IsAlive(d.IsAlive) }}</td>
-            <td>{{ getCollarColor(d.CollarColor) }}</td>
-            <td>{{ d.Caretaker }}</td>
+            <td>{{ getAllName(d.name) }}</td>
+            <td>{{ d.age }} {{ d.ageUnit }}</td>
+            <td>{{ getSex(d.sex) }}</td>
+            <td>{{ d.description }}</td>
+            <td>{{ IsAlive(d.isAlive) }}</td>
+            <td>{{ getCollarColor(d.collarColor) }}</td>
+            <td>{{ d.caretaker }}</td>
           </tr>
         </table>
       </div>
@@ -78,6 +80,9 @@ export default Vue.extend({
     },
     dataDog(id: number) {
       this.$router.push(`/admin/dog/${id}`);
+    },
+    addDog() {
+      this.$router.push('/admin/dog/add');
     },
   },
 });

@@ -237,3 +237,32 @@ a {
     color: inherit;
   }
 }
+
+.loader {
+  size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  size: 50px;
+  animation: spin 1.25s infinite linear;
+  border-radius: 100%;
+  border-right-color: transparent !important;
+}
+
+.spinner-white {
+  border: 7px solid white;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,67 +1,70 @@
-function getDogs() {
+import Dog from '@/models/dog';
+
+function getDogs(): Array<Dog> {
   return [
     {
-      id: 1,
-      Name: ['มาเฟีย', 'กุ๊บกิ๊บ'],
-      Breed: 'ผสม',
-      Age: 8,
-      AgeUnit: 'ปี',
-      Sex: 'F',
-      Description: 'ดำ อกขาว',
-      IsAlive: true,
-      CollarColor: 'G',
-      Caretaker: 'นายเกียรติชัย บุญทารักษ์',
-      CaretakerPhone: ['0884096740'],
-      Location: 'คณะวิศวกรรมศาสตร์ อาคาร 30 ปี มหาวิทยาลัยเชียงใหม่',
+      id: '1',
+      name: ['มาเฟีย', 'กุ๊บกิ๊บ'],
+      breed: 'ผสม',
+      age: 8,
+      ageUnit: 'ปี',
+      sex: 'F',
+      description: 'ดำ อกขาว',
+      isAlive: true,
+      collarColor: 'G',
+      caretaker: 'นายเกียรติชัย บุญทารักษ์',
+      caretakerPhone: ['0884096740'],
+      location: 'คณะวิศวกรรมศาสตร์ อาคาร 30 ปี มหาวิทยาลัยเชียงใหม่',
     },
     {
-      id: 2,
-      Name: ['ตู้เย็น', 'น้ำตาล'],
-      Breed: 'ผสม',
-      Age: '8',
-      AgeUnit: 'ปี',
-      Sex: 'M',
-      Description: 'ขาว หัวน้ำตาล',
-      IsAlive: true,
-      CollarColor: 'G',
-      Caretaker: 'น.ส.แก้วมณี อุดมสม',
-      CaretakerPhone: ['0869136952'],
-      Location: 'คณะวิศวกรรมศาสตร์ อาคาร 30 ปี มหาวิทยาลัยเชียงใหม่',
+      id: '2',
+      name: ['ตู้เย็น', 'น้ำตาล'],
+      breed: 'ผสม',
+      age: '8',
+      ageUnit: 'ปี',
+      sex: 'M',
+      description: 'ขาว หัวน้ำตาล',
+      isAlive: true,
+      collarColor: 'G',
+      caretaker: 'น.ส.แก้วมณี อุดมสม',
+      caretakerPhone: ['0869136952'],
+      location: 'คณะวิศวกรรมศาสตร์ อาคาร 30 ปี มหาวิทยาลัยเชียงใหม่',
     },
-  ];
+  ] as Array<Dog>;
 }
 
-function getDog(id: number) {
-  return [
+function getDog(id: string): Dog | undefined {
+  const DogArr: Array<Dog> = [
     {
-      id: 1,
-      Name: ['มาเฟีย', 'กุ๊บกิ๊บ'],
-      Breed: 'ผสม',
-      Age: 8,
-      AgeUnit: 'ปี',
-      Sex: 'F',
-      Description: 'ดำ อกขาว',
-      IsAlive: true,
-      CollarColor: 'G',
-      Caretaker: 'นายเกียรติชัย บุญทารักษ์',
-      CaretakerPhone: ['0884096740'],
-      Location: 'คณะวิศวกรรมศาสตร์ อาคาร 30 ปี มหาวิทยาลัยเชียงใหม่',
+      id: '1',
+      name: ['มาเฟีย', 'กุ๊บกิ๊บ'],
+      breed: 'ผสม',
+      age: 8,
+      ageUnit: 'ปี',
+      sex: 'F',
+      description: 'ดำ อกขาว',
+      isAlive: true,
+      collarColor: 'G',
+      caretaker: 'นายเกียรติชัย บุญทารักษ์',
+      caretakerPhone: ['0884096740'],
+      location: 'คณะวิศวกรรมศาสตร์ อาคาร 30 ปี มหาวิทยาลัยเชียงใหม่',
     },
     {
-      id: 2,
-      Name: ['ตู้เย็น', 'น้ำตาล'],
-      Breed: 'ผสม',
-      Age: '8',
-      AgeUnit: 'ปี',
-      Sex: 'M',
-      Description: 'ขาว หัวน้ำตาล',
-      IsAlive: true,
-      CollarColor: 'G',
-      Caretaker: 'น.ส.แก้วมณี อุดมสม',
-      CaretakerPhone: ['0869136952'],
-      Location: 'คณะวิศวกรรมศาสตร์ อาคาร 30 ปี มหาวิทยาลัยเชียงใหม่',
+      id: '2',
+      name: ['ตู้เย็น', 'น้ำตาล'],
+      breed: 'ผสม',
+      age: '8',
+      ageUnit: 'ปี',
+      sex: 'M',
+      description: 'ขาว หัวน้ำตาล',
+      isAlive: true,
+      collarColor: 'G',
+      caretaker: 'น.ส.แก้วมณี อุดมสม',
+      caretakerPhone: ['0869136952'],
+      location: 'คณะวิศวกรรมศาสตร์ อาคาร 30 ปี มหาวิทยาลัยเชียงใหม่',
     },
-  ].find(dog => dog.id === id);
+  ] as Array<Dog>;
+  return DogArr.find((dog: Dog) => dog.id === id);
 }
 
 export default { getDogs, getDog };

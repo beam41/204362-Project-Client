@@ -1,7 +1,9 @@
 <template>
   <div class="adminbox">
     <div class="listpage-top">
-      <button class="btn-default"><i class="fas fa-plus"></i>New</button>
+      <button class="btn-default">
+        <i class="fas fa-plus"></i>New
+      </button>
       <Sorter :options="by" @change="onChange($event)" />
     </div>
     <div class="table-wrapper">
@@ -15,13 +17,16 @@
         </table>
       </div>
       <div class="sub-table-wrapper">
-        <table class="datalist">
+        <table class="datalist" v-if="donates">
           <tr v-for="d in sortedArrays" :key="d.id">
             <td>{{ d.title }}</td>
             <td>{{ d.creator }}</td>
             <td>{{ d.accepted }}</td>
           </tr>
         </table>
+        <div v-else class="loader">
+          <div class="spinner spinner-white"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +52,9 @@ export default Vue.extend({
     descending: false,
   }),
   created() {
-    this.donates = DonateServ.getDonates();
+    DonateServ.getDonateList().then((val) => {
+      this.donates = val.data;
+    });
   },
   computed: {
     sortedArrays() {
