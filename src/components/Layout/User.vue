@@ -1,15 +1,19 @@
 <template>
-  <div class="user">
-    user
-    <router-view></router-view>
+  <div>
+    <Navbar></Navbar>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
 
+import Navbar from '@/components/Navbar/UserNavbar.vue';
+
 export default Vue.extend({
   name: 'UserLayout',
+  components: {
+    Navbar,
+  },
 });
 </script>
 
