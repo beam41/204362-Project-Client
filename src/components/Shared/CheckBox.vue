@@ -1,7 +1,7 @@
 <template>
   <label>
     <slot></slot>
-    <input type="checkbox" ref="cb" @change="onC()"/>
+    <input type="checkbox" ref="cb" @change="onC($event)" />
     <span class="cb"></span>
   </label>
 </template>
@@ -12,8 +12,8 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'CheckBox',
   methods: {
-    onC() {
-      this.$emit('change', this.$refs.cb);
+    onC(event: any) {
+      this.$emit('change', event);
     },
   },
 });

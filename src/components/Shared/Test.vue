@@ -45,7 +45,7 @@
     <form>
       <div class="form-control">
         <label>Text</label>
-        <input type="text" placeholder="Input Text" />
+        <input type="text" placeholder="Input Text" @change="log($event)" />
       </div>
 
       <div class="form-control">
@@ -69,7 +69,7 @@
       </div>
 
       <div class="form-control">
-        <CheckBox>Checkbox</CheckBox>
+        <CheckBox @change="log($event)">Checkbox</CheckBox>
       </div>
 
       <div class="form-control">
@@ -103,7 +103,7 @@ export default Vue.extend({
   methods: {
     log(me: any) {
       // console.log(me);
-      console.log(this.$refs.hi);
+      console.log(me);
     },
   },
 });
