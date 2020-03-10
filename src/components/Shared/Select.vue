@@ -1,15 +1,14 @@
 <template>
   <div class="cs">
     <!-- hidden select for form to use -->
-    <select>
+    <select ref="sel">
       <option value="pls_select" disabled :selected="currSelect === -1">{{ customText }}</option>
       <option
         v-for="(opt, index) in options"
         :key="opt"
         :value="opt"
         :selected="index === currSelect"
-        >{{ opt }}</option
-      >
+      >{{ opt }}</option>
     </select>
     <!-- viewable custom select for user -->
     <div class="new-select">
@@ -18,13 +17,14 @@
         @click="toggleShowDropdown()"
         v-on-clickaway="hideDropdown"
         :show="isShow"
-      >
-        {{ currSelect === -1 ? customText : options[currSelect] }}
-      </div>
+      >{{ currSelect === -1 ? customText : options[currSelect] }}</div>
       <div class="dropdown" :show="isShow">
-        <div class="dd-element" v-if="customText" disabled @click="clickDisabled = true">
-          {{ customText }}
-        </div>
+        <div
+          class="dd-element"
+          v-if="customText"
+          disabled
+          @click="clickDisabled = true"
+        >{{ customText }}</div>
         <div
           class="dd-element"
           v-for="(opt, index) in options"
@@ -32,9 +32,7 @@
           :value="opt"
           :selected="index === currSelect"
           @click="selectMe(index)"
-        >
-          {{ opt }}
-        </div>
+        >{{ opt }}</div>
       </div>
     </div>
   </div>
@@ -76,7 +74,10 @@ export default Vue.extend({
     },
     selectMe(index) {
       this.currSelect = index;
-      this.$emit('change', { value: this.currSelect });
+      this.$emit('sel-change', { currSelect: index });
+    },
+    log(me) {
+      console.log(me);
     },
   },
 });

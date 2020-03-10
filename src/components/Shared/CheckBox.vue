@@ -1,10 +1,23 @@
 <template>
   <label>
     <slot></slot>
-    <input type="checkbox" />
+    <input type="checkbox" ref="cb" @change="onC($event)" />
     <span class="cb"></span>
   </label>
 </template>
+
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'CheckBox',
+  methods: {
+    onC(event: any) {
+      this.$emit('change', event);
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 label {

@@ -13,10 +13,20 @@ const adminRoutes = [
   },
   {
     path: 'dog/:id',
-    meta: { title: 'Dog', pos: 1 },
+    meta: { title: 'Dog Info', pos: 1 },
     component: () =>
       // eslint-disable-next-line
       import(/* webpackChunkName: "ADogAU" */ '@/components/AdminDog/DogAddUpdate.vue'),
+  },
+  {
+    path: 'donate/:id',
+    meta: { title: 'Donate', pos: 3 },
+    component: () =>
+      // eslint-disable-next-line
+      import(
+        // eslint-disable-next-line
+        /* webpackChunkName: "ADonateList" */ '@/components/AdminDonate/DonateList.vue'
+      ),
   },
   {
     path: 'donate/',
