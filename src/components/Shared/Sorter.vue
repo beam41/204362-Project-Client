@@ -28,7 +28,7 @@ export default Vue.extend({
   }),
   methods: {
     onChange(event: any) {
-      this.currOption = event.value;
+      this.currOption = event.selectedIndex;
       this.$emit('change', { currOption: this.currOption, descending: this.descending });
     },
     onClick() {

@@ -63,6 +63,7 @@
             customText="Select Your Mee:"
             :options="['Mee', 'Moo', 'Maa']"
             @change="log($event)"
+            ref="hi"
           />
         </span>
       </div>
@@ -102,6 +103,7 @@ export default Vue.extend({
   methods: {
     log(me: any) {
       // console.log(me);
+      console.log(this.$refs.hi);
     },
   },
 });
