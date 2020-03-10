@@ -74,7 +74,10 @@ export default Vue.extend({
     },
     selectMe(index) {
       this.currSelect = index;
-      this.$emit('change', this.$refs.sel);
+      this.$emit('sel-change', { currSelect: index });
+    },
+    log(me) {
+      console.log(me);
     },
   },
 });

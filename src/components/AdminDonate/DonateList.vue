@@ -1,10 +1,8 @@
 <template>
   <div class="adminbox">
     <div class="listpage-top">
-      <button class="btn-default">
-        <i class="fas fa-plus"></i>New
-      </button>
-      <Sorter :options="by" @change="onChange($event)" />
+      <button class="btn-default"><i class="fas fa-plus"></i>New</button>
+      <Sorter :options="by" @sort-change="onChange($event)" />
     </div>
     <div class="table-wrapper">
       <div class="head-wrapper">
@@ -24,6 +22,7 @@
             <td>{{ d.accepted }}</td>
           </tr>
         </table>
+
         <div v-else class="loader">
           <div class="spinner spinner-white"></div>
         </div>
@@ -58,7 +57,11 @@ export default Vue.extend({
   },
   computed: {
     sortedArrays() {
-      return _.orderBy(this.donates, this.field[this.currOption], this.descending ? 'desc' : 'asc');
+      return _.orderBy(
+        this.donates,
+        this.field[this.currOption],
+        this.descending ? 'desc' : 'asc',
+      );
     },
   },
   methods: {
