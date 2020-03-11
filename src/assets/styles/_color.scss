@@ -7,3 +7,7 @@
 @function alpha($color, $percentage) {
   @return color.adjust($color, $alpha: $percentage);
 }
+
+@function hue($color, $deg) {
+  @return color.adjust($color, $hue: $deg);
+}

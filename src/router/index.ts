@@ -13,7 +13,7 @@ const adminRoutes = [
   },
   {
     path: 'dog/:id',
-    meta: { title: 'Dog Info', pos: 1 },
+    meta: { title: 'Dog Info', pos: 1, sub: true },
     component: () =>
       // eslint-disable-next-line
       import(/* webpackChunkName: "ADogAU" */ '@/components/AdminDog/DogAddUpdate.vue'),
@@ -47,48 +47,49 @@ const adminRoutes = [
       import(/* webpackChunkName: "ANewsList" */ '@/components/AdminNews/NewsList.vue'),
   },
 ];
+
 const userRoutes = [
   {
     path: '/home',
     meta: { preTitle: 'home' },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ULayout" */ '@/components/User/Home.vue'),
+      import(/* webpackChunkName: "UHome" */ '@/components/User/Home.vue'),
   },
   {
     path: '/news',
     meta: { preTitle: 'news' },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ULayout" */ '@/components/User/News.vue'),
+      import(/* webpackChunkName: "UNewsList" */ '@/components/User/News/NewsList.vue'),
   },
   {
     path: '/dogs',
     meta: { preTitle: 'dogs' },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ULayout" */ '@/components/User/Dogs.vue'),
+      import(/* webpackChunkName: "UDogList" */ '@/components/User/Dog/DogList.vue'),
   },
   {
     path: '/donate',
     meta: { preTitle: 'donate' },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ULayout" */ '@/components/User/Donate.vue'),
+      import(/* webpackChunkName: "UDonate" */ '@/components/User/Donate.vue'),
   },
   {
     path: '/contact',
     meta: { preTitle: 'contact' },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ULayout" */ '@/components/User/Contact.vue'),
+      import(/* webpackChunkName: "UContact" */ '@/components/User/Contact.vue'),
   },
   {
     path: '/report',
     meta: { preTitle: 'report' },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ULayout" */ '@/components/User/Report.vue'),
+      import(/* webpackChunkName: "UReport" */ '@/components/User/Report.vue'),
   },
 ];
 
@@ -107,7 +108,7 @@ const routes = [
     component: () =>
       // eslint-disable-next-line
       import(/* webpackChunkName: "ULayout" */ '@/components/Layout/User.vue'),
-    // children: userRoutes,
+    children: userRoutes,
   },
   {
     path: '/hidden/test',

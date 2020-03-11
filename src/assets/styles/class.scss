@@ -67,3 +67,41 @@
 .down-leave-to {
   transform: translateY(5%);
 }
+
+//right
+.right-enter-active,
+.right-leave-active {
+  @extend %opacity-and-transform;
+}
+
+.right-enter,
+.right-leave-to {
+  @extend %opacity-zero;
+}
+
+.right-enter {
+  transform: translateX(5%);
+}
+
+.right-leave-to {
+  transform: translateX(-5%);
+}
+
+//left
+.left-enter-active,
+.left-leave-active {
+  @extend %opacity-and-transform;
+}
+
+.left-enter,
+.left-leave-to {
+  @extend %opacity-zero;
+}
+
+.left-enter {
+  transform: translateX(-5%);
+}
+
+.left-leave-to {
+  transform: translateX(5%);
+}

@@ -1,8 +1,7 @@
 <template>
-  <div class="addupdate">
+  <div class="adminbox addupdate">
     <div>
       <div>Dog ID: {{ dog.id }}</div>
-
       <div class="form-control">
         <label>ชื่อ:</label>
         <input type="text" placeholder="กรุณากรอกชื่อ" v-model="dog.name" />

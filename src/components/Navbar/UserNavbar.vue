@@ -24,7 +24,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .imgcontainer {
   display: block;
   align-items: center;
@@ -32,15 +32,15 @@ export default Vue.extend({
   height: 15pc;
 }
 .navbar {
-  background-color: #725d79;
+  background-color: var.$violet;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
 }
 .nav-link {
+  @extend %animate-all;
   color: #ffffff;
-  transition: all 0.25s;
   text-decoration: none;
   font-size: 1.5rem;
   padding: 0.5rem 1em;
@@ -49,8 +49,7 @@ export default Vue.extend({
 
   &:hover {
     text-decoration: none;
-    color: #f8d5e4;
+    color: color.lightness(color.alpha(red, -0.25), 40%);
   }
 }
-
 </style>

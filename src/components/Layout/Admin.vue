@@ -31,7 +31,11 @@ export default Vue.extend({
   },
   watch: {
     $route(to, from) {
-      this.transitionName = to.meta.pos > from.meta.pos ? 'up' : 'down';
+      if (to.meta.pos !== from.meta.pos) {
+        this.transitionName = to.meta.pos > from.meta.pos ? 'up' : 'down';
+      } else {
+        this.transitionName = to.meta.sub ? 'right' : 'left';
+      }
     },
   },
 });
