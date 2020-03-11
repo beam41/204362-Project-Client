@@ -107,7 +107,7 @@ export default Vue.extend({
 
     SexArr: ['F', 'M'],
     collarColorArr: ['G', 'Y', 'R'],
-    unitArr: ['M', 'Y'],
+    unitArr: ['ํY', 'M'],
     isAliveArr: [true, false],
 
     sex: 'F',
@@ -130,7 +130,7 @@ export default Vue.extend({
   methods: {
     saveData() {
       const newDog: Dog = {
-        id: undefined,
+        id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
         // @ts-ignore
         name: util.splitToArr(this.$refs.name.value),
         // @ts-ignore
@@ -150,7 +150,14 @@ export default Vue.extend({
         // @ts-ignore
         location: this.$refs.location.value,
       };
-      DogApiService.postDog(newDog);
+      if (this.dog && this.$route.params.id !== 'add') {
+        const putDog: Dog = newDog;
+        console.log('update!!!');
+        DogApiService.putDog(this.$route.params.id, putDog);
+      } else {
+        console.log('save!!!');
+        DogApiService.postDog(newDog);
+      }
     },
     onChangeUnit(event: any) {
       this.unit = this.unitArr[event.currSelect];
@@ -165,11 +172,11 @@ export default Vue.extend({
       this.isAlive = this.isAliveArr[event.currSelect];
     },
     Delete() {
-      console.log('del');
       if (this.dog && this.$route.params.id !== 'add') {
+        console.log('delete!!!');
         DogApiService.delDog(this.$route.params.id);
       } else {
-        console.log('stopp');
+        console.log('stop!!!');
       }
     },
   },
