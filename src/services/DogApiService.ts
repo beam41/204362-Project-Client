@@ -14,7 +14,17 @@ function getDog(id: string): Promise<AxiosResponse<Dog>> {
 }
 
 function postDog(dog: Dog): Promise<AxiosResponse<Dog>> {
-  return a.post('api/dog/list');
+  console.log(dog);
+  return a.post('api/dog', dog);
 }
 
-export default { getDogList, getDog, postDog };
+function delDog(id: string): Promise<AxiosResponse<Dog>> {
+  return a.delete(`/api/dog/${id}`);
+}
+
+export default {
+  getDogList,
+  getDog,
+  postDog,
+  delDog,
+};

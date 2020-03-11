@@ -13,4 +13,8 @@ function listSort(arr: Array<object>, by: string, desc: boolean) {
   });
 }
 
-export default { listSort };
+function splitToArr(from: string): string[] {
+  return from.split(',').map(item => item.trim());
+}
+
+export default { listSort, splitToArr };

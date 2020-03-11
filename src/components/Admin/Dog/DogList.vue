@@ -1,9 +1,7 @@
 <template>
   <div class="listdog adminbox">
     <div class="listpage-top">
-      <button class="btn-default" @click="addDog()">
-        <i class="fas fa-plus"></i>New
-      </button>
+      <button class="btn-default" @click="addDog()"><i class="fas fa-plus"></i>New</button>
       <Sorter :options="['Hi']" />
     </div>
     <div class="table-wrapper">
@@ -24,7 +22,7 @@
         <table class="datalist">
           <tr v-for="d in dogs" :key="d.id" @click="dataDog(d.id)">
             <td>{{ getAllName(d.name) }}</td>
-            <td>{{ d.age }} {{ d.ageUnit }}</td>
+            <td>{{ d.age }} {{ getUnit(d.ageUnit) }}</td>
             <td>{{ getSex(d.sex) }}</td>
             <td>{{ d.description }}</td>
             <td>{{ IsAlive(d.isAlive) }}</td>
@@ -58,6 +56,12 @@ export default Vue.extend({
   methods: {
     getAllName(Allname: String) {
       return Allname.toString();
+    },
+    getUnit(unit: string) {
+      if (unit === 'Y') {
+        return 'ปี';
+      }
+      return 'เดือน';
     },
     getSex(sex: string) {
       if (sex === 'F') {

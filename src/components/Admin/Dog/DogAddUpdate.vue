@@ -1,5 +1,5 @@
 <template>
-  <div class="adminbox addupdate">
+  <div v-if="dog" class="adminbox addupdate">
     <div>
       <div>Dog ID: {{ dog.id }}</div>
       <div class="form-control">
@@ -15,13 +15,17 @@
       <div class="form-control">
         <label>อายุ:</label>
         <input type="text" placeholder style="width: 50px" v-model="dog.age" ref="age" />
-        <Select :options="addUnit" @change="onChangeUnit($event)" />
+        <Select :options="unitSelect" @sel-change="onChangeUnit($event)" />
       </div>
 
       <div class="form-control">
         <label>เพศ:</label>
         <span class="select" style="width: 200px">
-          <Select customText="กรุณาเลือกเพศ" :options="addSex" @change="onChange($event)" />
+          <Select
+            customText="กรุณาเลือกเพศ"
+            :options="sexSelect"
+            @sel-change="onChangeSex($event)"
+          />
         </span>
       </div>
 
@@ -35,8 +39,8 @@
         <span class="select" style="width: 200px">
           <Select
             customText="กรุณาเลือกสีปลอกคอ"
-            :options="addCollarColor"
-            @change="onChange($event)"
+            :options="collarColorSelect"
+            @sel-change="onChangeColor($event)"
           />
         </span>
       </div>
@@ -44,7 +48,11 @@
       <div class="form-control">
         <label>สถานะ:</label>
         <span class="select" style="width: 200px">
-          <Select customText="กรุณาเลือกสถานะ" :options="isAlive" @change="onChange($event)" />
+          <Select
+            customText="กรุณาเลือกสถานะ"
+            :options="isAliveSelect"
+            @sel-change="onChangeAlive($event)"
+          />
         </span>
       </div>
     </div>
@@ -75,7 +83,7 @@
         <textarea v-model="dog.location" ref="location"></textarea>
       </div>
       <button class="btn-success" @click="saveData()">save</button>
-      <button class="btn-warn" href="#">Delete</button>
+      <button class="btn-warn" @click="Delete()">Delete</button>
     </div>
   </div>
 </template>
@@ -85,17 +93,27 @@ import Vue from 'vue';
 import Select from '@/components/Shared/Select.vue';
 import DogApiService from '@/services/DogApiService';
 import Dog from '@/models/dog';
+import util from '@/util';
 
 export default Vue.extend({
   name: 'DogAddUpdate',
   data: () => ({
     dog: null as Dog | null,
-    addSex: ['ตัวเมีย', 'ตัวผู้'],
-    addCollarColor: ['สีเขียว', 'สีเหลือง', 'สีแดง'],
-    addUnit: ['ปี', 'เดือน'],
+
+    sexSelect: ['ตัวเมีย', 'ตัวผู้'],
+    collarColorSelect: ['สีเขียว', 'สีเหลือง', 'สีแดง'],
+    unitSelect: ['ปี', 'เดือน'],
+    isAliveSelect: ['มีชีวิต', 'เสียชีวิต'],
+
+    SexArr: ['F', 'M'],
+    collarColorArr: ['G', 'Y', 'R'],
     unitArr: ['M', 'Y'],
-    isAlive: ['มีชีวิต', 'เสียชีวิต'],
-    unit: 'M',
+    isAliveArr: [true, false],
+
+    sex: 'F',
+    collarColor: 'G',
+    unit: 'Y',
+    isAlive: true,
   }),
   components: {
     Select,
@@ -111,31 +129,48 @@ export default Vue.extend({
   },
   methods: {
     saveData() {
-      // @ts-ignore
       const newDog: Dog = {
         id: undefined,
         // @ts-ignore
-        name: this.$refs.name.value,
+        name: util.splitToArr(this.$refs.name.value),
         // @ts-ignore
         breed: this.$refs.breed.value,
         // @ts-ignore
-        age: this.$refs.age.value,
-        // sex
+        age: +this.$refs.age.value,
+        ageUnit: this.unit,
+        sex: this.sex,
         // @ts-ignore
         description: this.$refs.description.value,
-        // color
-        // status
+        collarColor: this.collarColor,
+        isAlive: this.isAlive,
         // @ts-ignore
-        caretakerPhone: this.$refs.caretakerPhone.value,
+        caretakerPhone: util.splitToArr(this.$refs.caretakerPhone.value),
         // @ts-ignore
         caretaker: this.$refs.caretaker.value,
         // @ts-ignore
         location: this.$refs.location.value,
       };
+      DogApiService.postDog(newDog);
     },
     onChangeUnit(event: any) {
-      this.unit = this.unitArr[event.value];
-      console.log(this.unit);
+      this.unit = this.unitArr[event.currSelect];
+    },
+    onChangeSex(event: any) {
+      this.sex = this.SexArr[event.currSelect];
+    },
+    onChangeColor(event: any) {
+      this.collarColor = this.collarColorArr[event.currSelect];
+    },
+    onChangeAlive(event: any) {
+      this.isAlive = this.isAliveArr[event.currSelect];
+    },
+    Delete() {
+      console.log('del');
+      if (this.dog && this.$route.params.id !== 'add') {
+        DogApiService.delDog(this.$route.params.id);
+      } else {
+        console.log('stopp');
+      }
     },
   },
 });
