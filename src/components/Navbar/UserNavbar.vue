@@ -4,7 +4,7 @@
       <h1>ตรงนี้ใส่รูปหมา</h1>
     </div>
     <div class="navbar">
-      <nav v-bind:class="active" v-on:click.prevent>
+      <nav class="navbar" v-bind:class="active" v-on:click.prevent>
         <router-link to="/home" class="nav-link home">หน้าหลัก</router-link>
         <router-link to="/news" class="nav-link news">ข่าว</router-link>
         <router-link to="/dogs" class="nav-link dogs">สุนัขในโครงการ</router-link>
@@ -33,14 +33,18 @@ export default Vue.extend({
 }
 .navbar {
   background-color: #725d79;
-  justify-content: space-evenly;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
 }
 .nav-link {
   color: #ffffff;
   transition: all 0.25s;
   text-decoration: none;
   font-size: 1.5rem;
-  padding: 0rem 1em;
+  padding: 0.5rem 1em;
+  margin: 0rem 1em;
   font-weight: 500;
 
   &:hover {
