@@ -48,4 +48,5 @@ export default Vue.extend({
     color: #f8d5e4;
   }
 }
+
 </style>
