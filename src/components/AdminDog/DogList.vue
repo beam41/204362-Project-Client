@@ -51,7 +51,9 @@ export default Vue.extend({
     dogs: null as any | null,
   }),
   created() {
-    this.dogs = DogApiService.getDogs();
+    DogApiService.getDogList().then((val) => {
+      this.dogs = val.data;
+    });
   },
   methods: {
     getAllName(Allname: String) {
@@ -78,7 +80,7 @@ export default Vue.extend({
       }
       return 'สีแดง';
     },
-    dataDog(id: number) {
+    dataDog(id: string) {
       this.$router.push(`/admin/dog/${id}`);
     },
     addDog() {
