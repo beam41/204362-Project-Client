@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <nav class="navbar">
     <div class="top">
       <h1>MheanMaa</h1>
     </div>
@@ -18,7 +18,7 @@
       </router-link>
     </div>
     <div class="bot"></div>
-  </div>
+  </nav>
 </template>
 
 <script lang="ts">

@@ -23,30 +23,21 @@ const adminRoutes = [
     meta: { title: 'Donate', pos: 3 },
     component: () =>
       // eslint-disable-next-line
-      import(
-        // eslint-disable-next-line
-        /* webpackChunkName: "ADonateList" */ '@/components/AdminDonate/DonateList.vue'
-      ),
+      import(/* webpackChunkName: "ADonateList" */ '@/components/AdminDonate/DonateList.vue'),
   },
   {
     path: 'donate/',
     meta: { title: 'Donate', pos: 3 },
     component: () =>
       // eslint-disable-next-line
-      import(
-        // eslint-disable-next-line
-        /* webpackChunkName: "ADonateList" */ '@/components/AdminDonate/DonateList.vue'
-      ),
+      import(/* webpackChunkName: "ADonateList" */ '@/components/AdminDonate/DonateList.vue'),
   },
   {
     path: 'report/',
     meta: { title: 'Report', pos: 2 },
     component: () =>
       // eslint-disable-next-line
-      import(
-        // eslint-disable-next-line
-        /* webpackChunkName: "AReportList" */ '@/components/AdminReport/ReportList.vue'
-      ),
+      import(/* webpackChunkName: "AReportList" */ '@/components/AdminReport/ReportList.vue'),
   },
   {
     path: 'news/',
