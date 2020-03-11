@@ -176,9 +176,6 @@ export default Vue.extend({
 });
 </script>
 
-<style>
-.addupdate {
-  display: grid;
-  grid-template-columns: 60fr 40fr;
-}
+<style scoped>
+
 </style>

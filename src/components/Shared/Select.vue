@@ -53,10 +53,15 @@ export default Vue.extend({
     customText: String,
     options: Array,
     classN: String,
+    defaultOption: {
+      type: Number,
+      default: -1,
+    },
   },
   mixins: [clickaway],
   created() {
     if (!this.customText) this.currSelect = 0;
+    if (this.defaultOption !== -1) this.currSelect = this.defaultOption;
   },
   computed: {
     getClass() {
@@ -113,7 +118,7 @@ export default Vue.extend({
     position: relative;
     box-sizing: border-box;
     cursor: pointer;
-    z-index: 10002;
+    z-index: 9999;
 
     &.compound {
       border-radius: var.$b-radius 0 0 var.$b-radius;

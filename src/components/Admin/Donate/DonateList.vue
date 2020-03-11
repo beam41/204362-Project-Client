@@ -1,7 +1,9 @@
 <template>
   <div class="adminbox">
     <div class="listpage-top">
-      <button class="btn-default"><i class="fas fa-plus"></i>New</button>
+      <button class="btn-default" @click="addDonate()">
+        <i class="fas fa-plus"></i>New
+      </button>
       <Sorter :options="by" @sort-change="onChange($event)" />
     </div>
     <div class="table-wrapper">
@@ -16,7 +18,7 @@
       </div>
       <div class="sub-table-wrapper">
         <table class="datalist" v-if="donates">
-          <tr v-for="d in sortedArrays" :key="d.id">
+          <tr v-for="d in sortedArrays" :key="d.id" @click="dataDonate(d.id)">
             <td>{{ d.title }}</td>
             <td>{{ d.creator }}</td>
             <td>{{ d.accepted }}</td>
@@ -57,17 +59,19 @@ export default Vue.extend({
   },
   computed: {
     sortedArrays() {
-      return _.orderBy(
-        this.donates,
-        this.field[this.currOption],
-        this.descending ? 'desc' : 'asc',
-      );
+      return _.orderBy(this.donates, this.field[this.currOption], this.descending ? 'desc' : 'asc');
     },
   },
   methods: {
     onChange({ currOption, descending }: any) {
       this.currOption = currOption;
       this.descending = descending;
+    },
+    dataDonate(id: string) {
+      this.$router.push(`/admin/donate/${id}`);
+    },
+    addDonate() {
+      this.$router.push('/admin/donate/add');
     },
   },
 });
