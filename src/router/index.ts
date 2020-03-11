@@ -9,42 +9,42 @@ const adminRoutes = [
     meta: { title: 'Dog', pos: 1 },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ADogList" */ '@/components/AdminDog/DogList.vue'),
+      import(/* webpackChunkName: "ADogList" */ '@/components/Admin/Dog/DogList.vue'),
   },
   {
     path: 'dog/:id',
     meta: { title: 'Dog Info', pos: 1, sub: true },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ADogAU" */ '@/components/AdminDog/DogAddUpdate.vue'),
+      import(/* webpackChunkName: "ADogAU" */ '@/components/Admin/Dog/DogAddUpdate.vue'),
   },
   {
     path: 'donate/:id',
     meta: { title: 'Donate', pos: 3 },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ADonateList" */ '@/components/AdminDonate/DonateList.vue'),
+      import(/* webpackChunkName: "ADonateList" */ '@/components/Admin/Donate/DonateList.vue'),
   },
   {
     path: 'donate/',
     meta: { title: 'Donate', pos: 3 },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ADonateList" */ '@/components/AdminDonate/DonateList.vue'),
+      import(/* webpackChunkName: "ADonateList" */ '@/components/Admin/Donate/DonateList.vue'),
   },
   {
     path: 'report/',
     meta: { title: 'Report', pos: 2 },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "AReportList" */ '@/components/AdminReport/ReportList.vue'),
+      import(/* webpackChunkName: "AReportList" */ '@/components/Admin/Report/ReportList.vue'),
   },
   {
     path: 'news/',
     meta: { title: 'News', pos: 0 },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ANewsList" */ '@/components/AdminNews/NewsList.vue'),
+      import(/* webpackChunkName: "ANewsList" */ '@/components/Admin/News/NewsList.vue'),
   },
 ];
 
