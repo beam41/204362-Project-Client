@@ -26,7 +26,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: color.alpha(black, -0.5);
+  background-color: color.alpha(var.$black, -0.5);
   z-index: 20000;
 
   .m-body {

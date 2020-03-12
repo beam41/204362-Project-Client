@@ -265,7 +265,7 @@ a {
     top: 0;
     left: 0;
     position: absolute;
-    background-color: color.alpha(black, -0.8);
+    background-color: color.alpha(var.$black, -0.8);
     z-index: 20000;
   }
 }
@@ -284,7 +284,7 @@ a {
 }
 
 .spinner-black {
-  border: 7px solid black;
+  border: 7px solid var.$black;
 }
 
 
