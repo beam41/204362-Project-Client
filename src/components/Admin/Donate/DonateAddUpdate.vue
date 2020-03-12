@@ -1,5 +1,5 @@
 <template>
-  <div v-if="donate" class="adminbox addupdate">
+  <div v-if="donate" class="adminbox">
     <div v-if="editing" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
@@ -18,39 +18,49 @@
         <button class="btn-default" @click="() => {delShow = false}">Cancel</button>
       </div>
     </Modal>
-    <div class="padadmin">
-      <div class="form-control">
-        <label>หัวเรื่อง:</label>
-        <input
-          :class="titleErr ? 'error':''"
-          type="text"
-          placeholder="กรุณากรอกชื่อ"
-          v-model="donate.title"
-          ref="title"
-        />
+    <div class="padadmin addupdate donate-au">
+      <div class="input-box">
+        <div class="form-control">
+          <label>หัวเรื่อง:</label>
+          <input
+            :class="'input-au' + (titleErr ? ' error':'')"
+            type="text"
+            placeholder="กรุณากรอกหัวเรื่อง"
+            v-model="donate.title"
+            ref="title"
+          />
+        </div>
+        <div class="form-control">
+          <label>คำอธิบาย:</label>
+          <textarea
+            :class="'txt input-au' + (descErr ? ' error':'')"
+            type="text"
+            placeholder="กรุณากรอกคำอธิบาย"
+            v-model="donate.description"
+            ref="desc"
+          />
+        </div>
+        <div class="form-control">
+          <label>Link Qrcode:</label>
+          <input
+            :class="'input-au' + (qrErr ? ' error':'')"
+            type="text"
+            placeholder="กรุณากรอก Qr code"
+            v-model="donate.qrLink"
+            ref="qr"
+          />
+        </div>
       </div>
-      <div class="form-control">
-        <label>คำอธิบาย:</label>
-        <textarea
-          :class="descErr ? 'error':''"
-          type="text"
-          placeholder="กรุณากรอกชื่อ"
-          v-model="donate.description"
-          ref="desc"
-        />
+      <div class="admin-btn-pos">
+        <div>
+          <button class="btn-success" @click="saveValidate()">Save</button>
+          <button
+            class="btn-warn"
+            @click="() => {delShow = true}"
+            v-if="$route.params.id !== 'add'"
+          >Delete</button>
+        </div>
       </div>
-      <div class="form-control">
-        <label>Link Qrcode:</label>
-        <input
-          :class="qrErr ? 'error':''"
-          type="text"
-          placeholder="กรุณากรอกชื่อ"
-          v-model="donate.qrLink"
-          ref="qr"
-        />
-      </div>
-      <button class="btn-success" @click="saveValidate()">Save</button>
-      <button class="btn-warn" @click="() => {delShow = true}">Delete</button>
     </div>
   </div>
   <div v-else class="loader adminbox">
@@ -151,4 +161,15 @@ export default Vue.extend({
 </script>
 
 <style>
+.donate-au {
+  grid-template-rows: 90% 10%;
+}
+
+.txt {
+  height: 10em;
+}
+
+.input-box {
+  place-self: center stretch;
+}
 </style>

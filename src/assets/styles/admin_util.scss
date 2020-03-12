@@ -74,5 +74,22 @@ $table-body-height: 46px;
     height: $table-body-height;
   }
 
+  .addupdate {
+    display: grid;
+  }
+
+  .admin-btn-pos {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-left: 1rem;
+    }
+  }
+
+  .input-au {
+    display: block;
+    width: 50%;
+  }
 
 }

@@ -193,6 +193,10 @@ textarea {
       box-shadow: 0px 0px 0px var.$hightlight-width color.alpha(var.$warn, -0.4%);
     }
 
+    &::placeholder {
+      color: color.alpha(var.$warn, -0.1%);
+    }
+
   }
 }
 
@@ -286,6 +290,7 @@ a {
 .spinner-black {
   border: 7px solid var.$black;
 }
+
 
 
 @keyframes spin {
