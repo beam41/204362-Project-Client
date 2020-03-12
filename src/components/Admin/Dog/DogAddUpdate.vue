@@ -1,21 +1,43 @@
 <template>
   <div v-if="dog" class="adminbox addupdate">
+    <div v-if="editing" class="loader blackcover">
+      <div class="spinner spinner-white"></div>
+    </div>
     <div class="padadmin">
       <div>
         <div>Dog ID: {{ dog.id }}</div>
         <div class="form-control">
           <label>ชื่อ:</label>
-          <input type="text" placeholder="กรุณากรอกชื่อ" v-model="dog.name" ref="name" />
+          <input
+            :class="nameErr ? 'error':''"
+            type="text"
+            placeholder="กรุณากรอกชื่อ"
+            v-model="dog.name"
+            ref="name"
+          />
         </div>
 
         <div class="form-control">
           <label>พันธุ์:</label>
-          <input type="text" placeholder="กรุณากรอกพันธุ์" v-model="dog.breed" ref="breed" />
+          <input
+            :class="breedErr ? 'error':''"
+            type="text"
+            placeholder="กรุณากรอกพันธุ์"
+            v-model="dog.breed"
+            ref="breed"
+          />
         </div>
 
         <div class="form-control">
           <label>อายุ:</label>
-          <input type="text" placeholder style="width: 50px" v-model="dog.age" ref="age" />
+          <input
+            :class="ageErr ? 'error':''"
+            type="text"
+            placeholder
+            style="width: 50px"
+            v-model="dog.age"
+            ref="age"
+          />
           <Select :options="unitSelect" @sel-change="onChangeUnit($event)" />
         </div>
 
@@ -32,7 +54,7 @@
 
         <div class="form-control">
           <label>ลักษณะ:</label>
-          <textarea v-model="dog.description" ref="description"></textarea>
+          <textarea v-model="dog.description" :class="descErr ? 'error':''" ref="description" />
         </div>
 
         <div class="form-control">
@@ -62,6 +84,7 @@
         <div class="form-control">
           <label>ติดต่อ:</label>
           <input
+            :class="caretakerPhoneErr ? 'error':''"
             type="text"
             placeholder="กรุณากรอกข้อมูลติดต่อ"
             v-model="dog.caretakerPhone"
@@ -72,6 +95,7 @@
         <div class="form-control">
           <label>ผู้ดูแล:</label>
           <input
+            :class="caretakerErr ? 'error':''"
             type="text"
             placeholder="กรุณากรอกชื่อผู้ดูแล"
             v-model="dog.caretaker"
@@ -81,9 +105,9 @@
 
         <div class="form-control">
           <label>ที่อยู่:</label>
-          <textarea v-model="dog.location" ref="location"></textarea>
+          <textarea v-model="dog.location" :class="locationErr ? 'error':''" ref="location" />
         </div>
-        <button class="btn-success" @click="saveData()">save</button>
+        <button class="btn-success" @click="saveValidate()">save</button>
         <button class="btn-warn" @click="Delete()">Delete</button>
       </div>
     </div>
@@ -115,10 +139,23 @@ export default Vue.extend({
     unitArr: ['ํY', 'M'],
     isAliveArr: [true, false],
 
-    sex: 'F',
-    collarColor: 'G',
-    unit: 'Y',
-    isAlive: true,
+    sex: undefined as string | undefined,
+    collarColor: undefined as string | undefined,
+    unit: undefined as string | undefined,
+    isAlive: undefined as boolean | undefined,
+
+    editing: false,
+    nameErr: false,
+    breedErr: false,
+    ageErr: false,
+    ageUnitErr: false,
+    sexErr: false,
+    descErr: false,
+    colorCollarErr: false,
+    isAliveErr: false,
+    caretakerPhoneErr: false,
+    caretakerErr: false,
+    locationErr: false,
   }),
   components: {
     Select,
@@ -133,7 +170,87 @@ export default Vue.extend({
     }
   },
   methods: {
+    saveValidate() {
+      this.nameErr = false;
+      this.breedErr = false;
+      this.ageErr = false;
+      this.ageUnitErr = false;
+      this.sexErr = false;
+      this.descErr = false;
+      this.colorCollarErr = false;
+      this.isAliveErr = false;
+      this.caretakerPhoneErr = false;
+      this.caretakerErr = false;
+      this.locationErr = false;
+      let err = false;
+      // @ts-ignore
+      const name = this.$refs.name.value;
+      // @ts-ignore
+      const breed = this.$refs.breed.value;
+      // @ts-ignore
+      const age = this.$refs.age.value;
+      const ageUnit = this.unit;
+      const sexSave = this.sex;
+      // @ts-ignore
+      const description = this.$refs.description.value;
+      const collarColorSave = this.collarColor;
+      const isAliveSave = this.isAlive;
+      // @ts-ignore
+      const caretakerPhone = this.$refs.caretakerPhone.value;
+      // @ts-ignore
+      const caretaker = this.$refs.caretaker.value;
+      // @ts-ignore
+      const location = this.$refs.location.value;
+
+      if (name === '') {
+        this.nameErr = true;
+        err = true;
+      }
+      if (breed === '') {
+        this.breedErr = true;
+        err = true;
+      }
+      if (age === '' || !Number.isInteger(+age)) {
+        this.ageErr = true;
+        err = true;
+      }
+      // if (!ageUnit) {
+      //   this.ageUnitErr = true;
+      //   err = true;
+      // }
+      // if (!sexSave) {
+      //   this.sexErr = true;
+      //   err = true;
+      // }
+      if (description === '') {
+        this.descErr = true;
+        err = true;
+      }
+      // if (!collarColorSave) {
+      //   this.colorCollarErr = true;
+      //   err = true;
+      // }
+      // if (!isAliveSave) {
+      //   this.isAliveErr = true;
+      //   err = true;
+      // }
+      if (caretakerPhone === '') {
+        this.caretakerPhoneErr = true;
+        err = true;
+      }
+      if (caretaker === '') {
+        this.caretakerErr = true;
+        err = true;
+      }
+      if (location === '') {
+        this.locationErr = true;
+        err = true;
+      }
+      if (err) return;
+      this.saveData();
+    },
     saveData() {
+      this.editing = true;
       const newDog: Dog = {
         id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
         // @ts-ignore
@@ -155,13 +272,14 @@ export default Vue.extend({
         // @ts-ignore
         location: this.$refs.location.value,
       };
-      if (this.dog && this.$route.params.id !== 'add') {
-        const putDog: Dog = newDog;
-        console.log('update!!!');
-        DogApiService.putDog(this.$route.params.id, putDog);
+      if (this.$route.params.id === 'add') {
+        DogApiService.postDog(newDog).then((_) => {
+          this.$router.go(-1);
+        });
       } else {
-        console.log('save!!!');
-        DogApiService.postDog(newDog);
+        DogApiService.putDog(this.$route.params.id, newDog).then((_) => {
+          this.$router.go(-1);
+        });
       }
     },
     onChangeUnit(event: any) {
