@@ -38,14 +38,23 @@
             v-model="dog.age"
             ref="age"
           />
-          <Select :options="unitSelect" @sel-change="onChangeUnit($event)" />
+          <Select
+            :error="unitErr"
+            :customText="unit"
+            style="width: 60px"
+            :defaultOption="unitSelect"
+            :options="unitSelect"
+            @sel-change="onChangeUnit($event)"
+          />
         </div>
 
         <div class="form-control">
           <label>เพศ:</label>
           <span class="select" style="width: 200px">
             <Select
+              :error="sexErr"
               customText="กรุณาเลือกเพศ"
+              :defaultOption="sexSelect"
               :options="sexSelect"
               @sel-change="onChangeSex($event)"
             />
@@ -61,7 +70,9 @@
           <label>สีปลอกคอ:</label>
           <span class="select" style="width: 200px">
             <Select
+              :error="colorCollarErr"
               customText="กรุณาเลือกสีปลอกคอ"
+              :defaultOption="collarColorSelect"
               :options="collarColorSelect"
               @sel-change="onChangeColor($event)"
             />
@@ -72,7 +83,9 @@
           <label>สถานะ:</label>
           <span class="select" style="width: 200px">
             <Select
+              :error="isAliveErr"
               customText="กรุณาเลือกสถานะ"
+              :defaultOption="isAliveSelect"
               :options="isAliveSelect"
               @sel-change="onChangeAlive($event)"
             />
@@ -136,7 +149,7 @@ export default Vue.extend({
 
     SexArr: ['F', 'M'],
     collarColorArr: ['G', 'Y', 'R'],
-    unitArr: ['ํY', 'M'],
+    unitArr: ['Y', 'M'],
     isAliveArr: [true, false],
 
     sex: undefined as string | undefined,
@@ -148,7 +161,7 @@ export default Vue.extend({
     nameErr: false,
     breedErr: false,
     ageErr: false,
-    ageUnitErr: false,
+    unitErr: false,
     sexErr: false,
     descErr: false,
     colorCollarErr: false,
@@ -174,7 +187,6 @@ export default Vue.extend({
       this.nameErr = false;
       this.breedErr = false;
       this.ageErr = false;
-      this.ageUnitErr = false;
       this.sexErr = false;
       this.descErr = false;
       this.colorCollarErr = false;
@@ -189,12 +201,11 @@ export default Vue.extend({
       const breed = this.$refs.breed.value;
       // @ts-ignore
       const age = this.$refs.age.value;
-      const ageUnit = this.unit;
-      const sexSave = this.sex;
+      const sexValidate = this.sex;
       // @ts-ignore
       const description = this.$refs.description.value;
-      const collarColorSave = this.collarColor;
-      const isAliveSave = this.isAlive;
+      const collarColorValidate = this.collarColor;
+      const isAliveValidate = this.isAlive;
       // @ts-ignore
       const caretakerPhone = this.$refs.caretakerPhone.value;
       // @ts-ignore
@@ -214,26 +225,22 @@ export default Vue.extend({
         this.ageErr = true;
         err = true;
       }
-      // if (!ageUnit) {
-      //   this.ageUnitErr = true;
-      //   err = true;
-      // }
-      // if (!sexSave) {
-      //   this.sexErr = true;
-      //   err = true;
-      // }
+      if (sexValidate === undefined) {
+        this.sexErr = true;
+        err = true;
+      }
       if (description === '') {
         this.descErr = true;
         err = true;
       }
-      // if (!collarColorSave) {
-      //   this.colorCollarErr = true;
-      //   err = true;
-      // }
-      // if (!isAliveSave) {
-      //   this.isAliveErr = true;
-      //   err = true;
-      // }
+      if (collarColorValidate === undefined) {
+        this.colorCollarErr = true;
+        err = true;
+      }
+      if (isAliveValidate === undefined) {
+        this.isAliveErr = true;
+        err = true;
+      }
       if (caretakerPhone === '') {
         this.caretakerPhoneErr = true;
         err = true;
