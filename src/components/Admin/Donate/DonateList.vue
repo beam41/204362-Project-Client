@@ -6,8 +6,8 @@
           <i class="fas fa-plus"></i>New
         </button>
         <div class="input-group">
-          <input type="text" placeholder="Search" />
-          <button class="btn-default" href="#">
+          <input type="text" placeholder="Search" ref="search" />
+          <button class="btn-default" @click="search()">
             <i class="fas fa-search no-m"></i>
           </button>
         </div>
@@ -25,7 +25,7 @@
         </div>
         <div class="sub-table-wrapper">
           <transition-group class="datalist" v-if="donates" name="flip-list" tag="table">
-            <tr v-for="d in sortedArrays" :key="d.id" @click="dataDonate(d.id)">
+            <tr v-for="d in formattedArrays" :key="d.id" @click="dataDonate(d.id)">
               <td>{{ d.title }}</td>
               <td>{{ d.creator }}</td>
               <td>{{ d.accepted }}</td>
@@ -59,6 +59,7 @@ export default Vue.extend({
     donates: null as Array<any> | null,
     currOption: 0,
     descending: false,
+    searchString: '',
   }),
   created() {
     DonateServ.getDonateList().then((val) => {
@@ -66,8 +67,15 @@ export default Vue.extend({
     });
   },
   computed: {
-    sortedArrays() {
-      return _.orderBy(this.donates, this.field[this.currOption], this.descending ? 'desc' : 'asc');
+    formattedArrays() {
+      let filter = this.donates;
+      if (this.searchString !== '') {
+        // prettier-ignore
+        const findinObj = (val: string, obj: object) => _.some(obj, v => _.includes(v, val));
+        // prettier-ignore
+        filter = _.filter(this.donates, o => findinObj(this.searchString, o));
+      }
+      return _.orderBy(filter, this.field[this.currOption], this.descending ? 'desc' : 'asc');
     },
   },
   methods: {
@@ -80,6 +88,10 @@ export default Vue.extend({
     },
     addDonate() {
       this.$router.push('/admin/donate/add');
+    },
+    search() {
+      // @ts-ignore
+      this.searchString = this.$refs.search.value;
     },
   },
 });

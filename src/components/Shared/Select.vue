@@ -54,8 +54,8 @@ export default Vue.extend({
     options: Array,
     classN: String,
     defaultOption: {
-      type: Number,
-      default: -1,
+      type: String,
+      default: '',
     },
     error: {
       type: Boolean,
@@ -65,7 +65,10 @@ export default Vue.extend({
   mixins: [clickaway],
   created() {
     if (!this.customText) this.currSelect = 0;
-    if (this.defaultOption !== -1) this.currSelect = this.defaultOption;
+    if (this.defaultOption !== '') {
+      // prettier-ignore
+      this.currSelect = _.findIndex(users, o => o === this.defaultOption);
+    }
   },
   computed: {
     getClass() {
