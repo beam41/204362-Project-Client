@@ -234,7 +234,7 @@ textarea {
 // a
 a {
   @extend %animate-all;
-  
+
 }
 
 .link {
@@ -281,6 +281,10 @@ a {
 
 .spinner-white {
   border: 7px solid white;
+}
+
+.spinner-black {
+  border: 7px solid black;
 }
 
 

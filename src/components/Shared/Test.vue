@@ -86,6 +86,20 @@
       </span>
     </div>
     <div class="spinner"></div>
+    <button class="btn-success" @click="showing()">Yea</button>
+    <button class="btn-success" @click="toTop()">Totop</button>
+    <Modal :show="show">
+      <div class="m-top">
+        <h5>Title Top</h5>
+      </div>
+      <div class="m-mid">
+        <p>Do you want to deneeed</p>
+      </div>
+      <div class="m-bot">
+        <button class="btn-success" @click="showing()">Yea</button>
+        <button class="btn-warn" @click="hide()">Nay</button>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -94,6 +108,7 @@ import Vue from 'vue';
 import Select from './Select.vue';
 import CheckBox from './CheckBox.vue';
 import Sorter from './Sorter.vue';
+import Modal from './Modal.vue';
 
 export default Vue.extend({
   name: 'Test',
@@ -101,11 +116,24 @@ export default Vue.extend({
     CheckBox,
     Select,
     Sorter,
+    Modal,
   },
+  data: () => ({
+    show: false,
+  }),
   methods: {
     log(me: any) {
       // console.log(me);
       console.log(me);
+    },
+    showing() {
+      this.show = true;
+    },
+    hide() {
+      this.show = false;
+    },
+    toTop() {
+      window.scrollTo(0, 0);
     },
   },
 });

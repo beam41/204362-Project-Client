@@ -51,11 +51,8 @@ export default Vue.extend({
   grid-template-rows: var.$top-part-h 1fr;
   overflow: hidden;
 
-  & .headstyle {
-    display: flex;
-  }
-
   .headstyle {
+    display: flex;
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
     align-items: center;
     h2 {

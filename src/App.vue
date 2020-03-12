@@ -3,6 +3,7 @@
     <div class="dontforgettoremove">
       <router-link to="/admin/dog/">Admin</router-link>
       <router-link to="/">User</router-link>
+      <router-link to="/hidden/test">Test</router-link>
     </div>
     <router-view />
   </div>

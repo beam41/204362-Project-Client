@@ -88,6 +88,9 @@
       </div>
     </div>
   </div>
+  <div v-else class="loader adminbox">
+    <div class="spinner spinner-black"></div>
+  </div>
 </template>
 
 <script lang="ts">

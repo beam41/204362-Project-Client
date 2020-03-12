@@ -18,13 +18,13 @@
           </table>
         </div>
         <div class="sub-table-wrapper">
-          <table class="datalist" v-if="donates">
+          <transition-group class="datalist" v-if="donates" name="flip-list" tag="table">
             <tr v-for="d in sortedArrays" :key="d.id" @click="dataDonate(d.id)">
               <td>{{ d.title }}</td>
               <td>{{ d.creator }}</td>
               <td>{{ d.accepted }}</td>
             </tr>
-          </table>
+          </transition-group>
 
           <div v-else class="loader">
             <div class="spinner spinner-white"></div>

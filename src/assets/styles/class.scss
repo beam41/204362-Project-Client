@@ -7,12 +7,19 @@
 // class for fade transition
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity var.$animation-time linear;
+  transition: opacity var.$animation-time;
 }
 
 .fade-enter,
-.fade-leave-to {
+.fade-leave-to,
+.fade-ep-enter,
+.fade-ep-leave-to {
   @extend %opacity-zero;
+}
+
+.fade-ep-enter-active,
+.fade-ep-leave-active {
+  transition: opacity var.$animation-time cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 %opacity-and-transform {
@@ -104,4 +111,8 @@
 
 .left-leave-to {
   transform: translateX(5%);
+}
+
+.flip-list-move {
+  transition: transform var.$animation-time;
 }

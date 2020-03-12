@@ -22,7 +22,7 @@
           </table>
         </div>
         <div class="sub-table-wrapper">
-          <table class="datalist">
+          <transition-group class="datalist" v-if="dogs" name="flip-list" tag="table">
             <tr v-for="d in dogs" :key="d.id" @click="dataDog(d.id)">
               <td>{{ getAllName(d.name) }}</td>
               <td>{{ d.age }} {{ getUnit(d.ageUnit) }}</td>
@@ -32,7 +32,10 @@
               <td>{{ getCollarColor(d.collarColor) }}</td>
               <td>{{ d.caretaker }}</td>
             </tr>
-          </table>
+          </transition-group>
+          <div v-else class="loader">
+            <div class="spinner spinner-white"></div>
+          </div>
         </div>
       </div>
     </div>
