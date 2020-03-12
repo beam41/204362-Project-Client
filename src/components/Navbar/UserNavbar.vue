@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="imgcontainer">
-      <h1>ตรงนี้ใส่รูปหมา</h1>
+      <img :src="require('@/assets/images/tia.jpg')" />
     </div>
     <div class="navbar">
       <nav class="navbar" v-bind:class="active" v-on:click.prevent>

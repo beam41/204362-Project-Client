@@ -124,7 +124,6 @@ export default Vue.extend({
   methods: {
     log(me: any) {
       // console.log(me);
-      console.log(me);
     },
     showing() {
       this.show = true;

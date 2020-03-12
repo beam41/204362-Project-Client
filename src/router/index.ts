@@ -23,7 +23,7 @@ const adminRoutes = [
     meta: { title: 'Donate', pos: 3, sub: true },
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "ADonateList" */ '@/components/Admin/Donate/DonateAddUpdate.vue'),
+      import(/* webpackChunkName: "ADonateAU" */ '@/components/Admin/Donate/DonateAddUpdate.vue'),
   },
   {
     path: 'donate/',
