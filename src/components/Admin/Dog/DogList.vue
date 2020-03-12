@@ -1,35 +1,39 @@
 <template>
   <div class="listdog adminbox">
-    <div class="listpage-top">
-      <button class="btn-default" @click="addDog()"><i class="fas fa-plus"></i>New</button>
-      <Sorter :options="['Hi']" />
-    </div>
-    <div class="table-wrapper">
-      <div class="head-wrapper">
-        <table class="datalist head">
-          <tr class="tablehead">
-            <th>ชื่อ</th>
-            <th>อายุ</th>
-            <th>เพศ</th>
-            <th>ลักษณะ</th>
-            <th>สถานะ</th>
-            <th>ปลอกคอ</th>
-            <th>ผู้ดูแล</th>
-          </tr>
-        </table>
+    <div class="padadmin">
+      <div class="listpage-top">
+        <button class="btn-default" @click="addDog()">
+          <i class="fas fa-plus"></i>New
+        </button>
+        <Sorter :options="['Hi']" />
       </div>
-      <div class="sub-table-wrapper">
-        <table class="datalist">
-          <tr v-for="d in dogs" :key="d.id" @click="dataDog(d.id)">
-            <td>{{ getAllName(d.name) }}</td>
-            <td>{{ d.age }} {{ getUnit(d.ageUnit) }}</td>
-            <td>{{ getSex(d.sex) }}</td>
-            <td>{{ d.description }}</td>
-            <td>{{ IsAlive(d.isAlive) }}</td>
-            <td>{{ getCollarColor(d.collarColor) }}</td>
-            <td>{{ d.caretaker }}</td>
-          </tr>
-        </table>
+      <div class="table-wrapper">
+        <div class="head-wrapper">
+          <table class="datalist head">
+            <tr class="tablehead">
+              <th>ชื่อ</th>
+              <th>อายุ</th>
+              <th>เพศ</th>
+              <th>ลักษณะ</th>
+              <th>สถานะ</th>
+              <th>ปลอกคอ</th>
+              <th>ผู้ดูแล</th>
+            </tr>
+          </table>
+        </div>
+        <div class="sub-table-wrapper">
+          <table class="datalist">
+            <tr v-for="d in dogs" :key="d.id" @click="dataDog(d.id)">
+              <td>{{ getAllName(d.name) }}</td>
+              <td>{{ d.age }} {{ getUnit(d.ageUnit) }}</td>
+              <td>{{ getSex(d.sex) }}</td>
+              <td>{{ d.description }}</td>
+              <td>{{ IsAlive(d.isAlive) }}</td>
+              <td>{{ getCollarColor(d.collarColor) }}</td>
+              <td>{{ d.caretaker }}</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>

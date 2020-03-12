@@ -180,6 +180,20 @@ textarea {
   &::placeholder {
     user-select: none;
   }
+
+  &.error {
+
+    border-color: var.$warn;
+
+    &:hover {
+      border-color: color.lightness(var.$warn, -20%);
+    }
+
+    &:focus {
+      box-shadow: 0px 0px 0px var.$hightlight-width color.alpha(var.$warn, -0.4%);
+    }
+
+  }
 }
 
 textarea {
@@ -220,30 +234,43 @@ textarea {
 // a
 a {
   @extend %animate-all;
-  text-decoration: underline rgba(255, 255, 255, 0) solid;
+  
 }
 
 .link {
   text-underline-offset: 25%;
-  color: inherit;
+  color: var.$link;
+  text-decoration: underline color.alpha(var.$link, -1) solid;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: underline color.alpha(var.$link, 1) solid;
     text-underline-offset: 5%;
   }
 
   &:active,
   &:visited {
-    color: inherit;
+    color: var.$link;
   }
 }
+
+
 
 .loader {
   size: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.blackcover {
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: color.alpha(black, -0.8);
+    z-index: 20000;
+  }
 }
+
+
 
 .spinner {
   size: 50px;

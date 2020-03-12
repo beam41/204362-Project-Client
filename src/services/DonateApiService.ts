@@ -1,15 +1,31 @@
 import axios, { AxiosResponse } from 'axios';
-import Dog from '@/models/dog';
+import Donate from '@/models/donate';
+import a from './_axios';
 
-const a = axios.create({
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-  },
-  baseURL: process.env.VUE_APP_BACKEND_PATH,
-});
-
-function getDonateList(): Promise<AxiosResponse<any>> {
+function getDonateList(): Promise<AxiosResponse<Donate[]>> {
   return a.get('/api/donate/list');
 }
 
-export default { getDonateList };
+function getDonate(id: string): Promise<AxiosResponse<Donate>> {
+  return a.get(`/api/donate/${id}`);
+}
+
+function postDonate(don: Donate): Promise<AxiosResponse<Donate>> {
+  return a.post('api/donate', don);
+}
+
+function delDonate(id: string): Promise<AxiosResponse<Donate>> {
+  return a.delete(`/api/donate/${id}`);
+}
+
+function putDonate(id: string, don: Donate): Promise<AxiosResponse<Donate>> {
+  return a.put(`/api/donate/${id}`, don);
+}
+
+export default {
+  getDonateList,
+  getDonate,
+  postDonate,
+  delDonate,
+  putDonate,
+};

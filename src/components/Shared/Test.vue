@@ -18,7 +18,7 @@
     <button class="btn-success" href="#">Button</button>
     <button class="btn-warn" href="#">Button</button>
 
-    <a href="#">link</a>
+    <a href="#" class="link">link</a>
     <br />
     <button class="btn-default" href="#" disabled>Button</button>
     <button class="btn-success" href="#" disabled>Button</button>
@@ -46,6 +46,7 @@
       <div class="form-control">
         <label>Text</label>
         <input type="text" placeholder="Input Text" @change="log($event)" />
+        <input type="text" placeholder="Input Text" class="error" @change="log($event)" />
       </div>
 
       <div class="form-control">
@@ -75,6 +76,7 @@
       <div class="form-control">
         <label>Textarea</label>
         <textarea></textarea>
+        <textarea class="error"></textarea>
       </div>
     </form>
     <div class="form-control">

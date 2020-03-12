@@ -1,32 +1,34 @@
 <template>
   <div class="adminbox">
-    <div class="listpage-top">
-      <button class="btn-default" @click="addDonate()">
-        <i class="fas fa-plus"></i>New
-      </button>
-      <Sorter :options="by" @sort-change="onChange($event)" />
-    </div>
-    <div class="table-wrapper">
-      <div class="head-wrapper">
-        <table class="datalist head">
-          <tr class="tablehead">
-            <th>ชื่อเรื่อง</th>
-            <th>ผู้สร้าง</th>
-            <th>อนุมัติแล้ว</th>
-          </tr>
-        </table>
+    <div class="padadmin">
+      <div class="listpage-top">
+        <button class="btn-default" @click="addDonate()">
+          <i class="fas fa-plus"></i>New
+        </button>
+        <Sorter :options="by" @sort-change="onChange($event)" />
       </div>
-      <div class="sub-table-wrapper">
-        <table class="datalist" v-if="donates">
-          <tr v-for="d in sortedArrays" :key="d.id" @click="dataDonate(d.id)">
-            <td>{{ d.title }}</td>
-            <td>{{ d.creator }}</td>
-            <td>{{ d.accepted }}</td>
-          </tr>
-        </table>
+      <div class="table-wrapper">
+        <div class="head-wrapper">
+          <table class="datalist head">
+            <tr class="tablehead">
+              <th>ชื่อเรื่อง</th>
+              <th>ผู้สร้าง</th>
+              <th>อนุมัติแล้ว</th>
+            </tr>
+          </table>
+        </div>
+        <div class="sub-table-wrapper">
+          <table class="datalist" v-if="donates">
+            <tr v-for="d in sortedArrays" :key="d.id" @click="dataDonate(d.id)">
+              <td>{{ d.title }}</td>
+              <td>{{ d.creator }}</td>
+              <td>{{ d.accepted }}</td>
+            </tr>
+          </table>
 
-        <div v-else class="loader">
-          <div class="spinner spinner-white"></div>
+          <div v-else class="loader">
+            <div class="spinner spinner-white"></div>
+          </div>
         </div>
       </div>
     </div>
