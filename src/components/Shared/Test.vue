@@ -66,6 +66,13 @@
             @change="log($event)"
             ref="hi"
           />
+          <Select
+            customText="Select Your Mee:"
+            :options="['Mee', 'Moo', 'Maa']"
+            @change="log($event)"
+            ref="hiw"
+            :error="true"
+          />
         </span>
       </div>
 

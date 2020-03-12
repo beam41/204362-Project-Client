@@ -11,7 +11,7 @@
       >{{ opt }}</option>
     </select>
     <!-- viewable custom select for user -->
-    <div class="new-select">
+    <div :class="'new-select' + (error ? ' error' : '')">
       <div
         :class="'showbox' + (currSelect === -1 ? ' curr-disable' : '') + getClass"
         @click="toggleShowDropdown()"
@@ -56,6 +56,10 @@ export default Vue.extend({
     defaultOption: {
       type: Number,
       default: -1,
+    },
+    error: {
+      type: Boolean,
+      default: false,
     },
   },
   mixins: [clickaway],
@@ -196,6 +200,23 @@ export default Vue.extend({
 
     &[disabled] {
       color: color.lightness(black, 50%);
+    }
+  }
+
+  .error {
+    .showbox,
+    .dropdown {
+      border-color: var.$warn;
+
+      &:hover {
+        border-color: color.lightness(var.$warn, -20%);
+      }
+    }
+    .showbox {
+      &,
+      &::after {
+        color: color.alpha(var.$warn, -0.5%);
+      }
     }
   }
 }

@@ -5,6 +5,12 @@
         <button class="btn-default" @click="addDonate()">
           <i class="fas fa-plus"></i>New
         </button>
+        <div class="input-group">
+          <input type="text" placeholder="Search" />
+          <button class="btn-default" href="#">
+            <i class="fas fa-search no-m"></i>
+          </button>
+        </div>
         <Sorter :options="by" @sort-change="onChange($event)" />
       </div>
       <div class="table-wrapper">
