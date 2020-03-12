@@ -70,6 +70,13 @@
             customText="Select Your Mee:"
             :options="['Mee', 'Moo', 'Maa']"
             @change="log($event)"
+            ref="hi"
+            :defaultOption="'Mee'"
+          />
+          <Select
+            customText="Select Your Mee:"
+            :options="['Mee', 'Moo', 'Maa']"
+            @change="log($event)"
             ref="hiw"
             :error="true"
           />
@@ -89,7 +96,7 @@
     <div class="form-control">
       <label>Sorter</label>
       <span class="Sorter">
-        <Sorter />
+        <!-- <Sorter /> -->
       </span>
     </div>
     <div class="spinner"></div>
@@ -114,7 +121,7 @@
 import Vue from 'vue';
 import Select from './Select.vue';
 import CheckBox from './CheckBox.vue';
-import Sorter from './Sorter.vue';
+// import Sorter from './Sorter.vue';
 import Modal from './Modal.vue';
 
 export default Vue.extend({
@@ -122,7 +129,7 @@ export default Vue.extend({
   components: {
     CheckBox,
     Select,
-    Sorter,
+    // Sorter,
     Modal,
   },
   data: () => ({

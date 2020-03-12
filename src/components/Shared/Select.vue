@@ -41,6 +41,7 @@
 <script>
 import Vue from 'vue';
 import { mixin as clickaway } from 'vue-clickaway';
+import _ from 'lodash';
 
 export default Vue.extend({
   name: 'Select',
@@ -65,9 +66,10 @@ export default Vue.extend({
   mixins: [clickaway],
   created() {
     if (!this.customText) this.currSelect = 0;
+    console.log(this.defaultOption);
     if (this.defaultOption !== '') {
       // prettier-ignore
-      this.currSelect = _.findIndex(users, o => o === this.defaultOption);
+      this.currSelect = _.findIndex(this.options, o => o === this.defaultOption);
     }
   },
   computed: {
