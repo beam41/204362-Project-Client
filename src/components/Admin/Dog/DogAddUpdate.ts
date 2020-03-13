@@ -49,6 +49,10 @@ export default Vue.extend({
     if (this.$route.params.id !== 'add') {
       DogApiService.getDog(this.$route.params.id).then((val) => {
         this.dog = val.data;
+        this.sex = this.dog.sex;
+        this.unit = this.dog.ageUnit;
+        this.collarColor = this.dog.collarColor;
+        this.isAlive = this.dog.isAlive;
       });
     } else {
       this.dog = new Dog();
