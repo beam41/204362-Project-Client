@@ -3,13 +3,36 @@
     <div v-if="editing" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
+    <Modal :show="delShow">
+      <div class="m-top">
+        <h5>Delete</h5>
+      </div>
+      <div class="m-mid">
+        <p>
+          คุณต้องการลบหรือไม่
+        </p>
+      </div>
+      <div class="m-bot">
+        <button class="btn-warn btn-mar" @click="Delete()">Delete</button>
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              delShow = false;
+            }
+          "
+        >
+          Cancel
+        </button>
+      </div>
+    </Modal>
+
     <div class="padadmin">
       <div>
-        <div>Dog ID: {{ dog.id }}</div>
         <div class="form-control">
           <label>ชื่อ:</label>
           <input
-            :class="nameErr ? 'error':''"
+            :class="nameErr ? 'error' : ''"
             type="text"
             placeholder="กรุณากรอกชื่อ"
             v-model="dog.name"
@@ -20,7 +43,7 @@
         <div class="form-control">
           <label>พันธุ์:</label>
           <input
-            :class="breedErr ? 'error':''"
+            :class="breedErr ? 'error' : ''"
             type="text"
             placeholder="กรุณากรอกพันธุ์"
             v-model="dog.breed"
@@ -31,19 +54,18 @@
         <div class="form-control">
           <label>อายุ:</label>
           <input
-            :class="ageErr ? 'error':''"
+            :class="ageErr ? 'error' : ''"
             type="text"
-            placeholder
             style="width: 50px"
             v-model="dog.age"
             ref="age"
           />
           <Select
             :error="unitErr"
-            :customText="unit"
-            style="width: 60px"
-            :defaultOption="unitSelect"
+            customText="..."
+            style="width: 70px"
             :options="unitSelect"
+            :defaultOption="getDogunit"
             @sel-change="onChangeUnit($event)"
           />
         </div>
@@ -54,8 +76,8 @@
             <Select
               :error="sexErr"
               customText="กรุณาเลือกเพศ"
-              :defaultOption="sexSelect"
               :options="sexSelect"
+              :defaultOption="getDogsex"
               @sel-change="onChangeSex($event)"
             />
           </span>
@@ -63,7 +85,7 @@
 
         <div class="form-control">
           <label>ลักษณะ:</label>
-          <textarea v-model="dog.description" :class="descErr ? 'error':''" ref="description" />
+          <textarea v-model="dog.description" :class="descErr ? 'error' : ''" ref="description" />
         </div>
 
         <div class="form-control">
@@ -72,8 +94,8 @@
             <Select
               :error="colorCollarErr"
               customText="กรุณาเลือกสีปลอกคอ"
-              :defaultOption="collarColorSelect"
               :options="collarColorSelect"
+              :defaultOption="getDogcolor"
               @sel-change="onChangeColor($event)"
             />
           </span>
@@ -85,8 +107,8 @@
             <Select
               :error="isAliveErr"
               customText="กรุณาเลือกสถานะ"
-              :defaultOption="isAliveSelect"
               :options="isAliveSelect"
+              :defaultOption="getDogstatus"
               @sel-change="onChangeAlive($event)"
             />
           </span>
@@ -95,9 +117,9 @@
 
       <div>
         <div class="form-control">
-          <label>ติดต่อ:</label>
+          <label>เบอร์ติดต่อ:</label>
           <input
-            :class="caretakerPhoneErr ? 'error':''"
+            :class="caretakerPhoneErr ? 'error' : ''"
             type="text"
             placeholder="กรุณากรอกข้อมูลติดต่อ"
             v-model="dog.caretakerPhone"
@@ -108,7 +130,7 @@
         <div class="form-control">
           <label>ผู้ดูแล:</label>
           <input
-            :class="caretakerErr ? 'error':''"
+            :class="caretakerErr ? 'error' : ''"
             type="text"
             placeholder="กรุณากรอกชื่อผู้ดูแล"
             v-model="dog.caretaker"
@@ -118,11 +140,51 @@
 
         <div class="form-control">
           <label>ที่อยู่:</label>
-          <textarea v-model="dog.location" :class="locationErr ? 'error':''" ref="location" />
+          <textarea v-model="dog.location" :class="locationErr ? 'error' : ''" ref="location" />
         </div>
-        <button class="btn-success" @click="saveValidate()">save</button>
-        <button class="btn-warn" @click="Delete()">Delete</button>
+        <div>
+          <div>
+            <button class="btn-success btn-mar" @click="saveValidate()">Save</button>
+            <button
+              class="btn-warn"
+              @click="
+                () => {
+                  delShow = true;
+                }
+              "
+              v-if="$route.params.id !== 'add'"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
+    <div>
+       <div class="img-upload">
+          <div class="flex-child im">
+            <p v-if="!imgPath && imgPath === ''">No image</p>
+            <progressive-background v-else :src="imgUrl">
+              <div slot="content" slot-scope="{ visible }">
+                <div v-show="visible" class="loader loader-img">
+                  <div class="spinner spinner-white"></div>
+                </div>
+              </div>
+            </progressive-background>
+          </div>
+          <div class="flex-child">
+            <input type="file" ref="file" accept="image/*" :disabled="uploading" />
+          </div>
+          <div class="flex-child">
+            <button
+              :class="'btn-' + (imgErr ? 'warn' : 'default')"
+              @click="upload()"
+              :disabled="uploading"
+            >
+              Upload
+            </button>
+          </div>
+        </div>
     </div>
   </div>
   <div v-else class="loader adminbox">
@@ -130,192 +192,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import Select from '@/components/Shared/Select.vue';
-import DogApiService from '@/services/DogApiService';
-import Dog from '@/models/dog';
-import util from '@/util';
-
-export default Vue.extend({
-  name: 'DogAddUpdate',
-  data: () => ({
-    dog: null as Dog | null,
-
-    sexSelect: ['ตัวเมีย', 'ตัวผู้'],
-    collarColorSelect: ['สีเขียว', 'สีเหลือง', 'สีแดง'],
-    unitSelect: ['ปี', 'เดือน'],
-    isAliveSelect: ['มีชีวิต', 'เสียชีวิต'],
-
-    SexArr: ['F', 'M'],
-    collarColorArr: ['G', 'Y', 'R'],
-    unitArr: ['Y', 'M'],
-    isAliveArr: [true, false],
-
-    sex: undefined as string | undefined,
-    collarColor: undefined as string | undefined,
-    unit: undefined as string | undefined,
-    isAlive: undefined as boolean | undefined,
-
-    editing: false,
-    nameErr: false,
-    breedErr: false,
-    ageErr: false,
-    unitErr: false,
-    sexErr: false,
-    descErr: false,
-    colorCollarErr: false,
-    isAliveErr: false,
-    caretakerPhoneErr: false,
-    caretakerErr: false,
-    locationErr: false,
-  }),
-  components: {
-    Select,
-  },
-  created() {
-    if (this.$route.params.id !== 'add') {
-      DogApiService.getDog(this.$route.params.id).then((val) => {
-        this.dog = val.data;
-      });
-    } else {
-      this.dog = new Dog();
-    }
-  },
-  methods: {
-    saveValidate() {
-      this.nameErr = false;
-      this.breedErr = false;
-      this.ageErr = false;
-      this.sexErr = false;
-      this.descErr = false;
-      this.colorCollarErr = false;
-      this.isAliveErr = false;
-      this.caretakerPhoneErr = false;
-      this.caretakerErr = false;
-      this.locationErr = false;
-      let err = false;
-      // @ts-ignore
-      const name = this.$refs.name.value;
-      // @ts-ignore
-      const breed = this.$refs.breed.value;
-      // @ts-ignore
-      const age = this.$refs.age.value;
-      const sexValidate = this.sex;
-      // @ts-ignore
-      const description = this.$refs.description.value;
-      const collarColorValidate = this.collarColor;
-      const isAliveValidate = this.isAlive;
-      // @ts-ignore
-      const caretakerPhone = this.$refs.caretakerPhone.value;
-      // @ts-ignore
-      const caretaker = this.$refs.caretaker.value;
-      // @ts-ignore
-      const location = this.$refs.location.value;
-
-      if (name === '') {
-        this.nameErr = true;
-        err = true;
-      }
-      if (breed === '') {
-        this.breedErr = true;
-        err = true;
-      }
-      if (age === '' || !Number.isInteger(+age)) {
-        this.ageErr = true;
-        err = true;
-      }
-      if (sexValidate === undefined) {
-        this.sexErr = true;
-        err = true;
-      }
-      if (description === '') {
-        this.descErr = true;
-        err = true;
-      }
-      if (collarColorValidate === undefined) {
-        this.colorCollarErr = true;
-        err = true;
-      }
-      if (isAliveValidate === undefined) {
-        this.isAliveErr = true;
-        err = true;
-      }
-      if (caretakerPhone === '') {
-        this.caretakerPhoneErr = true;
-        err = true;
-      }
-      if (caretaker === '') {
-        this.caretakerErr = true;
-        err = true;
-      }
-      if (location === '') {
-        this.locationErr = true;
-        err = true;
-      }
-      if (err) return;
-      this.saveData();
-    },
-    saveData() {
-      this.editing = true;
-      const newDog: Dog = {
-        id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
-        // @ts-ignore
-        name: util.splitToArr(this.$refs.name.value),
-        // @ts-ignore
-        breed: this.$refs.breed.value,
-        // @ts-ignore
-        age: +this.$refs.age.value,
-        ageUnit: this.unit,
-        sex: this.sex,
-        // @ts-ignore
-        description: this.$refs.description.value,
-        collarColor: this.collarColor,
-        isAlive: this.isAlive,
-        // @ts-ignore
-        caretakerPhone: util.splitToArr(this.$refs.caretakerPhone.value),
-        // @ts-ignore
-        caretaker: this.$refs.caretaker.value,
-        // @ts-ignore
-        location: this.$refs.location.value,
-      };
-      if (this.$route.params.id === 'add') {
-        DogApiService.postDog(newDog).then((_) => {
-          this.$router.go(-1);
-        });
-      } else {
-        DogApiService.putDog(this.$route.params.id, newDog).then((_) => {
-          this.$router.go(-1);
-        });
-      }
-    },
-    onChangeUnit(event: any) {
-      this.unit = this.unitArr[event.currSelect];
-    },
-    onChangeSex(event: any) {
-      this.sex = this.SexArr[event.currSelect];
-    },
-    onChangeColor(event: any) {
-      this.collarColor = this.collarColorArr[event.currSelect];
-    },
-    onChangeAlive(event: any) {
-      this.isAlive = this.isAliveArr[event.currSelect];
-    },
-    Delete() {
-      if (this.dog && this.$route.params.id !== 'add') {
-        console.log('delete!!!');
-        DogApiService.delDog(this.$route.params.id);
-      } else {
-        console.log('stop!!!');
-      }
-    },
-  },
-});
-</script>
+<script lang="ts" src="./DogAddUpdate.ts"></script>
 
 <style scoped>
 .addupdate {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.btn-mar {
+  margin: 5px;
+}
+
+.contrainer {
+  display: grid;
+}
+
 </style>

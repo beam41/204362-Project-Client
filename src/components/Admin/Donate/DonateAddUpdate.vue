@@ -10,55 +10,98 @@
       <div class="m-mid">
         <p>
           คุณต้องการลบ
-          <strong>{{donate.title}}</strong> หรือไม่
+          <strong>{{ donate.title }}</strong> หรือไม่
         </p>
       </div>
       <div class="m-bot">
         <button class="btn-warn" @click="del()">Delete</button>
-        <button class="btn-default" @click="() => {delShow = false}">Cancel</button>
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              delShow = false;
+            }
+          "
+        >
+          Cancel
+        </button>
       </div>
     </Modal>
     <div class="padadmin addupdate donate-au">
       <div class="input-box">
-        <div class="form-control">
-          <label>หัวเรื่อง:</label>
-          <input
-            :class="'input-au' + (titleErr ? ' error':'')"
-            type="text"
-            placeholder="กรุณากรอกหัวเรื่อง"
-            v-model="donate.title"
-            ref="title"
-          />
+        <div>
+          <div class="form-control">
+            <label>หัวเรื่อง:</label>
+            <input
+              :class="'input-au' + (titleErr ? ' error' : '')"
+              type="text"
+              placeholder="กรุณากรอกหัวเรื่อง"
+              v-model="donate.title"
+              ref="title"
+            />
+          </div>
+          <div class="form-control">
+            <label>คำอธิบาย:</label>
+            <textarea
+              :class="'txt input-au' + (descErr ? ' error' : '')"
+              type="text"
+              placeholder="กรุณากรอกคำอธิบาย"
+              v-model="donate.description"
+              ref="desc"
+            />
+          </div>
+          <div class="form-control">
+            <label>Link Qrcode:</label>
+            <input
+              :class="'input-au' + (qrErr ? ' error' : '')"
+              type="text"
+              placeholder="กรุณากรอก Qr code"
+              v-model="donate.qrLink"
+              ref="qr"
+            />
+          </div>
+          <qrcode-vue :value="donate.qrLink" level="H" renderAs="svg"></qrcode-vue>
         </div>
-        <div class="form-control">
-          <label>คำอธิบาย:</label>
-          <textarea
-            :class="'txt input-au' + (descErr ? ' error':'')"
-            type="text"
-            placeholder="กรุณากรอกคำอธิบาย"
-            v-model="donate.description"
-            ref="desc"
-          />
-        </div>
-        <div class="form-control">
-          <label>Link Qrcode:</label>
-          <input
-            :class="'input-au' + (qrErr ? ' error':'')"
-            type="text"
-            placeholder="กรุณากรอก Qr code"
-            v-model="donate.qrLink"
-            ref="qr"
-          />
+        <div class="img-upload">
+          <div class="flex-child im">
+            <p v-if="!imgPath && imgPath === ''">No image</p>
+            <progressive-background v-else :src="imgUrl">
+              <div slot="content" slot-scope="{ visible }">
+                <div v-show="visible" class="loader loader-img">
+                  <div class="spinner spinner-white"></div>
+                </div>
+              </div>
+            </progressive-background>
+          </div>
+          <div class="flex-child">
+            <input type="file" ref="file" accept="image/*" :disabled="uploading" />
+          </div>
+          <div class="flex-child">
+            <button
+              :class="'btn-' + (imgErr ? 'warn' : 'default')"
+              @click="upload()"
+              :disabled="uploading"
+            >
+              Upload
+            </button>
+          </div>
         </div>
       </div>
       <div class="admin-btn-pos">
         <div>
-          <button class="btn-success" @click="saveValidate()">Save</button>
+          <button class="btn-success" :disabled="uploading" @click="saveValidate()">Save</button>
           <button
             class="btn-warn"
-            @click="() => {delShow = true}"
+            :disabled="uploading"
+            @click="
+              () => {
+                delShow = true;
+              }
+            "
             v-if="$route.params.id !== 'add'"
-          >Delete</button>
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -68,99 +111,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import DonateServ from '@/services/DonateApiService';
-import Donate from '@/models/donate';
-import Modal from '@/components/Shared/Modal.vue';
+<script lang="ts" src="./DonateAddUpdate.ts"></script>
 
-export default Vue.extend({
-  name: 'DonateAddUpdate',
-  components: {
-    Modal,
-  },
-  data: () => ({
-    donate: null as Donate | null,
-    editing: false,
-    delShow: false,
-    titleErr: false,
-    descErr: false,
-    qrErr: false,
-  }),
-  created() {
-    if (this.$route.params.id !== 'add') {
-      DonateServ.getDonate(this.$route.params.id).then((val) => {
-        this.donate = val.data;
-      });
-    } else {
-      this.donate = new Donate();
-    }
-  },
-  methods: {
-    saveValidate() {
-      this.titleErr = false;
-      this.descErr = false;
-      this.qrErr = false;
-      let err = false;
-      // @ts-ignore
-      const title = this.$refs.title.value;
-      // @ts-ignore
-      const desc = this.$refs.desc.value;
-      // @ts-ignore
-      const qr = this.$refs.qr.value;
-      if (title === '') {
-        this.titleErr = true;
-        err = true;
-      }
-      if (desc === '') {
-        this.descErr = true;
-        err = true;
-      }
-      if (qr === '') {
-        this.qrErr = true;
-        err = true;
-      }
-      if (err) return;
-      this.save();
-    },
-    save() {
-      this.editing = true;
-      let newDon: Donate = new Donate();
-      if (this.donate) {
-        newDon = {
-          id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
-          // @ts-ignore
-          title: this.$refs.title.value,
-          creator: this.$route.params.id !== 'add' ? this.donate.creator : 'Anonymous',
-          accepted: this.$route.params.id !== 'add' ? this.donate.accepted : false,
-          // @ts-ignore
-          description: this.$refs.desc.value,
-          // @ts-ignore
-          qrLink: this.$refs.qr.value,
-        };
-      }
-      if (this.$route.params.id === 'add') {
-        DonateServ.postDonate(newDon).then((_) => {
-          this.$router.go(-1);
-        });
-      } else {
-        DonateServ.putDonate(this.$route.params.id, newDon).then((_) => {
-          this.$router.go(-1);
-        });
-      }
-    },
-    del() {
-      this.delShow = false;
-      this.editing = true;
-      DonateServ.delDonate(this.$route.params.id).then((_) => {
-        this.$router.go(-1);
-      });
-    },
-  },
-});
-</script>
-
-<style>
+<style lang="scss">
 .donate-au {
   grid-template-rows: 90% 10%;
 }
@@ -169,7 +122,14 @@ export default Vue.extend({
   height: 10em;
 }
 
+.input-au {
+  width: 100%;
+}
+
 .input-box {
   place-self: center stretch;
+  display: grid;
+  gap: 1rem 1rem;
+  grid-template-columns: 1fr 1fr;
 }
 </style>

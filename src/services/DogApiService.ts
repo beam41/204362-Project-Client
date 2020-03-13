@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import Dog from '@/models/dog';
 import a from './_axios';
 
@@ -19,6 +19,7 @@ function delDog(id: string): Promise<AxiosResponse<Dog>> {
 }
 
 function putDog(id: string, dog: Dog): Promise<AxiosResponse<Dog>> {
+  console.log(dog);
   return a.put(`/api/dog/${id}`, dog);
 }
 export default {

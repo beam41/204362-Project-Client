@@ -10,4 +10,6 @@ export default class Donate {
   description: string | undefined;
 
   qrLink: string | undefined;
+
+  imgPath: string | undefined;
 }
