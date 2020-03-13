@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="imgcontainer">
-      <img :src="require('@/assets/images/tia.jpg')" />
-    </div>
+    <div class="imgcontainer"></div>
     <div class="navbar">
       <nav class="navbar" v-bind:class="active" v-on:click.prevent>
         <router-link to="/home" class="nav-link home">หน้าหลัก</router-link>
@@ -26,11 +24,14 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .imgcontainer {
-  display: block;
-  align-items: center;
-  justify-content: center;
-  height: 15pc;
+  width: 100%;
+  height: 360px;
+  background-image: url('~@/assets/images/tia.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
+
 .navbar {
   background-color: var.$violet;
   display: flex;
