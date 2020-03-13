@@ -13,7 +13,7 @@
         </p>
       </div>
       <div class="m-bot">
-        <button class="btn-warn" @click="Delete()">Delete</button>
+        <button class="btn-warn btn-mar" @click="Delete()">Delete</button>
         <button
           class="btn-default"
           @click="
@@ -28,7 +28,6 @@
     </Modal>
     <div class="padadmin">
       <div>
-        <div>Dog ID: {{ dog.id }}</div>
         <div class="form-control">
           <label>ชื่อ:</label>
           <input
@@ -144,7 +143,7 @@
         </div>
         <div>
           <div>
-            <button class="btn-success" @click="saveValidate()">Save</button>
+            <button class="btn-success btn-mar" @click="saveValidate()">Save</button>
             <button
               class="btn-warn"
               @click="
@@ -172,5 +171,9 @@
 .addupdate {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.btn-mar {
+  margin: 5px;
 }
 </style>
