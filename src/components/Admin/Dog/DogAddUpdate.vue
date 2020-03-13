@@ -117,7 +117,7 @@
 
       <div>
         <div class="form-control">
-          <label>ติดต่อ:</label>
+          <label>เบอร์ติดต่อ:</label>
           <input
             :class="caretakerPhoneErr ? 'error' : ''"
             type="text"

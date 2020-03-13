@@ -6,7 +6,6 @@ import util from '@/util';
 import _ from 'lodash';
 import Modal from '@/components/Shared/Modal.vue';
 
-
 export default Vue.extend({
   name: 'DogAddUpdate',
   data: () => ({
@@ -159,7 +158,7 @@ export default Vue.extend({
         this.isAliveErr = true;
         err = true;
       }
-      if (caretakerPhone === '') {
+      if (caretakerPhone === '' || caretakerPhone.length > 10) {
         this.caretakerPhoneErr = true;
         err = true;
       }
