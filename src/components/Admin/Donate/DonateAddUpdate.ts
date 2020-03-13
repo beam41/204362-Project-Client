@@ -4,6 +4,7 @@ import Donate from '@/models/donate';
 import Modal from '@/components/Shared/Modal.vue';
 import QrcodeVue from 'qrcode.vue';
 
+
 export default Vue.extend({
   name: 'DonateAddUpdate',
   components: {

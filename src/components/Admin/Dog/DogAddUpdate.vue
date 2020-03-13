@@ -3,13 +3,36 @@
     <div v-if="editing" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
+    <Modal :show="delShow">
+      <div class="m-top">
+        <h5>Delete</h5>
+      </div>
+      <div class="m-mid">
+        <p>
+          คุณต้องการลบหรือไม่
+        </p>
+      </div>
+      <div class="m-bot">
+        <button class="btn-warn" @click="Delete()">Delete</button>
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              delShow = false;
+            }
+          "
+        >
+          Cancel
+        </button>
+      </div>
+    </Modal>
     <div class="padadmin">
       <div>
         <div>Dog ID: {{ dog.id }}</div>
         <div class="form-control">
           <label>ชื่อ:</label>
           <input
-            :class="nameErr ? 'error':''"
+            :class="nameErr ? 'error' : ''"
             type="text"
             placeholder="กรุณากรอกชื่อ"
             v-model="dog.name"
@@ -20,7 +43,7 @@
         <div class="form-control">
           <label>พันธุ์:</label>
           <input
-            :class="breedErr ? 'error':''"
+            :class="breedErr ? 'error' : ''"
             type="text"
             placeholder="กรุณากรอกพันธุ์"
             v-model="dog.breed"
@@ -31,19 +54,18 @@
         <div class="form-control">
           <label>อายุ:</label>
           <input
-            :class="ageErr ? 'error':''"
+            :class="ageErr ? 'error' : ''"
             type="text"
-            placeholder
             style="width: 50px"
             v-model="dog.age"
             ref="age"
           />
           <Select
             :error="unitErr"
-            :customText="unit"
-            style="width: 60px"
-            :defaultOption="unitSelect"
+            customText="..."
+            style="width: 70px"
             :options="unitSelect"
+            :defaultOption="getDogunit"
             @sel-change="onChangeUnit($event)"
           />
         </div>
@@ -54,8 +76,8 @@
             <Select
               :error="sexErr"
               customText="กรุณาเลือกเพศ"
-              :defaultOption="sexSelect"
               :options="sexSelect"
+              :defaultOption="getDogsex"
               @sel-change="onChangeSex($event)"
             />
           </span>
@@ -63,7 +85,7 @@
 
         <div class="form-control">
           <label>ลักษณะ:</label>
-          <textarea v-model="dog.description" :class="descErr ? 'error':''" ref="description" />
+          <textarea v-model="dog.description" :class="descErr ? 'error' : ''" ref="description" />
         </div>
 
         <div class="form-control">
@@ -72,8 +94,8 @@
             <Select
               :error="colorCollarErr"
               customText="กรุณาเลือกสีปลอกคอ"
-              :defaultOption="collarColorSelect"
               :options="collarColorSelect"
+              :defaultOption="getDogcolor"
               @sel-change="onChangeColor($event)"
             />
           </span>
@@ -85,8 +107,8 @@
             <Select
               :error="isAliveErr"
               customText="กรุณาเลือกสถานะ"
-              :defaultOption="isAliveSelect"
               :options="isAliveSelect"
+              :defaultOption="getDogstatus"
               @sel-change="onChangeAlive($event)"
             />
           </span>
@@ -97,7 +119,7 @@
         <div class="form-control">
           <label>ติดต่อ:</label>
           <input
-            :class="caretakerPhoneErr ? 'error':''"
+            :class="caretakerPhoneErr ? 'error' : ''"
             type="text"
             placeholder="กรุณากรอกข้อมูลติดต่อ"
             v-model="dog.caretakerPhone"
@@ -108,7 +130,7 @@
         <div class="form-control">
           <label>ผู้ดูแล:</label>
           <input
-            :class="caretakerErr ? 'error':''"
+            :class="caretakerErr ? 'error' : ''"
             type="text"
             placeholder="กรุณากรอกชื่อผู้ดูแล"
             v-model="dog.caretaker"
@@ -118,10 +140,24 @@
 
         <div class="form-control">
           <label>ที่อยู่:</label>
-          <textarea v-model="dog.location" :class="locationErr ? 'error':''" ref="location" />
+          <textarea v-model="dog.location" :class="locationErr ? 'error' : ''" ref="location" />
         </div>
-        <button class="btn-success" @click="saveValidate()">save</button>
-        <button class="btn-warn" @click="Delete()">Delete</button>
+        <div>
+          <div>
+            <button class="btn-success" @click="saveValidate()">Save</button>
+            <button
+              class="btn-warn"
+              @click="
+                () => {
+                  delShow = true;
+                }
+              "
+              v-if="$route.params.id !== 'add'"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
