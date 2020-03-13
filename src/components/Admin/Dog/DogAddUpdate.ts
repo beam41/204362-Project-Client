@@ -57,6 +57,7 @@ export default Vue.extend({
         this.unit = this.dog.ageUnit;
         this.collarColor = this.dog.collarColor;
         this.isAlive = this.dog.isAlive;
+        this.imgPath = this.dog.imgPath as string;
       });
     } else {
       this.dog = new Dog();
