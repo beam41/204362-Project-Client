@@ -26,6 +26,7 @@
         </button>
       </div>
     </Modal>
+
     <div class="padadmin">
       <div>
         <div class="form-control">
@@ -159,6 +160,32 @@
         </div>
       </div>
     </div>
+    <div>
+       <div class="img-upload">
+          <div class="flex-child im">
+            <p v-if="!imgPath && imgPath === ''">No image</p>
+            <progressive-background v-else :src="imgUrl">
+              <div slot="content" slot-scope="{ visible }">
+                <div v-show="visible" class="loader loader-img">
+                  <div class="spinner spinner-white"></div>
+                </div>
+              </div>
+            </progressive-background>
+          </div>
+          <div class="flex-child">
+            <input type="file" ref="file" accept="image/*" :disabled="uploading" />
+          </div>
+          <div class="flex-child">
+            <button
+              :class="'btn-' + (imgErr ? 'warn' : 'default')"
+              @click="upload()"
+              :disabled="uploading"
+            >
+              Upload
+            </button>
+          </div>
+        </div>
+    </div>
   </div>
   <div v-else class="loader adminbox">
     <div class="spinner spinner-black"></div>
@@ -176,4 +203,9 @@
 .btn-mar {
   margin: 5px;
 }
+
+.contrainer {
+  display: grid;
+}
+
 </style>

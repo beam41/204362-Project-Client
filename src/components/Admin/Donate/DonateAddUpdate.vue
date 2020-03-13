@@ -64,7 +64,7 @@
         </div>
         <div class="img-upload">
           <div class="flex-child im">
-            <p v-if="imgPath && imgPath === ''">No image</p>
+            <p v-if="!imgPath && imgPath === ''">No image</p>
             <progressive-background v-else :src="imgUrl">
               <div slot="content" slot-scope="{ visible }">
                 <div v-show="visible" class="loader loader-img">

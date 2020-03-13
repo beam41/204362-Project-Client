@@ -22,4 +22,6 @@ export default class Dog {
   caretakerPhone: Array<string> | undefined;
 
   location: string | undefined;
+
+  imgPath: string | undefined;
 }

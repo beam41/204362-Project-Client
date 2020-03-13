@@ -5,6 +5,7 @@ import Dog from '@/models/dog';
 import util from '@/util';
 import _ from 'lodash';
 import Modal from '@/components/Shared/Modal.vue';
+import ImageServ from '@/services/ImageUploadService';
 
 export default Vue.extend({
   name: 'DogAddUpdate',
@@ -39,6 +40,10 @@ export default Vue.extend({
     caretakerPhoneErr: false,
     caretakerErr: false,
     locationErr: false,
+    // Img
+    imgErr: false,
+    uploading: false,
+    imgPath: '',
   }),
   components: {
     Select,
@@ -90,6 +95,9 @@ export default Vue.extend({
       }
       return null;
     },
+    imgUrl() {
+      return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${this.imgPath}`;
+    },
   },
   methods: {
     saveValidate() {
@@ -105,6 +113,7 @@ export default Vue.extend({
       this.caretakerPhoneErr = false;
       this.caretakerErr = false;
       this.locationErr = false;
+      this.imgErr = false;
       let err = false;
       // get value from ref
       // @ts-ignore
@@ -170,6 +179,10 @@ export default Vue.extend({
         this.locationErr = true;
         err = true;
       }
+      if (this.imgPath === '') {
+        this.imgErr = true;
+        err = true;
+      }
       if (err) {
         return;
       }
@@ -197,6 +210,7 @@ export default Vue.extend({
         caretaker: this.$refs.caretaker.value,
         // @ts-ignore
         location: this.$refs.location.value,
+        imgPath: this.imgPath,
       };
       if (this.$route.params.id === 'add') {
         DogApiService.postDog(newDog).then((_a) => {
@@ -225,6 +239,14 @@ export default Vue.extend({
       this.editing = true;
       DogApiService.delDog(this.$route.params.id).then((_a) => {
         this.$router.go(-1);
+      });
+    },
+    upload() {
+      this.uploading = true;
+      // @ts-ignore
+      ImageServ.postImage(this.$refs.file.files[0]).then((val) => {
+        this.imgPath = val.data.fileName;
+        this.uploading = false;
       });
     },
   },
