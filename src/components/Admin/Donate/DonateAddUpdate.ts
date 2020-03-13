@@ -2,11 +2,13 @@ import Vue from 'vue';
 import DonateServ from '@/services/DonateApiService';
 import Donate from '@/models/donate';
 import Modal from '@/components/Shared/Modal.vue';
+import QrcodeVue from 'qrcode.vue';
 
 export default Vue.extend({
   name: 'DonateAddUpdate',
   components: {
     Modal,
+    QrcodeVue,
   },
   data: () => ({
     donate: null as Donate | null,

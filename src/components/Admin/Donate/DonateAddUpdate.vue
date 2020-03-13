@@ -10,12 +10,21 @@
       <div class="m-mid">
         <p>
           คุณต้องการลบ
-          <strong>{{donate.title}}</strong> หรือไม่
+          <strong>{{ donate.title }}</strong> หรือไม่
         </p>
       </div>
       <div class="m-bot">
         <button class="btn-warn" @click="del()">Delete</button>
-        <button class="btn-default" @click="() => {delShow = false}">Cancel</button>
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              delShow = false;
+            }
+          "
+        >
+          Cancel
+        </button>
       </div>
     </Modal>
     <div class="padadmin addupdate donate-au">
@@ -23,7 +32,7 @@
         <div class="form-control">
           <label>หัวเรื่อง:</label>
           <input
-            :class="'input-au' + (titleErr ? ' error':'')"
+            :class="'input-au' + (titleErr ? ' error' : '')"
             type="text"
             placeholder="กรุณากรอกหัวเรื่อง"
             v-model="donate.title"
@@ -33,7 +42,7 @@
         <div class="form-control">
           <label>คำอธิบาย:</label>
           <textarea
-            :class="'txt input-au' + (descErr ? ' error':'')"
+            :class="'txt input-au' + (descErr ? ' error' : '')"
             type="text"
             placeholder="กรุณากรอกคำอธิบาย"
             v-model="donate.description"
@@ -43,22 +52,29 @@
         <div class="form-control">
           <label>Link Qrcode:</label>
           <input
-            :class="'input-au' + (qrErr ? ' error':'')"
+            :class="'input-au' + (qrErr ? ' error' : '')"
             type="text"
             placeholder="กรุณากรอก Qr code"
             v-model="donate.qrLink"
             ref="qr"
           />
         </div>
+        <qrcode-vue :value="donate.qrLink" level="H" renderAs="svg"></qrcode-vue>
       </div>
       <div class="admin-btn-pos">
         <div>
           <button class="btn-success" @click="saveValidate()">Save</button>
           <button
             class="btn-warn"
-            @click="() => {delShow = true}"
+            @click="
+              () => {
+                delShow = true;
+              }
+            "
             v-if="$route.params.id !== 'add'"
-          >Delete</button>
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
