@@ -3,28 +3,31 @@ import Select from '@/components/Shared/Select.vue';
 import DogApiService from '@/services/DogApiService';
 import Dog from '@/models/dog';
 import util from '@/util';
+import _ from 'lodash';
+import Modal from '@/components/Shared/Modal.vue';
 
 export default Vue.extend({
   name: 'DogAddUpdate',
   data: () => ({
     dog: null as Dog | null,
-
+    editing: false,
+    delShow: false,
+    // Arr text select --> display UI
     sexSelect: ['ตัวเมีย', 'ตัวผู้'],
     collarColorSelect: ['สีเขียว', 'สีเหลือง', 'สีแดง'],
     unitSelect: ['ปี', 'เดือน'],
     isAliveSelect: ['มีชีวิต', 'เสียชีวิต'],
-
+    // Arr select --> sent to database
     SexArr: ['F', 'M'],
     collarColorArr: ['G', 'Y', 'R'],
     unitArr: ['Y', 'M'],
     isAliveArr: [true, false],
-
+    // Variable
     sex: undefined as string | undefined,
     collarColor: undefined as string | undefined,
     unit: undefined as string | undefined,
     isAlive: undefined as boolean | undefined,
-
-    editing: false,
+    // Check Err
     nameErr: false,
     breedErr: false,
     ageErr: false,
@@ -39,21 +42,62 @@ export default Vue.extend({
   }),
   components: {
     Select,
+    Modal,
   },
   created() {
     if (this.$route.params.id !== 'add') {
       DogApiService.getDog(this.$route.params.id).then((val) => {
         this.dog = val.data;
+        this.sex = this.dog.sex;
+        this.unit = this.dog.ageUnit;
+        this.collarColor = this.dog.collarColor;
+        this.isAlive = this.dog.isAlive;
       });
     } else {
       this.dog = new Dog();
     }
   },
+  computed: {
+    getDogunit() {
+      if (this.dog) {
+        // prettier-ignore
+        return this.unitSelect[_.findIndex(this.unitArr, o => o === this.dog.ageUnit)];
+      }
+      return null;
+    },
+    getDogsex() {
+      if (this.dog) {
+        // prettier-ignore
+        return this.sexSelect[_.findIndex(this.SexArr, o => o === this.dog.sex)];
+      }
+      return null;
+    },
+    getDogcolor() {
+      if (this.dog) {
+        return this.collarColorSelect[
+          // eslint-disable-next-line
+          _.findIndex(this.collarColorArr, (o) => {
+            return o === this.dog.collarColor;
+          })
+        ];
+      }
+      return null;
+    },
+    getDogstatus() {
+      if (this.dog) {
+        // prettier-ignore
+        return this.isAliveSelect[_.findIndex(this.isAliveArr, o => o === this.dog.isAlive)];
+      }
+      return null;
+    },
+  },
   methods: {
     saveValidate() {
+      // default Err is false
       this.nameErr = false;
       this.breedErr = false;
       this.ageErr = false;
+      this.unitErr = false;
       this.sexErr = false;
       this.descErr = false;
       this.colorCollarErr = false;
@@ -62,6 +106,7 @@ export default Vue.extend({
       this.caretakerErr = false;
       this.locationErr = false;
       let err = false;
+      // get value from ref
       // @ts-ignore
       const name = this.$refs.name.value;
       // @ts-ignore
@@ -69,6 +114,7 @@ export default Vue.extend({
       // @ts-ignore
       const age = this.$refs.age.value;
       const sexValidate = this.sex;
+      const unitValidate = this.unit;
       // @ts-ignore
       const description = this.$refs.description.value;
       const collarColorValidate = this.collarColor;
@@ -79,7 +125,7 @@ export default Vue.extend({
       const caretaker = this.$refs.caretaker.value;
       // @ts-ignore
       const location = this.$refs.location.value;
-
+      // Check condition Err
       if (name === '') {
         this.nameErr = true;
         err = true;
@@ -88,8 +134,12 @@ export default Vue.extend({
         this.breedErr = true;
         err = true;
       }
-      if (age === '' || !Number.isInteger(+age)) {
+      if (age === '' || !Number.isInteger(+age) || +age > 21 || +age === 0) {
         this.ageErr = true;
+        err = true;
+      }
+      if (unitValidate === undefined) {
+        this.unitErr = true;
         err = true;
       }
       if (sexValidate === undefined) {
@@ -108,7 +158,7 @@ export default Vue.extend({
         this.isAliveErr = true;
         err = true;
       }
-      if (caretakerPhone === '') {
+      if (caretakerPhone === '' || caretakerPhone.length > 10) {
         this.caretakerPhoneErr = true;
         err = true;
       }
@@ -120,7 +170,9 @@ export default Vue.extend({
         this.locationErr = true;
         err = true;
       }
-      if (err) return;
+      if (err) {
+        return;
+      }
       this.saveData();
     },
     saveData() {
@@ -147,11 +199,11 @@ export default Vue.extend({
         location: this.$refs.location.value,
       };
       if (this.$route.params.id === 'add') {
-        DogApiService.postDog(newDog).then((_) => {
+        DogApiService.postDog(newDog).then((_a) => {
           this.$router.go(-1);
         });
       } else {
-        DogApiService.putDog(this.$route.params.id, newDog).then((_) => {
+        DogApiService.putDog(this.$route.params.id, newDog).then((_a) => {
           this.$router.go(-1);
         });
       }
@@ -169,12 +221,11 @@ export default Vue.extend({
       this.isAlive = this.isAliveArr[event.currSelect];
     },
     Delete() {
-      if (this.dog && this.$route.params.id !== 'add') {
-        console.log('delete!!!');
-        DogApiService.delDog(this.$route.params.id);
-      } else {
-        console.log('stop!!!');
-      }
+      this.delShow = false;
+      this.editing = true;
+      DogApiService.delDog(this.$route.params.id).then((_a) => {
+        this.$router.go(-1);
+      });
     },
   },
 });

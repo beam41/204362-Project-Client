@@ -5,6 +5,7 @@ import Modal from '@/components/Shared/Modal.vue';
 import QrcodeVue from 'qrcode.vue';
 import ImageServ from '@/services/ImageUploadService';
 
+
 export default Vue.extend({
   name: 'DonateAddUpdate',
   components: {

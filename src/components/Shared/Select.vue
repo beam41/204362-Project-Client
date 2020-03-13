@@ -66,7 +66,7 @@ export default Vue.extend({
   mixins: [clickaway],
   created() {
     if (!this.customText) this.currSelect = 0;
-    console.log(this.defaultOption);
+    console.log('default: ', this.defaultOption);
     if (this.defaultOption !== '') {
       // prettier-ignore
       this.currSelect = _.findIndex(this.options, o => o === this.defaultOption);
