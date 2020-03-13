@@ -3,6 +3,7 @@ import DonateServ from '@/services/DonateApiService';
 import Donate from '@/models/donate';
 import Modal from '@/components/Shared/Modal.vue';
 import QrcodeVue from 'qrcode.vue';
+import ImageServ from '@/services/ImageUploadService';
 
 export default Vue.extend({
   name: 'DonateAddUpdate',
@@ -17,11 +18,15 @@ export default Vue.extend({
     titleErr: false,
     descErr: false,
     qrErr: false,
+    imgErr: false,
+    uploading: false,
+    imgPath: '',
   }),
   created() {
     if (this.$route.params.id !== 'add') {
       DonateServ.getDonate(this.$route.params.id).then((val) => {
         this.donate = val.data;
+        this.imgPath = this.donate.imgPath as string;
       });
     } else {
       this.donate = new Donate();
@@ -32,6 +37,7 @@ export default Vue.extend({
       this.titleErr = false;
       this.descErr = false;
       this.qrErr = false;
+      this.imgErr = false;
       let err = false;
       // @ts-ignore
       const title = this.$refs.title.value;
@@ -51,6 +57,10 @@ export default Vue.extend({
         this.qrErr = true;
         err = true;
       }
+      if (this.imgPath === '') {
+        this.imgErr = true;
+        err = true;
+      }
       if (err) return;
       this.save();
     },
@@ -68,6 +78,7 @@ export default Vue.extend({
           description: this.$refs.desc.value,
           // @ts-ignore
           qrLink: this.$refs.qr.value,
+          imgPath: this.imgPath,
         };
       }
       if (this.$route.params.id === 'add') {
@@ -86,6 +97,20 @@ export default Vue.extend({
       DonateServ.delDonate(this.$route.params.id).then((_) => {
         this.$router.go(-1);
       });
+    },
+    upload() {
+      this.uploading = true;
+      const formData = new FormData();
+      // @ts-ignore
+      ImageServ.postImage(this.$refs.file.files[0]).then((val) => {
+        this.imgPath = val.data.fileName;
+        this.uploading = false;
+      });
+    },
+  },
+  computed: {
+    imgUrl() {
+      return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${this.imgPath}`;
     },
   },
 });

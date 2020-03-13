@@ -89,7 +89,36 @@ $table-body-height: 46px;
 
   .input-au {
     display: block;
-    width: 50%;
   }
 
+  .img-upload {
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .flex-child {
+      margin-bottom: 1rem;
+    }
+
+    .im {
+      flex: 1 1 auto;
+      size: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: gray;
+      border-radius: var.$b-radius;
+    }
+  }
+
+  .progressive-background-image {
+    background-size: contain;
+  }
+
+  .progressive-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

@@ -2,11 +2,9 @@
   <div class="adminbox">
     <div class="padadmin">
       <div class="listpage-top">
-        <button class="btn-default" @click="addDonate()">
-          <i class="fas fa-plus"></i>New
-        </button>
+        <button class="btn-default" @click="addDonate()"><i class="fas fa-plus"></i>New</button>
         <div class="input-group">
-          <input type="text" placeholder="Search" ref="search" />
+          <input type="text" placeholder="Search" ref="search" @keyup.enter="search()" />
           <button class="btn-default" @click="search()">
             <i class="fas fa-search no-m"></i>
           </button>
