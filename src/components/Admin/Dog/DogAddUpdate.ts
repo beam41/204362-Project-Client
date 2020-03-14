@@ -13,16 +13,7 @@ export default Vue.extend({
     dog: null as Dog | null,
     editing: false,
     delShow: false,
-    // Arr text select --> display UI
-    sexSelect: ['ตัวเมีย', 'ตัวผู้'],
-    collarColorSelect: ['สีเขียว', 'สีเหลือง', 'สีแดง'],
-    unitSelect: ['ปี', 'เดือน'],
-    isAliveSelect: ['มีชีวิต', 'เสียชีวิต'],
-    // Arr select --> sent to database
-    SexArr: ['F', 'M'],
-    collarColorArr: ['G', 'Y', 'R'],
-    unitArr: ['Y', 'M'],
-    isAliveArr: [true, false],
+
     // Variable
     sex: undefined as string | undefined,
     collarColor: undefined as string | undefined,
@@ -64,6 +55,16 @@ export default Vue.extend({
     }
   },
   computed: {
+    // Arr text select --> display UI
+    sexSelect: () => ['ตัวเมีย', 'ตัวผู้'],
+    collarColorSelect: () => ['สีเขียว', 'สีเหลือง', 'สีแดง'],
+    unitSelect: () => ['ปี', 'เดือน'],
+    isAliveSelect: () => ['มีชีวิต', 'เสียชีวิต'],
+    // Arr select --> sent to database
+    SexArr: () => ['F', 'M'],
+    collarColorArr: () => ['G', 'Y', 'R'],
+    unitArr: () => ['Y', 'M'],
+    isAliveArr: () => [true, false],
     getDogunit() {
       if (this.dog) {
         // prettier-ignore
@@ -83,7 +84,7 @@ export default Vue.extend({
         return this.collarColorSelect[
           // eslint-disable-next-line
           _.findIndex(this.collarColorArr, (o) => {
-            return o === (this.dog!.collarColor);
+            return o === this.dog!.collarColor;
           })
         ];
       }

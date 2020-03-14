@@ -2,7 +2,9 @@
   <div class="listdog adminbox">
     <div class="padadmin">
       <div class="listpage-top">
-        <button class="btn-default" @click="addDog()"><i class="fas fa-plus"></i>New</button>
+        <button class="btn-default" @click="addDog()">
+          <i class="fas fa-plus"></i>New
+        </button>
         <div class="input-group">
           <input type="text" placeholder="Search name" ref="search" />
           <button class="btn-default" @click="search()">
@@ -69,6 +71,7 @@ export default Vue.extend({
   }),
   created() {
     DogApiService.getDogList().then((val) => {
+      console.log(val);
       this.dogs = val.data;
     });
   },
