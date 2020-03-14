@@ -109,6 +109,10 @@ $table-body-height: 46px;
       align-items: center;
       background-color: gray;
       border-radius: var.$b-radius;
+
+      p {
+        color: white
+      }
     }
   }
 

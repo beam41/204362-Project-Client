@@ -63,6 +63,7 @@ export default Vue.extend({
         err = true;
       }
       if (err) return;
+      // @ts-ignore
       this.save();
     },
     save() {

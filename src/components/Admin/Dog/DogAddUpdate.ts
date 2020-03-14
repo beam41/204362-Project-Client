@@ -61,14 +61,14 @@ export default Vue.extend({
     getDogunit() {
       if (this.dog) {
         // prettier-ignore
-        return this.unitSelect[_.findIndex(this.unitArr, o => o === this.dog.ageUnit)];
+        return this.unitSelect[_.findIndex(this.unitArr, o => o === this.dog!.ageUnit)];
       }
       return null;
     },
     getDogsex() {
       if (this.dog) {
         // prettier-ignore
-        return this.sexSelect[_.findIndex(this.SexArr, o => o === this.dog.sex)];
+        return this.sexSelect[_.findIndex(this.SexArr, o => o === this.dog!.sex)];
       }
       return null;
     },
@@ -77,7 +77,7 @@ export default Vue.extend({
         return this.collarColorSelect[
           // eslint-disable-next-line
           _.findIndex(this.collarColorArr, (o) => {
-            return o === this.dog.collarColor;
+            return o === (this.dog!.collarColor);
           })
         ];
       }
@@ -86,7 +86,7 @@ export default Vue.extend({
     getDogstatus() {
       if (this.dog) {
         // prettier-ignore
-        return this.isAliveSelect[_.findIndex(this.isAliveArr, o => o === this.dog.isAlive)];
+        return this.isAliveSelect[_.findIndex(this.isAliveArr, o => o === this.dog!.isAlive)];
       }
       return null;
     },
@@ -173,6 +173,7 @@ export default Vue.extend({
       if (err) {
         return;
       }
+      // @ts-ignore
       this.saveData();
     },
     saveData() {

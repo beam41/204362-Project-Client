@@ -22,9 +22,7 @@
               delShow = false;
             }
           "
-        >
-          Cancel
-        </button>
+        >Cancel</button>
       </div>
     </Modal>
     <div class="padadmin addupdate donate-au">
@@ -60,11 +58,11 @@
               ref="qr"
             />
           </div>
-          <qrcode-vue :value="donate.qrLink" level="H" renderAs="svg"></qrcode-vue>
+          <qrcode-vue :value="donate.qrLink" level="L" renderAs="svg" :size="200"></qrcode-vue>
         </div>
         <div class="img-upload">
           <div class="flex-child im">
-            <p v-if="imgPath && imgPath === ''">No image</p>
+            <p v-if="imgPath && imgPath === ''">ไม่มีรูป</p>
             <progressive-background v-else :src="imgUrl">
               <div slot="content" slot-scope="{ visible }">
                 <div v-show="visible" class="loader loader-img">
@@ -81,9 +79,7 @@
               :class="'btn-' + (imgErr ? 'warn' : 'default')"
               @click="upload()"
               :disabled="uploading"
-            >
-              Upload
-            </button>
+            >Upload</button>
           </div>
         </div>
       </div>
@@ -99,9 +95,7 @@
               }
             "
             v-if="$route.params.id !== 'add'"
-          >
-            Delete
-          </button>
+          >Delete</button>
         </div>
       </div>
     </div>
