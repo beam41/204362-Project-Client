@@ -62,14 +62,8 @@
         </div>
         <div class="img-upload">
           <div class="flex-child im">
-            <p v-if="imgPath && imgPath === ''">ไม่มีรูป</p>
-            <progressive-background v-else :src="imgUrl">
-              <div slot="content" slot-scope="{ visible }">
-                <div v-show="visible" class="loader loader-img">
-                  <div class="spinner spinner-white"></div>
-                </div>
-              </div>
-            </progressive-background>
+            <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
+            <progressive-background v-else :src="imgUrl" />
           </div>
           <div class="flex-child">
             <input type="file" ref="file" accept="image/*" :disabled="uploading" />

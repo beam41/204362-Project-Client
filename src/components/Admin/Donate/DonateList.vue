@@ -62,7 +62,7 @@ export default Vue.extend({
   created() {
     DonateServ.getDonateList().then((val) => {
       this.donates = val.data;
-    });
+    }).catch(val => console.dir(val));
   },
   computed: {
     formattedArrays() {

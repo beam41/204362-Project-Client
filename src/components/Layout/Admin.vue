@@ -21,6 +21,9 @@ export default Vue.extend({
   data: () => ({
     transitionName: '',
   }),
+  created() {
+    if (this.$store.state.login.loggedIn === false) this.$router.push('/admin/login');
+  },
   components: {
     Navbar,
   },

@@ -169,6 +169,7 @@ button,
 }
 
 input[type='text'],
+input[type='password'],
 textarea {
   @extend %animate-all;
   @extend %grayblock;
@@ -188,7 +189,6 @@ textarea {
   }
 
   &.error {
-
     border-color: var.$warn;
 
     &:hover {
@@ -202,7 +202,6 @@ textarea {
     &::placeholder {
       color: color.alpha(var.$warn, -0.1%);
     }
-
   }
 }
 
@@ -217,7 +216,7 @@ textarea {
 }
 
 .input-group {
-  &>* {
+  & > * {
     position: relative;
     z-index: 0;
   }
@@ -244,7 +243,6 @@ textarea {
 // a
 a {
   @extend %animate-all;
-
 }
 
 .link {
@@ -263,8 +261,6 @@ a {
   }
 }
 
-
-
 .loader {
   size: 100%;
   display: flex;
@@ -275,12 +271,10 @@ a {
     top: 0;
     left: 0;
     position: absolute;
-    background-color: color.alpha(var.$black, -0.8);
     z-index: 20000;
+    background-color: color.alpha(var.$black, -0.8);
   }
 }
-
-
 
 .spinner {
   size: 50px;
@@ -297,8 +291,6 @@ a {
   border: 7px solid var.$black;
 }
 
-
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -311,4 +303,8 @@ a {
 
 .navbar {
   user-select: none;
+}
+
+label[for] {
+  cursor: pointer;
 }

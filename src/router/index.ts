@@ -95,20 +95,27 @@ const userRoutes = [
 
 const routes = [
   {
-    path: '/admin',
-    meta: { preTitle: 'Admin Dashboard' },
-    component: () =>
-      // eslint-disable-next-line
-      import(/* webpackChunkName: "ALayout" */ '@/components/Layout/Admin.vue'),
-    children: adminRoutes,
-  },
-  {
     path: '/',
     meta: { preTitle: 'MheanMaa' },
     component: () =>
       // eslint-disable-next-line
       import(/* webpackChunkName: "ULayout" */ '@/components/Layout/User.vue'),
     children: userRoutes,
+  },
+  {
+    path: '/admin/login',
+    meta: { preTitle: 'Admin Login' },
+    component: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "ALayout" */ '@/components/Admin/Login.vue'),
+  },
+  {
+    path: '/admin',
+    meta: { preTitle: 'Admin Dashboard' },
+    component: () =>
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "ALayout" */ '@/components/Layout/Admin.vue'),
+    children: adminRoutes,
   },
   {
     path: '/hidden/test',
@@ -125,7 +132,9 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   try {
-    document.title = `${to.matched[0].meta.preTitle}: ${to.matched[1].meta.title}`;
+    if (to.matched[1]) {
+      document.title = `${to.matched[0].meta.preTitle}: ${to.matched[1].meta.title}`;
+    } else document.title = to.matched[0].meta.preTitle;
   } finally {
     next();
   }

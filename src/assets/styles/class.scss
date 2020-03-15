@@ -39,17 +39,23 @@
 
 // up
 .up-enter-active,
-.up-leave-active {
+.up-leave-active,
+.up-long-enter-active {
   @extend %opacity-and-transform;
 }
 
 .up-enter,
-.up-leave-to {
+.up-leave-to,
+.up-long-enter {
   @extend %opacity-zero;
 }
 
 .up-enter {
   transform: translateY(5%);
+}
+
+.up-long-enter {
+  transform: translateY(500%);
 }
 
 .up-leave-to {
