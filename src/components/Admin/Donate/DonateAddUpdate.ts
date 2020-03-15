@@ -5,7 +5,6 @@ import Modal from '@/components/Shared/Modal.vue';
 import QrcodeVue from 'qrcode.vue';
 import ImageServ from '@/services/ImageUploadService';
 
-
 export default Vue.extend({
   name: 'DonateAddUpdate',
   components: {
@@ -112,6 +111,9 @@ export default Vue.extend({
   computed: {
     imgUrl() {
       return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${this.imgPath}`;
+    },
+    imgPlacehold() {
+      return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
     },
   },
 });
