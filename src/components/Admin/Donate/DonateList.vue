@@ -2,11 +2,13 @@
   <div class="adminbox">
     <div class="padadmin">
       <div class="listpage-top">
-        <button class="btn-default" @click="addDonate()"><i class="fas fa-plus"></i>New</button>
+        <button class="btn-default svg-m" @click="addDonate()">
+          <font-awesome-icon :icon="['fas', 'plus']" />New
+        </button>
         <div class="input-group">
           <input type="text" placeholder="Search" ref="search" @keyup.enter="search()" />
           <button class="btn-default" @click="search()">
-            <i class="fas fa-search no-m"></i>
+            <font-awesome-icon :icon="['fas', 'search']" />
           </button>
         </div>
         <Sorter :options="by" @sort-change="onChange($event)" />
@@ -62,7 +64,7 @@ export default Vue.extend({
   created() {
     DonateServ.getDonateList().then((val) => {
       this.donates = val.data;
-    }).catch(val => console.dir(val));
+    });
   },
   computed: {
     formattedArrays() {
@@ -78,6 +80,7 @@ export default Vue.extend({
   },
   methods: {
     onChange({ currOption, descending }: any) {
+      console.log({ currOption, descending });
       this.currOption = currOption;
       this.descending = descending;
     },

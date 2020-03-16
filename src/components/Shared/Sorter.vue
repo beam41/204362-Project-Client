@@ -2,7 +2,9 @@
   <span class="sorter-wrapper">
     <span class="sorter input-group" style="width: 100px;">
       <Select classN="compound" :options="options" @sel-change="onChange($event)" />
-      <button :class="'btn-default' + (descending ? ' desc' : '')" @click="onClick()"></button>
+      <button :class="'btn-default' + (descending ? ' desc' : '')" @click="onClick()">
+        <font-awesome-icon :icon="['fas', 'arrow-down']" />
+      </button>
     </span>
   </span>
 </template>
@@ -20,7 +22,7 @@ export default Vue.extend({
     Select,
   },
   data: () => ({
-    currOption: 1,
+    currOption: 0,
     descending: false,
   }),
   methods: {
@@ -39,15 +41,12 @@ export default Vue.extend({
 <style lang="scss" scoped>
 button {
   height: 30px;
-  &::after {
-    @extend %font-awesome;
-    display: inline-block;
-    content: '\f063';
+  svg {
     @extend %animate-tf-bounceend;
   }
 }
 .desc {
-  &::after {
+  svg {
     transform: rotate(180deg);
   }
 }

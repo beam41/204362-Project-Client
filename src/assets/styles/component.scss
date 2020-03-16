@@ -118,8 +118,10 @@ button,
   color: white;
   user-select: none;
 
-  & .fas:not(.no-m) {
-    margin-right: var.$b-radius;
+  &.svg-m {
+    svg {
+      margin-right: var.$b-radius;
+    }
   }
 }
 
