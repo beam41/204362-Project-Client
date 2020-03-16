@@ -214,6 +214,7 @@ export default Vue.extend({
         // @ts-ignore
         location: this.$refs.location.value,
         imgPath: this.imgPath,
+        deptNo: undefined,
       };
       if (this.$route.params.id === 'add') {
         DogApiService.postDog(newDog).then((_a) => {

@@ -24,4 +24,6 @@ export default class Dog {
   location: string | undefined;
 
   imgPath: string | undefined;
+
+  deptNo: number | undefined;
 }

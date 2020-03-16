@@ -7,6 +7,8 @@ export default class User {
 
   username: string | null | undefined;
 
+  userType: string | null | undefined;
+
   deptNo: number | null | undefined;
 
   token: string | null | undefined;

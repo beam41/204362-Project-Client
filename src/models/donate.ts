@@ -12,4 +12,6 @@ export default class Donate {
   qrLink: string | undefined;
 
   imgPath: string | undefined;
+
+  deptNo: number | undefined;
 }

@@ -73,13 +73,14 @@ export default Vue.extend({
           id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
           // @ts-ignore
           title: this.$refs.title.value,
-          creator: this.$route.params.id !== 'add' ? this.donate.creator : 'Anonymous',
+          creator: undefined,
           accepted: this.$route.params.id !== 'add' ? this.donate.accepted : false,
           // @ts-ignore
           description: this.$refs.desc.value,
           // @ts-ignore
           qrLink: this.$refs.qr.value,
           imgPath: this.imgPath,
+          deptNo: undefined,
         };
       }
       if (this.$route.params.id === 'add') {
