@@ -17,13 +17,14 @@ export default Vue.extend({
     // Variable
     sex: undefined as string | undefined,
     collarColor: undefined as string | undefined,
-    unit: undefined as string | undefined,
     isAlive: undefined as boolean | undefined,
     // Check Err
     nameErr: false,
     breedErr: false,
-    ageErr: false,
-    unitErr: false,
+    //
+    ageYearErr: false,
+    ageMonthErr: false,
+    //
     sexErr: false,
     descErr: false,
     colorCollarErr: false,
@@ -45,7 +46,6 @@ export default Vue.extend({
       DogApiService.getDog(this.$route.params.id).then((val) => {
         this.dog = val.data;
         this.sex = this.dog.sex;
-        this.unit = this.dog.ageUnit;
         this.collarColor = this.dog.collarColor;
         this.isAlive = this.dog.isAlive;
         this.imgPath = this.dog.imgPath as string;
@@ -58,20 +58,11 @@ export default Vue.extend({
     // Arr text select --> display UI
     sexSelect: () => ['ตัวเมีย', 'ตัวผู้'],
     collarColorSelect: () => ['สีเขียว', 'สีเหลือง', 'สีแดง'],
-    unitSelect: () => ['ปี', 'เดือน'],
     isAliveSelect: () => ['มีชีวิต', 'เสียชีวิต'],
     // Arr select --> sent to database
     SexArr: () => ['F', 'M'],
     collarColorArr: () => ['G', 'Y', 'R'],
-    unitArr: () => ['Y', 'M'],
     isAliveArr: () => [true, false],
-    getDogunit() {
-      if (this.dog) {
-        // prettier-ignore
-        return this.unitSelect[_.findIndex(this.unitArr, o => o === this.dog!.ageUnit)];
-      }
-      return null;
-    },
     getDogsex() {
       if (this.dog) {
         // prettier-ignore
@@ -106,8 +97,10 @@ export default Vue.extend({
       // default Err is false
       this.nameErr = false;
       this.breedErr = false;
-      this.ageErr = false;
-      this.unitErr = false;
+      //
+      this.ageYearErr = false;
+      this.ageMonthErr = false;
+      //
       this.sexErr = false;
       this.descErr = false;
       this.colorCollarErr = false;
@@ -123,9 +116,10 @@ export default Vue.extend({
       // @ts-ignore
       const breed = this.$refs.breed.value;
       // @ts-ignore
-      const age = this.$refs.age.value;
+      const ageYear = this.$refs.ageYear.value;
+      // @ts-ignore
+      const ageMonth = this.$refs.ageMonth.value;
       const sexValidate = this.sex;
-      const unitValidate = this.unit;
       // @ts-ignore
       const description = this.$refs.description.value;
       const collarColorValidate = this.collarColor;
@@ -145,12 +139,12 @@ export default Vue.extend({
         this.breedErr = true;
         err = true;
       }
-      if (age === '' || !Number.isInteger(+age) || +age > 21 || +age === 0) {
-        this.ageErr = true;
+      if (ageYear === '' || !Number.isInteger(+ageYear) || +ageYear > 21) {
+        this.ageYearErr = true;
         err = true;
       }
-      if (unitValidate === undefined) {
-        this.unitErr = true;
+      if (ageMonth === '' || !Number.isInteger(+ageMonth) || +ageMonth > 12) {
+        this.ageMonthErr = true;
         err = true;
       }
       if (sexValidate === undefined) {
@@ -200,8 +194,9 @@ export default Vue.extend({
         // @ts-ignore
         breed: this.$refs.breed.value,
         // @ts-ignore
-        age: +this.$refs.age.value,
-        ageUnit: this.unit,
+        ageYear: +this.$refs.ageYear.value,
+        // @ts-ignore
+        ageMonth: +this.$refs.ageMonth.value,
         sex: this.sex,
         // @ts-ignore
         description: this.$refs.description.value,
@@ -225,9 +220,6 @@ export default Vue.extend({
           this.$router.go(-1);
         });
       }
-    },
-    onChangeUnit(event: any) {
-      this.unit = this.unitArr[event.currSelect];
     },
     onChangeSex(event: any) {
       this.sex = this.SexArr[event.currSelect];

@@ -31,7 +31,15 @@
           <transition-group class="datalist" v-if="dogs" name="flip-list" tag="table">
             <tr v-for="d in formattedArrays" :key="d.id" @click="dataDog(d.id)">
               <td>{{ getAllName(d.name) }}</td>
-              <td>{{ d.age }} {{ getUnit(d.ageUnit) }}</td>
+              <td v-if="d.ageYear > 0 && d.ageMonth > 0 ">
+                  {{ d.ageYear }} ปี {{ d.ageMonth }} เดือน
+              </td>
+              <td v-if="d.ageYear > 0 && d.ageMonth === 0 ">
+                  {{ d.ageYear }} ปี
+              </td>
+              <td v-if="d.ageYear === 0 && d.ageMonth > 0 ">
+                  {{ d.ageMonth }} เดือน
+              </td>
               <td>{{ getSex(d.sex) }}</td>
               <td>{{ d.description }}</td>
               <td>{{ IsAlive(d.isAlive) }}</td>
@@ -64,7 +72,7 @@ export default Vue.extend({
   data: () => ({
     dogs: null as Array<any> | null,
     by: ['ชื่อ', 'เพศ', 'สถานะ', 'ปลอกคอ'],
-    field: ['name', 'age', 'isAlive', 'collarColor'],
+    field: ['name', 'sex', 'isAlive', 'collarColor'],
     currOption: 0,
     descending: false,
     searchString: '',
@@ -94,12 +102,6 @@ export default Vue.extend({
     },
     getAllName(Allname: String) {
       return Allname.toString();
-    },
-    getUnit(unit: string) {
-      if (unit === 'Y') {
-        return 'ปี';
-      }
-      return 'เดือน';
     },
     getSex(sex: string) {
       if (sex === 'F') {

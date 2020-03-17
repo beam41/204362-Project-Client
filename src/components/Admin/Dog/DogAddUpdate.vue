@@ -8,9 +8,7 @@
         <h5>Delete</h5>
       </div>
       <div class="m-mid">
-        <p>
-          คุณต้องการลบหรือไม่
-        </p>
+        <p>คุณต้องการลบหรือไม่</p>
       </div>
       <div class="m-bot">
         <button class="btn-warn btn-mar" @click="Delete()">Delete</button>
@@ -21,9 +19,7 @@
               delShow = false;
             }
           "
-        >
-          Cancel
-        </button>
+        >Cancel</button>
       </div>
     </Modal>
 
@@ -54,20 +50,19 @@
         <div class="form-control">
           <label>อายุ:</label>
           <input
-            :class="ageErr ? 'error' : ''"
+            :class="ageYearErr ? 'error' : ''"
             type="text"
             style="width: 50px"
-            v-model="dog.age"
-            ref="age"
-          />
-          <Select
-            :error="unitErr"
-            customText="..."
-            style="width: 70px"
-            :options="unitSelect"
-            :defaultOption="getDogunit"
-            @sel-change="onChangeUnit($event)"
-          />
+            v-model="dog.ageYear"
+            ref="ageYear"
+          /> ปี
+          <input
+            :class="ageMonthErr ? 'error' : ''"
+            type="text"
+            style="width: 50px"
+            v-model="dog.ageMonth"
+            ref="ageMonth"
+          /> เดือน
         </div>
 
         <div class="form-control">
@@ -153,38 +148,34 @@
                 }
               "
               v-if="$route.params.id !== 'add'"
-            >
-              Delete
-            </button>
+            >Delete</button>
           </div>
         </div>
       </div>
     </div>
     <div>
-       <div class="img-upload">
-          <div class="flex-child im">
-            <p v-if="!imgPath && imgPath === ''">No image</p>
-            <progressive-background v-else :src="imgUrl">
-              <div slot="content" slot-scope="{ visible }">
-                <div v-show="visible" class="loader loader-img">
-                  <div class="spinner spinner-white"></div>
-                </div>
+      <div class="img-upload">
+        <div class="flex-child im">
+          <p v-if="!imgPath && imgPath === ''">No image</p>
+          <progressive-background v-else :src="imgUrl">
+            <div slot="content" slot-scope="{ visible }">
+              <div v-show="visible" class="loader loader-img">
+                <div class="spinner spinner-white"></div>
               </div>
-            </progressive-background>
-          </div>
-          <div class="flex-child">
-            <input type="file" ref="file" accept="image/*" :disabled="uploading" />
-          </div>
-          <div class="flex-child">
-            <button
-              :class="'btn-' + (imgErr ? 'warn' : 'default')"
-              @click="upload()"
-              :disabled="uploading"
-            >
-              Upload
-            </button>
-          </div>
+            </div>
+          </progressive-background>
         </div>
+        <div class="flex-child">
+          <input type="file" ref="file" accept="image/*" :disabled="uploading" />
+        </div>
+        <div class="flex-child">
+          <button
+            :class="'btn-' + (imgErr ? 'warn' : 'default')"
+            @click="upload()"
+            :disabled="uploading"
+          >Upload</button>
+        </div>
+      </div>
     </div>
   </div>
   <div v-else class="loader adminbox">
@@ -207,5 +198,4 @@
 .contrainer {
   display: grid;
 }
-
 </style>
