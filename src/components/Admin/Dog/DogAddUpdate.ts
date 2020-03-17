@@ -126,11 +126,11 @@ export default Vue.extend({
       // @ts-ignore
       const location = this.$refs.location.value;
       // Check condition Err
-      if (name === '' || /[\d!"#$%&\\'*+-./:;<=>?@[\\\]^_`{|}~]/gm.test(name)) {
+      if (name === '' || /[\d!"#$%&\\'*+./:;<=>?@[\\\]^_`{|}~-]/gm.test(name)) {
         this.nameErr = true;
         err = true;
       }
-      if (breed === '' || /[\d!"#$%&\\'()*+,-./:;<=>?@[\\\]^_`{|}~]/gm.test(breed)) {
+      if (breed === '' || /[\d!"#$%&\\'()*+,-./:;<=>?@[\\\]^_`{|}~-]/gm.test(breed)) {
         this.breedErr = true;
         err = true;
       }
@@ -167,7 +167,7 @@ export default Vue.extend({
         this.caretakerPhoneErr = true;
         err = true;
       }
-      if (caretaker === '' || /[\d!"#$%&\\'()*+,-/:;<=>?@[\\\]^_`{|}~]/gm.test(caretaker)) {
+      if (caretaker === '' || /[\d!"#$%&\\'()*+,/:;<=>?@[\\\]^_`{|}~-]/gm.test(caretaker)) {
         this.caretakerErr = true;
         err = true;
       }
