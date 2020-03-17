@@ -14,11 +14,11 @@
       ParagraphParagraphParagraph ParagraphParagraphParagraph
     </p>
 
-    <button class="btn-default" href="#">Button</button>
+    <button class="btn-default" router-link to="/listdog">Button</button>
     <button class="btn-success" href="#">Button</button>
     <button class="btn-warn" href="#">Button</button>
 
-    <a href="#">link</a>
+    <a href="#" class="link">link</a>
     <br />
     <button class="btn-default" href="#" disabled>Button</button>
     <button class="btn-success" href="#" disabled>Button</button>
@@ -45,7 +45,8 @@
     <form>
       <div class="form-control">
         <label>Text</label>
-        <input type="text" placeholder="Input Text" />
+        <input type="text" placeholder="Input Text" @change="log($event)" />
+        <input type="text" placeholder="Input Text" class="error" @change="log($event)" />
       </div>
 
       <div class="form-control">
@@ -59,38 +60,100 @@
       <div class="form-control">
         <label>Select</label>
         <span class="select" style="width: 200px">
-          <Select />
+          <Select
+            customText="Select Your Mee:"
+            :options="['Mee', 'Moo', 'Maa']"
+            @change="log($event)"
+            ref="hi"
+          />
+          <Select
+            customText="Select Your Mee:"
+            :options="['Mee', 'Moo', 'Maa']"
+            @change="log($event)"
+            ref="hi"
+            :defaultOption="'Mee'"
+          />
+          <Select
+            customText="Select Your Mee:"
+            :options="['Mee', 'Moo', 'Maa']"
+            @change="log($event)"
+            ref="hiw"
+            :error="true"
+          />
         </span>
       </div>
 
       <div class="form-control">
-        <CheckBox>Checkbox</CheckBox>
+        <CheckBox @change="log($event)">Checkbox</CheckBox>
       </div>
 
       <div class="form-control">
         <label>Textarea</label>
         <textarea></textarea>
+        <textarea class="error"></textarea>
       </div>
     </form>
+    <div class="form-control">
+      <label>Sorter</label>
+      <span class="Sorter">
+        <!-- <Sorter /> -->
+      </span>
+    </div>
+    <div class="spinner"></div>
+    <button class="btn-success" @click="showing()">Yea</button>
+    <button class="btn-success" @click="toTop()">Totop</button>
+    <Modal :show="show">
+      <div class="m-top">
+        <h5>Title Top</h5>
+      </div>
+      <div class="m-mid">
+        <p>Do you want to deneeed</p>
+      </div>
+      <div class="m-bot">
+        <button class="btn-success" @click="showing()">Yea</button>
+        <button class="btn-warn" @click="hide()">Nay</button>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import CheckBox from './CheckBox.vue';
 import Select from './Select.vue';
+import CheckBox from './CheckBox.vue';
+// import Sorter from './Sorter.vue';
+import Modal from './Modal.vue';
 
 export default Vue.extend({
   name: 'Test',
   components: {
     CheckBox,
     Select,
+    // Sorter,
+    Modal,
+  },
+  data: () => ({
+    show: false,
+  }),
+  methods: {
+    log(me: any) {
+      // console.log(me);
+    },
+    showing() {
+      this.show = true;
+    },
+    hide() {
+      this.show = false;
+    },
+    toTop() {
+      window.scrollTo(0, 0);
+    },
   },
 });
 </script>
 
 <style scoped>
 .test-component {
-  width: 100vw;
+  height: 200vh;
 }
 </style>

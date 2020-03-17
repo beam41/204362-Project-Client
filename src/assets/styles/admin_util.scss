@@ -1,0 +1,125 @@
+@use 'var';
+@use 'color';
+@use 'selector';
+
+$top-warp-height: 10%;
+$bg-bd-color: color.lightness(var.$gray, 40%);
+$table-body-height: 46px;
+
+.admin {
+  .adminbox {
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+
+  .padadmin {
+    padding: 20px 100px;
+    size: 100%;
+  }
+
+  .listpage-top {
+    height: $top-warp-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+
+  // table
+  .table-wrapper {
+    height: 100 - $top-warp-height;
+    background: $bg-bd-color;
+    border: 2px solid $bg-bd-color;
+    border-radius: var.$b-radius;
+    overflow: hidden;
+  }
+
+  .sub-table-wrapper {
+    overflow-y: scroll;
+    height: calc(100% - #{$table-body-height});
+  }
+
+  .datalist {
+    border-collapse: collapse;
+    width: 100%;
+
+    & th,
+    & td {
+      text-align: center;
+    }
+
+    td {
+      border-bottom: 1px solid $bg-bd-color;
+      height: $table-body-height;
+    }
+
+    tr:not(.tablehead) {
+      @extend %animate-all;
+      background: white;
+    }
+
+    tr:not(.tablehead):hover {
+      background: color.lightness(var.$gray, 55%);
+    }
+
+    &.head {
+      height: 100%;
+    }
+  }
+
+  .head-wrapper {
+    background: white;
+    padding-right: var.$scrollbar-width;
+    border-bottom: 2px solid $bg-bd-color;
+    height: $table-body-height;
+  }
+
+  .addupdate {
+    display: grid;
+  }
+
+  .admin-btn-pos {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-left: 1rem;
+    }
+  }
+
+  .input-au {
+    display: block;
+  }
+
+  .img-upload {
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .flex-child {
+      margin-bottom: 1rem;
+    }
+
+    .im {
+      flex: 1 1 auto;
+      size: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: gray;
+      border-radius: var.$b-radius;
+      overflow: hidden;
+
+      p {
+        color: white;
+      }
+
+      * {
+        max-width: 50%;
+        max-height: 50%;
+        object-fit: contain;
+      }
+    }
+  }
+}

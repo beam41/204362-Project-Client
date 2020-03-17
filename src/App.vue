@@ -1,35 +1,23 @@
 <template>
   <div id="app">
-    <component :is="layout">
-      <router-view />
-    </component>
+    <div class="dontforgettoremove">
+      <router-link to="/admin/dog/">Admin</router-link>
+      <router-link to="/">User</router-link>
+      <router-link to="/hidden/test">Test</router-link>
+    </div>
+    <router-view />
   </div>
 </template>
-
-<script lang="ts">
-import Vue from 'vue';
-
-const defaultLayout = 'default';
-
-export default Vue.extend({
-  name: 'app',
-  computed: {
-    layout() {
-      return `${this.$route.meta.layout || defaultLayout}-layout`;
-    },
-  },
-});
-</script>
 
 <!--style-->
 <style lang="scss">
 // non partial import here
 // to prevent redundant import if import in loader
-@use 'src/assets/admin_util';
-@use 'src/assets/component';
+@use 'src/assets/styles/component';
+@use 'src/assets/styles/class';
 
-#app {
-  min-width: 100%;
-  min-height: 100%;
+.dontforgettoremove {
+  position: absolute;
+  z-index: 1000000;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="cs">
     <!-- hidden select for form to use -->
-    <select>
+    <select ref="sel">
       <option value="pls_select" disabled :selected="currSelect === -1">{{ customText }}</option>
       <option
         v-for="(opt, index) in options"
@@ -12,17 +12,18 @@
       >
     </select>
     <!-- viewable custom select for user -->
-    <div class="new-select">
+    <div :class="'new-select' + (error ? ' error' : '')">
       <div
-        :class="'showbox' + (currSelect === -1 ? ' curr-disable' : '')"
+        :class="'showbox' + (currSelect === -1 ? ' curr-disable' : '') + getClass"
         @click="toggleShowDropdown()"
         v-on-clickaway="hideDropdown"
         :show="isShow"
       >
-        {{ currSelect === -1 ? customText : options[currSelect] }}
+        <span>{{ currSelect === -1 ? customText : options[currSelect] }}</span>
+        <font-awesome-icon :icon="['fas', 'chevron-down']" />
       </div>
       <div class="dropdown" :show="isShow">
-        <div class="dd-element" disabled @click="clickDisabled = true">
+        <div class="dd-element" v-if="customText" disabled @click="clickDisabled = true">
           {{ customText }}
         </div>
         <div
@@ -43,17 +44,43 @@
 <script>
 import Vue from 'vue';
 import { mixin as clickaway } from 'vue-clickaway';
+import _ from 'lodash';
 
 export default Vue.extend({
   name: 'Select',
   data: () => ({
-    customText: 'Select your mee:',
-    options: ['Mee', 'Moo', 'Maa'],
-    currSelect: -1,
     isShow: false,
     clickDisabled: false,
+    currSelect: -1,
   }),
+  props: {
+    customText: String,
+    options: Array,
+    classN: String,
+    defaultOption: {
+      type: String,
+      default: '',
+    },
+    error: {
+      type: Boolean,
+      default: false,
+    },
+  },
   mixins: [clickaway],
+  created() {
+    if (!this.customText) this.currSelect = 0;
+    console.log('default: ', this.defaultOption);
+    if (this.defaultOption !== '') {
+      // prettier-ignore
+      this.currSelect = _.findIndex(this.options, o => o === this.defaultOption);
+    }
+  },
+  computed: {
+    getClass() {
+      if (this.classN) return ` ${this.classN}`;
+      return '';
+    },
+  },
   methods: {
     hideDropdown() {
       if (!this.clickDisabled) this.isShow = false;
@@ -64,6 +91,10 @@ export default Vue.extend({
     },
     selectMe(index) {
       this.currSelect = index;
+      this.$emit('sel-change', { currSelect: index });
+    },
+    log(me) {
+      console.log(me);
     },
   },
 });
@@ -72,6 +103,11 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .cs {
   display: inline-block;
+
+  * {
+    user-select: none;
+  }
+
   // hide select
   select {
     display: none;
@@ -90,34 +126,46 @@ export default Vue.extend({
 
   .showbox {
     @extend %animate-all;
+    @extend %grayblock;
     position: relative;
     box-sizing: border-box;
-    padding: var.$txt-box-pad var.$b-radius;
-    border: var.$border-width solid var.$gray;
-    border-radius: var.$b-radius;
     cursor: pointer;
-    z-index: 10001;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & svg {
+      @extend %animate-all-bounceend;
+      color: var.$gray;
+    }
+
+    &.compound {
+      border-radius: var.$b-radius 0 0 var.$b-radius;
+      border-right: none;
+
+      svg {
+        display: none;
+      }
+    }
 
     &:hover {
       border-color: color.lightness(var.$gray, -20%);
-      &::after {
+      & svg {
         color: color.lightness(var.$gray, -20%);
       }
     }
 
     &[show] {
       border-radius: var.$b-radius var.$b-radius 0 0;
-      &::after {
+
+      &.compound {
+        border-radius: var.$b-radius 0 0 0;
+      }
+
+      & svg {
         transform: rotate(180deg);
       }
-    }
-
-    &::after {
-      @extend %animate-all-bounceend;
-      position: absolute;
-      content: '\25bc';
-      right: var.$b-radius;
-      color: var.$gray;
     }
 
     &.curr-disable {
@@ -151,7 +199,8 @@ export default Vue.extend({
     position: relative;
     padding: var.$txt-box-pad var.$b-radius;
     background: white;
-    user-select: none;
+
+    z-index: 10001;
 
     &:hover {
       background: color.lightness(var.$gray, 40%);
@@ -163,6 +212,30 @@ export default Vue.extend({
 
     &[disabled] {
       color: color.lightness(black, 50%);
+    }
+  }
+
+  .error {
+    .showbox,
+    .dropdown {
+      border-color: var.$warn;
+
+      &:hover {
+        border-color: color.lightness(var.$warn, -20%);
+        svg {
+          color: var.$warn;
+        }
+      }
+    }
+
+    .showbox {
+      color: var.$warn;
+      &.curr-disable {
+        color: color.lightness(var.$warn, 10%);
+      }
+      svg {
+        color: color.lightness(var.$warn, 10%);
+      }
     }
   }
 }

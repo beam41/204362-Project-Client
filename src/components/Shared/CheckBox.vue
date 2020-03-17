@@ -1,16 +1,30 @@
 <template>
   <label>
     <slot></slot>
-    <input type="checkbox" />
+    <input type="checkbox" ref="cb" @change="onC($event)" />
     <span class="cb"></span>
   </label>
 </template>
+
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'CheckBox',
+  methods: {
+    onC(event: any) {
+      this.$emit('change', event);
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 label {
   display: inline-block;
   position: relative;
-  padding-left: var.$label-pad-left + var.$border-width;
+  padding: var.$txt-box-pad 0 var.$txt-box-pad var.$label-pad-left +
+    (var.$border-width + var.$cb-size);
   cursor: pointer;
   user-select: none;
 
@@ -29,16 +43,14 @@ label {
     // tick
     &:after {
       @extend %animate-all-bounceend;
-      content: '';
+      @extend %font-awesome;
+      content: '\f00c';
       position: absolute;
       opacity: 0;
       left: var.$tick-left;
-      top: var.$tick-top;
-      width: var.$tick-short-length;
-      height: var.$tick-long-length;
-      border: solid white;
-      border-width: 0 var.$tick-width var.$tick-width 0;
-      transform: scale(0) rotate(-1 * var.$tick-rotate);
+      top: var.$cb-size + var.$tick-top;
+      color: white;
+      visibility: hidden;
     }
   }
 
@@ -58,7 +70,8 @@ label {
     &:checked {
       & ~ .cb:after {
         opacity: 1;
-        transform: scale(1) rotate(var.$tick-rotate);
+        top: var.$tick-top;
+        visibility: visible;
       }
 
       &:hover {
