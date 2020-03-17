@@ -33,8 +33,6 @@ export default Vue.extend({
     imgErr: false,
     uploading: false,
     imgPath: '',
-    // check msg
-    NoNumandPuc: /[\d!"#$%&\\'()*+,-./:;<=>?@[\\\]^_`{|}~]/gm,
   }),
   components: {
     Select,
