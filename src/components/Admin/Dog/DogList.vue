@@ -32,7 +32,8 @@
             <tr v-for="d in formattedArrays" :key="d.id" @click="dataDog(d.id)">
               <td>{{ getAllName(d.name) }}</td>
               <!-- prettier-ignore -->
-              <td v-if="d.ageYear > 0 && d.ageMonth > 0 ">{{ d.ageYear }} ปี {{ d.ageMonth }} เดือน</td>
+              <td v-if="d.ageYear > 0 && d.ageMonth > 0 ">
+                {{ d.ageYear }} ปี {{ d.ageMonth }} เดือน</td>
               <td v-if="d.ageYear > 0 && d.ageMonth === 0 ">{{ d.ageYear }} ปี</td>
               <td v-if="d.ageYear === 0 && d.ageMonth > 0 ">{{ d.ageMonth }} เดือน</td>
               <td>{{ getSex(d.sex) }}</td>
@@ -74,7 +75,6 @@ export default Vue.extend({
   }),
   created() {
     DogApiService.getDogList().then((val) => {
-      // console.log(val);
       this.dogs = val.data;
     });
   },

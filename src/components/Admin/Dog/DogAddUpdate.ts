@@ -13,7 +13,6 @@ export default Vue.extend({
     dog: null as Dog | null,
     editing: false,
     delShow: false,
-
     // Variable
     sex: undefined as string | undefined,
     collarColor: undefined as string | undefined,
@@ -21,10 +20,8 @@ export default Vue.extend({
     // Check Err
     nameErr: false,
     breedErr: false,
-    //
     ageYearErr: false,
     ageMonthErr: false,
-    //
     sexErr: false,
     descErr: false,
     colorCollarErr: false,
@@ -36,6 +33,8 @@ export default Vue.extend({
     imgErr: false,
     uploading: false,
     imgPath: '',
+    // check msg
+    NoNumandPuc: /[\d!"#$%&\\'()*+,-./:;<=>?@[\\\]^_`{|}~]/gm,
   }),
   components: {
     Select,
@@ -97,10 +96,8 @@ export default Vue.extend({
       // default Err is false
       this.nameErr = false;
       this.breedErr = false;
-      //
       this.ageYearErr = false;
       this.ageMonthErr = false;
-      //
       this.sexErr = false;
       this.descErr = false;
       this.colorCollarErr = false;
@@ -131,11 +128,11 @@ export default Vue.extend({
       // @ts-ignore
       const location = this.$refs.location.value;
       // Check condition Err
-      if (name === '') {
+      if (name === '' || /[\d!"#$%&\\'*+-./:;<=>?@[\\\]^_`{|}~]/gm.test(name)) {
         this.nameErr = true;
         err = true;
       }
-      if (breed === '') {
+      if (breed === '' || /[\d!"#$%&\\'()*+,-./:;<=>?@[\\\]^_`{|}~]/gm.test(breed)) {
         this.breedErr = true;
         err = true;
       }
@@ -143,7 +140,12 @@ export default Vue.extend({
         this.ageYearErr = true;
         err = true;
       }
-      if (ageMonth === '' || !Number.isInteger(+ageMonth) || +ageMonth > 12) {
+      if (ageMonth === '' || !Number.isInteger(+ageMonth) || +ageMonth > 11) {
+        this.ageMonthErr = true;
+        err = true;
+      }
+      if (+ageYear === 0 && +ageMonth === 0) {
+        this.ageYearErr = true;
         this.ageMonthErr = true;
         err = true;
       }
@@ -167,7 +169,7 @@ export default Vue.extend({
         this.caretakerPhoneErr = true;
         err = true;
       }
-      if (caretaker === '') {
+      if (caretaker === '' || /[\d!"#$%&\\'()*+,-/:;<=>?@[\\\]^_`{|}~]/gm.test(caretaker)) {
         this.caretakerErr = true;
         err = true;
       }
