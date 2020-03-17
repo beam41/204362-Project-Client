@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import './registerServiceWorker';
 // @ts-ignore
-import VueProgressiveImage from 'vue-progressive-image';
-
+import { VLazyImagePlugin } from 'v-lazy-image';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faPlus,
@@ -25,7 +24,7 @@ library.add(faPlus, faSearch, faNewspaper, faPaw, faInbox, faDonate, faArrowDown
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
-Vue.use(VueProgressiveImage);
+Vue.use(VLazyImagePlugin);
 
 Vue.config.productionTip = false;
 

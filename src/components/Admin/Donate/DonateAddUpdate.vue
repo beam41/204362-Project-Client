@@ -22,7 +22,9 @@
               delShow = false;
             }
           "
-        >Cancel</button>
+        >
+          Cancel
+        </button>
       </div>
     </Modal>
     <div class="padadmin addupdate donate-au">
@@ -63,7 +65,7 @@
         <div class="img-upload">
           <div class="flex-child im">
             <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
-            <progressive-img v-else :src="imgUrl" :placeholder="imgPlacehold" />
+            <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
           </div>
           <div class="flex-child">
             <input type="file" ref="file" accept="image/*" :disabled="uploading" />
@@ -73,7 +75,9 @@
               :class="'btn-' + (imgErr ? 'warn' : 'default')"
               @click="upload()"
               :disabled="uploading"
-            >Upload</button>
+            >
+              Upload
+            </button>
           </div>
         </div>
       </div>
@@ -89,7 +93,9 @@
               }
             "
             v-if="$route.params.id !== 'add'"
-          >Delete</button>
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
