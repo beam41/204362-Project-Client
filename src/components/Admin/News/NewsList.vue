@@ -2,7 +2,7 @@
   <div class="adminbox">
     <div class="listpage-top">
       <button class="btn-default">
-        <i class="fas fa-plus"></i>New
+        <font-awesome-icon :icon="['fas', 'plus']"/>New
       </button>
       <Sorter :options="by" @change="onChange($event)" />
     </div>

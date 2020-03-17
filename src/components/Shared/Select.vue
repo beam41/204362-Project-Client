@@ -8,7 +8,8 @@
         :key="opt"
         :value="opt"
         :selected="index === currSelect"
-      >{{ opt }}</option>
+        >{{ opt }}</option
+      >
     </select>
     <!-- viewable custom select for user -->
     <div :class="'new-select' + (error ? ' error' : '')">
@@ -17,14 +18,14 @@
         @click="toggleShowDropdown()"
         v-on-clickaway="hideDropdown"
         :show="isShow"
-      >{{ currSelect === -1 ? customText : options[currSelect] }}</div>
+      >
+        <span>{{ currSelect === -1 ? customText : options[currSelect] }}</span>
+        <font-awesome-icon :icon="['fas', 'chevron-down']" />
+      </div>
       <div class="dropdown" :show="isShow">
-        <div
-          class="dd-element"
-          v-if="customText"
-          disabled
-          @click="clickDisabled = true"
-        >{{ customText }}</div>
+        <div class="dd-element" v-if="customText" disabled @click="clickDisabled = true">
+          {{ customText }}
+        </div>
         <div
           class="dd-element"
           v-for="(opt, index) in options"
@@ -32,7 +33,9 @@
           :value="opt"
           :selected="index === currSelect"
           @click="selectMe(index)"
-        >{{ opt }}</div>
+        >
+          {{ opt }}
+        </div>
       </div>
     </div>
   </div>
@@ -128,15 +131,27 @@ export default Vue.extend({
     box-sizing: border-box;
     cursor: pointer;
     z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & svg {
+      @extend %animate-all-bounceend;
+      color: var.$gray;
+    }
 
     &.compound {
       border-radius: var.$b-radius 0 0 var.$b-radius;
       border-right: none;
+
+      svg {
+        display: none;
+      }
     }
 
     &:hover {
       border-color: color.lightness(var.$gray, -20%);
-      &::after {
+      & svg {
         color: color.lightness(var.$gray, -20%);
       }
     }
@@ -147,18 +162,10 @@ export default Vue.extend({
       &.compound {
         border-radius: var.$b-radius 0 0 0;
       }
-      &::after {
+
+      & svg {
         transform: rotate(180deg);
       }
-    }
-
-    &:not(.compound)::after {
-      @extend %animate-all-bounceend;
-      @extend %font-awesome;
-      position: absolute;
-      content: '\f078';
-      right: var.$b-radius;
-      color: var.$gray;
     }
 
     &.curr-disable {
@@ -215,12 +222,19 @@ export default Vue.extend({
 
       &:hover {
         border-color: color.lightness(var.$warn, -20%);
+        svg {
+          color: var.$warn;
+        }
       }
     }
+
     .showbox {
-      &,
-      &::after {
-        color: color.alpha(var.$warn, -0.5%);
+      color: var.$warn;
+      &.curr-disable {
+        color: color.lightness(var.$warn, 10%);
+      }
+      svg {
+        color: color.lightness(var.$warn, 10%);
       }
     }
   }

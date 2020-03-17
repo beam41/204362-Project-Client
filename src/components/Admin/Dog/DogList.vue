@@ -2,13 +2,13 @@
   <div class="listdog adminbox">
     <div class="padadmin">
       <div class="listpage-top">
-        <button class="btn-default" @click="addDog()">
-          <i class="fas fa-plus"></i>New
+        <button class="btn-default svg-m" @click="addDog()">
+          <font-awesome-icon :icon="['fas', 'plus']" />New
         </button>
         <div class="input-group">
           <input type="text" placeholder="Search name" ref="search" />
           <button class="btn-default" @click="search()">
-            <i class="fas fa-search no-m"></i>
+            <font-awesome-icon :icon="['fas', 'search']" />
           </button>
         </div>
         <Sorter :options="by" @sort-change="onChange($event)" />

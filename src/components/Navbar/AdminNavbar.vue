@@ -5,16 +5,20 @@
     </div>
     <div class="center">
       <router-link to="/admin/news/" class="nav-link news">
-        <i class="fas fa-newspaper"></i>News
+        <font-awesome-icon :icon="['fas', 'newspaper']" />
+        News
       </router-link>
       <router-link to="/admin/dog/" class="nav-link dog">
-        <i class="fas fa-paw"></i>Dog
+        <font-awesome-icon :icon="['fas', 'paw']" />
+        Dog
       </router-link>
       <router-link to="/admin/report/" class="nav-link report">
-        <i class="fas fa-inbox"></i>Report
+        <font-awesome-icon :icon="['fas', 'inbox']" />
+        Report
       </router-link>
       <router-link to="/admin/donate/" class="nav-link donate">
-        <i class="fas fa-donate"></i>Donate
+        <font-awesome-icon :icon="['fas', 'donate']" />
+        Donate
       </router-link>
     </div>
     <div class="bot"></div>
@@ -39,7 +43,7 @@ export default Vue.extend({
   }
 }
 
-.fas {
+svg {
   margin: 0 1rem;
 }
 

@@ -5,7 +5,6 @@ import Modal from '@/components/Shared/Modal.vue';
 import QrcodeVue from 'qrcode.vue';
 import ImageServ from '@/services/ImageUploadService';
 
-
 export default Vue.extend({
   name: 'DonateAddUpdate',
   components: {
@@ -74,13 +73,14 @@ export default Vue.extend({
           id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
           // @ts-ignore
           title: this.$refs.title.value,
-          creator: this.$route.params.id !== 'add' ? this.donate.creator : 'Anonymous',
+          creator: undefined,
           accepted: this.$route.params.id !== 'add' ? this.donate.accepted : false,
           // @ts-ignore
           description: this.$refs.desc.value,
           // @ts-ignore
           qrLink: this.$refs.qr.value,
           imgPath: this.imgPath,
+          deptNo: undefined,
         };
       }
       if (this.$route.params.id === 'add') {
@@ -112,6 +112,9 @@ export default Vue.extend({
   computed: {
     imgUrl() {
       return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${this.imgPath}`;
+    },
+    imgPlacehold() {
+      return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
     },
   },
 });

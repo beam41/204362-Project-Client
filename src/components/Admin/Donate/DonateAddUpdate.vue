@@ -63,7 +63,7 @@
         <div class="img-upload">
           <div class="flex-child im">
             <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
-            <progressive-background v-else :src="imgUrl" />
+            <progressive-img v-else :src="imgUrl" :placeholder="imgPlacehold" />
           </div>
           <div class="flex-child">
             <input type="file" ref="file" accept="image/*" :disabled="uploading" />

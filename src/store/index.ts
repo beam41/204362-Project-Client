@@ -9,11 +9,12 @@ const store = new Vuex.Store({
   state: {
     login: {
       loggedIn: false,
-      firstName: null as string | null,
-      lastName: null as string | null,
-      username: null as string | null,
-      deptNo: null as number | null,
-      token: null as string | null,
+      firstName: null,
+      lastName: null,
+      username: null,
+      userType: null,
+      deptNo: null,
+      token: null,
     } as User,
   },
   mutations: {
@@ -27,6 +28,7 @@ const store = new Vuex.Store({
         firstName: null,
         lastName: null,
         username: null,
+        userType: null,
         deptNo: null,
         token: null,
       } as User;
