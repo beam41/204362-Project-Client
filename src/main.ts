@@ -12,6 +12,8 @@ import {
   faDonate,
   faArrowDown,
   faChevronDown,
+  faUser,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -20,7 +22,18 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-library.add(faPlus, faSearch, faNewspaper, faPaw, faInbox, faDonate, faArrowDown, faChevronDown);
+library.add(
+  faPlus,
+  faSearch,
+  faNewspaper,
+  faPaw,
+  faInbox,
+  faDonate,
+  faArrowDown,
+  faChevronDown,
+  faUser,
+  faSignOutAlt,
+);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

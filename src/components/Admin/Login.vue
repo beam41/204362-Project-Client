@@ -8,11 +8,11 @@
         <div :style="{visibility: (trylogin ? 'hidden': 'visible')}">
           <div class="form-control">
             <label for="login-usn">Username:</label>
-            <input id="login-usn" type="text" ref="usn" />
+            <input id="login-usn" type="text" ref="usn" @keyup.enter="login()"/>
           </div>
           <div class="form-control">
             <label for="login-pwd">Password:</label>
-            <input id="login-pwd" type="password" ref="pwd" />
+            <input id="login-pwd" type="password" ref="pwd" @keyup.enter="login()"/>
           </div>
           <p class="err">{{ errMessage }}</p>
           <div class="cover-btn">

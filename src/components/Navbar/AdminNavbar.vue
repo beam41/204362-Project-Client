@@ -21,15 +21,38 @@
         Donate
       </router-link>
     </div>
-    <div class="bot"></div>
+    <div class="bot">
+      <h5><font-awesome-icon :icon="['fas', 'user']" />{{ login.firstName }}</h5>
+      <h6>{{ login.deptNo | depName }}</h6>
+      <button class="btn-warn" @click="logout()" href="#">
+        <font-awesome-icon :icon="['fas', 'sign-out-alt']" />Logout
+      </button>
+    </div>
   </nav>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapState } from 'vuex';
+import User from '@/models/User';
+import am from '@/store/AdminMutation';
 
 export default Vue.extend({
   name: 'AdminNavbar',
+  computed: mapState({
+    login: (state: any) => state.login as User,
+  }),
+  methods: {
+    logout() {
+      this.$store.commit(am.LOGOUT);
+      this.$router.push('/admin/login');
+    },
+  },
+  filters: {
+    depName(value: number) {
+      return `Faculty of ${['Humanities'][0]}`;
+    },
+  },
 });
 </script>
 
@@ -43,8 +66,10 @@ export default Vue.extend({
   }
 }
 
-svg {
-  margin: 0 1rem;
+.center {
+  svg {
+    margin: 0 1rem;
+  }
 }
 
 .navbar {
@@ -70,6 +95,27 @@ svg {
   &:hover {
     text-decoration: none;
     background-color: color.lightness(var.$gray, -20%);
+  }
+}
+
+.bot {
+  margin: 1rem 1rem;
+
+  * {
+    color: white;
+  }
+
+  h6 {
+    margin-bottom: 1rem;
+  }
+
+  svg {
+    margin-right: 0.5em;
+  }
+
+  h5 {
+    font-size: 1.7rem;
+    margin: 0;
   }
 }
 </style>

@@ -95,11 +95,8 @@ $table-body-height: 46px;
     align-self: end;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 100%;
-
-    .flex-child {
-      margin-bottom: 1rem;
-    }
 
     .im {
       flex: 1 1 auto;

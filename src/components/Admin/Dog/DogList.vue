@@ -30,20 +30,16 @@
         <div class="sub-table-wrapper">
           <transition-group class="datalist" v-if="dogs" name="flip-list" tag="table">
             <tr v-for="d in formattedArrays" :key="d.id" @click="dataDog(d.id)">
-              <td>{{ getAllName(d.name) }}</td>
-              <td v-if="d.ageYear > 0 && d.ageMonth > 0 ">
-                  {{ d.ageYear }} ปี {{ d.ageMonth }} เดือน
+              <td>{{ d.name | toString }}</td>
+              <td v-if="d.ageYear > 0 && d.ageMonth > 0">
+                {{ d.ageYear }} ปี {{ d.ageMonth }} เดือน
               </td>
-              <td v-if="d.ageYear > 0 && d.ageMonth === 0 ">
-                  {{ d.ageYear }} ปี
-              </td>
-              <td v-if="d.ageYear === 0 && d.ageMonth > 0 ">
-                  {{ d.ageMonth }} เดือน
-              </td>
-              <td>{{ getSex(d.sex) }}</td>
+              <td v-if="d.ageYear > 0 && d.ageMonth === 0">{{ d.ageYear }} ปี</td>
+              <td v-if="d.ageYear === 0 && d.ageMonth > 0">{{ d.ageMonth }} เดือน</td>
+              <td>{{ d.sex | formatSex }}</td>
               <td>{{ d.description }}</td>
-              <td>{{ IsAlive(d.isAlive) }}</td>
-              <td>{{ getCollarColor(d.collarColor) }}</td>
+              <td>{{ d.isAlive | formatIsAlive }}</td>
+              <td>{{ d.collarColor | formatCollarColor }}</td>
               <td>{{ d.caretaker }}</td>
             </tr>
           </transition-group>
@@ -71,8 +67,6 @@ export default Vue.extend({
   },
   data: () => ({
     dogs: null as Array<any> | null,
-    by: ['ชื่อ', 'เพศ', 'สถานะ', 'ปลอกคอ'],
-    field: ['name', 'sex', 'isAlive', 'collarColor'],
     currOption: 0,
     descending: false,
     searchString: '',
@@ -84,6 +78,8 @@ export default Vue.extend({
     });
   },
   computed: {
+    by: () => ['ชื่อ', 'เพศ', 'สถานะ', 'ปลอกคอ'],
+    field: () => ['name', 'sex', 'isAlive', 'collarColor'],
     formattedArrays() {
       let filter = this.dogs;
       if (this.searchString !== '') {
@@ -100,30 +96,6 @@ export default Vue.extend({
       this.currOption = currOption;
       this.descending = descending;
     },
-    getAllName(Allname: String) {
-      return Allname.toString();
-    },
-    getSex(sex: string) {
-      if (sex === 'F') {
-        return 'ตัวเมีย';
-      }
-      return 'ตัวผู้';
-    },
-    IsAlive(IsAlive: boolean) {
-      if (IsAlive) {
-        return 'มีชีวิต';
-      }
-      return 'เสียชีวิต';
-    },
-    getCollarColor(CollarColor: string) {
-      if (CollarColor === 'G') {
-        return 'สีเขียว';
-      }
-      if (CollarColor === 'Y') {
-        return 'สีเหลือง';
-      }
-      return 'สีแดง';
-    },
     dataDog(id: string) {
       this.$router.push(`/admin/dog/${id}`);
     },
@@ -133,6 +105,32 @@ export default Vue.extend({
     search() {
       // @ts-ignore
       this.searchString = this.$refs.search.value;
+    },
+  },
+  filters: {
+    toString(arr: string[]) {
+      return arr.toString();
+    },
+    formatSex(sex: string) {
+      if (sex === 'F') {
+        return 'ตัวเมีย';
+      }
+      return 'ตัวผู้';
+    },
+    formatIsAlive(IsAlive: boolean) {
+      if (IsAlive) {
+        return 'มีชีวิต';
+      }
+      return 'เสียชีวิต';
+    },
+    formatCollarColor(CollarColor: string) {
+      if (CollarColor === 'G') {
+        return 'สีเขียว';
+      }
+      if (CollarColor === 'Y') {
+        return 'สีเหลือง';
+      }
+      return 'สีแดง';
     },
   },
 });

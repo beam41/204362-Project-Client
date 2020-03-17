@@ -54,8 +54,6 @@ export default Vue.extend({
     Sorter,
   },
   data: () => ({
-    by: ['ชื่อเรื่อง', 'ผู้สร้าง', 'อนุมัติแล้ว'],
-    field: ['title', 'creator', 'accepted'],
     donates: null as Array<any> | null,
     currOption: 0,
     descending: false,
@@ -67,6 +65,8 @@ export default Vue.extend({
     });
   },
   computed: {
+    by: () => ['ชื่อเรื่อง', 'ผู้สร้าง', 'อนุมัติแล้ว'],
+    field: () => ['title', 'creator', 'accepted'],
     formattedArrays() {
       let filter = this.donates;
       if (this.searchString !== '') {
