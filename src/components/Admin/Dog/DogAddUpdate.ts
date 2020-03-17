@@ -29,6 +29,7 @@ export default Vue.extend({
     caretakerPhoneErr: false,
     caretakerErr: false,
     locationErr: false,
+    lengthPhone: '',
     // Img
     imgErr: false,
     uploading: false,
@@ -163,9 +164,24 @@ export default Vue.extend({
         this.isAliveErr = true;
         err = true;
       }
-      if (caretakerPhone === '' || caretakerPhone.length > 10) {
-        this.caretakerPhoneErr = true;
-        err = true;
+      this.lengthPhone = caretakerPhone.split(/[-+]/).join('');
+      if (caretakerPhone === '' || /[A-za-z!"#$%&\\'()*/:;<=>?@[\\\]^_`{|}~]/gm.test(this.lengthPhone)
+        || this.lengthPhone.length < 9) {
+        if (/[,]/.test(this.lengthPhone)) {
+          // eslint-disable-next-line no-plusplus
+          for (let i = 0; i < this.lengthPhone.split(/[,]/).length; i++) {
+            if (+this.lengthPhone.split(/[,]/)[i].length < 9
+                || +this.lengthPhone.split(/[,]/)[i].length > 10) {
+              console.log('case 1 ');
+              this.caretakerPhoneErr = true;
+              err = true;
+            }
+          }
+        } else if (this.lengthPhone.length < 9 || this.lengthPhone.length > 10) {
+          console.log('case 2 ');
+          this.caretakerPhoneErr = true;
+          err = true;
+        }
       }
       if (caretaker === '' || /[\d!"#$%&\\'()*+,/:;<=>?@[\\\]^_`{|}~-]/gm.test(caretaker)) {
         this.caretakerErr = true;
