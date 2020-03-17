@@ -103,7 +103,7 @@ $table-body-height: 46px;
 
     .im {
       flex: 1 1 auto;
-      size: 100%;
+      size: 60vmin;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -115,10 +115,9 @@ $table-body-height: 46px;
         color: white;
       }
 
-      * {
-        max-width: 50%;
-        max-height: 50%;
+      img {
         object-fit: contain;
+        size: 60vmin;
       }
     }
   }
