@@ -5,9 +5,9 @@ export default class Dog {
 
   breed: string | undefined;
 
-  age: number | undefined;
+  ageYear: number | undefined;
 
-  ageUnit: string | undefined;
+  ageMonth: number | undefined;
 
   sex: string | undefined;
 
