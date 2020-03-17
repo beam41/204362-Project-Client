@@ -80,7 +80,7 @@ export default Vue.extend({
   },
   methods: {
     onChange({ currOption, descending }: any) {
-      console.log({ currOption, descending });
+      // console.log({ currOption, descending });
       this.currOption = currOption;
       this.descending = descending;
     },
