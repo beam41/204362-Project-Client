@@ -1,5 +1,5 @@
 <template>
-  <div class="admin">
+  <div class="admin" v-if="loggedIn">
     <Navbar></Navbar>
     <div class="headstyle">
       <transition name="topbar">
@@ -22,7 +22,7 @@ export default Vue.extend({
     transitionName: '',
   }),
   created() {
-    if (this.$store.state.login.loggedIn === false) this.$router.push('/admin/login');
+    if (this.loggedIn === false) this.$router.push('/admin/login');
   },
   components: {
     Navbar,
@@ -30,6 +30,9 @@ export default Vue.extend({
   computed: {
     title() {
       return this.$route.meta.title;
+    },
+    loggedIn() {
+      return this.$store.state.login.loggedIn;
     },
   },
   watch: {

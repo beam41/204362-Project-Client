@@ -29,7 +29,7 @@
     </Modal>
     <div class="padadmin addupdate donate-au">
       <div class="input-box">
-        <div>
+        <div class="sep">
           <div class="form-control">
             <label>หัวเรื่อง:</label>
             <input
@@ -60,17 +60,24 @@
               ref="qr"
             />
           </div>
-          <qrcode-vue :value="donate.qrLink" level="L" renderAs="svg" :size="200"></qrcode-vue>
+
+          <qrcode-vue
+            class="form-control"
+            :value="donate.qrLink"
+            level="L"
+            renderAs="svg"
+            :size="200"
+          ></qrcode-vue>
         </div>
         <div class="img-upload">
-          <div class="flex-child im">
+          <div class="form-control im">
             <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
             <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
           </div>
-          <div class="flex-child">
+          <div class="form-control">
             <input type="file" ref="file" accept="image/*" :disabled="uploading" />
           </div>
-          <div class="flex-child">
+          <div class="form-control">
             <button
               :class="'btn-' + (imgErr ? 'warn' : 'default')"
               @click="upload()"
@@ -125,5 +132,11 @@
   display: grid;
   gap: 1rem 1rem;
   grid-template-columns: 1fr 1fr;
+}
+
+.sep {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
