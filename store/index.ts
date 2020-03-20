@@ -15,6 +15,7 @@ export const state = () => ({
 export const mutations = {
   LOGIN(state: any, data: User) {
     state.login = { ...state.login, ...data, loggedIn: true };
+    localStorage.setItem('mm-login', JSON.stringify(state.login));
   },
   LOGOUT(state: any) {
     // resetti

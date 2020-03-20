@@ -3,35 +3,44 @@
     <Navbar></Navbar>
     <div class="headstyle">
       <transition name="topbar">
-        <h2 :key="title">{{ title }}</h2>
+        <h2 :key="title">{{ title | capitalize }}</h2>
       </transition>
     </div>
     <nuxt />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
 import Navbar from '@/components/Navbar/AdminNavbar.vue';
+import User from '@/models/User';
 
 export default Vue.extend({
   name: 'AdminLayout',
   components: {
     Navbar,
   },
-  data: () => ({
-    transitionName: '',
-  }),
+  filters: {
+    capitalize(value: string) {
+      if (!value) return '';
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
+  },
   computed: {
     title() {
-      return this.$route.meta.title;
+      return this.$route.path.split('/')[2];
     },
     loggedIn() {
       return this.$store.state.login.loggedIn;
     },
   },
   mounted() {
-    if (this.loggedIn === false) this.$router.push('/admin/login');
+    const storage = localStorage.getItem('mm-login');
+    if (storage) {
+      const login: User = JSON.parse(storage) as User;
+      if (login.loggedIn === false) this.$router.push('/admin/login');
+      else this.$store.commit('LOGIN', login);
+    } else this.$router.push('/admin/login');
   },
 });
 </script>
