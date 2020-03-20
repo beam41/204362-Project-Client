@@ -1,7 +1,7 @@
 <template>
   <span class="sorter-wrapper">
     <span class="sorter input-group" style="width: 100px;">
-      <Select classN="compound" :options="options" @sel-change="onChange($event)" />
+      <Select class-n="compound" :options="options" @sel-change="onChange($event)" />
       <button :class="'btn-default' + (descending ? ' desc' : '')" @click="onClick()">
         <font-awesome-icon :icon="['fas', 'arrow-down']" />
       </button>
@@ -15,11 +15,11 @@ import Select from './Select.vue';
 
 export default Vue.extend({
   name: 'Sorter',
-  props: {
-    options: Array,
-  },
   components: {
     Select,
+  },
+  props: {
+    options: Array,
   },
   data: () => ({
     currOption: 0,

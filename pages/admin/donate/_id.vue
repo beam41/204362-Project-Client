@@ -22,7 +22,9 @@
               delShow = false;
             }
           "
-        >Cancel</button>
+        >
+          Cancel
+        </button>
       </div>
     </Modal>
     <div class="padadmin addupdate donate-au">
@@ -80,7 +82,9 @@
               :class="'btn-' + (imgErr ? 'warn' : 'default')"
               :disabled="uploading"
               @click="upload()"
-            >Upload</button>
+            >
+              Upload
+            </button>
           </div>
         </div>
       </div>
@@ -96,7 +100,9 @@
                 delShow = true;
               }
             "
-          >Delete</button>
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@
         {{ login.firstName }}
       </h5>
       <h6>{{ login.deptNo | depName }}</h6>
-      <button class="btn-warn" @click="logout()" href="#">
+      <button class="btn-warn" href="#" @click="logout()">
         <font-awesome-icon :icon="['fas', 'sign-out-alt']" />Logout
       </button>
     </div>

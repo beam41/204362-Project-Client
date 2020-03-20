@@ -8,34 +8,34 @@
         :key="opt"
         :value="opt"
         :selected="index === currSelect"
-      >{{ opt }}</option>
+        >{{ opt }}</option
+      >
     </select>
     <!-- viewable custom select for user -->
     <div :class="'new-select' + (error ? ' error' : '')">
       <div
-        :class="'showbox' + (currSelect === -1 ? ' curr-disable' : '') + getClass"
-        @click="toggleShowDropdown()"
         v-on-clickaway="hideDropdown"
+        :class="'showbox' + (currSelect === -1 ? ' curr-disable' : '') + getClass"
         :show="isShow"
+        @click="toggleShowDropdown()"
       >
         <span>{{ currSelect === -1 ? customText : options[currSelect] }}</span>
         <font-awesome-icon :icon="['fas', 'chevron-down']" />
       </div>
       <div class="dropdown" :show="isShow">
+        <div v-if="customText" class="dd-element" disabled @click="clickDisabled = true">
+          {{ customText }}
+        </div>
         <div
-          class="dd-element"
-          v-if="customText"
-          disabled
-          @click="clickDisabled = true"
-        >{{ customText }}</div>
-        <div
-          class="dd-element"
           v-for="(opt, index) in options"
           :key="opt"
+          class="dd-element"
           :value="opt"
           :selected="index === currSelect"
           @click="selectMe(index)"
-        >{{ opt }}</div>
+        >
+          {{ opt }}
+        </div>
       </div>
     </div>
   </div>
@@ -48,11 +48,7 @@ import _ from 'lodash';
 
 export default Vue.extend({
   name: 'Select',
-  data: () => ({
-    isShow: false,
-    clickDisabled: false,
-    currSelect: -1,
-  }),
+  mixins: [clickaway],
   props: {
     customText: String,
     options: Array,
@@ -66,7 +62,17 @@ export default Vue.extend({
       default: false,
     },
   },
-  mixins: [clickaway],
+  data: () => ({
+    isShow: false,
+    clickDisabled: false,
+    currSelect: -1,
+  }),
+  computed: {
+    getClass() {
+      if (this.classN) return ` ${this.classN}`;
+      return '';
+    },
+  },
   created() {
     if (!this.customText) this.currSelect = 0;
     // console.log('default: ', this.defaultOption);
@@ -74,12 +80,6 @@ export default Vue.extend({
       // prettier-ignore
       this.currSelect = _.findIndex(this.options, o => o === this.defaultOption);
     }
-  },
-  computed: {
-    getClass() {
-      if (this.classN) return ` ${this.classN}`;
-      return '';
-    },
   },
   methods: {
     hideDropdown() {

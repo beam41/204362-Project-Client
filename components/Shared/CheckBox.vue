@@ -1,7 +1,7 @@
 <template>
   <label>
     <slot></slot>
-    <input type="checkbox" ref="cb" @change="onC($event)" />
+    <input ref="cb" type="checkbox" @change="onC($event)" />
     <span class="cb"></span>
   </label>
 </template>

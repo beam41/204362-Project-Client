@@ -6,7 +6,7 @@
           <font-awesome-icon :icon="['fas', 'plus']" />New
         </button>
         <div class="input-group">
-          <input type="text" placeholder="Search name" ref="search" />
+          <input ref="search" type="text" placeholder="Search name" />
           <button class="btn-default" @click="search()">
             <font-awesome-icon :icon="['fas', 'search']" />
           </button>
@@ -28,10 +28,12 @@
           </table>
         </div>
         <div class="sub-table-wrapper">
-          <transition-group class="datalist" v-if="dogs" name="flip-list" tag="table">
+          <transition-group v-if="dogs" class="datalist" name="flip-list" tag="table">
             <tr v-for="d in formattedArrays" :key="d.id" @click="dataDog(d.id)">
               <td>{{ d.name | toString }}</td>
-              <td v-if="d.ageYear > 0 && d.ageMonth > 0">{{ d.ageYear }} ปี {{ d.ageMonth }} เดือน</td>
+              <td v-if="d.ageYear > 0 && d.ageMonth > 0">
+                {{ d.ageYear }} ปี {{ d.ageMonth }} เดือน
+              </td>
               <td v-if="d.ageYear > 0 && d.ageMonth === 0">{{ d.ageYear }} ปี</td>
               <td v-if="d.ageYear === 0 && d.ageMonth > 0">{{ d.ageMonth }} เดือน</td>
               <td>{{ d.sex | formatSex }}</td>
@@ -53,57 +55,16 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import _ from 'lodash';
 import Sorter from '@/components/Shared/Sorter.vue';
 import util from '@/util';
 import DogApiService from '@/services/DogApiService';
-import _ from 'lodash';
 
 export default Vue.extend({
   layout: 'admin',
   name: 'DogList',
   components: {
     Sorter,
-  },
-  data: () => ({
-    dogs: null as Array<any> | null,
-    currOption: 0,
-    descending: false,
-    searchString: '',
-  }),
-  created() {
-    DogApiService.getDogList(this.$store).then((val) => {
-      this.dogs = val.data;
-    });
-  },
-  computed: {
-    by: () => ['ชื่อ', 'เพศ', 'สถานะ', 'ปลอกคอ'],
-    field: () => ['name', 'sex', 'isAlive', 'collarColor'],
-    formattedArrays() {
-      let filter = this.dogs;
-      if (this.searchString !== '') {
-        // prettier-ignore
-        const findinObj = (val: string, obj: object) => _.some(obj, v => _.includes(v, val));
-        // prettier-ignore
-        filter = _.filter(this.dogs, o => findinObj(this.searchString, o));
-      }
-      return _.orderBy(filter, this.field[this.currOption], this.descending ? 'desc' : 'asc');
-    },
-  },
-  methods: {
-    onChange({ currOption, descending }: any) {
-      this.currOption = currOption;
-      this.descending = descending;
-    },
-    dataDog(id: string) {
-      this.$router.push(`/admin/dog/${id}`);
-    },
-    addDog() {
-      this.$router.push('/admin/dog/add');
-    },
-    search() {
-      // @ts-ignore
-      this.searchString = this.$refs.search.value;
-    },
   },
   filters: {
     toString(arr: string[]) {
@@ -129,6 +90,47 @@ export default Vue.extend({
         return 'สีเหลือง';
       }
       return 'สีแดง';
+    },
+  },
+  data: () => ({
+    dogs: null as Array<any> | null,
+    currOption: 0,
+    descending: false,
+    searchString: '',
+  }),
+  computed: {
+    by: () => ['ชื่อ', 'เพศ', 'สถานะ', 'ปลอกคอ'],
+    field: () => ['name', 'sex', 'isAlive', 'collarColor'],
+    formattedArrays() {
+      let filter = this.dogs;
+      if (this.searchString !== '') {
+        // prettier-ignore
+        const findinObj = (val: string, obj: object) => _.some(obj, v => _.includes(v, val));
+        // prettier-ignore
+        filter = _.filter(this.dogs, o => findinObj(this.searchString, o));
+      }
+      return _.orderBy(filter, this.field[this.currOption], this.descending ? 'desc' : 'asc');
+    },
+  },
+  created() {
+    DogApiService.getDogList(this.$store).then((val) => {
+      this.dogs = val.data;
+    });
+  },
+  methods: {
+    onChange({ currOption, descending }: any) {
+      this.currOption = currOption;
+      this.descending = descending;
+    },
+    dataDog(id: string) {
+      this.$router.push(`/admin/dog/${id}`);
+    },
+    addDog() {
+      this.$router.push('/admin/dog/add');
+    },
+    search() {
+      // @ts-ignore
+      this.searchString = this.$refs.search.value;
     },
   },
 });
