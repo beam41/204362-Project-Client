@@ -1,0 +1,136 @@
+@use 'var';
+@use 'color';
+@use 'selector';
+
+%opacity-zero {
+  opacity: 0;
+}
+
+// class for fade transition
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var.$animation-time;
+}
+
+.fade-enter,
+.fade-leave-to,
+.fade-ep-enter,
+.fade-ep-leave-to {
+  @extend %opacity-zero;
+}
+
+.fade-ep-enter-active,
+.fade-ep-leave-active {
+  transition: opacity var.$animation-time cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+%opacity-and-transform {
+  transition: opacity var.$animation-time linear,
+    transform var.$animation-time cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+// for admin topbar
+.topbar-enter-active {
+  @extend %opacity-and-transform;
+}
+
+.topbar-enter {
+  @extend %opacity-zero;
+  transform: translateX(100%);
+}
+
+// up
+.up-enter-active,
+.up-leave-active,
+.up-long-enter-active {
+  @extend %opacity-and-transform;
+}
+
+.up-enter,
+.up-leave-to,
+.up-long-enter {
+  @extend %opacity-zero;
+}
+
+.up-enter {
+  transform: translateY(5%);
+}
+
+.up-long-enter {
+  transform: translateY(100%);
+}
+
+.up-leave-to {
+  transform: translateY(-5%);
+}
+
+// down
+.down-enter-active,
+.down-leave-active {
+  @extend %opacity-and-transform;
+}
+
+.down-enter,
+.down-leave-to {
+  @extend %opacity-zero;
+}
+
+.down-enter {
+  transform: translateY(-5%);
+}
+
+.down-leave-to {
+  transform: translateY(5%);
+}
+
+//right
+.right-enter-active,
+.right-leave-active {
+  @extend %opacity-and-transform;
+}
+
+.right-enter,
+.right-leave-to {
+  @extend %opacity-zero;
+}
+
+.right-enter {
+  transform: translateX(5%);
+}
+
+.right-leave-to {
+  transform: translateX(-5%);
+}
+
+//left
+.left-enter-active,
+.left-leave-active {
+  @extend %opacity-and-transform;
+}
+
+.left-enter,
+.left-leave-to {
+  @extend %opacity-zero;
+}
+
+.left-enter {
+  transform: translateX(-5%);
+}
+
+.left-leave-to {
+  transform: translateX(5%);
+}
+
+.flip-list-move {
+  transition: transform var.$animation-time;
+}
+
+.v-lazy-image {
+  filter: blur(5px);
+  transition: filter var.$animation-time;
+  will-change: filter;
+}
+
+.v-lazy-image-loaded {
+  filter: blur(0);
+}
