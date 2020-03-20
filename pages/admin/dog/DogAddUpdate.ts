@@ -77,7 +77,7 @@ export default Vue.extend({
       return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${this.imgPath}`;
     },
   },
-  created() {
+  mounted() {
     if (this.$route.params.id !== 'add') {
       DogApiService.getDog(this.$store, this.$route.params.id).then((val) => {
         this.dog = val.data;

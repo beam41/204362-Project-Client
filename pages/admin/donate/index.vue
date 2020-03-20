@@ -73,7 +73,7 @@ export default Vue.extend({
       return _.orderBy(filter, this.field[this.currOption], this.descending ? 'desc' : 'asc');
     },
   },
-  created() {
+  mounted() {
     DonateServ.getDonateList(this.$store).then((val) => {
       this.donates = val.data;
     });

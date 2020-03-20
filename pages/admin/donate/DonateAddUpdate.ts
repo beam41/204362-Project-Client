@@ -32,7 +32,7 @@ export default Vue.extend({
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
     },
   },
-  created() {
+  mounted() {
     if (this.$route.params.id !== 'add') {
       DonateServ.getDonate(this.$store, this.$route.params.id).then((val) => {
         this.donate = val.data;

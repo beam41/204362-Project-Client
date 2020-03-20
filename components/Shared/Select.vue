@@ -8,8 +8,7 @@
         :key="opt"
         :value="opt"
         :selected="index === currSelect"
-        >{{ opt }}</option
-      >
+      >{{ opt }}</option>
     </select>
     <!-- viewable custom select for user -->
     <div :class="'new-select' + (error ? ' error' : '')">
@@ -23,9 +22,12 @@
         <font-awesome-icon :icon="['fas', 'chevron-down']" />
       </div>
       <div class="dropdown" :show="isShow">
-        <div v-if="customText" class="dd-element" disabled @click="clickDisabled = true">
-          {{ customText }}
-        </div>
+        <div
+          v-if="customText"
+          class="dd-element"
+          disabled
+          @click="clickDisabled = true"
+        >{{ customText }}</div>
         <div
           v-for="(opt, index) in options"
           :key="opt"
@@ -33,9 +35,7 @@
           :value="opt"
           :selected="index === currSelect"
           @click="selectMe(index)"
-        >
-          {{ opt }}
-        </div>
+        >{{ opt }}</div>
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@ export default Vue.extend({
       return '';
     },
   },
-  created() {
+  mounted() {
     if (!this.customText) this.currSelect = 0;
     // console.log('default: ', this.defaultOption);
     if (this.defaultOption !== '') {
@@ -107,6 +107,7 @@ export default Vue.extend({
 @use 'assets/styles/responsive';
 
 .cs {
+  font-size: 1rem;
   display: inline-block;
 
   * {

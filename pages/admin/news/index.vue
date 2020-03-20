@@ -52,7 +52,7 @@ export default Vue.extend({
       return _.orderBy(this.donates, this.field[this.currOption], this.descending ? 'desc' : 'asc');
     },
   },
-  created() {},
+  mounted() {},
   methods: {
     onChange({ currOption, descending }: any) {
       this.currOption = currOption;

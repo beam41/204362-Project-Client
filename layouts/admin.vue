@@ -30,7 +30,7 @@ export default Vue.extend({
       return this.$store.state.login.loggedIn;
     },
   },
-  created() {
+  mounted() {
     if (this.loggedIn === false) this.$router.push('/admin/login');
   },
 });
