@@ -51,7 +51,7 @@ export default Vue.extend({
   },
   methods: {
     goBack() {
-      this.$router.push('');
+      this.$router.push('/');
     },
     login() {
       this.trylogin = true;

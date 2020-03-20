@@ -28,5 +28,6 @@ export const mutations = {
       deptNo: null,
       token: null,
     } as User;
+    localStorage.removeItem('mm-login');
   },
 };
