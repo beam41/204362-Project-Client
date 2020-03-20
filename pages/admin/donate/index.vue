@@ -59,6 +59,9 @@ export default Vue.extend({
     descending: false,
     searchString: '',
   }),
+  head: () => ({
+    title: 'Admin: Donate',
+  }),
   computed: {
     by: () => ['ชื่อเรื่อง', 'ผู้สร้าง', 'อนุมัติแล้ว'],
     field: () => ['title', 'creator', 'accepted'],

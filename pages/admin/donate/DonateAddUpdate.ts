@@ -24,6 +24,9 @@ export default Vue.extend({
     uploading: false,
     imgPath: '',
   }),
+  head: () => ({
+    title: 'Admin: Donate',
+  }),
   computed: {
     imgUrl() {
       return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${this.imgPath}`;

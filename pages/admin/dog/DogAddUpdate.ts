@@ -39,6 +39,9 @@ export default Vue.extend({
     uploading: false,
     imgPath: '',
   }),
+  head: () => ({
+    title: 'Admin: Dog',
+  }),
   computed: {
     // Arr text select --> display UI
     sexSelect: () => ['ตัวเมีย', 'ตัวผู้'],

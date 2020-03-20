@@ -96,6 +96,9 @@ export default Vue.extend({
     descending: false,
     searchString: '',
   }),
+  head: () => ({
+    title: 'Admin: Dog',
+  }),
   computed: {
     by: () => ['ชื่อ', 'เพศ', 'สถานะ', 'ปลอกคอ'],
     field: () => ['name', 'sex', 'isAlive', 'collarColor'],

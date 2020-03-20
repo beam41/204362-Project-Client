@@ -35,6 +35,9 @@ export default Vue.extend({
     trylogin: false,
     errMessage: '',
   }),
+  head: () => ({
+    title: 'Admin: Login',
+  }),
   methods: {
     goBack() {
       this.$router.push('');
