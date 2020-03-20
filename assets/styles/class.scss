@@ -1,0 +1,58 @@
+@use 'var';
+@use 'color';
+@use 'selector';
+
+%opacity-zero {
+  opacity: 0;
+}
+
+// class for fade transition
+.fade-enter-active,
+.fade-leave-active,
+.page-enter-active,
+.page-leave-active {
+  transition: opacity var.$animation-time;
+}
+
+.fade-enter,
+.fade-leave-to,
+.page-enter,
+.page-leave-to,
+.fade-ep-enter,
+.fade-ep-leave-to {
+  @extend %opacity-zero;
+}
+
+.fade-ep-enter-active,
+.fade-ep-leave-active {
+  transition: opacity var.$animation-time cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+%opacity-and-transform {
+  transition: opacity var.$animation-time linear,
+    transform var.$animation-time cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+// for admin topbar
+.topbar-enter-active {
+  @extend %opacity-and-transform;
+}
+
+.topbar-enter {
+  @extend %opacity-zero;
+  transform: translateX(100%);
+}
+
+.flip-list-move {
+  transition: transform var.$animation-time;
+}
+
+.v-lazy-image {
+  filter: blur(20px);
+  transition: filter var.$animation-time;
+  will-change: filter;
+}
+
+.v-lazy-image-loaded {
+  filter: blur(0);
+}
