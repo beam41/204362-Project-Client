@@ -36,8 +36,6 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.0.0",
-    "lint-staged": "^10.0.0",
     "postcss-normalize": "^8.0.1",
     "postcss-short": "^5.0.0",
     "prettier": "^1.19.1",
