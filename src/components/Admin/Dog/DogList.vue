@@ -73,7 +73,6 @@ export default Vue.extend({
   }),
   created() {
     DogApiService.getDogList().then((val) => {
-      console.log(val);
       this.dogs = val.data;
     });
   },

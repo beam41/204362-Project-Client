@@ -19,7 +19,7 @@ function delDog(id: string): Promise<AxiosResponse<Dog>> {
 }
 
 function putDog(id: string, dog: Dog): Promise<AxiosResponse<Dog>> {
-  console.log(dog);
+  // console.log(dog);
   return a.put(`api/dog/${id}`, dog, headerWriter());
 }
 export default {

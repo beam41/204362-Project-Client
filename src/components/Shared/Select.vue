@@ -69,7 +69,7 @@ export default Vue.extend({
   mixins: [clickaway],
   created() {
     if (!this.customText) this.currSelect = 0;
-    console.log('default: ', this.defaultOption);
+    // console.log('default: ', this.defaultOption);
     if (this.defaultOption !== '') {
       // prettier-ignore
       this.currSelect = _.findIndex(this.options, o => o === this.defaultOption);
@@ -94,7 +94,7 @@ export default Vue.extend({
       this.$emit('sel-change', { currSelect: index });
     },
     log(me) {
-      console.log(me);
+      // console.log(me);
     },
   },
 });
