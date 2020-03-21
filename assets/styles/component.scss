@@ -2,8 +2,7 @@
 @use 'color';
 @use 'selector';
 
-@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
-
+@import '@/assets/font/NotoSansThai/NotoSansThai.css';
 @import 'sanitize.css';
 
 ::-webkit-scrollbar {
