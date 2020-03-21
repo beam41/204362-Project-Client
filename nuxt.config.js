@@ -18,7 +18,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans&display=swap' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap',
+      },
     ],
   },
   /*
@@ -62,6 +65,11 @@ export default {
       },
     },
     loaders: {
+      vue: {
+        compilerOptions: {
+          whitespace: 'condense',
+        },
+      },
       scss: {
         implementation: Sass,
       },
