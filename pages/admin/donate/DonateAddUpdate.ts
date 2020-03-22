@@ -115,7 +115,6 @@ export default Vue.extend({
     },
     upload() {
       this.uploading = true;
-      // @ts-ignore
       ImageServ.postImage(this.$refs.file.files[0]).then((val) => {
         this.imgPath = val.data.fileName;
         this.uploading = false;
