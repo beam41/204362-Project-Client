@@ -19,13 +19,11 @@
               delShow = false;
             }
           "
-        >
-          Cancel
-        </button>
+        >Cancel</button>
       </div>
     </Modal>
 
-    <div class="padadmin addupdate donate-au">
+    <div class="padadmin addupdate dog-au">
       <div class="input-box">
         <div class="sep">
           <div class="form-control">
@@ -146,9 +144,7 @@
               :class="'btn-' + (imgErr ? 'warn' : 'default')"
               :disabled="uploading"
               @click="upload()"
-            >
-              Upload
-            </button>
+            >Upload</button>
           </div>
         </div>
       </div>
@@ -165,9 +161,7 @@
                 delShow = true;
               }
             "
-          >
-            Delete
-          </button>
+          >Delete</button>
         </div>
       </div>
     </div>
@@ -185,7 +179,7 @@
 @use 'assets/styles/color';
 @use 'assets/styles/selector';
 @use 'assets/styles/responsive';
-.donate-au {
+.dog-au {
   grid-template-rows: 90% 10%;
 }
 
