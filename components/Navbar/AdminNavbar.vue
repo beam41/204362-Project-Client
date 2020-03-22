@@ -18,7 +18,6 @@
       </nuxt-link>
     </div>
     <div class="bot">
-      <!--prettyhtml-ignore-->
       <h5><font-awesome-icon :icon="['fas', 'user']" />{{ fullName }}</h5>
       <h6>{{ login.deptNo | depName }}</h6>
       <button class="btn-warn" href="#" @click="logout()">
