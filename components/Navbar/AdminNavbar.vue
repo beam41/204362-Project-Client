@@ -18,10 +18,8 @@
       </nuxt-link>
     </div>
     <div class="bot">
-      <h5>
-        <font-awesome-icon :icon="['fas', 'user']" />
-        {{ login.firstName }}
-      </h5>
+      <!--prettyhtml-ignore-->
+      <h5><font-awesome-icon :icon="['fas', 'user']" />{{ fullName }}</h5>
       <h6>{{ login.deptNo | depName }}</h6>
       <button class="btn-warn" href="#" @click="logout()">
         <font-awesome-icon :icon="['fas', 'sign-out-alt']" />Logout
@@ -37,9 +35,14 @@ import User from '@/models/User';
 
 export default Vue.extend({
   name: 'AdminNavbar',
-  computed: mapState({
-    login: (state: any) => state.login as User,
-  }),
+  computed: {
+    fullName() {
+      return `${this.login.firstName} ${this.login.lastName}`;
+    },
+    ...mapState({
+      login: (state: any) => state.login as User,
+    }),
+  },
   methods: {
     logout() {
       this.$store.commit('LOGOUT');
@@ -47,8 +50,34 @@ export default Vue.extend({
     },
   },
   filters: {
-    depName(/* value: number */) {
-      return `Faculty of ${['Humanities'][0]}`;
+    depName(value: number) {
+      if (value < 21)
+        return `Faculty of ${
+          [
+            'Humanities',
+            'Education',
+            'Fine Arts',
+            'Social Sciences',
+            'Science',
+            'Engineering',
+            'Medicine',
+            'Agriculture',
+            'Dentistry',
+            'Pharmacy',
+            'Associated Medical Sciences',
+            'Nursing',
+            'Agro-Industry',
+            'Veterinary Medicine',
+            'Business Administration',
+            'Economics',
+            'Architecture',
+            'Mass Communication',
+            'Political Science and Public Administration',
+            'Law',
+          ][value - 1]
+        }`;
+      else if (value === 21) return 'College of Art, Media and Technology';
+      return 'Faculty of Everything Else';
     },
   },
 });
@@ -106,6 +135,13 @@ export default Vue.extend({
 
   * {
     color: white;
+  }
+
+  h5,
+  h6 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   h6 {
