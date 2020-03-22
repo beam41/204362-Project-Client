@@ -8,6 +8,7 @@ import Modal from '@/components/Shared/Modal.vue';
 import ImageServ from '@/services/ImageUploadService';
 
 export default Vue.extend({
+  layout: 'admin',
   name: 'DogAddUpdate',
   components: {
     Select,
@@ -78,6 +79,9 @@ export default Vue.extend({
     },
     imgUrl() {
       return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${this.imgPath}`;
+    },
+    imgPlacehold() {
+      return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
     },
   },
   mounted() {
@@ -180,13 +184,11 @@ export default Vue.extend({
               +this.lengthPhone.split(/[,]/)[i].length < 9 ||
               +this.lengthPhone.split(/[,]/)[i].length > 10
             ) {
-              console.log('case 1 ');
               this.caretakerPhoneErr = true;
               err = true;
             }
           }
         } else if (this.lengthPhone.length < 9 || this.lengthPhone.length > 10) {
-          console.log('case 2 ');
           this.caretakerPhoneErr = true;
           err = true;
         }

@@ -31,7 +31,9 @@
           <transition-group v-if="dogs" class="datalist" name="flip-list" tag="table">
             <tr v-for="d in formattedArrays" :key="d.id" @click="dataDog(d.id)">
               <td>{{ d.name | toString }}</td>
-              <td v-if="d.ageYear > 0 && d.ageMonth > 0">{{ d.ageYear }} ปี {{ d.ageMonth }} เดือน</td>
+              <td v-if="d.ageYear > 0 && d.ageMonth > 0">
+                {{ d.ageYear }} ปี {{ d.ageMonth }} เดือน
+              </td>
               <td v-if="d.ageYear > 0 && d.ageMonth === 0">{{ d.ageYear }} ปี</td>
               <td v-if="d.ageYear === 0 && d.ageMonth > 0">{{ d.ageMonth }} เดือน</td>
               <td>{{ d.sex | formatSex }}</td>
@@ -146,6 +148,7 @@ export default Vue.extend({
 .listdog {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .datalist {
