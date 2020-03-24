@@ -107,7 +107,6 @@ export default Vue.extend({
 @use 'assets/styles/responsive';
 
 .cs {
-  font-size: 1rem;
   display: inline-block;
 
   * {

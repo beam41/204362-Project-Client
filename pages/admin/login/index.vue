@@ -28,6 +28,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import LoginService from '@/services/LoginService';
+import User from '@/models/User';
 
 export default Vue.extend({
   name: 'Login',
@@ -38,9 +39,19 @@ export default Vue.extend({
   head: () => ({
     title: 'Admin: Login',
   }),
+  mounted() {
+    const storage = localStorage.getItem('mm-login');
+    if (storage) {
+      const login: User = JSON.parse(storage) as User;
+      if (login.loggedIn !== false) {
+        this.$store.commit('LOGIN', login);
+        this.$router.push('/admin/news');
+      }
+    }
+  },
   methods: {
     goBack() {
-      this.$router.push('');
+      this.$router.push('/');
     },
     login() {
       this.trylogin = true;

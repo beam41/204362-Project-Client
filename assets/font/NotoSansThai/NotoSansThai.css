@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Noto Sans Thai';
+  src: url(NotoSansThaiUI-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  src: url(NotoSansThaiUI-Regular.ttf);
+  font-weight: normal;
+}
