@@ -53,12 +53,16 @@ export default Vue.extend({
       this.imgErr = false;
       let err = false;
       // @ts-ignore
-      const title = this.$refs.title.value;
+      const title: string = this.$refs.title.value;
       // @ts-ignore
       const desc = this.$refs.desc.value;
       // @ts-ignore
       const qr = this.$refs.qr.value;
-      if (title === '') {
+      if (
+        title === '' ||
+        !/[\wก-์\d]/g.test(title[0]) ||
+        !/[\wก-์\d]/g.test(title[title.length - 1])
+      ) {
         this.titleErr = true;
         err = true;
       }

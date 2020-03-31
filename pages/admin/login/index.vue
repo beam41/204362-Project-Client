@@ -113,7 +113,7 @@ export default Vue.extend({
 
   .err {
     text-align: center;
-    color: var.$warn;
+    color: var.$txt-warn;
   }
 }
 </style>

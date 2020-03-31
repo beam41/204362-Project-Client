@@ -223,23 +223,23 @@ export default Vue.extend({
   .error {
     .showbox,
     .dropdown {
-      border-color: var.$warn;
+      border-color: var.$txt-warn;
 
       &:hover {
         border-color: color.lightness(var.$warn, -20%);
         svg {
-          color: var.$warn;
+          color: var.$txt-warn;
         }
       }
     }
 
     .showbox {
-      color: var.$warn;
+      color: var.$txt-warn;
       &.curr-disable {
-        color: color.lightness(var.$warn, 10%);
+        color: color.lightness(var.$txt-warn, 10%);
       }
       svg {
-        color: color.lightness(var.$warn, 10%);
+        color: color.lightness(var.$txt-warn, 10%);
       }
     }
   }
