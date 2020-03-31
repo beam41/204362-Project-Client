@@ -49,6 +49,7 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'nuxt-purgecss',
+    'nuxt-compress',
   ],
   /*
    ** Build configuration
@@ -78,5 +79,6 @@ export default {
   },
   purgeCSS: {
     // your settings here
+    mode: 'postcss',
   },
 };

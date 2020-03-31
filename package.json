@@ -20,6 +20,7 @@
     "axios": "^0.19.2",
     "lodash": "^4.17.15",
     "nuxt": "^2.0.0",
+    "nuxt-compress": "^1.1.0",
     "nuxt-purgecss": "^0.2.1",
     "qrcode.vue": "^1.7.0",
     "v-lazy-image": "^1.4.0",
