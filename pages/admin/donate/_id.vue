@@ -31,7 +31,10 @@
       <div class="input-box">
         <div class="sep">
           <div class="form-control">
-            <label>หัวเรื่อง:</label>
+            <label class="with-warn">
+              <span>หัวเรื่อง:</span>
+              <span class="warn">ขึ้นต้นและลงท้ายได้เฉพาะตัวหนังสือ หรือ ตัวเลข</span>
+            </label>
             <input
               ref="title"
               v-model="donate.title"

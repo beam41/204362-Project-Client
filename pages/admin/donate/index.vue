@@ -6,8 +6,8 @@
           <font-awesome-icon :icon="['fas', 'plus']" />New
         </button>
         <div class="input-group">
-          <input ref="search" type="text" placeholder="Search" @keyup.enter="search()" />
-          <button class="btn-default" @click="search()">
+          <input v-model="searchString" type="text" placeholder="Search" />
+          <button class="btn-default">
             <font-awesome-icon :icon="['fas', 'search']" />
           </button>
         </div>
@@ -92,10 +92,6 @@ export default Vue.extend({
     },
     addDonate() {
       this.$router.push('/admin/donate/add');
-    },
-    search() {
-      // @ts-ignore
-      this.searchString = this.$refs.search.value;
     },
   },
 });

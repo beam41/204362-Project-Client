@@ -12,13 +12,11 @@
 
 ::-webkit-scrollbar-track {
   background: var.$scrollbar-track-color;
-  border-radius: var.$scrollbar-width;
 }
 
 ::-webkit-scrollbar-thumb {
   @extend %animate-all;
   background: var.$scrollbar-thumb-color;
-  border-radius: var.$scrollbar-width;
 }
 
 ::-webkit-scrollbar-thumb:hover {
