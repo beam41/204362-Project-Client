@@ -48,6 +48,7 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    'nuxt-purgecss',
   ],
   /*
    ** Build configuration
@@ -74,5 +75,8 @@ export default {
         implementation: Sass,
       },
     },
+  },
+  purgeCSS: {
+    // your settings here
   },
 };
