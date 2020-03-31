@@ -82,6 +82,7 @@ export default {
   },
   render: {
     compressor: {
+      level: 9,
       threshold: 0,
     },
   },
