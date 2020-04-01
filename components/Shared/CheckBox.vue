@@ -1,8 +1,12 @@
 <template>
   <label>
     <slot></slot>
-    <input ref="cb" type="checkbox" @change="onC($event)" />
-    <span class="cb"></span>
+    <input ref="cb" type="checkbox" :checked="isCheck" :disabled="disabled" @change="onC($event)" />
+    <span class="cb label-less">
+      <span class="tick">
+        <font-awesome-icon :icon="['fas', 'check']" />
+      </span>
+    </span>
   </label>
 </template>
 
@@ -11,6 +15,11 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'CheckBox',
+  props: {
+    isCheck: Boolean,
+    labelLess: Boolean,
+    disabled: Boolean,
+  },
   methods: {
     onC(event: any) {
       this.$emit('change', event);
@@ -45,11 +54,14 @@ label {
     border: var.$border-width solid var.$gray;
     border-radius: var.$b-radius;
 
+    &.label-less {
+      top: -17px;
+      left: 8.5px;
+    }
+
     // tick
-    &:after {
+    .tick {
       @extend %animate-all-bounceend;
-      @extend %font-awesome;
-      content: '\f00c';
       position: absolute;
       opacity: 0;
       left: var.$tick-left;
@@ -73,12 +85,6 @@ label {
 
     // after input got checked
     &:checked {
-      & ~ .cb:after {
-        opacity: 1;
-        top: var.$tick-top;
-        visibility: visible;
-      }
-
       &:hover {
         & ~ .cb {
           background-color: color.lightness(var.$gray, -20%);
@@ -89,6 +95,12 @@ label {
       & ~ .cb {
         background-color: var.$gray;
         border-color: var.$gray;
+
+        .tick {
+          opacity: 1;
+          top: var.$tick-top;
+          visibility: visible;
+        }
       }
     }
   }

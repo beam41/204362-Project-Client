@@ -1,5 +1,20 @@
 <template>
   <div class="adminbox">
+    <Modal :show="currAcceptSelect ? true : false">
+      <div class="m-top">
+        <h5>Delete</h5>
+      </div>
+      <div class="m-mid" v-if="currAcceptSelect">
+        <p>
+          คุณต้องการอนุมัติ
+          <strong>{{ currAcceptSelect.title }}</strong> หรือไม่
+        </p>
+      </div>
+      <div class="m-bot">
+        <button class="btn-success" @click="acceptedChange()">Accept</button>
+        <button class="btn-default" @click="unAcceptedChange()">Cancel</button>
+      </div>
+    </Modal>
     <div class="padadmin">
       <div class="listpage-top">
         <button class="btn-default svg-m" @click="addDonate()">
@@ -28,7 +43,15 @@
             <tr v-for="d in formattedArrays" :key="d.id" @click="dataDonate(d.id)">
               <td>{{ d.title }}</td>
               <td>{{ d.creator }}</td>
-              <td>{{ d.accepted }}</td>
+              <td>
+                <span @click.stop>
+                  <CheckBox
+                    :is-check="d.accepted"
+                    :disabled="d.accepted || login.userType === 'S'"
+                    @change="acceptedChangePrompt($event, d)"
+                  />
+                </span>
+              </td>
             </tr>
           </transition-group>
 
@@ -44,20 +67,27 @@
 <script lang="ts">
 import Vue from 'vue';
 import _ from 'lodash';
+import { mapState } from 'vuex';
 import Sorter from '@/components/Shared/Sorter.vue';
+import CheckBox from '@/components/Shared/CheckBox.vue';
 import DonateServ from '@/services/DonateApiService';
+import Donate from '@/models/donate';
+import Modal from '@/components/Shared/Modal.vue';
 
 export default Vue.extend({
   layout: 'admin',
   name: 'ListDonate',
   components: {
     Sorter,
+    CheckBox,
+    Modal,
   },
   data: () => ({
-    donates: null as Array<any> | null,
+    donates: null as Array<Donate> | null,
     currOption: 0,
     descending: false,
     searchString: '',
+    currAcceptSelect: null as Donate | null,
   }),
   head: () => ({
     title: 'Admin: Donate',
@@ -65,6 +95,9 @@ export default Vue.extend({
   computed: {
     by: () => ['ชื่อเรื่อง', 'ผู้สร้าง', 'อนุมัติแล้ว'],
     field: () => ['title', 'creator', 'accepted'],
+    ...mapState({
+      login: (state: any) => state.login as User,
+    }),
     formattedArrays() {
       let filter = this.donates;
       if (this.searchString !== '') {
@@ -92,6 +125,22 @@ export default Vue.extend({
     },
     addDonate() {
       this.$router.push('/admin/donate/add');
+    },
+    acceptedChangePrompt(event: any, don: Donate) {
+      if (event.target.checked) {
+        this.currAcceptSelect = don;
+        this.currAcceptSelect!.accepted = true;
+      }
+    },
+    unAcceptedChange() {
+      this.currAcceptSelect!.accepted = false;
+      this.currAcceptSelect = null;
+    },
+    acceptedChange() {
+      DonateServ.acceptDonate(this.$store, this.currAcceptSelect!.id!, {
+        accepted: true,
+      } as Donate);
+      this.currAcceptSelect = null;
     },
   },
 });

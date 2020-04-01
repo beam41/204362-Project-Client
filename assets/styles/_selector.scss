@@ -23,11 +23,6 @@
   border: var.$border-width solid var.$gray;
 }
 
-%font-awesome {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-}
-
 @mixin th-td-spacing($col-count) {
   th,
   td {
