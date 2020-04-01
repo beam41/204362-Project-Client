@@ -73,6 +73,7 @@ import CheckBox from '@/components/Shared/CheckBox.vue';
 import DonateServ from '@/services/DonateApiService';
 import Donate from '@/models/donate';
 import Modal from '@/components/Shared/Modal.vue';
+import User from '@/models/User';
 
 export default Vue.extend({
   layout: 'admin',

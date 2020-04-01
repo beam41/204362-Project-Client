@@ -22,7 +22,8 @@
         <font-awesome-icon
           :class="login.userType === 'A' ? 'admin-color' : 'staff-color'"
           :icon="['fas', 'user']"
-        />{{ login.firstName }}
+        />
+        {{ login.firstName }}
       </h5>
       <h6>{{ login.deptNo | depName }}</h6>
       <button class="btn-warn" href="#" @click="logout()">
@@ -124,6 +125,10 @@ export default Vue.extend({
   font-weight: 500;
   margin: 2rem 0;
   padding: 1rem 0;
+
+  &.nuxt-link-active, &.nuxt-link-active:hover {
+    background-color: color.lightness(var.$gray, -25%);
+  }
 
   &:hover {
     text-decoration: none;

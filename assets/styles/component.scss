@@ -56,6 +56,10 @@ body {
   font-family: var.$font-fam;
 }
 
+.visitor-body {
+  overflow-y: scroll;
+}
+
 // Text-Normalize
 h1,
 h2,
