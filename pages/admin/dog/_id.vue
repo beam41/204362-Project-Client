@@ -57,10 +57,7 @@
             />
           </div>
           <div class="form-control">
-            <label class="with-warn">
-              <span>อายุ:</span>
-              <span class="warn">ช่วงอายุ (1-21 ปี) หรือ (1- 11 เดือน)</span>
-            </label>
+            <span>อายุ: </span>
             <input
               ref="ageYear"
               v-model="dog.ageYear"
@@ -77,9 +74,8 @@
               style="width: 50px"
             />
             เดือน
-          </div>
-          <div class="form-control">
-            <label>เพศ:</label>
+
+            <label style="margin-left: 200px">เพศ:</label>
             <span class="select" style="width: 200px">
               <Select
                 :error="sexErr"
@@ -90,13 +86,10 @@
               />
             </span>
           </div>
-          <div class="form-control">
-            <label>ลักษณะ:</label>
-            <textarea ref="description" v-model="dog.description" :class="descErr ? 'error' : ''" />
-          </div>
+
           <div class="form-control">
             <label>สีปลอกคอ:</label>
-            <span class="select" style="width: 200px">
+            <span class="select" style="width: 200px; margin-right: 100px">
               <Select
                 :error="colorCollarErr"
                 custom-text="กรุณาเลือกสีปลอกคอ"
@@ -105,8 +98,7 @@
                 @sel-change="onChangeColor($event)"
               />
             </span>
-          </div>
-          <div class="form-control">
+
             <label>สถานะ:</label>
             <span class="select" style="width: 200px">
               <Select
@@ -148,25 +140,42 @@
           </div>
           <div class="form-control">
             <label>ที่อยู่:</label>
-            <textarea ref="location" v-model="dog.location" :class="locationErr ? 'error' : ''" />
+            <textarea
+              ref="location"
+              v-model="dog.location"
+              :class="locationErr ? 'error' : ''"
+              style="width: 100%; height: 20vh;"
+            />
           </div>
         </div>
 
-        <div class="img-upload">
-          <div class="form-control im">
-            <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
-            <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
-          </div>
+        <div>
           <div class="form-control">
-            <input ref="file" type="file" accept="image/*" :disabled="uploading" />
+            <label>ลักษณะ:</label>
+            <textarea
+              ref="description"
+              v-model="dog.description"
+              :class="descErr ? 'error' : ''"
+              style="width: 100%; height: 10vh;"
+            />
           </div>
-          <div class="form-control">
-            <button
-              :class="'btn-' + (imgErr ? 'warn' : 'default')"
-              :disabled="uploading"
-              @click="upload()"
-              >Upload</button
-            >
+
+          <div class="img-upload">
+            <div class="form-control im" style="width: 100%;">
+              <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
+              <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+            </div>
+            <div class="form-control">
+              <input ref="file" type="file" accept="image/*" :disabled="uploading" />
+            </div>
+            <div class="form-control">
+              <button
+                :class="'btn-' + (imgErr ? 'warn' : 'default')"
+                :disabled="uploading"
+                @click="upload()"
+                >Upload</button
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -225,5 +234,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+input {
+  width: 100%;
 }
 </style>
