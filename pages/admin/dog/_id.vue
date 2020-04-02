@@ -19,7 +19,9 @@
               delShow = false;
             }
           "
-        >Cancel</button>
+        >
+          Cancel
+        </button>
       </div>
     </Modal>
 
@@ -27,7 +29,12 @@
       <div class="input-box">
         <div class="sep">
           <div class="form-control">
-            <label>ชื่อ:</label>
+            <label class="with-warn">
+              <span>ชื่อ:</span>
+              <span class="warn"
+                >ขึ้นต้นและลงท้ายได้เฉพาะตัวหนังสือ หากเพิ่มชื่อใส่เครื่องหมาย ','</span
+              >
+            </label>
             <input
               ref="name"
               v-model="dog.name"
@@ -37,7 +44,10 @@
             />
           </div>
           <div class="form-control">
-            <label>พันธุ์:</label>
+            <label class="with-warn">
+              <span>พันธุ์:</span>
+              <span class="warn">ขึ้นต้นและลงท้ายได้เฉพาะตัวหนังสือ</span>
+            </label>
             <input
               ref="breed"
               v-model="dog.breed"
@@ -47,7 +57,10 @@
             />
           </div>
           <div class="form-control">
-            <label>อายุ:</label>
+            <label class="with-warn">
+              <span>อายุ:</span>
+              <span class="warn">ช่วงอายุ (1-21 ปี) หรือ (1- 11 เดือน)</span>
+            </label>
             <input
               ref="ageYear"
               v-model="dog.ageYear"
@@ -106,7 +119,12 @@
             </span>
           </div>
           <div class="form-control">
-            <label>เบอร์ติดต่อ:</label>
+            <label class="with-warn">
+              <span>เบอร์ติดต่อ:</span>
+              <span class="warn"
+                >ขึ้นต้นและลงท้ายได้เฉพาะตัวเลข หากเพิ่มหมายเลขใส่เครื่องหมาย ','</span
+              >
+            </label>
             <input
               ref="caretakerPhone"
               v-model="dog.caretakerPhone"
@@ -116,7 +134,10 @@
             />
           </div>
           <div class="form-control">
-            <label>ผู้ดูแล:</label>
+            <label class="with-warn">
+              <span>ผู้ดูแล:</span>
+              <span class="warn">ขึ้นต้นและลงท้ายได้เฉพาะตัวหนังสือ</span>
+            </label>
             <input
               ref="caretaker"
               v-model="dog.caretaker"
@@ -144,7 +165,8 @@
               :class="'btn-' + (imgErr ? 'warn' : 'default')"
               :disabled="uploading"
               @click="upload()"
-            >Upload</button>
+              >Upload</button
+            >
           </div>
         </div>
       </div>
@@ -161,7 +183,8 @@
                 delShow = true;
               }
             "
-          >Delete</button>
+            >Delete</button
+          >
         </div>
       </div>
     </div>
