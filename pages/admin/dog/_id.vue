@@ -211,6 +211,7 @@
 @use 'assets/styles/color';
 @use 'assets/styles/selector';
 @use 'assets/styles/responsive';
+
 .dog-au {
   grid-template-rows: 90% 10%;
 }
