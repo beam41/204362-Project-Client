@@ -89,6 +89,7 @@
               >
                 Upload
               </button>
+              <p class="txt-warn">อัตราส่วนที่แนะนำ 1:1</p>
             </div>
           </div>
         </div>
@@ -124,7 +125,6 @@
 @use 'assets/styles/color';
 @use 'assets/styles/selector';
 @use 'assets/styles/responsive';
-
 
 .input-au {
   width: 100%;

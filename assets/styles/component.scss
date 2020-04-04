@@ -1,6 +1,7 @@
 @use 'var';
 @use 'color';
 @use 'selector';
+@use 'responsive';
 
 @import '@/assets/font/NotoSansThai/NotoSansThai.css';
 @import 'sanitize.css';
@@ -310,4 +311,18 @@ a {
 
 label[for] {
   cursor: pointer;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px 5% 80px 5%;
+
+  @include responsive.respond-to(responsive.$tablet-portrait) {
+    & {
+      padding: 50px 0 80px 0;
+    }
+  }
+  width: 100%;
 }

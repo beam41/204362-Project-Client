@@ -123,6 +123,20 @@ $table-body-height: 46px;
     }
   }
 
+  %txt-warn {
+    font-size: 0.75em;
+    color: var.$txt-warn;
+    align-self: flex-end;
+  }
+
+  .txt-warn {
+    @extend %txt-warn;
+  }
+
+  p.txt-warn {
+    margin: 0.5em 0 0 0;
+  }
+
   .with-warn {
     display: flex;
     width: 100%;
@@ -130,9 +144,7 @@ $table-body-height: 46px;
     justify-content: space-between;
 
     .warn {
-      font-size: 0.75em;
-      color: var.$txt-warn;
-      align-self: flex-end;
+      @extend %txt-warn;
     }
   }
 }
