@@ -96,6 +96,12 @@ export default Vue.extend({
       font-size: 1.5rem;
     }
 
+    & h6,
+    & p {
+      margin-left: 0.3rem;
+      margin-right: 0.3rem;
+    }
+
     .desc {
       margin-bottom: 2rem;
     }
