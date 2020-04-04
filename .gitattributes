@@ -10,6 +10,6 @@
 *.txt   text eol=lf
 
 *.jpg   binary
-*.png	binary
-*.ico	binary
-*.otf	binary
+*.png	  binary
+*.ico	  binary
+*.otf	  binary

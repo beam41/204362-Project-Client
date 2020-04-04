@@ -109,6 +109,7 @@ export default Vue.extend({
     .bor {
       margin-bottom: 0.5rem;
       font-size: 0.8rem;
+      user-select: none;
     }
 
     img {
