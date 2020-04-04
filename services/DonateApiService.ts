@@ -6,6 +6,10 @@ function getDonateList($store: any): Promise<AxiosResponse<Donate[]>> {
   return a.get('api/donate/list', headerWriter($store));
 }
 
+function getDonateListVisitor(): Promise<AxiosResponse<Donate[]>> {
+  return a.get('api/donate/visitor');
+}
+
 function getDonate($store: any, id: string): Promise<AxiosResponse<Donate>> {
   return a.get(`api/donate/${id}`, headerWriter($store));
 }
@@ -33,4 +37,5 @@ export default {
   delDonate,
   putDonate,
   acceptDonate,
+  getDonateListVisitor,
 };

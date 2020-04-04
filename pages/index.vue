@@ -1,18 +1,16 @@
 <template>
-  <div class="container">
-    <div class="content">
-      <h2>About</h2>
-      <h5>we are mheanmaa</h5>
-      <section class="animated-grid">
-        <div class="card">a</div>
-        <div class="card">b</div>
-        <div class="card">c</div>
-        <div class="card">d</div>
-        <div class="card">e</div>
-        <div class="card">f</div>
-        <div class="card">main</div>
-      </section>
-    </div>
+  <div class="content">
+    <h2>About</h2>
+    <h5>we are mheanmaa</h5>
+    <section class="animated-grid">
+      <div class="card">a</div>
+      <div class="card">b</div>
+      <div class="card">c</div>
+      <div class="card">d</div>
+      <div class="card">e</div>
+      <div class="card">f</div>
+      <div class="card">main</div>
+    </section>
   </div>
 </template>
 
@@ -25,19 +23,15 @@ export default Vue.extend({
 });
 </script>
 
-<style>
-.container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
+<style scoped>
 .content {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 50px 5% 80px 5%;
+  padding: 50px 5% 80px 5%;
   width: 100%;
 }
+
 .animated-grid {
   height: 100vh;
   width: 100%;
