@@ -91,7 +91,7 @@ export default Vue.extend({
           // @ts-ignore
           title: this.$refs.title.value,
           creator: undefined,
-          accepted: this.$route.params.id !== 'add' ? this.donate.accepted : false,
+          accepted: false,
           // @ts-ignore
           description: this.$refs.desc.value,
           // @ts-ignore

@@ -69,21 +69,27 @@ export default Vue.extend({
   align-items: center;
 
   .loader {
-    height: 10vh;
+    height: 740px;
   }
 
   .don-list {
-    width: 400px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 1rem;
+    min-height: 740px;
   }
 
   .don-box {
-    background-color: color.lightness(var.$violet, 20%);
+    place-self: center;
+    background-color: color.lightness(var.$violet, 40%);
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: var.$b-radius;
     overflow: hidden;
     margin: 1rem 0;
+    width: 400px;
 
     h6 {
       margin-bottom: 0.5rem;
