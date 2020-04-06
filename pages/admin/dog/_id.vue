@@ -43,6 +43,7 @@
               placeholder="กรุณากรอกชื่อ"
             />
           </div>
+
           <div class="form-control">
             <label class="with-warn">
               <span>พันธุ์:</span>
@@ -56,6 +57,7 @@
               placeholder="กรุณากรอกพันธุ์"
             />
           </div>
+
           <div class="form-control">
             <span>อายุ: </span>
             <input
@@ -75,8 +77,8 @@
             />
             เดือน
 
-            <label style="margin-left: 200px">เพศ:</label>
-            <span class="select" style="width: 200px">
+            <label style="margin-left: 50px">เพศ:</label>
+            <span class="select" style="width: 150px">
               <Select
                 :error="sexErr"
                 custom-text="กรุณาเลือกเพศ"
@@ -98,9 +100,11 @@
                 @sel-change="onChangeColor($event)"
               />
             </span>
+          </div>
 
+          <div class="form-control">
             <label>สถานะ:</label>
-            <span class="select" style="width: 200px">
+            <span class="select" style="width: 150px">
               <Select
                 :error="isAliveErr"
                 custom-text="กรุณาเลือกสถานะ"
@@ -110,6 +114,33 @@
               />
             </span>
           </div>
+
+          <div class="form-control">
+            <label>ลักษณะ:</label>
+            <textarea
+              ref="description"
+              v-model="dog.description"
+              :class="descErr ? 'error' : ''"
+              style="width: 100%; height: 20vh;"
+            />
+          </div>
+        </div>
+
+        <div class="sep">
+          <div class="form-control">
+            <label class="with-warn">
+              <span>ผู้ดูแล:</span>
+              <span class="warn">ขึ้นต้นและลงท้ายได้เฉพาะตัวหนังสือ</span>
+            </label>
+            <input
+              ref="caretaker"
+              v-model="dog.caretaker"
+              :class="caretakerErr ? 'error' : ''"
+              type="text"
+              placeholder="กรุณากรอกชื่อผู้ดูแล"
+            />
+          </div>
+
           <div class="form-control">
             <label class="with-warn">
               <span>เบอร์ติดต่อ:</span>
@@ -125,43 +156,19 @@
               placeholder="กรุณากรอกข้อมูลติดต่อ"
             />
           </div>
-          <div class="form-control">
-            <label class="with-warn">
-              <span>ผู้ดูแล:</span>
-              <span class="warn">ขึ้นต้นและลงท้ายได้เฉพาะตัวหนังสือ</span>
-            </label>
-            <input
-              ref="caretaker"
-              v-model="dog.caretaker"
-              :class="caretakerErr ? 'error' : ''"
-              type="text"
-              placeholder="กรุณากรอกชื่อผู้ดูแล"
-            />
-          </div>
+
           <div class="form-control">
             <label>ที่อยู่:</label>
             <textarea
               ref="location"
               v-model="dog.location"
               :class="locationErr ? 'error' : ''"
-              style="width: 100%; height: 20vh;"
-            />
-          </div>
-        </div>
-
-        <div>
-          <div class="form-control">
-            <label>ลักษณะ:</label>
-            <textarea
-              ref="description"
-              v-model="dog.description"
-              :class="descErr ? 'error' : ''"
               style="width: 100%; height: 10vh;"
             />
           </div>
 
           <div class="img-upload">
-            <div class="form-control im" style="width: 100%;">
+            <div class="form-control im" style="width: 10em; height: 10em; ">
               <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
               <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
             </div>
@@ -181,20 +188,18 @@
       </div>
 
       <div class="admin-btn-pos">
-        <div>
-          <button class="btn-success" :disabled="uploading" @click="saveValidate()">Save</button>
-          <button
-            v-if="$route.params.id !== 'add'"
-            class="btn-warn"
-            :disabled="uploading"
-            @click="
-              () => {
-                delShow = true;
-              }
-            "
-            >Delete</button
-          >
-        </div>
+        <button class="btn-success" :disabled="uploading" @click="saveValidate()">Save</button>
+        <button
+          v-if="$route.params.id !== 'add'"
+          class="btn-warn"
+          :disabled="uploading"
+          @click="
+            () => {
+              delShow = true;
+            }
+          "
+          >Delete</button
+        >
       </div>
     </div>
   </div>
