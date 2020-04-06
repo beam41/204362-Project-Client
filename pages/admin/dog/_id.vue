@@ -172,7 +172,7 @@
               <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
               <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
             </div>
-            <div>
+            <div class="upload-pos">
               <div class="form-control">
                 <input ref="file" type="file" accept="image/*" :disabled="uploading" />
               </div>
@@ -254,5 +254,9 @@ input {
   .im {
     margin: 0;
   }
+}
+
+.upload-pos {
+  margin: 15px;
 }
 </style>
