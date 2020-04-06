@@ -172,16 +172,18 @@
               <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
               <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
             </div>
-            <div class="form-control">
-              <input ref="file" type="file" accept="image/*" :disabled="uploading" />
-            </div>
-            <div class="form-control">
-              <button
-                :class="'btn-' + (imgErr ? 'warn' : 'default')"
-                :disabled="uploading"
-                @click="upload()"
-                >Upload</button
-              >
+            <div>
+              <div class="form-control">
+                <input ref="file" type="file" accept="image/*" :disabled="uploading" />
+              </div>
+              <div class="form-control">
+                <button
+                  :class="'btn-' + (imgErr ? 'warn' : 'default')"
+                  :disabled="uploading"
+                  @click="upload()"
+                  >Upload</button
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -244,5 +246,13 @@
 
 input {
   width: 100%;
+}
+
+.img-upload {
+  flex-direction: row;
+
+  .im {
+    margin: 0;
+  }
 }
 </style>
