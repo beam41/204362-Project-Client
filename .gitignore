@@ -88,3 +88,5 @@ sw.*
 
 # vs generated folder
 .vs
+
+*.local
