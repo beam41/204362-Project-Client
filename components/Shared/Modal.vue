@@ -24,7 +24,7 @@ export default {
 @use 'assets/styles/responsive';
 
 .m-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   size: 100%;

@@ -54,10 +54,10 @@ export default Vue.extend({
 
 .admin {
   display: grid;
-  height: 100vh;
+  min-height: 100vh;
   grid-template-columns: max(#{var.$navbar-minwidth}, #{var.$navbar-width}) 1fr;
   grid-template-rows: var.$top-part-h 1fr;
-  overflow: hidden;
+  overflow-x: hidden;
 
   .headstyle {
     display: flex;
