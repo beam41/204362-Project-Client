@@ -63,22 +63,21 @@
             <input
               ref="ageYear"
               v-model="dog.ageYear"
-              :class="ageYearErr ? 'error' : ''"
+              :class="(ageYearErr ? 'error' : '') + 'w-50'"
               type="text"
-              style="width: 50px"
             />
             ปี
             <input
               ref="ageMonth"
               v-model="dog.ageMonth"
-              :class="ageMonthErr ? 'error' : ''"
+              :class="(ageMonthErr ? 'error' : '') + 'w-50'"
               type="text"
-              style="width: 50px"
             />
             เดือน
-
-            <label style="margin-left: 50px">เพศ:</label>
-            <span class="select" style="width: 150px">
+          </div>
+          <div class="form-control">
+            <label class="ml-50">เพศ:</label>
+            <span class="select">
               <Select
                 :error="sexErr"
                 custom-text="กรุณาเลือกเพศ"
@@ -91,7 +90,7 @@
 
           <div class="form-control">
             <label>สีปลอกคอ:</label>
-            <span class="select" style="width: 200px; margin-right: 100px">
+            <span class="select collar">
               <Select
                 :error="colorCollarErr"
                 custom-text="กรุณาเลือกสีปลอกคอ"
@@ -104,7 +103,7 @@
 
           <div class="form-control">
             <label>สถานะ:</label>
-            <span class="select" style="width: 150px">
+            <span class="select select-short">
               <Select
                 :error="isAliveErr"
                 custom-text="กรุณาเลือกสถานะ"
@@ -120,8 +119,7 @@
             <textarea
               ref="description"
               v-model="dog.description"
-              :class="descErr ? 'error' : ''"
-              style="width: 100%; height: 20vh;"
+              :class="(descErr ? 'error' : '') + 'desc'"
             />
           </div>
         </div>
@@ -162,13 +160,12 @@
             <textarea
               ref="location"
               v-model="dog.location"
-              :class="locationErr ? 'error' : ''"
-              style="width: 100%; height: 10vh;"
+              :class="(locationErr ? 'error' : '') + 'desc'"
             />
           </div>
 
           <div class="img-upload">
-            <div class="form-control im" style="width: 10em; height: 10em; ">
+            <div class="form-control im">
               <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
               <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
             </div>
@@ -232,10 +229,10 @@
 }
 
 .input-box {
-  place-self: center stretch;
   display: grid;
   gap: 1rem 1rem;
   grid-template-columns: 1fr 1fr;
+  width: 100%;
 }
 
 .sep {
@@ -253,10 +250,25 @@ input {
 
   .im {
     margin: 0;
+    width: 10em;
+    height: 10em;
   }
 }
 
 .upload-pos {
   margin: 15px;
+}
+
+.w-50 {
+  width: 50px;
+}
+
+.select {
+  width: 200px;
+}
+
+.desc {
+  width: 100%;
+  height: 12.5rem;
 }
 </style>

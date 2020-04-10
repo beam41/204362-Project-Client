@@ -136,6 +136,10 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.txt {
+  height: 10rem;
+}
+
 .sep {
   display: flex;
   flex-direction: column;
