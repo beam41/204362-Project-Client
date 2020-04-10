@@ -63,14 +63,16 @@
             <input
               ref="ageYear"
               v-model="dog.ageYear"
-              :class="(ageYearErr ? 'error' : '') + 'w-50'"
+              :class="ageYearErr ? 'error' : ''"
+              class="w-50"
               type="text"
             />
             ปี
             <input
               ref="ageMonth"
               v-model="dog.ageMonth"
-              :class="(ageMonthErr ? 'error' : '') + 'w-50'"
+              :class="ageMonthErr ? 'error' : ''"
+              class="w-50"
               type="text"
             />
             เดือน
@@ -119,7 +121,8 @@
             <textarea
               ref="description"
               v-model="dog.description"
-              :class="(descErr ? 'error' : '') + 'desc'"
+              :class="descErr ? 'error' : ''"
+              class="desc"
             />
           </div>
         </div>
@@ -160,7 +163,8 @@
             <textarea
               ref="location"
               v-model="dog.location"
-              :class="(locationErr ? 'error' : '') + 'desc'"
+              :class="locationErr ? 'error' : ''"
+              class="desc"
             />
           </div>
 
