@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import UserNavbarMobile from './UserNavbarMobile';
+import UserNavbarMobile from './UserNavbarMobile.vue';
 
 export default Vue.extend({
   name: 'UserNavbar',
@@ -32,7 +32,7 @@ export default Vue.extend({
       this.mobileView = window.innerWidth <= 990;
     },
   },
-  created() {
+  mounted() {
     this.handleView();
     window.addEventListener('resize', this.handleView);
   },
