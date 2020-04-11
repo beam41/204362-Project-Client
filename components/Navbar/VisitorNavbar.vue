@@ -2,7 +2,7 @@
   <div>
     <div class="imgcontainer"></div>
     <VisitorNavbarMobile v-if="mobileView"></VisitorNavbarMobile>
-    <div class="navbar" v-if="!mobileView">
+    <div v-if="!mobileView" class="navbar">
       <nav class="navbar" @click.prevent>
         <nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link>
         <nuxt-link to="/news" class="nav-link news">ข่าว</nuxt-link>
@@ -21,23 +21,23 @@ import VisitorNavbarMobile from './VisitorNavbarMobile.vue';
 
 export default Vue.extend({
   name: 'VisitorNavbar',
+  components: {
+    VisitorNavbarMobile,
+  },
   data: () => {
     return {
       mobileView: false,
       showNav: false,
     };
   },
-  methods: {
-    handleView() {
-      this.mobileView = window.innerWidth <= 990;
-    },
-  },
   mounted() {
     this.handleView();
     window.addEventListener('resize', this.handleView);
   },
-  components: {
-    VisitorNavbarMobile,
+  methods: {
+    handleView() {
+      this.mobileView = window.innerWidth <= 990;
+    },
   },
 });
 </script>

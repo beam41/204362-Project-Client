@@ -4,7 +4,7 @@
       <div class="m-top">
         <h5>Delete</h5>
       </div>
-      <div class="m-mid" v-if="currAcceptSelect">
+      <div v-if="currAcceptSelect" class="m-mid">
         <p>
           คุณต้องการอนุมัติ
           <strong>{{ currAcceptSelect.title }}</strong> หรือไม่
@@ -17,8 +17,10 @@
     </Modal>
     <div class="padadmin">
       <div class="listpage-top">
-        <nuxt-link tag="button" class="btn-default svg-m" to="/admin/donate/add">
-          <font-awesome-icon :icon="['fas', 'plus']" />New
+        <nuxt-link to="/admin/donate/add">
+          <button class="btn-default svg-m">
+            <font-awesome-icon :icon="['fas', 'plus']" />New
+          </button>
         </nuxt-link>
         <div class="input-group">
           <input v-model="searchString" type="text" placeholder="Search" />
@@ -40,24 +42,24 @@
         </div>
         <div class="sub-table-wrapper">
           <transition-group v-if="donates" class="datalist" name="flip-list" tag="table">
-            <nuxt-link
-              tag="tr"
-              v-for="d in formattedArrays"
-              :key="d.id"
-              :to="`/admin/donate/${d.id}`"
-            >
-              <td>{{ d.title }}</td>
-              <td>{{ d.creator }}</td>
+            <tr v-for="d in formattedArrays" :key="d.id">
               <td>
-                <span @click.stop>
-                  <CheckBox
-                    :is-check="d.accepted"
-                    :disabled="d.accepted || login.userType === 'S'"
-                    @change="acceptedChangePrompt($event, d)"
-                  />
-                </span>
+                <nuxt-link :to="`/admin/donate/${d.id}`">{{ d.title }}</nuxt-link>
               </td>
-            </nuxt-link>
+              <td>
+                <nuxt-link :to="`/admin/donate/${d.id}`">{{ d.creator }}</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/donate/${d.id}`">
+                  <span @click.stop>
+                    <CheckBox
+                      :is-check="d.accepted"
+                      :disabled="d.accepted || login.userType === 'S'"
+                      @change="acceptedChangePrompt($event, d)"
+                    /> </span
+                ></nuxt-link>
+              </td>
+            </tr>
           </transition-group>
 
           <div v-else class="loader">

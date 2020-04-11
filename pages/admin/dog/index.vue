@@ -2,8 +2,10 @@
   <div class="listdog adminbox">
     <div class="padadmin">
       <div class="listpage-top">
-        <nuxt-link tag="button" class="btn-default svg-m" to="/admin/dog/add">
-          <font-awesome-icon :icon="['fas', 'plus']" />New
+        <nuxt-link to="/admin/dog/add">
+          <button class="btn-default svg-m">
+            <font-awesome-icon :icon="['fas', 'plus']" />New
+          </button>
         </nuxt-link>
         <div class="input-group">
           <input v-model="searchString" type="text" placeholder="Search name" />
@@ -29,19 +31,39 @@
         </div>
         <div class="sub-table-wrapper">
           <transition-group v-if="dogs" class="datalist" name="flip-list" tag="table">
-            <nuxt-link tag="tr" v-for="d in formattedArrays" :key="d.id" :to="`/admin/dog/${d.id}`">
-              <td>{{ d.name | arrToString }}</td>
-              <td v-if="d.ageYear > 0 && d.ageMonth > 0">
-                {{ d.ageYear }} ปี {{ d.ageMonth }} เดือน
+            <tr v-for="d in formattedArrays" :key="d.id">
+              <td>
+                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.name | arrToString }}</nuxt-link>
               </td>
-              <td v-if="d.ageYear > 0 && d.ageMonth === 0">{{ d.ageYear }} ปี</td>
-              <td v-if="d.ageYear === 0 && d.ageMonth > 0">{{ d.ageMonth }} เดือน</td>
-              <td>{{ d.sex | formatSex }}</td>
-              <td>{{ d.description }}</td>
-              <td>{{ d.isAlive | formatIsAlive }}</td>
-              <td>{{ d.collarColor | formatCollarColor }}</td>
-              <td>{{ d.caretaker }}</td>
-            </nuxt-link>
+              <td v-if="d.ageYear > 0 && d.ageMonth > 0">
+                <nuxt-link :to="`/admin/dog/${d.id}`"
+                  >{{ d.ageYear }} ปี {{ d.ageMonth }} เดือน</nuxt-link
+                >
+              </td>
+              <td v-if="d.ageYear > 0 && d.ageMonth === 0">
+                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.ageYear }} ปี</nuxt-link>
+              </td>
+              <td v-if="d.ageYear === 0 && d.ageMonth > 0">
+                <nuxt-link :to="`/admin/dog/${d.id}`">{ d.ageMonth }} เดือน</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.sex | formatSex }}</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.description }}</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.isAlive | formatIsAlive }}</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/dog/${d.id}`">{{
+                  d.collarColor | formatCollarColor
+                }}</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.caretaker }}</nuxt-link>
+              </td>
+            </tr>
           </transition-group>
 
           <div v-else class="loader">
@@ -98,9 +120,6 @@ export default Vue.extend({
     descending: false,
     searchString: '',
   }),
-  head: () => ({
-    title: 'Admin: Dog',
-  }),
   computed: {
     by: () => ['ชื่อ', 'เพศ', 'สถานะ', 'ปลอกคอ'],
     field: () => ['name', 'sex', 'isAlive', 'collarColor'],
@@ -126,6 +145,9 @@ export default Vue.extend({
       this.descending = descending;
     },
   },
+  head: () => ({
+    title: 'Admin: Dog',
+  }),
 });
 </script>
 

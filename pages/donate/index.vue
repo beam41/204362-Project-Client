@@ -33,19 +33,6 @@ export default Vue.extend({
   components: {
     QrcodeVue,
   },
-  data: () => ({
-    donates: null as null | Donate[],
-  }),
-  mounted() {
-    DonateServ.getDonateListVisitor().then((val) => {
-      this.donates = val.data;
-    });
-  },
-  computed: {
-    sortedDonates() {
-      return _.orderBy(this.donates, 'acceptedOn');
-    },
-  },
   filters: {
     imgUrl(path: string) {
       return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${path}`;
@@ -53,6 +40,19 @@ export default Vue.extend({
     imgPlacehold(path: string) {
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${path}`;
     },
+  },
+  data: () => ({
+    donates: null as null | Donate[],
+  }),
+  computed: {
+    sortedDonates() {
+      return _.orderBy(this.donates, 'acceptedOn');
+    },
+  },
+  mounted() {
+    DonateServ.getDonateListVisitor().then((val) => {
+      this.donates = val.data;
+    });
   },
 });
 </script>

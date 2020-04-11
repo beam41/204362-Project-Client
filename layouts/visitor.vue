@@ -11,15 +11,15 @@ import Vue from 'vue';
 import VisitorNavbar from '../components/Navbar/VisitorNavbar.vue';
 
 export default Vue.extend({
+  name: 'VisitorLayout',
+  components: {
+    VisitorNavbar,
+  },
   data: () => {
     return {
       mobileView: false,
       showNav: false,
     };
-  },
-  name: 'VisitorLayout',
-  components: {
-    VisitorNavbar,
   },
 });
 </script>

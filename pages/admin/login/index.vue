@@ -17,7 +17,7 @@
           <p class="err">{{ errMessage }}</p>
           <div class="cover-btn">
             <button class="btn-success" @click="login()">Login</button>
-            <button class="btn-default" @click="goBack()">Go Back</button>
+            <nuxt-link to="/"><button class="btn-default">Go Back</button></nuxt-link>
           </div>
         </div>
       </div>
@@ -36,9 +36,6 @@ export default Vue.extend({
     trylogin: false,
     errMessage: '',
   }),
-  head: () => ({
-    title: 'Admin: Login',
-  }),
   mounted() {
     const storage = localStorage.getItem('mm-login');
     if (storage) {
@@ -50,9 +47,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    goBack() {
-      this.$router.push('/');
-    },
     login() {
       this.trylogin = true;
       // @ts-ignore
@@ -67,6 +61,9 @@ export default Vue.extend({
         });
     },
   },
+  head: () => ({
+    title: 'Admin: Login',
+  }),
 });
 </script>
 
