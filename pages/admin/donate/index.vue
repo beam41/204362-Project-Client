@@ -17,9 +17,9 @@
     </Modal>
     <div class="padadmin">
       <div class="listpage-top">
-        <button class="btn-default svg-m" @click="addDonate()">
+        <nuxt-link tag="button" class="btn-default svg-m" to="/admin/donate/add">
           <font-awesome-icon :icon="['fas', 'plus']" />New
-        </button>
+        </nuxt-link>
         <div class="input-group">
           <input v-model="searchString" type="text" placeholder="Search" />
           <button class="btn-default">
@@ -40,7 +40,12 @@
         </div>
         <div class="sub-table-wrapper">
           <transition-group v-if="donates" class="datalist" name="flip-list" tag="table">
-            <tr v-for="d in formattedArrays" :key="d.id" @click="dataDonate(d.id)">
+            <nuxt-link
+              tag="tr"
+              v-for="d in formattedArrays"
+              :key="d.id"
+              :to="`/admin/donate/${d.id}`"
+            >
               <td>{{ d.title }}</td>
               <td>{{ d.creator }}</td>
               <td>
@@ -52,7 +57,7 @@
                   />
                 </span>
               </td>
-            </tr>
+            </nuxt-link>
           </transition-group>
 
           <div v-else class="loader">
@@ -120,12 +125,6 @@ export default Vue.extend({
       // console.log({ currOption, descending });
       this.currOption = currOption;
       this.descending = descending;
-    },
-    dataDonate(id: string) {
-      this.$router.push(`/admin/donate/${id}`);
-    },
-    addDonate() {
-      this.$router.push('/admin/donate/add');
     },
     acceptedChangePrompt(event: any, don: Donate) {
       if (event.target.checked) {

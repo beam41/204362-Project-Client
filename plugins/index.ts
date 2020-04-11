@@ -14,6 +14,7 @@ import {
   faUser,
   faSignOutAlt,
   faCheck,
+  faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -29,6 +30,7 @@ library.add(
   faUser,
   faSignOutAlt,
   faCheck,
+  faBars,
 );
 
 Vue.config.productionTip = false;
