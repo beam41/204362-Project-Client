@@ -13,6 +13,7 @@ import {
   faChevronDown,
   faUser,
   faSignOutAlt,
+  faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -27,6 +28,7 @@ library.add(
   faChevronDown,
   faUser,
   faSignOutAlt,
+  faBars,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
