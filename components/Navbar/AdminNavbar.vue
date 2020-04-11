@@ -130,6 +130,7 @@ export default Vue.extend({
     &.nuxt-link-active,
     &.nuxt-link-active:hover {
       background-color: color.lightness(var.$gray, -25%);
+      font-size: 1.6rem;
     }
 
     &:hover {

@@ -74,7 +74,7 @@ export default Vue.extend({});
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s ease;
+  transition: all var.$animation-time ease;
 }
 
 /* Hamburger Lines - Top & Bottom */
@@ -123,7 +123,7 @@ export default Vue.extend({});
 
 .menu-wrap .toggler:checked ~ .menu > div > div {
   opacity: 1;
-  transition: opacity 0.4s ease 0.4s;
+  transition: opacity var.$animation-time ease var.$animation-time;
 }
 
 .menu-wrap .menu {
@@ -149,7 +149,7 @@ export default Vue.extend({});
   align-items: center;
   justify-content: center;
   transform: scale(0);
-  transition: all 0.6s ease;
+  transition: all var.$animation-time ease;
 }
 
 .menu-wrap .menu > div > div {
@@ -157,7 +157,7 @@ export default Vue.extend({});
   max-width: 90vw;
   max-height: 100vh;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity var.$animation-time ease;
 }
 
 .menu-wrap .menu > div > div > ul > li {
@@ -170,6 +170,6 @@ export default Vue.extend({});
 .menu-wrap .menu > div > div > ul > li > a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.4s ease;
+  transition: color var.$animation-time ease;
 }
 </style>

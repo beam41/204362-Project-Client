@@ -2,9 +2,9 @@
   <div class="listdog adminbox">
     <div class="padadmin">
       <div class="listpage-top">
-        <button class="btn-default svg-m" @click="addDog()">
+        <nuxt-link tag="button" class="btn-default svg-m" to="/admin/dog/add">
           <font-awesome-icon :icon="['fas', 'plus']" />New
-        </button>
+        </nuxt-link>
         <div class="input-group">
           <input v-model="searchString" type="text" placeholder="Search name" />
           <button class="btn-default">
@@ -29,7 +29,7 @@
         </div>
         <div class="sub-table-wrapper">
           <transition-group v-if="dogs" class="datalist" name="flip-list" tag="table">
-            <tr v-for="d in formattedArrays" :key="d.id" @click="dataDog(d.id)">
+            <nuxt-link tag="tr" v-for="d in formattedArrays" :key="d.id" :to="`/admin/dog/${d.id}`">
               <td>{{ d.name | arrToString }}</td>
               <td v-if="d.ageYear > 0 && d.ageMonth > 0">
                 {{ d.ageYear }} ปี {{ d.ageMonth }} เดือน
@@ -41,7 +41,7 @@
               <td>{{ d.isAlive | formatIsAlive }}</td>
               <td>{{ d.collarColor | formatCollarColor }}</td>
               <td>{{ d.caretaker }}</td>
-            </tr>
+            </nuxt-link>
           </transition-group>
 
           <div v-else class="loader">
@@ -124,12 +124,6 @@ export default Vue.extend({
     onChange({ currOption, descending }: any) {
       this.currOption = currOption;
       this.descending = descending;
-    },
-    dataDog(id: string) {
-      this.$router.push(`/admin/dog/${id}`);
-    },
-    addDog() {
-      this.$router.push('/admin/dog/add');
     },
   },
 });
