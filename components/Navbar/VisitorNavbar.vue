@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="imgcontainer"></div>
-    <UserNavbarMobile v-if="mobileView"></UserNavbarMobile>
+    <VisitorNavbarMobile v-if="mobileView"></VisitorNavbarMobile>
     <div class="navbar" v-if="!mobileView">
       <nav class="navbar" :class="active" @click.prevent>
         <nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link>
@@ -17,10 +17,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import UserNavbarMobile from './UserNavbarMobile.vue';
+import VisitorNavbarMobile from './VisitorNavbarMobile.vue';
 
 export default Vue.extend({
-  name: 'UserNavbar',
+  name: 'VisitorNavbar',
   data: () => {
     return {
       mobileView: false,
@@ -37,7 +37,7 @@ export default Vue.extend({
     window.addEventListener('resize', this.handleView);
   },
   components: {
-    UserNavbarMobile,
+    VisitorNavbarMobile,
   },
 });
 </script>

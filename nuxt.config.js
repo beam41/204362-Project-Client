@@ -27,10 +27,15 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#733e85', height: '10px' },
+  loading: { color: '#733e85', height: '5px' },
   /*
    ** Global CSS
    */
+  loadingIndicator: {
+    name: 'pulse',
+    color: '#333333',
+    background: 'white',
+  },
   css: ['~/assets/styles/component.scss', '~/assets/styles/class.scss'],
   /*
    ** Plugins to load before mounting the App

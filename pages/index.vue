@@ -1,40 +1,29 @@
 <template>
-  <div class="container">
-    <div class="content">
-      <h2>About</h2>
-      <h5>we are mheanmaa</h5>
-      <section class="animated-grid">
-        <div class="card">a</div>
-        <div class="card">b</div>
-        <div class="card">c</div>
-        <div class="card">d</div>
-        <div class="card">e</div>
-        <div class="card">f</div>
-        <div class="card">main</div>
-      </section>
-    </div>
+  <div class="content">
+    <h2>About</h2>
+    <h5>we are mheanmaa</h5>
+    <section class="animated-grid">
+      <div class="card">a</div>
+      <div class="card">b</div>
+      <div class="card">c</div>
+      <div class="card">d</div>
+      <div class="card">e</div>
+      <div class="card">f</div>
+      <div class="card">main</div>
+    </section>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 
-export default Vue.extend({});
+export default Vue.extend({
+  layout: 'visitor',
+  name: 'Home',
+});
 </script>
 
-<style>
-.container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-.content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 50px 5% 80px 5%;
-  width: 100%;
-}
+<style scoped>
 .animated-grid {
   height: 100vh;
   width: 100%;

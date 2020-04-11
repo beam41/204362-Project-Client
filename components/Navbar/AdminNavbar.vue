@@ -18,7 +18,12 @@
       </nuxt-link>
     </div>
     <div class="bot">
-      <h5><font-awesome-icon :icon="['fas', 'user']" />{{ fullName }}</h5>
+      <h5>
+        <font-awesome-icon
+          :class="login.userType === 'A' ? 'admin-color' : 'staff-color'"
+          :icon="['fas', 'user']"
+        />{{ login.firstName }}
+      </h5>
       <h6>{{ login.deptNo | depName }}</h6>
       <button class="btn-warn" href="#" @click="logout()">
         <font-awesome-icon :icon="['fas', 'sign-out-alt']" />Logout
@@ -35,9 +40,6 @@ import User from '@/models/User';
 export default Vue.extend({
   name: 'AdminNavbar',
   computed: {
-    fullName() {
-      return `${this.login.firstName} ${this.login.lastName}`;
-    },
     ...mapState({
       login: (state: any) => state.login as User,
     }),
@@ -95,11 +97,45 @@ export default Vue.extend({
     font-size: 2rem;
     text-align: center;
   }
+
+  @include responsive.respond-to(responsive.$tablet) {
+    h1 {
+      color: white;
+      margin: 2rem 0;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
 }
 
 .center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
   svg {
     margin: 0 1rem;
+  }
+
+  .nav-link {
+    display: block;
+    color: #ffffff;
+    transition: all 0.25s;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 1rem 0;
+
+    &.nuxt-link-active,
+    &.nuxt-link-active:hover {
+      background-color: color.lightness(var.$gray, -25%);
+    }
+
+    &:hover {
+      text-decoration: none;
+      background-color: color.lightness(var.$gray, -20%);
+    }
   }
 }
 
@@ -113,26 +149,10 @@ export default Vue.extend({
   justify-content: space-between;
 }
 
-.nav-link {
-  display: block;
-  color: #ffffff;
-  transition: all 0.25s;
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin: 2rem 0;
-  padding: 1rem 0;
-
-  &:hover {
-    text-decoration: none;
-    background-color: color.lightness(var.$gray, -20%);
-  }
-}
-
 .bot {
   margin: 1rem 1rem;
 
-  * {
+  *:not(path) {
     color: white;
   }
 
@@ -154,6 +174,14 @@ export default Vue.extend({
   h5 {
     font-size: 1.7rem;
     margin: 0;
+
+    svg.admin-color {
+      color: var.$admin;
+    }
+
+    svg.staff-color {
+      color: var.$staff;
+    }
   }
 }
 </style>

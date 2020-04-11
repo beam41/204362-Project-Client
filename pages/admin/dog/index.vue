@@ -6,8 +6,8 @@
           <font-awesome-icon :icon="['fas', 'plus']" />New
         </button>
         <div class="input-group">
-          <input ref="search" type="text" placeholder="Search name" />
-          <button class="btn-default" @click="search()">
+          <input v-model="searchString" type="text" placeholder="Search name" />
+          <button class="btn-default">
             <font-awesome-icon :icon="['fas', 'search']" />
           </button>
         </div>
@@ -22,7 +22,7 @@
               <th>เพศ</th>
               <th>ลักษณะ</th>
               <th>สถานะ</th>
-              <th>ปลอกคอ</th>
+              <th>สีปลอกคอ</th>
               <th>ผู้ดูแล</th>
             </tr>
           </table>
@@ -30,7 +30,7 @@
         <div class="sub-table-wrapper">
           <transition-group v-if="dogs" class="datalist" name="flip-list" tag="table">
             <tr v-for="d in formattedArrays" :key="d.id" @click="dataDog(d.id)">
-              <td>{{ d.name | toString }}</td>
+              <td>{{ d.name | arrToString }}</td>
               <td v-if="d.ageYear > 0 && d.ageMonth > 0">
                 {{ d.ageYear }} ปี {{ d.ageMonth }} เดือน
               </td>
@@ -57,8 +57,8 @@
 import Vue from 'vue';
 import _ from 'lodash';
 import Sorter from '@/components/Shared/Sorter.vue';
-import util from '@/util';
 import DogApiService from '@/services/DogApiService';
+import Dog from '@/models/dog';
 
 export default Vue.extend({
   layout: 'admin',
@@ -67,8 +67,8 @@ export default Vue.extend({
     Sorter,
   },
   filters: {
-    toString(arr: string[]) {
-      return arr.toString();
+    arrToString(arr: string[]) {
+      return arr.toString().replace(/,/g, ', ');
     },
     formatSex(sex: string) {
       if (sex === 'F') {
@@ -110,7 +110,7 @@ export default Vue.extend({
         // prettier-ignore
         const findinObj = (val: string, obj: object) => _.some(obj, v => _.includes(v, val));
         // prettier-ignore
-        filter = _.filter(this.dogs, o => findinObj(this.searchString, o));
+        filter = _.filter(this.dogs, (o: Dog) => findinObj(this.searchString, {...o, name: o.name!.toString()}));
       }
       return _.orderBy(filter, this.field[this.currOption], this.descending ? 'desc' : 'asc');
     },
@@ -130,10 +130,6 @@ export default Vue.extend({
     },
     addDog() {
       this.$router.push('/admin/dog/add');
-    },
-    search() {
-      // @ts-ignore
-      this.searchString = this.$refs.search.value;
     },
   },
 });

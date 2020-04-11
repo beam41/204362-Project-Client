@@ -1,6 +1,6 @@
 <template>
   <div>
-    <UserNavbar v-if="!mobileView"></UserNavbar>
+    <VisitorNavbar v-if="!mobileView"></VisitorNavbar>
     <nuxt />
   </div>
 </template>
@@ -8,7 +8,7 @@
 <script>
 import Vue from 'vue';
 
-import UserNavbar from '../components/Navbar/UserNavbar';
+import VisitorNavbar from '../components/Navbar/VisitorNavbar.vue';
 
 export default Vue.extend({
   data: () => {
@@ -17,9 +17,9 @@ export default Vue.extend({
       showNav: false,
     };
   },
-  name: 'UserLayout',
+  name: 'VisitorLayout',
   components: {
-    UserNavbar,
+    VisitorNavbar,
   },
 });
 </script>
