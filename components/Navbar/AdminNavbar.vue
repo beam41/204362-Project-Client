@@ -97,11 +97,45 @@ export default Vue.extend({
     font-size: 2rem;
     text-align: center;
   }
+
+  @include responsive.respond-to(responsive.$tablet) {
+    h1 {
+      color: white;
+      margin: 2rem 0;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
 }
 
 .center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
   svg {
     margin: 0 1rem;
+  }
+
+  .nav-link {
+    display: block;
+    color: #ffffff;
+    transition: all 0.25s;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 1rem 0;
+
+    &.nuxt-link-active,
+    &.nuxt-link-active:hover {
+      background-color: color.lightness(var.$gray, -25%);
+    }
+
+    &:hover {
+      text-decoration: none;
+      background-color: color.lightness(var.$gray, -20%);
+    }
   }
 }
 
@@ -113,27 +147,6 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.nav-link {
-  display: block;
-  color: #ffffff;
-  transition: all 0.25s;
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin: 2rem 0;
-  padding: 1rem 0;
-
-  &.nuxt-link-active,
-  &.nuxt-link-active:hover {
-    background-color: color.lightness(var.$gray, -25%);
-  }
-
-  &:hover {
-    text-decoration: none;
-    background-color: color.lightness(var.$gray, -20%);
-  }
 }
 
 .bot {
