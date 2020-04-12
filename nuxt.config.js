@@ -92,9 +92,7 @@ export default {
     // your settings here
     mode: 'postcss',
   },
-  render: {
-    compressor: {
-      threshold: 0,
-    },
+  router: {
+    middleware: ['auth'],
   },
 };
