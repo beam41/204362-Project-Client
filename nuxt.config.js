@@ -17,6 +17,9 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    noscript: [
+      { innerHTML: 'This website requires JavaScript. เว็บไซต์นี้ใช้ JavaScipt ในการแสดงผล' },
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -92,10 +95,6 @@ export default {
   render: {
     compressor: {
       threshold: 0,
-    },
-    shouldPreload: (file, type) => {
-      if (/.woff2/.test(file)) return true;
-      return ['script', 'style', 'font'].includes(type);
     },
   },
 };
