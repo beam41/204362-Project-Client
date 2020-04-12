@@ -93,5 +93,9 @@ export default {
     compressor: {
       threshold: 0,
     },
+    shouldPreload: (file, type) => {
+      if (type === 'font') return /.woff2/.test(file);
+      return ['script', 'style'].includes(type);
+    },
   },
 };
