@@ -1,9 +1,7 @@
 <template>
   <div class="adminbox">
     <div class="listpage-top">
-      <button class="btn-default">
-        <font-awesome-icon :icon="['fas', 'plus']" />New
-      </button>
+      <button class="btn-default"><font-awesome-icon :icon="['fas', 'plus']" />New</button>
       <Sorter :options="by" @change="onChange($event)" />
     </div>
     <div class="table-wrapper">
@@ -47,9 +45,6 @@ export default Vue.extend({
     currOption: 0,
     descending: false,
   }),
-  head: () => ({
-    title: 'Admin: Report',
-  }),
   computed: {
     sortedArrays() {
       return _.orderBy(this.donates, this.field[this.currOption], this.descending ? 'desc' : 'asc');
@@ -62,6 +57,9 @@ export default Vue.extend({
       this.descending = descending;
     },
   },
+  head: () => ({
+    title: 'Admin: Report',
+  }),
 });
 </script>
 

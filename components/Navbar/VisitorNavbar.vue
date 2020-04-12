@@ -1,9 +1,10 @@
 <template>
   <div>
     <div class="imgcontainer"></div>
-    <div class="navbar">
-      <nav class="navbar" :class="active" @click.prevent>
-        <nuxt-link to="/home" class="nav-link home">หน้าหลัก</nuxt-link>
+    <VisitorNavbarMobile v-if="mobileView"></VisitorNavbarMobile>
+    <div v-if="!mobileView" class="navbar">
+      <nav class="navbar" @click.prevent>
+        <nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link>
         <nuxt-link to="/news" class="nav-link news">ข่าว</nuxt-link>
         <nuxt-link to="/dogs" class="nav-link dogs">สุนัขในโครงการ</nuxt-link>
         <nuxt-link to="/donate" class="nav-link donate">บริจาค</nuxt-link>
@@ -16,9 +17,28 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import VisitorNavbarMobile from './VisitorNavbarMobile.vue';
 
 export default Vue.extend({
-  name: 'UserNavbar',
+  name: 'VisitorNavbar',
+  components: {
+    VisitorNavbarMobile,
+  },
+  data: () => {
+    return {
+      mobileView: false,
+      showNav: false,
+    };
+  },
+  mounted() {
+    this.handleView();
+    window.addEventListener('resize', this.handleView);
+  },
+  methods: {
+    handleView() {
+      this.mobileView = window.innerWidth <= 990;
+    },
+  },
 });
 </script>
 
@@ -57,5 +77,16 @@ export default Vue.extend({
     text-decoration: none;
     color: color.lightness(color.alpha(red, -0.25), 40%);
   }
+}
+#nav-icon {
+  padding: 10px 10px;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 2rem;
+  color: var.$white;
+  background-color: var.$violet;
 }
 </style>

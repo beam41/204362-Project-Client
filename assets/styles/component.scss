@@ -1,8 +1,10 @@
 @use 'var';
 @use 'color';
 @use 'selector';
+@use 'responsive';
 
-@import '@/assets/font/NotoSansThai/NotoSansThai.css';
+@import '@/assets/font/NotoSans/stylesheet.css';
+@import '@/assets/font/NotoSansThai/stylesheet.css';
 @import 'sanitize.css';
 
 ::-webkit-scrollbar {
@@ -12,13 +14,11 @@
 
 ::-webkit-scrollbar-track {
   background: var.$scrollbar-track-color;
-  border-radius: var.$scrollbar-width;
 }
 
 ::-webkit-scrollbar-thumb {
   @extend %animate-all;
   background: var.$scrollbar-thumb-color;
-  border-radius: var.$scrollbar-width;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -56,6 +56,10 @@ body {
   scroll-behavior: smooth;
   height: auto;
   font-family: var.$font-fam;
+}
+
+.visitor-body {
+  overflow-y: scroll;
 }
 
 // Text-Normalize
@@ -201,7 +205,7 @@ textarea {
     }
 
     &::placeholder {
-      color: color.alpha(var.$warn, -0.1%);
+      color: color.alpha(var.$txt-warn, -0.1%);
     }
   }
 }
@@ -308,4 +312,18 @@ a {
 
 label[for] {
   cursor: pointer;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px 5% 80px 5%;
+
+  @include responsive.respond-to(responsive.$phone) {
+    & {
+      padding: 50px 0 80px 0;
+    }
+  }
+  width: 100%;
 }

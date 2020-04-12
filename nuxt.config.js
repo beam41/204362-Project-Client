@@ -16,21 +16,20 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap',
-      },
-    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#733e85', height: '10px' },
+  loading: { color: '#733e85', height: '5px' },
   /*
    ** Global CSS
    */
+  loadingIndicator: {
+    name: 'pulse',
+    color: '#333333',
+    background: 'white',
+  },
   css: ['~/assets/styles/component.scss', '~/assets/styles/class.scss'],
   /*
    ** Plugins to load before mounting the App
@@ -57,7 +56,17 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    // extend(config, ctx) {},
+    extend(config, ctx) {
+      // Run ESLint on save
+      if (ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+        });
+      }
+    },
     postcss: {
       plugins: {
         autoprefixer: {},

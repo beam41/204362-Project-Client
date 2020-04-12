@@ -1,13 +1,30 @@
 <template>
   <div class="adminbox">
+    <Modal :show="currAcceptSelect ? true : false">
+      <div class="m-top">
+        <h5>Delete</h5>
+      </div>
+      <div v-if="currAcceptSelect" class="m-mid">
+        <p>
+          คุณต้องการอนุมัติ
+          <strong>{{ currAcceptSelect.title }}</strong> หรือไม่
+        </p>
+      </div>
+      <div class="m-bot">
+        <button class="btn-success" @click="acceptedChange()">Accept</button>
+        <button class="btn-default" @click="unAcceptedChange()">Cancel</button>
+      </div>
+    </Modal>
     <div class="padadmin">
       <div class="listpage-top">
-        <button class="btn-default svg-m" @click="addDonate()">
-          <font-awesome-icon :icon="['fas', 'plus']" />New
-        </button>
+        <nuxt-link to="/admin/donate/add">
+          <button class="btn-default svg-m">
+            <font-awesome-icon :icon="['fas', 'plus']" />New
+          </button>
+        </nuxt-link>
         <div class="input-group">
-          <input ref="search" type="text" placeholder="Search" @keyup.enter="search()" />
-          <button class="btn-default" @click="search()">
+          <input v-model="searchString" type="text" placeholder="Search" />
+          <button class="btn-default">
             <font-awesome-icon :icon="['fas', 'search']" />
           </button>
         </div>
@@ -25,10 +42,23 @@
         </div>
         <div class="sub-table-wrapper">
           <transition-group v-if="donates" class="datalist" name="flip-list" tag="table">
-            <tr v-for="d in formattedArrays" :key="d.id" @click="dataDonate(d.id)">
-              <td>{{ d.title }}</td>
-              <td>{{ d.creator }}</td>
-              <td>{{ d.accepted }}</td>
+            <tr v-for="d in formattedArrays" :key="d.id">
+              <td>
+                <nuxt-link :to="`/admin/donate/${d.id}`">{{ d.title }}</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/donate/${d.id}`">{{ d.creator }}</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/donate/${d.id}`">
+                  <span @click.stop>
+                    <CheckBox
+                      :is-check="d.accepted"
+                      :disabled="d.accepted || login.userType === 'S'"
+                      @change="acceptedChangePrompt($event, d)"
+                    /> </span
+                ></nuxt-link>
+              </td>
             </tr>
           </transition-group>
 
@@ -44,20 +74,28 @@
 <script lang="ts">
 import Vue from 'vue';
 import _ from 'lodash';
+import { mapState } from 'vuex';
 import Sorter from '@/components/Shared/Sorter.vue';
+import CheckBox from '@/components/Shared/CheckBox.vue';
 import DonateServ from '@/services/DonateApiService';
+import Donate from '@/models/donate';
+import Modal from '@/components/Shared/Modal.vue';
+import User from '@/models/User';
 
 export default Vue.extend({
   layout: 'admin',
   name: 'ListDonate',
   components: {
     Sorter,
+    CheckBox,
+    Modal,
   },
   data: () => ({
-    donates: null as Array<any> | null,
+    donates: null as Array<Donate> | null,
     currOption: 0,
     descending: false,
     searchString: '',
+    currAcceptSelect: null as Donate | null,
   }),
   head: () => ({
     title: 'Admin: Donate',
@@ -65,6 +103,9 @@ export default Vue.extend({
   computed: {
     by: () => ['ชื่อเรื่อง', 'ผู้สร้าง', 'อนุมัติแล้ว'],
     field: () => ['title', 'creator', 'accepted'],
+    ...mapState({
+      login: (state: any) => state.login as User,
+    }),
     formattedArrays() {
       let filter = this.donates;
       if (this.searchString !== '') {
@@ -87,15 +128,21 @@ export default Vue.extend({
       this.currOption = currOption;
       this.descending = descending;
     },
-    dataDonate(id: string) {
-      this.$router.push(`/admin/donate/${id}`);
+    acceptedChangePrompt(event: any, don: Donate) {
+      if (event.target.checked) {
+        this.currAcceptSelect = don;
+        this.currAcceptSelect!.accepted = true;
+      }
     },
-    addDonate() {
-      this.$router.push('/admin/donate/add');
+    unAcceptedChange() {
+      this.currAcceptSelect!.accepted = false;
+      this.currAcceptSelect = null;
     },
-    search() {
-      // @ts-ignore
-      this.searchString = this.$refs.search.value;
+    acceptedChange() {
+      DonateServ.acceptDonate(this.$store, this.currAcceptSelect!.id!, {
+        accepted: true,
+      } as Donate);
+      this.currAcceptSelect = null;
     },
   },
 });

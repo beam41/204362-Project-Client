@@ -14,6 +14,7 @@
 import Vue from 'vue';
 import Navbar from '@/components/Navbar/AdminNavbar.vue';
 import User from '@/models/User';
+import LoginServ from '@/services/LoginService';
 
 export default Vue.extend({
   name: 'AdminLayout',
@@ -39,7 +40,16 @@ export default Vue.extend({
     if (storage) {
       const login: User = JSON.parse(storage) as User;
       if (login.loggedIn === false) this.$router.push('/admin/login');
-      else this.$store.commit('LOGIN', login);
+      else {
+        this.$store.commit('LOGIN', login);
+        LoginServ.test(this.$store).catch((err) => {
+          // console.dir(err);
+          if (err) {
+            localStorage.removeItem('mm-login');
+            this.$router.push('/admin/login');
+          }
+        });
+      }
     } else this.$router.push('/admin/login');
   },
 });
@@ -54,10 +64,10 @@ export default Vue.extend({
 
 .admin {
   display: grid;
-  height: 100vh;
+  min-height: 100vh;
   grid-template-columns: max(#{var.$navbar-minwidth}, #{var.$navbar-width}) 1fr;
   grid-template-rows: var.$top-part-h 1fr;
-  overflow: hidden;
+  overflow-x: hidden;
 
   .headstyle {
     display: flex;

@@ -17,7 +17,7 @@
           <p class="err">{{ errMessage }}</p>
           <div class="cover-btn">
             <button class="btn-success" @click="login()">Login</button>
-            <button class="btn-default" @click="goBack()">Go Back</button>
+            <nuxt-link to="/"><button class="btn-default">Go Back</button></nuxt-link>
           </div>
         </div>
       </div>
@@ -36,9 +36,6 @@ export default Vue.extend({
     trylogin: false,
     errMessage: '',
   }),
-  head: () => ({
-    title: 'Admin: Login',
-  }),
   mounted() {
     const storage = localStorage.getItem('mm-login');
     if (storage) {
@@ -50,9 +47,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    goBack() {
-      this.$router.push('/');
-    },
     login() {
       this.trylogin = true;
       // @ts-ignore
@@ -61,12 +55,15 @@ export default Vue.extend({
           this.$router.push('/admin/news');
         })
         .catch((reason: any) => {
-          console.log(reason);
+          // console.log(reason);
           this.trylogin = false;
           if (reason.response) this.errMessage = reason.response.data.message;
         });
     },
   },
+  head: () => ({
+    title: 'Admin: Login',
+  }),
 });
 </script>
 
@@ -113,7 +110,7 @@ export default Vue.extend({
 
   .err {
     text-align: center;
-    color: var.$warn;
+    color: var.$txt-warn;
   }
 }
 </style>

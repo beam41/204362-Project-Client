@@ -8,7 +8,8 @@
         :key="opt"
         :value="opt"
         :selected="index === currSelect"
-      >{{ opt }}</option>
+        >{{ opt }}</option
+      >
     </select>
     <!-- viewable custom select for user -->
     <div :class="'new-select' + (error ? ' error' : '')">
@@ -22,12 +23,9 @@
         <font-awesome-icon :icon="['fas', 'chevron-down']" />
       </div>
       <div class="dropdown" :show="isShow">
-        <div
-          v-if="customText"
-          class="dd-element"
-          disabled
-          @click="clickDisabled = true"
-        >{{ customText }}</div>
+        <div v-if="customText" class="dd-element" disabled @click="clickDisabled = true">
+          {{ customText }}
+        </div>
         <div
           v-for="(opt, index) in options"
           :key="opt"
@@ -35,7 +33,9 @@
           :value="opt"
           :selected="index === currSelect"
           @click="selectMe(index)"
-        >{{ opt }}</div>
+        >
+          {{ opt }}
+        </div>
       </div>
     </div>
   </div>
@@ -92,9 +92,6 @@ export default Vue.extend({
     selectMe(index) {
       this.currSelect = index;
       this.$emit('sel-change', { currSelect: index });
-    },
-    log(me) {
-      // console.log(me);
     },
   },
 });
@@ -223,23 +220,23 @@ export default Vue.extend({
   .error {
     .showbox,
     .dropdown {
-      border-color: var.$warn;
+      border-color: var.$txt-warn;
 
       &:hover {
         border-color: color.lightness(var.$warn, -20%);
         svg {
-          color: var.$warn;
+          color: var.$txt-warn;
         }
       }
     }
 
     .showbox {
-      color: var.$warn;
+      color: var.$txt-warn;
       &.curr-disable {
-        color: color.lightness(var.$warn, 10%);
+        color: color.lightness(var.$txt-warn, 10%);
       }
       svg {
-        color: color.lightness(var.$warn, 10%);
+        color: color.lightness(var.$txt-warn, 10%);
       }
     }
   }

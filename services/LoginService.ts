@@ -1,12 +1,16 @@
-import a from './_axios';
+import a, { headerWriter } from './_axios';
 
 function login($store: any, username: string, password: string): Promise<any> {
   return a.post('user/login', { username, password }).then((val) => {
-    console.log(val.data);
+    // console.log(val.data);
     // @ts-ignore
     $store.commit('LOGIN', val.data);
     return val;
   });
 }
 
-export default { login };
+function test($store: any): Promise<any> {
+  return a.get('user/test', headerWriter($store));
+}
+
+export default { login, test };

@@ -3,7 +3,6 @@ import _ from 'lodash';
 import Select from '@/components/Shared/Select.vue';
 import DogApiService from '@/services/DogApiService';
 import Dog from '@/models/dog';
-import util from '@/util';
 import Modal from '@/components/Shared/Modal.vue';
 import ImageServ from '@/services/ImageUploadService';
 
@@ -216,7 +215,7 @@ export default Vue.extend({
       const newDog: Dog = {
         id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
         // @ts-ignore
-        name: util.splitToArr(this.$refs.name.value),
+        name: this.$refs.name.value.split(',').map((item) => item.trim()),
         // @ts-ignore
         breed: this.$refs.breed.value,
         // @ts-ignore
@@ -229,7 +228,7 @@ export default Vue.extend({
         collarColor: this.collarColor,
         isAlive: this.isAlive,
         // @ts-ignore
-        caretakerPhone: util.splitToArr(this.$refs.caretakerPhone.value),
+        caretakerPhone: this.$refs.caretakerPhone.value.split(',').map((item) => item.trim()),
         // @ts-ignore
         caretaker: this.$refs.caretaker.value,
         // @ts-ignore

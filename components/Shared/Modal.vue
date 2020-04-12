@@ -1,7 +1,7 @@
 <template>
   <transition name="fade-ep">
     <div v-if="show" class="m-container">
-      <div v-if="show" class="m-body">
+      <div class="m-body">
         <slot></slot>
       </div>
     </div>
@@ -24,7 +24,7 @@ export default {
 @use 'assets/styles/responsive';
 
 .m-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   size: 100%;

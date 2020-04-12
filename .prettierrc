@@ -6,5 +6,4 @@
   "singleQuote": true,
   "tabWidth": 2,
   "arrowParens": "always",
-  "htmlWhitespaceSensitivity": "strict"
 }
