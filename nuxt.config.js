@@ -94,8 +94,8 @@ export default {
       threshold: 0,
     },
     shouldPreload: (file, type) => {
-      if (type === 'font') return /.woff2/.test(file);
-      return ['script', 'style'].includes(type);
+      if (/.woff2/.test(file)) return true;
+      return ['script', 'style', 'font'].includes(type);
     },
   },
 };
