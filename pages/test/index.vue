@@ -137,6 +137,7 @@ export default Vue.extend({
   }),
   methods: {
     log(me: any) {
+      // eslint-disable-next-line
       console.log(me);
     },
     showing() {

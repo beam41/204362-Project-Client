@@ -55,7 +55,7 @@ export default Vue.extend({
           this.$router.push('/admin/news');
         })
         .catch((reason: any) => {
-          console.log(reason);
+          // console.log(reason);
           this.trylogin = false;
           if (reason.response) this.errMessage = reason.response.data.message;
         });

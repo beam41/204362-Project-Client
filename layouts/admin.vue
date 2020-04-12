@@ -43,7 +43,7 @@ export default Vue.extend({
       else {
         this.$store.commit('LOGIN', login);
         LoginServ.test(this.$store).catch((err) => {
-          console.dir(err);
+          // console.dir(err);
           if (err) {
             localStorage.removeItem('mm-login');
             this.$router.push('/admin/login');
