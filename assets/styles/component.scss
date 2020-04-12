@@ -3,7 +3,8 @@
 @use 'selector';
 @use 'responsive';
 
-@import '@/assets/font/NotoSansThai/NotoSansThai.css';
+@import '@/assets/font/NotoSans/stylesheet.css';
+@import '@/assets/font/NotoSansThai/stylesheet.css';
 @import 'sanitize.css';
 
 ::-webkit-scrollbar {

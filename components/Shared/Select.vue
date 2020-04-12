@@ -23,9 +23,9 @@
         <font-awesome-icon :icon="['fas', 'chevron-down']" />
       </div>
       <div class="dropdown" :show="isShow">
-        <div v-if="customText" class="dd-element" disabled @click="clickDisabled = true">{{
-          customText
-        }}</div>
+        <div v-if="customText" class="dd-element" disabled @click="clickDisabled = true">
+          {{ customText }}
+        </div>
         <div
           v-for="(opt, index) in options"
           :key="opt"
@@ -33,8 +33,9 @@
           :value="opt"
           :selected="index === currSelect"
           @click="selectMe(index)"
-          >{{ opt }}</div
         >
+          {{ opt }}
+        </div>
       </div>
     </div>
   </div>

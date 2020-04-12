@@ -1,7 +1,7 @@
 <template>
   <div class="adminbox">
     <div class="listpage-top">
-      <button class="btn-default"> <font-awesome-icon :icon="['fas', 'plus']" />New </button>
+      <button class="btn-default"><font-awesome-icon :icon="['fas', 'plus']" />New</button>
       <Sorter :options="by" @change="onChange($event)" />
     </div>
     <div class="table-wrapper">
