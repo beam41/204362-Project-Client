@@ -1,26 +1,27 @@
 @font-face {
-    font-family: 'Noto Sans Thai UI';
-    src: url('subset-NotoSansThaiUI-Regular.eot');
-    src: local('Noto Sans Thai UI Regular'), local('NotoSansThaiUI-Regular'),
-        url('subset-NotoSansThaiUI-Regular.eot?#iefix') format('embedded-opentype'),
-        url('subset-NotoSansThaiUI-Regular.woff2') format('woff2'),
-        url('subset-NotoSansThaiUI-Regular.woff') format('woff'),
-        url('subset-NotoSansThaiUI-Regular.ttf') format('truetype'),
-        url('subset-NotoSansThaiUI-Regular.svg#NotoSansThaiUI-Regular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-display: swap;
+  font-family: 'Noto Sans Thai UI';
+  src: url('subset-NotoSansThaiUI-Regular.eot');
+  src: local('Noto Sans Thai UI Regular'), local('NotoSansThaiUI-Regular'),
+    url('subset-NotoSansThaiUI-Regular.eot?#iefix') format('embedded-opentype'),
+    url('subset-NotoSansThaiUI-Regular.woff2') format('woff2'),
+    url('subset-NotoSansThaiUI-Regular.woff') format('woff'),
+    url('subset-NotoSansThaiUI-Regular.ttf') format('truetype'),
+    url('subset-NotoSansThaiUI-Regular.svg#NotoSansThaiUI-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Noto Sans Thai UI';
-    src: url('subset-NotoSansThaiUI-Bold.eot');
-    src: local('Noto Sans Thai UI Bold'), local('NotoSansThaiUI-Bold'),
-        url('subset-NotoSansThaiUI-Bold.eot?#iefix') format('embedded-opentype'),
-        url('subset-NotoSansThaiUI-Bold.woff2') format('woff2'),
-        url('subset-NotoSansThaiUI-Bold.woff') format('woff'),
-        url('subset-NotoSansThaiUI-Bold.ttf') format('truetype'),
-        url('subset-NotoSansThaiUI-Bold.svg#NotoSansThaiUI-Bold') format('svg');
-    font-weight: bold;
-    font-style: normal;
+  font-display: swap;
+  font-family: 'Noto Sans Thai UI';
+  src: url('subset-NotoSansThaiUI-Bold.eot');
+  src: local('Noto Sans Thai UI Bold'), local('NotoSansThaiUI-Bold'),
+    url('subset-NotoSansThaiUI-Bold.eot?#iefix') format('embedded-opentype'),
+    url('subset-NotoSansThaiUI-Bold.woff2') format('woff2'),
+    url('subset-NotoSansThaiUI-Bold.woff') format('woff'),
+    url('subset-NotoSansThaiUI-Bold.ttf') format('truetype'),
+    url('subset-NotoSansThaiUI-Bold.svg#NotoSansThaiUI-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
 }
-

@@ -1,26 +1,27 @@
 @font-face {
-    font-family: 'Noto Sans Disp';
-    src: url('subset-NotoSansDisplay-Regular.eot');
-    src: local('Noto Sans Display Regular'), local('NotoSansDisplay-Regular'),
-        url('subset-NotoSansDisplay-Regular.eot?#iefix') format('embedded-opentype'),
-        url('subset-NotoSansDisplay-Regular.woff2') format('woff2'),
-        url('subset-NotoSansDisplay-Regular.woff') format('woff'),
-        url('subset-NotoSansDisplay-Regular.ttf') format('truetype'),
-        url('subset-NotoSansDisplay-Regular.svg#NotoSansDisplay-Regular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-display: swap;
+  font-family: 'Noto Sans Disp';
+  src: url('subset-NotoSansDisplay-Regular.eot');
+  src: local('Noto Sans Display Regular'), local('NotoSansDisplay-Regular'),
+    url('subset-NotoSansDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+    url('subset-NotoSansDisplay-Regular.woff2') format('woff2'),
+    url('subset-NotoSansDisplay-Regular.woff') format('woff'),
+    url('subset-NotoSansDisplay-Regular.ttf') format('truetype'),
+    url('subset-NotoSansDisplay-Regular.svg#NotoSansDisplay-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Noto Sans Disp';
-    src: url('subset-NotoSansDisplay-Bold.eot');
-    src: local('Noto Sans Display Bold'), local('NotoSansDisplay-Bold'),
-        url('subset-NotoSansDisplay-Bold.eot?#iefix') format('embedded-opentype'),
-        url('subset-NotoSansDisplay-Bold.woff2') format('woff2'),
-        url('subset-NotoSansDisplay-Bold.woff') format('woff'),
-        url('subset-NotoSansDisplay-Bold.ttf') format('truetype'),
-        url('subset-NotoSansDisplay-Bold.svg#NotoSansDisplay-Bold') format('svg');
-    font-weight: bold;
-    font-style: normal;
+  font-display: swap;
+  font-family: 'Noto Sans Disp';
+  src: url('subset-NotoSansDisplay-Bold.eot');
+  src: local('Noto Sans Display Bold'), local('NotoSansDisplay-Bold'),
+    url('subset-NotoSansDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+    url('subset-NotoSansDisplay-Bold.woff2') format('woff2'),
+    url('subset-NotoSansDisplay-Bold.woff') format('woff'),
+    url('subset-NotoSansDisplay-Bold.ttf') format('truetype'),
+    url('subset-NotoSansDisplay-Bold.svg#NotoSansDisplay-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
 }
-
