@@ -118,7 +118,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./DonateAddUpdate.ts"></script>
+<script lang="ts" src="@/scripts/DonateAddUpdate.ts"></script>
 
 <style lang="scss" scoped>
 @use 'assets/styles/var';

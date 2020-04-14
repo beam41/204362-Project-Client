@@ -215,7 +215,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./DogAddUpdate.ts"></script>
+<script lang="ts" src="@/scripts/DogAddUpdate.ts"></script>
 
 <style lang="scss" scoped>
 @use 'assets/styles/var';
