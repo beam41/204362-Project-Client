@@ -1,6 +1,6 @@
 <template>
   <div class="dog_name_list content">
-    
+    <h2>สุนัขในโครงการ</h2>
     <div v-if="dogname" class="dog_list">
       <nuxt-link v-for="dog in sortedDog" :key="dog.id" :to="`/dog/${dog.id}`" class="dog_box">
         <v-lazy-image
