@@ -3,15 +3,19 @@
     <h2>บริจาค</h2>
     <div v-if="donates" class="don-list">
       <div v-for="don in sortedDonates" :key="don.id" class="don-box">
-        <v-lazy-image
-          :src="don.imgPath | imgUrl"
-          :src-placeholder="don.imgPath | imgPlacehold"
-          :alt="don.description"
-        />
-        <h6>{{ don.title }}</h6>
-        <p class="desc">{{ don.description }}</p>
-        <p class="bor">บริจาคผ่าน Qr code:</p>
-        <qrcode-vue class="qr" :value="don.qrLink" level="L" render-as="svg" :size="100" />
+        <div class="sep">
+          <v-lazy-image
+            :src="don.imgPath | imgUrl"
+            :src-placeholder="don.imgPath | imgPlacehold"
+            :alt="don.description"
+          />
+          <h6>{{ don.title }}</h6>
+          <p class="desc">{{ don.description }}</p>
+        </div>
+        <div class="sep">
+          <p class="bor">บริจาคผ่าน Qr code:</p>
+          <qrcode-vue class="qr" :value="don.qrLink" level="L" render-as="svg" :size="100" />
+        </div>
       </div>
     </div>
     <div v-else class="loader">
@@ -77,7 +81,7 @@ export default Vue.extend({
     display: grid;
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-gap: 1rem;
+    grid-gap: 3rem 1rem;
     min-height: 740px;
   }
 
@@ -86,10 +90,11 @@ export default Vue.extend({
     background-color: color.lightness(var.$violet, 40%);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     border-radius: var.$b-radius;
     overflow: hidden;
-    margin: 1rem 0;
+    height: 100%;
     width: 400px;
 
     h6 {
@@ -124,6 +129,10 @@ export default Vue.extend({
       border-radius: var.$b-radius;
       margin-bottom: 1rem;
     }
+  }
+
+  .sep {
+    text-align: center;
   }
 }
 </style>

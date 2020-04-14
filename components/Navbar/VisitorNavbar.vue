@@ -3,7 +3,7 @@
     <div class="imgcontainer"></div>
     <VisitorNavbarMobile v-if="mobileView"></VisitorNavbarMobile>
     <div v-if="!mobileView" class="navbar">
-      <nav class="navbar" @click.prevent>
+      <nav class="navbar">
         <nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link>
         <nuxt-link to="/news" class="nav-link news">ข่าว</nuxt-link>
         <nuxt-link to="/dog" class="nav-link dogs">สุนัขในโครงการ</nuxt-link>
