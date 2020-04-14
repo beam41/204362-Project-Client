@@ -140,12 +140,10 @@ $table-body-height: 46px;
     align-self: flex-end;
   }
 
-  .txt-warn {
+  .txt-info {
     @extend %txt-warn;
-  }
-
-  p.txt-warn {
     margin: 0.5em 0 0 0;
+    color: var.$txt-info;
   }
 
   .with-warn {

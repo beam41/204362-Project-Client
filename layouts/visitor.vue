@@ -21,6 +21,11 @@ export default Vue.extend({
       showNav: false,
     };
   },
+  head: () => ({
+    bodyAttrs: {
+      class: 'visitor-body',
+    },
+  }),
 });
 </script>
 

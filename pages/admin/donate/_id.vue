@@ -89,7 +89,7 @@
               >
                 Upload
               </button>
-              <p class="txt-warn">อัตราส่วนที่แนะนำ 1:1</p>
+              <p class="txt-info">อัตราส่วนที่แนะนำ 1:1</p>
             </div>
           </div>
         </div>
