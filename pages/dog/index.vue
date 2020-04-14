@@ -30,7 +30,7 @@ import dog from '@/models/dog';
 
 export default Vue.extend({
   layout: 'visitor',
-
+  name: 'DogVisitor',
   filters: {
     imgUrl(path: string) {
       return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${path}`;
@@ -89,7 +89,8 @@ export default Vue.extend({
   overflow: hidden;
   margin: 1rem 0;
   width: 250px;
-  * {
+  &,
+  & * {
     text-decoration: none;
   }
 
