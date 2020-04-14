@@ -8,7 +8,7 @@
           <ul>
             <li><nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link></li>
             <li><nuxt-link to="/news" class="nav-link news">ข่าว</nuxt-link></li>
-            <li><nuxt-link to="/dogs" class="nav-link dogs">สุนัขในโครงการ</nuxt-link></li>
+            <li><nuxt-link to="/dog" class="nav-link dogs">สุนัขในโครงการ</nuxt-link></li>
             <li><nuxt-link to="/donate" class="nav-link donate">บริจาค</nuxt-link></li>
             <li><nuxt-link to="/contact" class="nav-link contact">ติดต่อเรา</nuxt-link></li>
             <li><nuxt-link to="/report" class="nav-link report">รายงานปัญหา</nuxt-link></li>

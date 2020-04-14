@@ -6,7 +6,7 @@
       <nav class="navbar" @click.prevent>
         <nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link>
         <nuxt-link to="/news" class="nav-link news">ข่าว</nuxt-link>
-        <nuxt-link to="/dogs" class="nav-link dogs">สุนัขในโครงการ</nuxt-link>
+        <nuxt-link to="/dog" class="nav-link dogs">สุนัขในโครงการ</nuxt-link>
         <nuxt-link to="/donate" class="nav-link donate">บริจาค</nuxt-link>
         <nuxt-link to="/contact" class="nav-link contact">ติดต่อเรา</nuxt-link>
         <nuxt-link to="/report" class="nav-link report">รายงานปัญหา</nuxt-link>
