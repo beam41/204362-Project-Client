@@ -30,6 +30,7 @@ import Donate from '@/models/donate';
 
 export default Vue.extend({
   layout: 'visitor',
+  name: 'DonateVisitor',
   components: {
     QrcodeVue,
   },
