@@ -1,21 +1,18 @@
 <template>
-  <div>
-    dogs
-
-    <div class="dog_name_list content">
-      <div v-if="dogname" class="dog_list">
-        <nuxt-link v-for="dog in sortedDog" :key="dog.id" :to="`/dog/${dog.id}`" class="dog_box">
-          <v-lazy-image
-            :src="dog.imgPath | imgUrl"
-            :src-placeholder="dog.imgPath | imgPlacehold"
-            :alt="dog.description"
-          />
-          <h6>{{ dog.name[0] }}</h6>
-        </nuxt-link>
-      </div>
-      <div v-else class="loader">
-        <div class="spinner spinner-black"></div>
-      </div>
+  <div class="dog_name_list content">
+    
+    <div v-if="dogname" class="dog_list">
+      <nuxt-link v-for="dog in sortedDog" :key="dog.id" :to="`/dog/${dog.id}`" class="dog_box">
+        <v-lazy-image
+          :src="dog.imgPath | imgUrl"
+          :src-placeholder="dog.imgPath | imgPlacehold"
+          :alt="dog.description"
+        />
+        <h6>{{ dog.name[0] }}</h6>
+      </nuxt-link>
+    </div>
+    <div v-else class="loader">
+      <div class="spinner spinner-black"></div>
     </div>
   </div>
 </template>
