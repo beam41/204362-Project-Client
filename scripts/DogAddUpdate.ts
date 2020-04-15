@@ -33,7 +33,7 @@ export default Vue.extend({
     caretakerPhoneErr: false,
     caretakerErr: false,
     locationErr: false,
-    lengthPhone: '',
+    allPhone: '',
     // Img
     imgErr: false,
     uploading: false,
@@ -170,24 +170,17 @@ export default Vue.extend({
         this.isAliveErr = true;
         err = true;
       }
-      this.lengthPhone = caretakerPhone.split(/[-+]/).join('');
-      if (
-        caretakerPhone === '' ||
-        /[A-za-z!"#$%&\\'()*/:;<=>?@[\\\]^_`{|}~]/gm.test(this.lengthPhone) ||
-        this.lengthPhone.length < 9
-      ) {
-        if (/[,]/.test(this.lengthPhone)) {
-          // eslint-disable-next-line no-plusplus
-          for (let i = 0; i < this.lengthPhone.split(/[,]/).length; i++) {
-            if (
-              +this.lengthPhone.split(/[,]/)[i].length < 9 ||
-              +this.lengthPhone.split(/[,]/)[i].length > 10
-            ) {
-              this.caretakerPhoneErr = true;
-              err = true;
-            }
-          }
-        } else if (this.lengthPhone.length < 9 || this.lengthPhone.length > 10) {
+      if (caretakerPhone === '') {
+        this.caretakerPhoneErr = true;
+        err = true;
+      }
+      /* eslint-disable */
+      this.allPhone = caretakerPhone.replace(/[-+]/g, '');
+      var Phone = this.allPhone.split(',');
+      var i;
+      for (i = 0; i < Phone.length; i++) {
+        console.log('Phone: ' + Phone[i]);
+        if (Phone[i].length < 9 || !Number.isInteger(+Phone[i])) {
           this.caretakerPhoneErr = true;
           err = true;
         }
