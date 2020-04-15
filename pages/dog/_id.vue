@@ -1,28 +1,50 @@
 <template>
-  <div class="dogdetail content">
-    <v-lazy-image src="https://mheanmaa.azurewebsites.net/placeholder.jpg" />
-    <h2>หมาโรยไอซิ่ง</h2>
+  <div v-if="dogDetail" class="dogdetail content">
+    <v-lazy-image
+      :src="imgUrl"
+      :src-placeholder="dogDetail.imgPath | imgPlacehold"
+      :alt="dogDetail.description"
+    />
+    <h2>{{ dogDetail.name[0] }}</h2>
     <div class="doginfo">
-      <p><b>พันธุ์:</b> {ข้อมูลที่จะดึง}</p>
-      <p><b>อายุ:</b> {ข้อมูลที่จะดึง}</p>
-      <p><b>เพศ:</b> {ข้อมูลที่จะดึง}</p>
-      <p>
-        <b>ลักษณะ:</b>
-        {ข้อมูลที่จะดึง...............................................................0000000000000000000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111}
-      </p>
-      <p><b>สถานะ:</b> {ข้อมูลที่จะดึง}</p>
-      <p><b>สีปลอกคอ:</b> {ข้อมูลที่จะดึง}</p>
-      <p><b>ติดต่อผู้ดูแล:</b> {ข้อมูลที่จะดึง}</p>
-      <p><b>ที่อยู่:</b> {ข้อมูลที่จะดึง}</p>
+      <p><b>พันธุ์:</b>{{ dogDetail.name }}</p>
+      <p><b>อายุ:</b> {{ dogDetail.ageYear }}</p>
+      <p><b>เพศ:</b> {{ dogDetail.sex }}</p>
+      <p><b>ลักษณะ:</b>{{ dogDetail.description }}</p>
+      <p><b>สถานะ:</b> {{ dogDetail.isAlive }}</p>
+      <p><b>สีปลอกคอ:</b> {{ dogDetail.collarColor }}</p>
+      <p><b>ผู้ดูแล:</b> {{ dogDetail.caretaker }}</p>
+      <p><b>ติดต่อผู้ดูแล:</b> {{ dogDetail.caretakerPhone }}</p>
+      <p><b>ที่อยู่:</b> {{ dogDetail.location }}</p>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import dog from '@/models/dog';
+import DogServ from '@/services/DogApiService';
+
 export default Vue.extend({
   layout: 'visitor',
   name: 'DogDetail',
+
+  data: () => ({
+    dogDetail: null as null | dog,
+  }),
+  mounted() {
+    DogServ.getDogVisitor(this.$route.params.id).then((val) => {
+      this.dogDetail = val.data;
+    });
+  },
+  computed: {
+    imgUrl() {
+      return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${this.dogDetail!.imgPath}`;
+    },
+    imgPlacehold() {
+      return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.dogDetail!.imgPath}`;
+    },
+  },
 });
 </script>
 

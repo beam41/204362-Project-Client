@@ -1,7 +1,7 @@
 <template>
   <div class="dog_name_list content">
     <h2>สุนัขในโครงการ</h2>
-    <div v-if="dogname" class="dog_list">
+    <div v-if="dogList" class="dog_list">
       <nuxt-link v-for="dog in sortedDog" :key="dog.id" :to="`/dog/${dog.id}`" class="dog_box">
         <v-lazy-image
           :src="dog.imgPath | imgUrl"
@@ -37,16 +37,16 @@ export default Vue.extend({
     },
   },
   data: () => ({
-    dogname: null as null | dog[],
+    dogList: null as null | dog[],
   }),
   computed: {
     sortedDog() {
-      return _.orderBy(this.dogname, 'acceptedOn');
+      return _.orderBy(this.dogList, 'acceptedOn');
     },
   },
   mounted() {
-    DogServ.getDogVisitor().then((val) => {
-      this.dogname = val.data;
+    DogServ.getDogListVisitor().then((val) => {
+      this.dogList = val.data;
     });
   },
 });
