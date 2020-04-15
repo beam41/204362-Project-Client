@@ -2,6 +2,7 @@
   <div class="box">
     <div class="bgicon">
       <font-awesome-icon :icon="['fas', 'bars']" @click="showMenu()" />
+      <h5 class="myweb">Mhean-Maa</h5>
     </div>
     <transition name="slide-l">
       <div class="menu" v-if="show">
@@ -67,10 +68,9 @@ export default Vue.extend({
 }
 .bgicon {
   font-size: 2rem;
-  background-color: var.$white;
   width: 100vw;
   display: flex;
-  justify-content: center;
+  margin-left: 10px;
   padding: 5px 0px 5px 0px;
 }
 .box {
@@ -78,6 +78,8 @@ export default Vue.extend({
   top: 0;
   left: 0;
   box-shadow: 0px 5px 9px 1px rgba(79, 79, 79, 0.5);
+  color: var.$gray;
+  background-color: var.$white;
 }
 .cross {
   font-size: 1.5rem;
@@ -103,5 +105,11 @@ export default Vue.extend({
     text-decoration: none;
     color: var.$link;
   }
+}
+.myweb {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  display: flex;
+  margin-left: 10px;
 }
 </style>
