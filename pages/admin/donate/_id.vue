@@ -89,7 +89,7 @@
               >
                 Upload
               </button>
-              <p class="txt-warn">อัตราส่วนที่แนะนำ 1:1</p>
+              <p class="txt-info">อัตราส่วนที่แนะนำ 1:1</p>
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./DonateAddUpdate.ts"></script>
+<script lang="ts" src="@/scripts/DonateAddUpdate.ts"></script>
 
 <style lang="scss" scoped>
 @use 'assets/styles/var';

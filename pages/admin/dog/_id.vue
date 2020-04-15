@@ -185,6 +185,7 @@
                 >
                   Upload
                 </button>
+                <p class="txt-info">อัตราส่วนที่แนะนำ 1:1</p>
               </div>
             </div>
           </div>
@@ -214,7 +215,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./DogAddUpdate.ts"></script>
+<script lang="ts" src="@/scripts/DogAddUpdate.ts"></script>
 
 <style lang="scss" scoped>
 @use 'assets/styles/var';
