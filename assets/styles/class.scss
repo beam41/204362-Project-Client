@@ -43,6 +43,16 @@
   transform: translateX(100%);
 }
 
+.slide-l-enter-active,
+.slide-l-leave-active {
+  transition: transform var.$animation-time;
+}
+
+.slide-l-enter,
+.slide-l-leave-to {
+  transform: translateX(-100%);
+}
+
 .flip-list-move {
   transition: transform var.$animation-time;
 }
