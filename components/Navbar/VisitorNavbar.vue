@@ -11,7 +11,6 @@
     <div class="navbar mobile">
       <VisitorNavbarMobile />
     </div>
-    <div class="imgcontainer"></div>
   </div>
 </template>
 
