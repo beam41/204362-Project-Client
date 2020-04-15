@@ -16,7 +16,7 @@
           <nuxt-link to="/contact" class="nav-link contact"><span>ติดต่อเรา</span></nuxt-link>
           <nuxt-link to="/report" class="nav-link report"><span>รายงานปัญหา</span></nuxt-link>
         </div>
-        <div class="shade"></div>
+        <div class="shade" @click="hideMenu()"></div>
       </div>
     </transition>
   </div>
@@ -50,12 +50,12 @@ export default Vue.extend({
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgb(194, 194, 194);
+  background-color: rgb(255, 255, 255);
   height: 100%;
   display: flex;
   flex-direction: column;
   width: 300px;
-  color: var.$white;
+  color: var.$gray;
   box-shadow: 68px 0px 44px 10px rgba(0, 0, 0, 0.3);
 }
 .shade {
@@ -94,7 +94,7 @@ export default Vue.extend({
   display: flex;
   justify-content: center;
   margin: 15px 0px 15px 0px;
-  color: var.$white;
+  color: var.$gray;
   text-decoration: none;
   padding: 0.5rem 0;
   font-weight: 500;
