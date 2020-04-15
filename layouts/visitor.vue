@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VisitorNavbar v-if="!mobileView"></VisitorNavbar>
+    <VisitorNavbar></VisitorNavbar>
     <nuxt />
   </div>
 </template>
@@ -29,4 +29,4 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

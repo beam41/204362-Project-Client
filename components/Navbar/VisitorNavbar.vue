@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="imgcontainer"></div>
-    <VisitorNavbarMobile v-if="mobileView"></VisitorNavbarMobile>
+    <div class="navbox" v-if="mobileView">
+      <VisitorNavbarMobile></VisitorNavbarMobile>
+    </div>
     <div v-if="!mobileView" class="navbar">
       <nav class="navbar">
         <nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link>
@@ -12,6 +13,7 @@
         <nuxt-link to="/report" class="nav-link report">รายงานปัญหา</nuxt-link>
       </nav>
     </div>
+    <div class="imgcontainer"></div>
   </div>
 </template>
 
@@ -55,18 +57,29 @@ export default Vue.extend({
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  margin-top: 0px;
 }
 
 .navbar {
-  background-color: var.$violet;
+  background-color: var.$white;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
 }
+.navbox {
+  background-color: var.$white;
+  display: flex;
+  height: 50px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  box-shadow: -10px 5px 20px rgb(90, 90, 90);
+}
 .nav-link {
   @extend %animate-all;
-  color: #ffffff;
+  color: var.$gray;
   text-decoration: none;
   font-size: 1.5rem;
   padding: 0.5rem 1em;
@@ -75,7 +88,7 @@ export default Vue.extend({
 
   &:hover {
     text-decoration: none;
-    color: color.lightness(color.alpha(red, -0.25), 40%);
+    color: var.$link;
   }
 }
 #nav-icon {
@@ -88,5 +101,11 @@ export default Vue.extend({
   font-size: 2rem;
   color: var.$white;
   background-color: var.$violet;
+}
+.bar {
+  background-color: var.$white;
+}
+.content {
+  padding: 0px;
 }
 </style>
