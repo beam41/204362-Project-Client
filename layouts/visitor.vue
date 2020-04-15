@@ -29,4 +29,6 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+@use 'assets/styles/visitor_util';
+</style>

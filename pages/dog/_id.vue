@@ -91,7 +91,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scpoped>
+<style lang="scss" scoped>
 @use 'assets/styles/var';
 @use 'assets/styles/color';
 @use 'assets/styles/selector';
@@ -108,10 +108,12 @@ export default Vue.extend({
   justify-content: flex-start;
   max-width: 350px;
 }
+
 h2 {
   font-size: 1.5;
   margin: 0.5em 0;
 }
+
 img {
   object-fit: cover;
   size: 400px;
