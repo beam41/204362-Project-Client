@@ -35,16 +35,8 @@
               <td>
                 <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.name | arrToString }}</nuxt-link>
               </td>
-              <td v-if="d.ageYear > 0 && d.ageMonth > 0">
-                <nuxt-link :to="`/admin/dog/${d.id}`"
-                  >{{ d.ageYear }} ปี {{ d.ageMonth }} เดือน</nuxt-link
-                >
-              </td>
-              <td v-if="d.ageYear > 0 && d.ageMonth === 0">
-                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.ageYear }} ปี</nuxt-link>
-              </td>
-              <td v-if="d.ageYear === 0 && d.ageMonth > 0">
-                <nuxt-link :to="`/admin/dog/${d.id}`">{ d.ageMonth }} เดือน</nuxt-link>
+              <td>
+                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d | formatAge }}</nuxt-link>
               </td>
               <td>
                 <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.sex | formatSex }}</nuxt-link>
@@ -112,6 +104,14 @@ export default Vue.extend({
         return 'สีเหลือง';
       }
       return 'สีแดง';
+    },
+    formatAge(dog: Dog) {
+      const strAge = [];
+      // @ts-ignore
+      if (dog!.ageYear > 0) strAge.push(`${dog!.ageYear} ปี`);
+      // @ts-ignore
+      if (dog!.ageMonth > 0) strAge.push(`${dog!.ageMonth} เดือน`);
+      return strAge.join(' ');
     },
   },
   data: () => ({

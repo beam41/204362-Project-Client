@@ -1,21 +1,29 @@
 <template>
-  <div v-if="dogDetail" class="dogdetail content">
-    <v-lazy-image
-      :src="imgUrl"
-      :src-placeholder="dogDetail.imgPath | imgPlacehold"
-      :alt="dogDetail.description"
-    />
-    <h2>{{ dogDetail.name[0] }}</h2>
-    <div class="doginfo">
-      <p><b>พันธุ์:</b>{{ dogDetail.name }}</p>
-      <p><b>อายุ:</b> {{ dogDetail.ageYear }}</p>
-      <p><b>เพศ:</b> {{ dogDetail.sex }}</p>
-      <p><b>ลักษณะ:</b>{{ dogDetail.description }}</p>
-      <p><b>สถานะ:</b> {{ dogDetail.isAlive }}</p>
-      <p><b>สีปลอกคอ:</b> {{ dogDetail.collarColor }}</p>
-      <p><b>ผู้ดูแล:</b> {{ dogDetail.caretaker }}</p>
-      <p><b>ติดต่อผู้ดูแล:</b> {{ dogDetail.caretakerPhone }}</p>
-      <p><b>ที่อยู่:</b> {{ dogDetail.location }}</p>
+  <div class="content">
+    <div v-if="dogDetail" class="dogdetail">
+      <v-lazy-image :src="imgUrl" :src-placeholder="imgPlacehold" :alt="dogDetail.description" />
+      <h2>{{ dogDetail.name[0] }}</h2>
+      <div class="doginfo">
+        <p><b>ชื่อ:</b> {{ dogDetail.name | arrToString }}</p>
+        <p><b>พันธุ์:</b> {{ dogDetail.breed }}</p>
+        <p><b>อายุ:</b> {{ formatAge }}</p>
+        <p>
+          <b>เพศ:</b> <font-awesome-icon :icon="['fas', dogDetail.sex ? 'venus' : 'mars']" />
+          {{ formatSex }}
+        </p>
+        <p><b>ลักษณะ:</b> {{ dogDetail.description }}</p>
+        <p><b>สถานะ:</b> {{ formatIsAlive }}</p>
+        <p>
+          <b>สีปลอกคอ: </b>
+          <span :class="'collcol ' + dogDetail.collarColor">{{ formatCollarColor }}</span>
+        </p>
+        <p><b>ผู้ดูแล:</b> {{ dogDetail.caretaker }}</p>
+        <p><b>ติดต่อผู้ดูแล:</b> {{ dogDetail.caretakerPhone | arrToString }}</p>
+        <p><b>ที่อยู่:</b> {{ dogDetail.location }}</p>
+      </div>
+    </div>
+    <div v-else class="loader">
+      <div class="spinner spinner-black"></div>
     </div>
   </div>
 </template>
@@ -43,6 +51,41 @@ export default Vue.extend({
     },
     imgPlacehold() {
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.dogDetail!.imgPath}`;
+    },
+    formatSex() {
+      if (this.dogDetail!.sex === 'F') {
+        return 'ตัวเมีย';
+      }
+      return 'ตัวผู้';
+    },
+    formatIsAlive() {
+      if (this.dogDetail!.isAlive) {
+        return 'มีชีวิต';
+      }
+      return 'เสียชีวิต';
+    },
+    formatCollarColor() {
+      if (this.dogDetail!.collarColor === 'G') {
+        return 'สีเขียว';
+      }
+      if (this.dogDetail!.collarColor === 'Y') {
+        return 'สีเหลือง';
+      }
+      return 'สีแดง';
+    },
+    formatAge() {
+      const strAge = [];
+      // @ts-ignore
+      if (this.dogDetail!.ageYear > 0) strAge.push(`${this.dogDetail!.ageYear} ปี`);
+      // @ts-ignore
+      if (this.dogDetail!.ageMonth > 0) strAge.push(`${this.dogDetail!.ageMonth} เดือน`);
+      console.log(strAge.join(' '));
+      return strAge.join(' ');
+    },
+  },
+  filters: {
+    arrToString(arr: string[]) {
+      return arr.toString().replace(/,/g, ', ');
     },
   },
 });
@@ -73,5 +116,21 @@ img {
   object-fit: cover;
   size: 400px;
   border-radius: var.$b-radius;
+}
+
+.collcol {
+  border-radius: var.$b-radius;
+  padding: 0 var.$b-radius;
+  &.R {
+    background: #ff4a4a;
+  }
+
+  &.Y {
+    background: #ffd000;
+  }
+
+  &.G {
+    background: #3ec945;
+  }
 }
 </style>

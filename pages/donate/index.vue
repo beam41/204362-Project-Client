@@ -73,10 +73,6 @@ export default Vue.extend({
   flex-direction: column;
   align-items: center;
 
-  .loader {
-    height: 740px;
-  }
-
   .don-list {
     display: grid;
     width: 100%;

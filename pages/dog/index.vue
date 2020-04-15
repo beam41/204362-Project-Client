@@ -62,10 +62,6 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .loader {
-    height: 740px;
-  }
 }
 
 .dog_list {
