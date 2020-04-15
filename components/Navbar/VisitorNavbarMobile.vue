@@ -40,7 +40,7 @@ export default Vue.extend({
 @use 'assets/styles/responsive';
 
 .menu {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: brown;

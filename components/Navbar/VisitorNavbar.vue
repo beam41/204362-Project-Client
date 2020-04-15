@@ -81,8 +81,7 @@ export default Vue.extend({
   color: var.$gray;
   text-decoration: none;
   font-size: 1.5rem;
-  padding: 0.5rem 1em;
-  margin: 0rem 1em;
+  padding: 0.5rem 0;
   font-weight: 500;
 
   &:hover {
