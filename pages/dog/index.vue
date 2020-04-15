@@ -1,8 +1,19 @@
 <template>
   <div class="dog_name_list content">
     <h2>สุนัขในโครงการ</h2>
+    <div class="input-group">
+      <input v-model="searchString" type="text" placeholder="Search" />
+      <button class="btn-default">
+        <font-awesome-icon :icon="['fas', 'search']" />
+      </button>
+    </div>
     <div v-if="dogList" class="dog_list">
-      <nuxt-link v-for="dog in sortedDog" :key="dog.id" :to="`/dog/${dog.id}`" class="dog_box">
+      <nuxt-link
+        v-for="dog in formattedArrays"
+        :key="dog.id"
+        :to="`/dog/${dog.id}`"
+        class="dog_box"
+      >
         <v-lazy-image
           :src="dog.imgPath | imgUrl"
           :src-placeholder="dog.imgPath | imgPlacehold"
@@ -38,12 +49,24 @@ export default Vue.extend({
   },
   data: () => ({
     dogList: null as null | dog[],
+    dogs: null as Array<any> | null,
+    currOption: 0,
+    descending: false,
+    searchString: '',
   }),
   computed: {
-    sortedDog() {
-      return _.orderBy(this.dogList, 'acceptedOn');
+    formattedArrays() {
+      let filter = this.dogs;
+      if (this.searchString !== '') {
+        // prettier-ignore
+        const findinObj = (val: string, obj: object) => _.some(obj, v => _.includes(v, val));
+        // prettier-ignore
+        filter = _.filter(this.dogs, (o: dog) => findinObj(this.searchString, {...o, name: o.name!.toString()}));
+      }
+      return filter;
     },
   },
+
   mounted() {
     DogServ.getDogListVisitor().then((val) => {
       this.dogList = val.data;
