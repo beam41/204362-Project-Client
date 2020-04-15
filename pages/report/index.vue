@@ -1,5 +1,7 @@
 <template>
-  <div>Report</div>
+  <div class="report content">
+    <h2>รายงานปัญหาสุนัข</h2>
+  </div>
 </template>
 
 <script lang="ts">

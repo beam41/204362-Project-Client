@@ -259,6 +259,11 @@ input {
     margin: 0;
     width: 10em;
     height: 10em;
+
+    img {
+      width: 10em;
+      height: 10em;
+    }
   }
 }
 

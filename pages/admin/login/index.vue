@@ -14,7 +14,8 @@
             <label for="login-pwd">Password:</label>
             <input id="login-pwd" ref="pwd" type="password" @keyup.enter="login()" />
           </div>
-          <p class="err">{{ errMessage }}</p>
+          <p v-if="noEnter" class="err">Please Enter Username and/or Password</p>
+          <p v-if="errMessage" class="err">{{ errMessage }}</p>
           <div class="cover-btn">
             <button class="btn-success" @click="login()">Login</button>
             <nuxt-link to="/"><button class="btn-default">Go Back</button></nuxt-link>
@@ -35,6 +36,7 @@ export default Vue.extend({
   data: () => ({
     trylogin: false,
     errMessage: '',
+    noEnter: false,
   }),
   mounted() {
     const storage = localStorage.getItem('mm-login');
@@ -48,6 +50,13 @@ export default Vue.extend({
   },
   methods: {
     login() {
+      this.noEnter = false;
+      this.errMessage = '';
+      // @ts-ignore
+      if (this.$refs.usn.value === '' || this.$refs.pwd.value === '') {
+        this.noEnter = true;
+        return;
+      }
       this.trylogin = true;
       // @ts-ignore
       LoginService.login(this.$store, this.$refs.usn.value, this.$refs.pwd.value)

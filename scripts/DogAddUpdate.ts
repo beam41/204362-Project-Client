@@ -213,7 +213,7 @@ export default Vue.extend({
     saveData() {
       this.editing = true;
       const newDog: Dog = {
-        id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
+        id: undefined,
         // @ts-ignore
         name: this.$refs.name.value.split(',').map((item) => item.trim()),
         // @ts-ignore
