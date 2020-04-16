@@ -127,8 +127,16 @@ export default Vue.extend({
     }
 
     .qr {
+      @extend %animate-all;
       border: 15px solid white;
       margin-bottom: 1rem;
+      border-radius: var.$b-radius;
+      box-shadow: 0px 0px 8px -2px rgba(79, 79, 79, 0.45);
+
+      &:hover {
+        transform: translateY(-125px) scale(2.5);
+        box-shadow: 0px 0px 10px -2px rgba(79, 79, 79, 1);
+      }
     }
   }
 

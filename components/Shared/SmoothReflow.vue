@@ -14,7 +14,7 @@ export default {
       type: String,
       default: 'div',
     },
-    options: { type: Object, default: () => {} },
+    options: { type: Object, default: () => ({}) },
   },
   mounted() {
     this.$smoothReflow(this.options);
