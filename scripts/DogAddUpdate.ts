@@ -15,7 +15,7 @@ export default Vue.extend({
   },
   data: () => ({
     dog: null as Dog | null,
-    editing: false,
+    saving: false,
     delShow: false,
     // Variable
     sex: undefined as string | undefined,
@@ -203,7 +203,7 @@ export default Vue.extend({
       this.saveData();
     },
     saveData() {
-      this.editing = true;
+      this.saving = true;
       const newDog: Dog = {
         id: undefined,
         // @ts-ignore
@@ -247,9 +247,9 @@ export default Vue.extend({
     onChangeAlive(event: any) {
       this.isAlive = this.isAliveArr[event.currSelect];
     },
-    Delete() {
+    del() {
       this.delShow = false;
-      this.editing = true;
+      this.saving = true;
       DogApiService.delDog(this.$store, this.$route.params.id).then((_a) => {
         this.$router.go(-1);
       });

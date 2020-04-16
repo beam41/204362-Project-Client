@@ -7,6 +7,10 @@ export default class Donate {
 
   accepted: boolean | undefined;
 
+  acceptedBy: string | undefined;
+
+  acceptedOn: number | undefined;
+
   description: string | undefined;
 
   qrLink: string | undefined;

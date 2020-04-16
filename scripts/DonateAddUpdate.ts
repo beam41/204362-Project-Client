@@ -15,7 +15,7 @@ export default Vue.extend({
   },
   data: () => ({
     donate: null as Donate | null,
-    editing: false,
+    saving: false,
     delShow: false,
     titleErr: false,
     descErr: false,
@@ -33,6 +33,11 @@ export default Vue.extend({
     },
     imgPlacehold() {
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
+    },
+    acceptedInfo() {
+      return `Accepted By ${this.donate!.acceptedBy} on ${new Date(
+        this.donate!.acceptedOn!,
+      ).toString()}`;
     },
   },
   mounted() {
@@ -83,7 +88,7 @@ export default Vue.extend({
       this.save();
     },
     save() {
-      this.editing = true;
+      this.saving = true;
       let newDon: Donate = new Donate();
       if (this.donate) {
         newDon = {
@@ -112,7 +117,7 @@ export default Vue.extend({
     },
     del() {
       this.delShow = false;
-      this.editing = true;
+      this.saving = true;
       DonateServ.delDonate(this.$store, this.$route.params.id).then((_) => {
         this.$router.go(-1);
       });

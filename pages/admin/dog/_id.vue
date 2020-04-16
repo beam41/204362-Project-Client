@@ -1,9 +1,9 @@
 <template>
   <div v-if="dog" class="adminbox">
-    <div v-if="editing" class="loader blackcover">
+    <div v-if="saving" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
-    <Modal :show="delShow">
+    <Modal :show="showDel">
       <div class="m-top">
         <h5>Delete</h5>
       </div>
@@ -11,15 +11,8 @@
         <p>คุณต้องการลบหรือไม่</p>
       </div>
       <div class="m-bot">
-        <button class="btn-warn btn-mar" @click="Delete()">Delete</button>
-        <button
-          class="btn-default"
-          @click="
-            () => {
-              delShow = false;
-            }
-          "
-        >
+        <button class="btn-warn btn-mar" @click="del()">Delete</button>
+        <button class="btn-default" @click="() => (showDel = false)">
           Cancel
         </button>
       </div>
@@ -177,7 +170,7 @@
 
           <div class="img-upload">
             <div class="form-control im">
-              <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
+              <p v-if="!imgPath || imgPath === ''">ไม่มีรูป</p>
               <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
             </div>
             <div class="upload-pos">
@@ -205,11 +198,7 @@
           v-if="$route.params.id !== 'add'"
           class="btn-warn"
           :disabled="uploading"
-          @click="
-            () => {
-              delShow = true;
-            }
-          "
+          @click="() => (showDel = true)"
         >
           Delete
         </button>
@@ -234,25 +223,8 @@
   grid-template-rows: 90% 10%;
 }
 
-.txt {
-  height: 10em;
-}
-
-.input-au {
-  width: 100%;
-}
-
 .input-box {
-  display: grid;
-  gap: 1rem 1rem;
-  grid-template-columns: 1fr 1fr;
   width: 100%;
-}
-
-.sep {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 input {
