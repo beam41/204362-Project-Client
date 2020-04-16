@@ -1,83 +1,67 @@
 <template>
-  <div v-if="donate" class="adminbox">
-    <div v-if="saving" class="loader blackcover">
+  <div v-if="news" class="adminbox">
+    <div v-if="editing" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
-    <Modal :show="showDel">
+    <Modal :show="delShow">
       <div class="m-top">
         <h5>Delete</h5>
       </div>
       <div class="m-mid">
         <p>
           คุณต้องการลบ
-          <strong>{{ donate.title }}</strong> หรือไม่
+          <strong>{{ news.title }}</strong> หรือไม่
         </p>
       </div>
       <div class="m-bot">
         <button class="btn-warn" @click="del()">Delete</button>
-        <button class="btn-default" @click="() => (showDel = false)">
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              delShow = false;
+            }
+          "
+        >
           Cancel
         </button>
       </div>
     </Modal>
-    <div class="padadmin addupdate donate-au">
+    <div class="padadmin addupdate news-au">
       <div class="top">
         <div class="input-box">
           <div class="sep">
             <div class="form-control">
-              <label for="dn-1" class="with-warn">
-                <span>หัวเรื่อง:</span>
+              <label class="with-warn">
+                <span>หัวข้อข่าว:</span>
                 <span class="warn">ขึ้นต้นและลงท้ายได้เฉพาะตัวหนังสือ หรือ ตัวเลข</span>
               </label>
               <input
-                id="dn-1"
                 ref="title"
-                v-model="donate.title"
+                v-model="news.title"
                 :class="'input-au' + (titleErr ? ' error' : '')"
                 type="text"
-                placeholder="กรุณากรอกหัวเรื่อง"
+                placeholder="กรุณากรอกหัวข้อข่าว"
               />
             </div>
             <div class="form-control">
-              <label for="dn-2">คำอธิบาย:</label>
+              <label>เนื้อหาข่าว:</label>
               <textarea
-                id="dn-2"
                 ref="desc"
-                v-model="donate.description"
+                v-model="news.description"
                 :class="'txt input-au' + (descErr ? ' error' : '')"
                 type="text"
-                placeholder="กรุณากรอกคำอธิบาย"
+                placeholder="กรุณากรอกเนื้อหาข่าว"
               />
             </div>
-            <div class="form-control">
-              <label for="dn-3">Link Qrcode:</label>
-              <input
-                id="dn-3"
-                ref="qr"
-                v-model="donate.qrLink"
-                :class="'input-au' + (qrErr ? ' error' : '')"
-                type="text"
-                placeholder="กรุณากรอก Qr code"
-              />
-            </div>
-
-            <qrcode-vue
-              class="form-control"
-              :value="donate.qrLink"
-              level="L"
-              render-as="svg"
-              :size="200"
-            ></qrcode-vue>
           </div>
           <div class="img-upload">
-            <div class="form-control im-wrapper">
-              <div class="im">
-                <p v-if="!imgPath || imgPath === ''">ไม่มีรูป</p>
-                <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
-              </div>
+            <div class="form-control im">
+              <p v-if="!imgPath && imgPath === ''">ภาพประกอบข่าว</p>
+              <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
             </div>
             <div class="form-control">
-              <input ref="file" type="file" accept="image/png,image/jpeg" :disabled="uploading" />
+              <input ref="file" type="file" accept="image/*" :disabled="uploading" />
             </div>
             <div class="form-control">
               <button
@@ -87,20 +71,22 @@
               >
                 Upload
               </button>
-              <p class="txt-info">อัตราส่วนที่แนะนำ 1:1 ไฟล์สกุล jpeg หรือ png เท่านั้น</p>
             </div>
           </div>
         </div>
       </div>
       <div class="admin-btn-pos">
-        <p v-if="donate.accepted" class="acc-in">{{ acceptedInfo }}</p>
         <span>
           <button class="btn-success" :disabled="uploading" @click="saveValidate()">Save</button>
           <button
             v-if="$route.params.id !== 'add'"
             class="btn-warn"
             :disabled="uploading"
-            @click="() => (showDel = true)"
+            @click="
+              () => {
+                delShow = true;
+              }
+            "
           >
             Delete
           </button>
@@ -113,11 +99,30 @@
   </div>
 </template>
 
-<script lang="ts" src="@/scripts/DonateAddUpdate.ts"></script>
+<script lang="ts" src="./NewsAddUpdate.ts"></script>
 
 <style lang="scss" scoped>
 @use 'assets/styles/var';
 @use 'assets/styles/color';
 @use 'assets/styles/selector';
 @use 'assets/styles/responsive';
+
+.input-au {
+  width: 100%;
+}
+
+.input-box {
+  display: grid;
+  gap: 1rem 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.txt {
+  height: 10rem;
+}
+
+.sep {
+  display: flex;
+  flex-direction: column;
+}
 </style>

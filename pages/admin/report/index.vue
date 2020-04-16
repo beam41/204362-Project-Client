@@ -1,27 +1,51 @@
 <template>
   <div class="adminbox">
-    <div class="listpage-top">
-      <button class="btn-default"><font-awesome-icon :icon="['fas', 'plus']" />New</button>
-      <Sorter :options="by" @change="onChange($event)" />
-    </div>
-    <div class="table-wrapper">
-      <div class="head-wrapper">
-        <table class="datalist head">
-          <tr class="tablehead">
-            <th>ชื่อเรื่อง</th>
-            <th>ผู้สร้าง</th>
-            <th>อนุมัติแล้ว</th>
-          </tr>
-        </table>
+    <div class="padadmin">
+      <div class="listpage-top">
+        <nuxt-link to="/admin/report/add">
+          <button class="btn-default svg-m">
+            <font-awesome-icon :icon="['fas', 'plus']" />New
+          </button>
+        </nuxt-link>
+        <div class="input-group">
+          <input v-model="searchString" type="text" placeholder="Search" />
+          <button class="btn-default">
+            <font-awesome-icon :icon="['fas', 'search']" />
+          </button>
+        </div>
+        <Sorter :options="by" @sort-change="onChange($event)" />
       </div>
-      <div class="sub-table-wrapper">
-        <table class="datalist">
-          <tr v-for="d in sortedArrays" :key="d.id">
-            <td>{{ d.title }}</td>
-            <td>{{ d.creator }}</td>
-            <td>{{ d.accepted }}</td>
-          </tr>
-        </table>
+      <div class="table-wrapper">
+        <div class="head-wrapper">
+          <table class="datalist head">
+            <tr class="tablehead">
+              <th>หัวเรื่อง</th>
+              <th>ผู้สร้าง</th>
+              <th>รับทราบแล้ว</th>
+            </tr>
+          </table>
+        </div>
+        <div class="sub-table-wrapper">
+          <transition-group v-if="reports" class="datalist" name="flip-list" tag="table">
+            <tr v-for="r in formattedArrays" :key="r.id">
+              <td>
+                <nuxt-link :to="`/admin/report/${r.id}`">{{ r.title }}</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/report/${r.id}`">{{ r.reporter }}</nuxt-link>
+              </td>
+              <td>
+                <nuxt-link :to="`/admin/report/${r.id}`">
+                  <span> <CheckBox :is-check="r.accepted" disabled /> </span
+                ></nuxt-link>
+              </td>
+            </tr>
+          </transition-group>
+
+          <div v-else class="loader">
+            <div class="spinner spinner-white"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -31,26 +55,42 @@
 import Vue from 'vue';
 import _ from 'lodash';
 import Sorter from '@/components/Shared/Sorter.vue';
+import Report from '@/models/report';
+import ReportServ from '@/services/ReportApiService';
+import CheckBox from '@/components/Shared/CheckBox.vue';
 
 export default Vue.extend({
   layout: 'admin',
-  name: 'ListDonate',
+  name: 'ListReport',
   components: {
     Sorter,
+    CheckBox,
   },
   data: () => ({
-    by: ['ชื่อเรื่อง', 'ผู้สร้าง', 'อนุมัติแล้ว'],
-    field: ['title', 'creator', 'accepted'],
-    donates: null as Array<any> | null,
+    by: ['หัวเรื่อง', 'ผู้สร้าง', 'รับทราบแล้ว'],
+    field: ['title', 'reporter', 'accepted'],
+    reports: null as Array<Report> | null,
     currOption: 0,
     descending: false,
+    searchString: '',
   }),
   computed: {
-    sortedArrays() {
-      return _.orderBy(this.donates, this.field[this.currOption], this.descending ? 'desc' : 'asc');
+    formattedArrays() {
+      let filter = this.reports;
+      if (this.searchString !== '') {
+        // prettier-ignore
+        const findinObj = (val: string, obj: object) => _.some(obj, v => _.includes(v, val));
+        // prettier-ignore
+        filter = _.filter(this.reports, o => findinObj(this.searchString, o));
+      }
+      return _.orderBy(filter, this.field[this.currOption], this.descending ? 'desc' : 'asc');
     },
   },
-  mounted() {},
+  mounted() {
+    ReportServ.getReportList(this.$store).then((val) => {
+      this.reports = val.data;
+    });
+  },
   methods: {
     onChange({ currOption, descending }: any) {
       this.currOption = currOption;

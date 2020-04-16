@@ -33,8 +33,8 @@
         <input id="r-e" v-model="datContact" type="text" placeholder="อีเมล์/เบอร์โทร" />
       </div>
       <div class="form-control">
-        <label for="r-t" class="req">หัวข้อ:</label>
-        <input id="r-t" v-model="datTitle" type="text" placeholder="กรุณากรอกหัวข้อ" required />
+        <label for="r-t" class="req">หัวเรื่อง:</label>
+        <input id="r-t" v-model="datTitle" type="text" placeholder="กรุณากรอกหัวเรื่อง" required />
       </div>
       <div class="form-control">
         <label for="r-b">เนื้อหา:</label>
@@ -49,7 +49,13 @@
           </SmoothReflow>
           <div class="upload-pos">
             <div class="form-control">
-              <input id="r-im" type="file" accept="image/png,image/jpeg" @change="imgChange" />
+              <input
+                ref="fileIn"
+                id="r-im"
+                type="file"
+                accept="image/png,image/jpeg"
+                @change="imgChange"
+              />
             </div>
           </div>
         </div>
@@ -127,6 +133,8 @@ export default Vue.extend({
       this.datTitle = null;
       this.datBody = null;
       this.imgFile = null;
+      // @ts-ignore
+      this.$refs.fileIn.value = '';
     },
   },
 });

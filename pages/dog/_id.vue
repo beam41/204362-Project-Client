@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import dog from '@/models/dog';
+import Dog from '@/models/dog';
 import DogServ from '@/services/DogApiService';
 
 export default Vue.extend({
@@ -43,7 +43,7 @@ export default Vue.extend({
   },
 
   data: () => ({
-    dogDetail: null as null | dog,
+    dogDetail: null as null | Dog,
   }),
   computed: {
     imgUrl() {

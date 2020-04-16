@@ -1,19 +1,13 @@
-export default class Donate {
+export default class News {
   id: string | undefined;
 
   title: string | undefined;
 
-  creator: string | undefined;
+  writer: string | undefined;
 
   accepted: boolean | undefined;
 
-  acceptedBy: string | undefined;
-
-  acceptedOn: number | undefined;
-
   description: string | undefined;
-
-  qrLink: string | undefined;
 
   imgPath: string | undefined;
 

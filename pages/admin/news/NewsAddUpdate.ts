@@ -1,31 +1,28 @@
 import Vue from 'vue';
 // @ts-ignore
-import QrcodeVue from 'qrcode.vue';
-import DonateServ from '@/services/DonateApiService';
-import Donate from '@/models/donate';
+import NewsServ from '@/services/NewsApiService';
+import News from '@/models/news';
 import Modal from '@/components/Shared/Modal.vue';
 import ImageServ from '@/services/ImageUploadService';
 
 export default Vue.extend({
   layout: 'admin',
-  name: 'DonateAddUpdate',
+  name: 'NewsAddUpdate',
   components: {
     Modal,
-    QrcodeVue,
   },
   data: () => ({
-    donate: null as Donate | null,
-    saving: false,
+    news: null as News | null,
+    editing: false,
     delShow: false,
     titleErr: false,
     descErr: false,
-    qrErr: false,
     imgErr: false,
     uploading: false,
     imgPath: '',
   }),
   head: () => ({
-    title: 'Admin: Donate',
+    title: 'Admin: News',
   }),
   computed: {
     imgUrl() {
@@ -34,34 +31,27 @@ export default Vue.extend({
     imgPlacehold() {
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
     },
-    acceptedInfo() {
-      const time = new Date(this.donate!.acceptedOn!).toLocaleString('th-TH');
-      return `Accepted By ${this.donate!.acceptedBy} on ${time}`;
-    },
   },
   mounted() {
     if (this.$route.params.id !== 'add') {
-      DonateServ.getDonate(this.$store, this.$route.params.id).then((val) => {
-        this.donate = val.data;
-        this.imgPath = this.donate.imgPath as string;
+      NewsServ.getNews(this.$store, this.$route.params.id).then((val) => {
+        this.news = val.data;
+        this.imgPath = this.news.imgPath as string;
       });
     } else {
-      this.donate = new Donate();
+      this.news = new News();
     }
   },
   methods: {
     saveValidate() {
       this.titleErr = false;
       this.descErr = false;
-      this.qrErr = false;
       this.imgErr = false;
       let err = false;
       // @ts-ignore
       const title: string = this.$refs.title.value;
       // @ts-ignore
       const desc = this.$refs.desc.value;
-      // @ts-ignore
-      const qr = this.$refs.qr.value;
       if (
         title === '' ||
         !/[\wก-์\d]/g.test(title[0]) ||
@@ -74,10 +64,6 @@ export default Vue.extend({
         this.descErr = true;
         err = true;
       }
-      if (qr === '') {
-        this.qrErr = true;
-        err = true;
-      }
       if (this.imgPath === '') {
         this.imgErr = true;
         err = true;
@@ -87,34 +73,36 @@ export default Vue.extend({
       this.save();
     },
     save() {
-      this.saving = true;
-      let newDon: Donate = new Donate();
-      if (this.donate) {
-        newDon = {
-          // @ts-ignore
+      this.editing = true;
+      let newNews: News = new News();
+      if (this.news) {
+        newNews = {
+          id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
+          // @ts-ignorebuil
           title: this.$refs.title.value,
+          writer: undefined,
           accepted: false,
           // @ts-ignore
           description: this.$refs.desc.value,
           // @ts-ignore
-          qrLink: this.$refs.qr.value,
           imgPath: this.imgPath,
-        } as Donate;
+          deptNo: undefined,
+        };
       }
       if (this.$route.params.id === 'add') {
-        DonateServ.postDonate(this.$store, newDon).then((_) => {
+        NewsServ.postNews(this.$store, newNews).then((_) => {
           this.$router.go(-1);
         });
       } else {
-        DonateServ.putDonate(this.$store, this.$route.params.id, newDon).then((_) => {
+        NewsServ.putNews(this.$store, this.$route.params.id, newNews).then((_) => {
           this.$router.go(-1);
         });
       }
     },
     del() {
       this.delShow = false;
-      this.saving = true;
-      DonateServ.delDonate(this.$store, this.$route.params.id).then((_) => {
+      this.editing = true;
+      NewsServ.delNews(this.$store, this.$route.params.id).then((_) => {
         this.$router.go(-1);
       });
     },
