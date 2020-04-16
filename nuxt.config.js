@@ -24,7 +24,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#733e85', height: '5px' },
+  loading: { color: '#733e85' },
   /*
    ** Global CSS
    */
@@ -91,6 +91,7 @@ export default {
   purgeCSS: {
     // your settings here
     mode: 'postcss',
+    whitelistPatterns: [/enter/, /leave/, /move/, /v-lazy-image/],
   },
   router: {
     middleware: ['auth'],
