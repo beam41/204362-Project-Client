@@ -8,7 +8,7 @@
           </button>
         </nuxt-link>
         <div class="input-group">
-          <input v-model="searchString" type="text" placeholder="Search name" />
+          <input v-model="searchString" type="text" placeholder="Search" />
           <button class="btn-default">
             <font-awesome-icon :icon="['fas', 'search']" />
           </button>
@@ -35,16 +35,8 @@
               <td>
                 <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.name | arrToString }}</nuxt-link>
               </td>
-              <td v-if="d.ageYear > 0 && d.ageMonth > 0">
-                <nuxt-link :to="`/admin/dog/${d.id}`"
-                  >{{ d.ageYear }} ปี {{ d.ageMonth }} เดือน</nuxt-link
-                >
-              </td>
-              <td v-if="d.ageYear > 0 && d.ageMonth === 0">
-                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.ageYear }} ปี</nuxt-link>
-              </td>
-              <td v-if="d.ageYear === 0 && d.ageMonth > 0">
-                <nuxt-link :to="`/admin/dog/${d.id}`">{ d.ageMonth }} เดือน</nuxt-link>
+              <td>
+                <nuxt-link :to="`/admin/dog/${d.id}`">{{ d | formatAge }}</nuxt-link>
               </td>
               <td>
                 <nuxt-link :to="`/admin/dog/${d.id}`">{{ d.sex | formatSex }}</nuxt-link>
@@ -113,6 +105,14 @@ export default Vue.extend({
       }
       return 'สีแดง';
     },
+    formatAge(dog: Dog) {
+      const strAge = [];
+      // @ts-ignore
+      if (dog!.ageYear > 0) strAge.push(`${dog!.ageYear} ปี`);
+      // @ts-ignore
+      if (dog!.ageMonth > 0) strAge.push(`${dog!.ageMonth} เดือน`);
+      return strAge.join(' ');
+    },
   },
   data: () => ({
     dogs: null as Array<any> | null,
@@ -121,8 +121,8 @@ export default Vue.extend({
     searchString: '',
   }),
   computed: {
-    by: () => ['ชื่อ', 'เพศ', 'สถานะ', 'ปลอกคอ'],
-    field: () => ['name', 'sex', 'isAlive', 'collarColor'],
+    by: () => ['ชื่อ', 'อายุ', 'เพศ', 'สถานะ', 'สีปลอกคอ'],
+    field: () => ['name', 'age', 'sex', 'isAlive', 'collarColor'],
     formattedArrays() {
       let filter = this.dogs;
       if (this.searchString !== '') {
@@ -131,7 +131,8 @@ export default Vue.extend({
         // prettier-ignore
         filter = _.filter(this.dogs, (o: Dog) => findinObj(this.searchString, {...o, name: o.name!.toString()}));
       }
-      return _.orderBy(filter, this.field[this.currOption], this.descending ? 'desc' : 'asc');
+      const Addage = filter!.map((v) => ({ ...v, age: v.ageYear * 12 + v.ageMonth }));
+      return _.orderBy(Addage, this.field[this.currOption], this.descending ? 'desc' : 'asc');
     },
   },
   mounted() {

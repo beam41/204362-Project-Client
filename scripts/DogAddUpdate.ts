@@ -33,7 +33,7 @@ export default Vue.extend({
     caretakerPhoneErr: false,
     caretakerErr: false,
     locationErr: false,
-    lengthPhone: '',
+    allPhone: '',
     // Img
     imgErr: false,
     uploading: false,
@@ -133,11 +133,11 @@ export default Vue.extend({
       // @ts-ignore
       const location = this.$refs.location.value;
       // Check condition Err
-      if (name === '' || /[\d!"#$%&\\'*+./:;<=>?@[\\\]^_`{|}~-]/gm.test(name)) {
+      if (name === '' || /[" "\d!"#$%&\\'*+./:;<=>?@[\\\]^_`{|}~-]/gm.test(name)) {
         this.nameErr = true;
         err = true;
       }
-      if (breed === '' || /[\d!"#$%&\\'()*+,-./:;<=>?@[\\\]^_`{|}~-]/gm.test(breed)) {
+      if (breed === '' || /[" "\d!"#$%&\\'()*+,-./:;<=>?@[\\\]^_`{|}~-]/gm.test(breed)) {
         this.breedErr = true;
         err = true;
       }
@@ -170,29 +170,21 @@ export default Vue.extend({
         this.isAliveErr = true;
         err = true;
       }
-      this.lengthPhone = caretakerPhone.split(/[-+]/).join('');
-      if (
-        caretakerPhone === '' ||
-        /[A-za-z!"#$%&\\'()*/:;<=>?@[\\\]^_`{|}~]/gm.test(this.lengthPhone) ||
-        this.lengthPhone.length < 9
-      ) {
-        if (/[,]/.test(this.lengthPhone)) {
-          // eslint-disable-next-line no-plusplus
-          for (let i = 0; i < this.lengthPhone.split(/[,]/).length; i++) {
-            if (
-              +this.lengthPhone.split(/[,]/)[i].length < 9 ||
-              +this.lengthPhone.split(/[,]/)[i].length > 10
-            ) {
-              this.caretakerPhoneErr = true;
-              err = true;
-            }
-          }
-        } else if (this.lengthPhone.length < 9 || this.lengthPhone.length > 10) {
+      if (caretakerPhone === '') {
+        this.caretakerPhoneErr = true;
+        err = true;
+      }
+      /* eslint-disable */
+      this.allPhone = caretakerPhone.replace(/[\-+" "]/g, '');
+      var Phone = this.allPhone.split(',');
+      var i;
+      for (i = 0; i < Phone.length; i++) {
+        if (Phone[i].length < 9 || !Number.isInteger(+Phone[i])) {
           this.caretakerPhoneErr = true;
           err = true;
         }
       }
-      if (caretaker === '' || /[\d!"#$%&\\'()*+,/:;<=>?@[\\\]^_`{|}~-]/gm.test(caretaker)) {
+      if (caretaker === '' || /[" "\d!"#$%&\\'()*+,/:;<=>?@[\\\]^_`{|}~-]/gm.test(caretaker)) {
         this.caretakerErr = true;
         err = true;
       }
@@ -213,7 +205,7 @@ export default Vue.extend({
     saveData() {
       this.editing = true;
       const newDog: Dog = {
-        id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
+        id: undefined,
         // @ts-ignore
         name: this.$refs.name.value.split(',').map((item) => item.trim()),
         // @ts-ignore

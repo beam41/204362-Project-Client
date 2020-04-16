@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VisitorNavbar v-if="!mobileView"></VisitorNavbar>
+    <VisitorNavbar></VisitorNavbar>
     <nuxt />
   </div>
 </template>
@@ -21,7 +21,14 @@ export default Vue.extend({
       showNav: false,
     };
   },
+  head: () => ({
+    bodyAttrs: {
+      class: 'visitor-body',
+    },
+  }),
 });
 </script>
 
-<style scoped></style>
+<style lang="scss">
+@use 'assets/styles/visitor_util';
+</style>

@@ -50,9 +50,18 @@ export default Vue.extend({
   name: 'Select',
   mixins: [clickaway],
   props: {
-    customText: String,
-    options: Array,
-    classN: String,
+    customText: {
+      type: String,
+      default: '',
+    },
+    options: {
+      type: Array,
+      default: () => [],
+    },
+    classN: {
+      type: String,
+      default: '',
+    },
     defaultOption: {
       type: String,
       default: '',

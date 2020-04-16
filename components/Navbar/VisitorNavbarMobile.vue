@@ -1,27 +1,44 @@
 <template>
-  <div class="menu-wrap">
-    <input type="checkbox" class="toggler" />
-    <div class="hamburger"><div></div></div>
-    <div class="menu">
-      <div>
-        <div>
-          <ul>
-            <li><nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link></li>
-            <li><nuxt-link to="/news" class="nav-link news">ข่าว</nuxt-link></li>
-            <li><nuxt-link to="/dogs" class="nav-link dogs">สุนัขในโครงการ</nuxt-link></li>
-            <li><nuxt-link to="/donate" class="nav-link donate">บริจาค</nuxt-link></li>
-            <li><nuxt-link to="/contact" class="nav-link contact">ติดต่อเรา</nuxt-link></li>
-            <li><nuxt-link to="/report" class="nav-link report">รายงานปัญหา</nuxt-link></li>
-          </ul>
-        </div>
-      </div>
+  <div class="box">
+    <div class="bgicon">
+      <font-awesome-icon :icon="['fas', 'bars']" @click="showMenu()" />
+      <h1 class="myweb">หมา มช.</h1>
     </div>
+    <transition name="slide-l">
+      <div v-if="show" class="menu">
+        <div class="cross">
+          <font-awesome-icon :icon="['fas', 'times']" @click="hideMenu()" />
+        </div>
+        <div class="link" @click="hideMenu()">
+          <nuxt-link to="/" class="nav-link home"><span>หน้าหลัก</span></nuxt-link>
+          <nuxt-link to="/news" class="nav-link news"><span>ข่าว</span></nuxt-link>
+          <nuxt-link to="/dog" class="nav-link dogs"><span>สุนัขในโครงการ</span></nuxt-link>
+          <nuxt-link to="/donate" class="nav-link donate"><span>บริจาค</span></nuxt-link>
+          <nuxt-link to="/contact" class="nav-link contact"><span>ติดต่อเรา</span></nuxt-link>
+          <nuxt-link to="/report" class="nav-link report"><span>รายงานปัญหา</span></nuxt-link>
+        </div>
+        <div class="shade" @click="hideMenu()"></div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-export default Vue.extend({});
+export default Vue.extend({
+  name: 'VisitorNavbarMobile',
+  data: () => ({
+    show: false,
+  }),
+  methods: {
+    showMenu() {
+      this.show = true;
+    },
+    hideMenu() {
+      this.show = false;
+    },
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -30,146 +47,83 @@ export default Vue.extend({});
 @use 'assets/styles/selector';
 @use 'assets/styles/responsive';
 
-.menu-wrap {
-  position: fixed;
-  bottom: 10px;
-  right: 5px;
-  z-index: 1;
-}
-
-.menu-wrap .toggler {
-  position: absolute;
-  bottom: 10px;
-  right: 5px;
-  z-index: 2;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  opacity: 0;
-}
-
-.menu-wrap .hamburger {
-  background-color: var.$violet;
-  border: 2px solid var.$white;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 10px;
-  right: 5px;
-  z-index: 1;
-  width: 60px;
-  height: 60px;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Hamburger Line */
-.menu-wrap .hamburger > div {
-  position: relative;
-  flex: none;
-  width: 100%;
-  height: 2px;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var.$animation-time ease;
-}
-
-/* Hamburger Lines - Top & Bottom */
-.menu-wrap .hamburger > div::before,
-.menu-wrap .hamburger > div::after {
-  content: '';
-  position: absolute;
-  z-index: 1;
-  top: -10px;
-  width: 100%;
-  height: 2px;
-  background: inherit;
-}
-
-/* Moves Line Down */
-.menu-wrap .hamburger > div::after {
-  top: 10px;
-}
-
-/* Toggler Animation */
-.menu-wrap .toggler:checked + .hamburger > div {
-  transform: rotate(135deg);
-}
-
-/* Turns Lines Into X */
-.menu-wrap .toggler:checked + .hamburger > div:before,
-.menu-wrap .toggler:checked + .hamburger > div:after {
-  top: 0;
-  transform: rotate(90deg);
-}
-
-/* Rotate On Hover When Checked */
-.menu-wrap .toggler:checked:hover + .hamburger > div {
-  transform: rotate(225deg);
-}
-
-/* Show Menu */
-.menu-wrap .toggler:checked ~ .menu {
-  visibility: visible;
-}
-
-.menu-wrap .toggler:checked ~ .menu > div {
-  transform: scale(1);
-  transition-duration: var(--menu-speed);
-}
-
-.menu-wrap .toggler:checked ~ .menu > div > div {
-  opacity: 1;
-  transition: opacity var.$animation-time ease var.$animation-time;
-}
-
-.menu-wrap .menu {
+.menu {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  background-color: rgb(255, 255, 255);
   height: 100%;
-  visibility: hidden;
-  overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  width: 300px;
+  color: var.$gray;
+  box-shadow: 68px 0px 44px 10px rgba(0, 0, 0, 0.3);
 }
-
-.menu-wrap .menu > div {
-  background-color: rgba($color: var.$violet, $alpha: 0.8);
-  border-radius: 10%;
-  width: 200vw;
-  height: 200vw;
+.shade {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-left: 300px;
+  width: 100vw;
+  height: 100vh;
+}
+.bgicon {
+  font-size: 2rem;
+  width: 100vw;
   display: flex;
-  flex: none;
+  margin-left: 10px;
+  padding: 5px 0px 5px 0px;
   align-items: center;
-  justify-content: center;
-  transform: scale(0);
-  transition: all var.$animation-time ease;
 }
 
-.menu-wrap .menu > div > div {
-  text-align: center;
-  max-width: 90vw;
-  max-height: 100vh;
-  opacity: 0;
-  transition: opacity var.$animation-time ease;
+.box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: var.$gray;
+  background-color: var.$white;
+  box-shadow: var.$navbar-shadow;
 }
-
-.menu-wrap .menu > div > div > ul > li {
-  list-style: none;
-  color: #fff;
-  font-size: 3rem;
-  padding: 1rem;
+.cross {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 15px 30px 10px;
 }
-
-.menu-wrap .menu > div > div > ul > li > a {
-  color: inherit;
+.link {
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
-  transition: color var.$animation-time ease;
+}
+.nav-link {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px 15px 0px;
+  color: var.$gray;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: none;
+    color: var.$link;
+  }
+
+  &.nuxt-link-exact-active,
+  &.nuxt-link-exact-active:hover {
+    background-color: color.lightness(var.$link, 30%);
+    color: var.$white;
+  }
+}
+
+.myweb {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0;
+  display: flex;
+  margin-left: 10px;
+}
+
+svg:hover {
+  cursor: pointer;
 }
 </style>

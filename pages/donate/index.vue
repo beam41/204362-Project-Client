@@ -3,15 +3,19 @@
     <h2>บริจาค</h2>
     <div v-if="donates" class="don-list">
       <div v-for="don in sortedDonates" :key="don.id" class="don-box">
-        <v-lazy-image
-          :src="don.imgPath | imgUrl"
-          :src-placeholder="don.imgPath | imgPlacehold"
-          :alt="don.description"
-        />
-        <h6>{{ don.title }}</h6>
-        <p class="desc">{{ don.description }}</p>
-        <p class="bor">บริจาคผ่าน Qr code:</p>
-        <qrcode-vue class="qr" :value="don.qrLink" level="L" render-as="svg" :size="100" />
+        <div class="sep">
+          <v-lazy-image
+            :src="don.imgPath | imgUrl"
+            :src-placeholder="don.imgPath | imgPlacehold"
+            :alt="don.description"
+          />
+          <h6>{{ don.title }}</h6>
+          <p class="desc">{{ don.description }}</p>
+        </div>
+        <div class="sep">
+          <p class="bor">บริจาคผ่าน Qr code:</p>
+          <qrcode-vue class="qr" :value="don.qrLink" level="L" render-as="svg" :size="100" />
+        </div>
       </div>
     </div>
     <div v-else class="loader">
@@ -30,6 +34,7 @@ import Donate from '@/models/donate';
 
 export default Vue.extend({
   layout: 'visitor',
+  name: 'DonateVisitor',
   components: {
     QrcodeVue,
   },
@@ -68,28 +73,30 @@ export default Vue.extend({
   flex-direction: column;
   align-items: center;
 
-  .loader {
-    height: 740px;
-  }
-
   .don-list {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-gap: 1rem;
-    min-height: 740px;
+    grid-gap: 3rem 1rem;
   }
 
   .don-box {
+    @extend %animate-all;
     place-self: center;
-    background-color: color.lightness(var.$violet, 40%);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     border-radius: var.$b-radius;
     overflow: hidden;
-    margin: 1rem 0;
+    height: 100%;
     width: 400px;
+    //background: color.lightness(var.$white, -2%);
+    box-shadow: 0px 15px 27px -20px rgba(79, 79, 79, 0.45);
+
+    &:hover {
+      box-shadow: 0px 15px 27px -10px rgba(79, 79, 79, 1);
+    }
 
     h6 {
       margin-bottom: 0.5rem;
@@ -116,13 +123,17 @@ export default Vue.extend({
       object-fit: cover;
       size: 400px;
       margin-bottom: 2rem;
+      border-radius: var.$b-radius;
     }
 
     .qr {
       border: 15px solid white;
-      border-radius: var.$b-radius;
       margin-bottom: 1rem;
     }
+  }
+
+  .sep {
+    text-align: center;
   }
 }
 </style>

@@ -1,5 +1,40 @@
 <template>
-  <div>contact</div>
+  <div class="contactbox">
+    <div class="content"><h1>Mhean-maa</h1></div>
+    <div class="content lowpad"><h3>About Us</h3></div>
+    <div class="content lowpad">
+      <p class="ph">
+        Two border following algorithms are propose d for the topological analysis of digitized
+        binary images. The first one determines the surrou ndness relations among the borders of a
+        binary image. Since the outer borders and the hole bo most borders .e., the outer borders
+        which are not surrounded by holes. These algorithms can be effectively used in compon nt
+        counting, shrinking, and topological structural analysis of binary images, when a sequential
+        digital computer is used
+      </p>
+    </div>
+    <div class="content lowpad"><h3>Contact</h3></div>
+    <div class="content lowpad">
+      <pre class="ph">
+Tell : 126-548-6454
+pak wi cha computer
+some where in this world
+why want to know?
+sww that map
+      </pre>
+    </div>
+    <div class="content">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15639.225830593306!2d119.8824262358968!3d11.493881696834455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33b7473783677479%3A0xa4c8e844f49a32d1!2sPatoyo%20Island!5e0!3m2!1sen!2sth!4v1586849689381!5m2!1sen!2sth"
+        width="600"
+        height="450"
+        frameborder="0"
+        style="border:0;"
+        allowfullscreen=""
+        aria-hidden="false"
+        tabindex="0"
+      ></iframe>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,4 +50,21 @@ export default Vue.extend({
 @use 'assets/styles/color';
 @use 'assets/styles/selector';
 @use 'assets/styles/responsive';
+
+.contactbox {
+  display: block;
+  justify-content: center;
+}
+.content {
+  display: flex;
+  justify-content: center;
+}
+.lowpad {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.ph {
+  max-width: 70%;
+  text-align: center;
+}
 </style>

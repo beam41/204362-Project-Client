@@ -111,9 +111,15 @@ $table-body-height: 46px;
     justify-content: space-between;
     height: 100%;
 
-    .im {
+    .im-wrapper {
       flex: 1 1 auto;
-      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .im {
+      width: 50vmin;
       height: 50vmin;
       display: flex;
       justify-content: center;
@@ -124,11 +130,13 @@ $table-body-height: 46px;
 
       p {
         color: white;
+        user-select: none;
+        margin: 0;
       }
 
       img {
-        object-fit: contain;
-        width: 100%;
+        object-fit: cover;
+        width: 50vmin;
         height: 50vmin;
       }
     }
@@ -140,12 +148,10 @@ $table-body-height: 46px;
     align-self: flex-end;
   }
 
-  .txt-warn {
+  .txt-info {
     @extend %txt-warn;
-  }
-
-  p.txt-warn {
     margin: 0.5em 0 0 0;
+    color: var.$txt-info;
   }
 
   .with-warn {

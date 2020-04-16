@@ -87,7 +87,7 @@ export default Vue.extend({
       let newDon: Donate = new Donate();
       if (this.donate) {
         newDon = {
-          id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
+          id: undefined,
           // @ts-ignore
           title: this.$refs.title.value,
           creator: undefined,

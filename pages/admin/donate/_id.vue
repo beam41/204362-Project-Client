@@ -32,11 +32,12 @@
         <div class="input-box">
           <div class="sep">
             <div class="form-control">
-              <label class="with-warn">
+              <label for="dn-1" class="with-warn">
                 <span>หัวเรื่อง:</span>
                 <span class="warn">ขึ้นต้นและลงท้ายได้เฉพาะตัวหนังสือ หรือ ตัวเลข</span>
               </label>
               <input
+                id="dn-1"
                 ref="title"
                 v-model="donate.title"
                 :class="'input-au' + (titleErr ? ' error' : '')"
@@ -45,8 +46,9 @@
               />
             </div>
             <div class="form-control">
-              <label>คำอธิบาย:</label>
+              <label for="dn-2">คำอธิบาย:</label>
               <textarea
+                id="dn-2"
                 ref="desc"
                 v-model="donate.description"
                 :class="'txt input-au' + (descErr ? ' error' : '')"
@@ -55,8 +57,9 @@
               />
             </div>
             <div class="form-control">
-              <label>Link Qrcode:</label>
+              <label for="dn-3">Link Qrcode:</label>
               <input
+                id="dn-3"
                 ref="qr"
                 v-model="donate.qrLink"
                 :class="'input-au' + (qrErr ? ' error' : '')"
@@ -74,12 +77,14 @@
             ></qrcode-vue>
           </div>
           <div class="img-upload">
-            <div class="form-control im">
-              <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
-              <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+            <div class="form-control im-wrapper">
+              <div class="im">
+                <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
+                <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+              </div>
             </div>
             <div class="form-control">
-              <input ref="file" type="file" accept="image/*" :disabled="uploading" />
+              <input ref="file" type="file" accept="image/png,image/jpeg" :disabled="uploading" />
             </div>
             <div class="form-control">
               <button
@@ -89,7 +94,7 @@
               >
                 Upload
               </button>
-              <p class="txt-warn">อัตราส่วนที่แนะนำ 1:1</p>
+              <p class="txt-info">อัตราส่วนที่แนะนำ 1:1 ไฟล์สกุล jpeg หรือ png เท่านั้น</p>
             </div>
           </div>
         </div>
@@ -118,7 +123,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./DonateAddUpdate.ts"></script>
+<script lang="ts" src="@/scripts/DonateAddUpdate.ts"></script>
 
 <style lang="scss" scoped>
 @use 'assets/styles/var';

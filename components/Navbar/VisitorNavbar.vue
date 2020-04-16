@@ -1,16 +1,15 @@
 <template>
-  <div>
-    <div class="imgcontainer"></div>
-    <VisitorNavbarMobile v-if="mobileView"></VisitorNavbarMobile>
-    <div v-if="!mobileView" class="navbar">
-      <nav class="navbar" @click.prevent>
-        <nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link>
-        <nuxt-link to="/news" class="nav-link news">ข่าว</nuxt-link>
-        <nuxt-link to="/dogs" class="nav-link dogs">สุนัขในโครงการ</nuxt-link>
-        <nuxt-link to="/donate" class="nav-link donate">บริจาค</nuxt-link>
-        <nuxt-link to="/contact" class="nav-link contact">ติดต่อเรา</nuxt-link>
-        <nuxt-link to="/report" class="nav-link report">รายงานปัญหา</nuxt-link>
-      </nav>
+  <div class="nav-con">
+    <nav class="navbar desktop">
+      <nuxt-link to="/" class="nav-link home">หน้าหลัก</nuxt-link>
+      <nuxt-link to="/news" class="nav-link news">ข่าว</nuxt-link>
+      <nuxt-link to="/dog" class="nav-link dogs">สุนัขในโครงการ</nuxt-link>
+      <nuxt-link to="/donate" class="nav-link donate">บริจาค</nuxt-link>
+      <nuxt-link to="/contact" class="nav-link contact">ติดต่อเรา</nuxt-link>
+      <nuxt-link to="/report" class="nav-link report">รายงานปัญหา</nuxt-link>
+    </nav>
+    <div class="navbar mobile">
+      <VisitorNavbarMobile />
     </div>
   </div>
 </template>
@@ -24,21 +23,6 @@ export default Vue.extend({
   components: {
     VisitorNavbarMobile,
   },
-  data: () => {
-    return {
-      mobileView: false,
-      showNav: false,
-    };
-  },
-  mounted() {
-    this.handleView();
-    window.addEventListener('resize', this.handleView);
-  },
-  methods: {
-    handleView() {
-      this.mobileView = window.innerWidth <= 990;
-    },
-  },
 });
 </script>
 
@@ -48,6 +32,32 @@ export default Vue.extend({
 @use 'assets/styles/selector';
 @use 'assets/styles/responsive';
 
+.nav-con {
+  .desktop {
+    visibility: visible;
+    position: fixed;
+    width: 100%;
+    box-shadow: var.$navbar-shadow;
+  }
+
+  .mobile {
+    visibility: hidden;
+    display: none;
+  }
+
+  @include responsive.respond-to(responsive.$desktop-mid) {
+    .desktop {
+      visibility: hidden;
+      display: none;
+    }
+
+    .mobile {
+      display: flex;
+      visibility: visible;
+    }
+  }
+}
+
 .imgcontainer {
   width: 100%;
   height: 360px;
@@ -55,29 +65,38 @@ export default Vue.extend({
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  margin-top: 0px;
 }
 
 .navbar {
-  background-color: var.$violet;
+  background-color: var.$white;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
+  position: relative;
+  z-index: 10000;
 }
+
 .nav-link {
   @extend %animate-all;
-  color: #ffffff;
+  color: var.$gray;
   text-decoration: none;
   font-size: 1.5rem;
-  padding: 0.5rem 1em;
-  margin: 0rem 1em;
+  padding: 0.5rem 1rem;
   font-weight: 500;
 
   &:hover {
     text-decoration: none;
-    color: color.lightness(color.alpha(red, -0.25), 40%);
+    color: var.$link;
+  }
+
+  &.nuxt-link-exact-active,
+  &.nuxt-link-exact-active:hover {
+    box-shadow: inset 0 -0.175em white, inset 0em 5px color.lightness(var.$link, 30%);
   }
 }
+
 #nav-icon {
   padding: 10px 10px;
   min-width: 100%;
@@ -88,5 +107,12 @@ export default Vue.extend({
   font-size: 2rem;
   color: var.$white;
   background-color: var.$violet;
+}
+
+.bar {
+  background-color: var.$white;
+}
+.content {
+  padding: 0px;
 }
 </style>

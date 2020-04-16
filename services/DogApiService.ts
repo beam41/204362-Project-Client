@@ -22,10 +22,21 @@ function putDog($store: any, id: string, dog: Dog): Promise<AxiosResponse<Dog>> 
   // console.log(dog);
   return a.put(`api/dog/${id}`, dog, headerWriter($store));
 }
+
+function getDogListVisitor(): Promise<AxiosResponse<Dog[]>> {
+  return a.get(`api/dog/visitor`);
+}
+
+function getDogVisitor(id: string): Promise<AxiosResponse<Dog>> {
+  return a.get(`api/dog/visitor/${id}`);
+}
+
 export default {
   getDogList,
   getDog,
   postDog,
   delDog,
   putDog,
+  getDogListVisitor,
+  getDogVisitor,
 };
