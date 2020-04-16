@@ -2,6 +2,7 @@
 @use 'color';
 @use 'selector';
 
+/* purgecss start ignore */
 %opacity-zero {
   opacity: 0;
 }
@@ -67,3 +68,4 @@
 .v-lazy-image-loaded {
   filter: blur(0);
 }
+/* purgecss end ignore */
