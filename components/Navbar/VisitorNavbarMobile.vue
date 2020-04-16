@@ -74,13 +74,14 @@ export default Vue.extend({
   padding: 5px 0px 5px 0px;
   align-items: center;
 }
+
 .box {
   position: fixed;
   top: 0;
   left: 0;
-  box-shadow: 0px 5px 9px 1px rgba(79, 79, 79, 0.5);
   color: var.$gray;
   background-color: var.$white;
+  box-shadow: var.$navbar-shadow;
 }
 .cross {
   font-size: 1.5rem;
