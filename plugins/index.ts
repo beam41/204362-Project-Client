@@ -17,6 +17,7 @@ import {
   faBars,
   faMars,
   faVenus,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -35,6 +36,7 @@ library.add(
   faBars,
   faMars,
   faVenus,
+  faTimes,
 );
 
 Vue.config.productionTip = false;

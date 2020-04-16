@@ -88,6 +88,7 @@ export default Vue.extend({
 }
 
 .dog_box {
+  @extend %animate-all;
   place-self: center;
   background-color: #fff;
   display: flex;
@@ -97,13 +98,18 @@ export default Vue.extend({
   overflow: hidden;
   margin: 1rem 0;
   width: 250px;
+  border: 2px solid var.$gray;
+  padding: 7px;
+
   &,
   & * {
     text-decoration: none;
   }
 
-  border: 2px solid var.$gray;
-  padding: 7px;
+  &:hover {
+    border: 2px solid color.lightness(var.$gray, -50%);
+  }
+
   h6 {
     color: black;
     margin-bottom: 0.5rem;

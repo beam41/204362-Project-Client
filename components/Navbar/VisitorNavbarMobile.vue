@@ -1,21 +1,42 @@
 <template>
-  <Slide :close-on-navigation="true" class=" bm-burger-button">
-    <nuxt-link to="/" class="nav-link home"><span>หน้าหลัก</span></nuxt-link>
-    <nuxt-link to="/news" class="nav-link news"><span>ข่าว</span></nuxt-link>
-    <nuxt-link to="/dog" class="nav-link dogs"><span>สุนัขในโครงการ</span></nuxt-link>
-    <nuxt-link to="/donate" class="nav-link donate"><span>บริจาค</span></nuxt-link>
-    <nuxt-link to="/contact" class="nav-link contact"><span>ติดต่อเรา</span></nuxt-link>
-    <nuxt-link to="/report" class="nav-link report"><span>รายงานปัญหา</span></nuxt-link>
-  </Slide>
+  <div class="box">
+    <div class="bgicon">
+      <font-awesome-icon :icon="['fas', 'bars']" @click="showMenu()" />
+      <h5 class="myweb">Mhean-Maa</h5>
+    </div>
+    <transition name="slide-l">
+      <div class="menu" v-if="show">
+        <div class="cross">
+          <font-awesome-icon :icon="['fas', 'times']" @click="hideMenu()" />
+        </div>
+        <div class="link" @click="hideMenu()">
+          <nuxt-link to="/" class="nav-link home"><span>หน้าหลัก</span></nuxt-link>
+          <nuxt-link to="/news" class="nav-link news"><span>ข่าว</span></nuxt-link>
+          <nuxt-link to="/dog" class="nav-link dogs"><span>สุนัขในโครงการ</span></nuxt-link>
+          <nuxt-link to="/donate" class="nav-link donate"><span>บริจาค</span></nuxt-link>
+          <nuxt-link to="/contact" class="nav-link contact"><span>ติดต่อเรา</span></nuxt-link>
+          <nuxt-link to="/report" class="nav-link report"><span>รายงานปัญหา</span></nuxt-link>
+        </div>
+        <div class="shade" @click="hideMenu()"></div>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { Slide } from 'vue-burger-menu';
-
 export default Vue.extend({
-  components: {
-    Slide,
+  name: 'VisitorNavbarMobile',
+  data: () => ({
+    show: false,
+  }),
+  methods: {
+    showMenu() {
+      this.show = true;
+    },
+    hideMenu() {
+      this.show = false;
+    },
   },
 });
 </script>
@@ -26,12 +47,69 @@ export default Vue.extend({
 @use 'assets/styles/selector';
 @use 'assets/styles/responsive';
 
-.bm-burger-button {
-  width: 25px;
-  height: 19px;
-  left: -25px;
-  top: -25px;
-  cursor: pointer;
-  background-color: white;
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  color: var.$gray;
+  box-shadow: 68px 0px 44px 10px rgba(0, 0, 0, 0.3);
+}
+.shade {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-left: 300px;
+  width: 100vw;
+  height: 100vh;
+}
+.bgicon {
+  font-size: 2rem;
+  width: 100vw;
+  display: flex;
+  margin-left: 10px;
+  padding: 5px 0px 5px 0px;
+}
+.box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 5px 9px 1px rgba(79, 79, 79, 0.5);
+  color: var.$gray;
+  background-color: var.$white;
+}
+.cross {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 15px 30px 10px;
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.nav-link {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px 15px 0px;
+  color: var.$gray;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: none;
+    color: var.$link;
+  }
+}
+.myweb {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  display: flex;
+  margin-left: 10px;
 }
 </style>

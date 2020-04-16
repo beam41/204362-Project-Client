@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <div class="imgcontainer"></div>
     <h2>About</h2>
     <h5>we are mheanmaa</h5>
     <section class="animated-grid">
@@ -90,5 +91,15 @@ export default Vue.extend({
 .card:last-child {
   grid-area: 🌟;
   animation-delay: calc(7 * var(--stagger-delay));
+}
+
+.imgcontainer {
+  width: 100%;
+  height: 360px;
+  background-image: url('~assets/images/tia.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 50px;
 }
 </style>
