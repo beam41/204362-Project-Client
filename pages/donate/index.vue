@@ -129,7 +129,6 @@ export default Vue.extend({
     .qr {
       border: 15px solid white;
       margin-bottom: 1rem;
-      border-radius: var.$b-radius;
     }
   }
 

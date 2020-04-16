@@ -36,15 +36,15 @@ import DogServ from '@/services/DogApiService';
 export default Vue.extend({
   layout: 'visitor',
   name: 'DogDetail',
+  filters: {
+    arrToString(arr: string[]) {
+      return arr.toString().replace(/,/g, ', ');
+    },
+  },
 
   data: () => ({
     dogDetail: null as null | dog,
   }),
-  mounted() {
-    DogServ.getDogVisitor(this.$route.params.id).then((val) => {
-      this.dogDetail = val.data;
-    });
-  },
   computed: {
     imgUrl() {
       return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${this.dogDetail!.imgPath}`;
@@ -79,14 +79,13 @@ export default Vue.extend({
       if (this.dogDetail!.ageYear > 0) strAge.push(`${this.dogDetail!.ageYear} ปี`);
       // @ts-ignore
       if (this.dogDetail!.ageMonth > 0) strAge.push(`${this.dogDetail!.ageMonth} เดือน`);
-      console.log(strAge.join(' '));
       return strAge.join(' ');
     },
   },
-  filters: {
-    arrToString(arr: string[]) {
-      return arr.toString().replace(/,/g, ', ');
-    },
+  mounted() {
+    DogServ.getDogVisitor(this.$route.params.id).then((val) => {
+      this.dogDetail = val.data;
+    });
   },
 });
 </script>

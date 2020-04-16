@@ -5,7 +5,7 @@
       <h1 class="myweb">หมา มช.</h1>
     </div>
     <transition name="slide-l">
-      <div class="menu" v-if="show">
+      <div v-if="show" class="menu">
         <div class="cross">
           <font-awesome-icon :icon="['fas', 'times']" @click="hideMenu()" />
         </div>
