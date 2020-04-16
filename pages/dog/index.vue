@@ -84,7 +84,6 @@ export default Vue.extend({
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 1rem;
-  min-height: 740px;
 }
 
 .dog_box {

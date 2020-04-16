@@ -33,9 +33,11 @@ export default Vue.extend({
 @use 'assets/styles/responsive';
 
 .nav-con {
-  box-shadow: 0px 5px 9px 1px rgba(79, 79, 79, 0.5);
   .desktop {
     visibility: visible;
+    position: fixed;
+    width: 100%;
+    box-shadow: var.$navbar-shadow;
   }
 
   .mobile {

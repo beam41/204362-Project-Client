@@ -39,17 +39,6 @@ import User from '@/models/User';
 
 export default Vue.extend({
   name: 'AdminNavbar',
-  computed: {
-    ...mapState({
-      login: (state: any) => state.login as User,
-    }),
-  },
-  methods: {
-    logout() {
-      this.$store.commit('LOGOUT');
-      this.$router.push('/admin/login');
-    },
-  },
   filters: {
     depName(value: number) {
       if (value < 21)
@@ -79,6 +68,17 @@ export default Vue.extend({
         }`;
       else if (value === 21) return 'College of Art, Media and Technology';
       return 'Faculty of Everything Else';
+    },
+  },
+  computed: {
+    ...mapState({
+      login: (state: any) => state.login as User,
+    }),
+  },
+  methods: {
+    logout() {
+      this.$store.commit('LOGOUT');
+      this.$router.push('/admin/login');
     },
   },
 });

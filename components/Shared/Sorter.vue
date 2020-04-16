@@ -19,7 +19,10 @@ export default Vue.extend({
     Select,
   },
   props: {
-    options: Array,
+    options: {
+      type: Array,
+      default: () => [],
+    },
   },
   data: () => ({
     currOption: 0,

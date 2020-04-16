@@ -78,7 +78,6 @@ export default Vue.extend({
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-gap: 3rem 1rem;
-    min-height: 740px;
   }
 
   .don-box {
@@ -130,7 +129,6 @@ export default Vue.extend({
     .qr {
       border: 15px solid white;
       margin-bottom: 1rem;
-      border-radius: var.$b-radius;
     }
   }
 

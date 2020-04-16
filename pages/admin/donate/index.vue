@@ -97,9 +97,6 @@ export default Vue.extend({
     searchString: '',
     currAcceptSelect: null as Donate | null,
   }),
-  head: () => ({
-    title: 'Admin: Donate',
-  }),
   computed: {
     by: () => ['ชื่อเรื่อง', 'ผู้สร้าง', 'อนุมัติแล้ว'],
     field: () => ['title', 'creator', 'accepted'],
@@ -145,6 +142,9 @@ export default Vue.extend({
       this.currAcceptSelect = null;
     },
   },
+  head: () => ({
+    title: 'Admin: Donate',
+  }),
 });
 </script>
 
