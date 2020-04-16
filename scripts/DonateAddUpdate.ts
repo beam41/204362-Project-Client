@@ -35,9 +35,8 @@ export default Vue.extend({
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
     },
     acceptedInfo() {
-      return `Accepted By ${this.donate!.acceptedBy} on ${new Date(
-        this.donate!.acceptedOn!,
-      ).toString()}`;
+      const time = new Date(this.donate!.acceptedOn!).toLocaleString('th-TH');
+      return `Accepted By ${this.donate!.acceptedBy} on ${time}`;
     },
   },
   mounted() {
@@ -92,18 +91,15 @@ export default Vue.extend({
       let newDon: Donate = new Donate();
       if (this.donate) {
         newDon = {
-          id: undefined,
           // @ts-ignore
           title: this.$refs.title.value,
-          creator: undefined,
           accepted: false,
           // @ts-ignore
           description: this.$refs.desc.value,
           // @ts-ignore
           qrLink: this.$refs.qr.value,
           imgPath: this.imgPath,
-          deptNo: undefined,
-        };
+        } as Donate;
       }
       if (this.$route.params.id === 'add') {
         DonateServ.postDonate(this.$store, newDon).then((_) => {

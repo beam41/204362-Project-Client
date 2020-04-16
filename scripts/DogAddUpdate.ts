@@ -205,7 +205,6 @@ export default Vue.extend({
     saveData() {
       this.saving = true;
       const newDog: Dog = {
-        id: undefined,
         // @ts-ignore
         name: this.$refs.name.value.split(',').map((item) => item.trim()),
         // @ts-ignore
@@ -226,8 +225,7 @@ export default Vue.extend({
         // @ts-ignore
         location: this.$refs.location.value,
         imgPath: this.imgPath,
-        deptNo: undefined,
-      };
+      } as Dog;
       if (this.$route.params.id === 'add') {
         DogApiService.postDog(this.$store, newDog).then((_a) => {
           this.$router.go(-1);

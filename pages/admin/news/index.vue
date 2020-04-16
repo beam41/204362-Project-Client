@@ -36,9 +36,6 @@ import Vue from 'vue';
 import _ from 'lodash';
 import Sorter from '@/components/Shared/Sorter.vue';
 import NewsServ from '@/services/NewsApiService';
-import News from '@/models/news';
-import Modal from '@/components/Shared/Modal.vue';
-import User from '@/models/User';
 
 export default Vue.extend({
   layout: 'admin',

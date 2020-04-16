@@ -141,9 +141,8 @@ export default Vue.extend({
       login: (state: any) => state.login as User,
     }),
     acceptedInfo() {
-      return `Accepted By ${this.report!.acceptedBy} on ${new Date(
-        this.report!.acceptedOn!,
-      ).toString()}`;
+      const time = new Date(this.report!.acceptedOn!).toLocaleString('th-TH');
+      return `Accepted By ${this.report!.acceptedBy} on ${time}`;
     },
   },
   mounted() {
