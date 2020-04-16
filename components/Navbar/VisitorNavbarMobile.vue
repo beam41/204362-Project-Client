@@ -109,7 +109,8 @@ export default Vue.extend({
 
   &.nuxt-link-exact-active,
   &.nuxt-link-exact-active:hover {
-    background-color: color.lightness(var.$white, -2%);
+    background-color: color.lightness(var.$link, 30%);
+    color: var.$white;
   }
 }
 
