@@ -2,7 +2,7 @@
   <div class="box">
     <div class="bgicon">
       <font-awesome-icon :icon="['fas', 'bars']" @click="showMenu()" />
-      <h5 class="myweb">Mhean-Maa</h5>
+      <h1 class="myweb">หมา มช.</h1>
     </div>
     <transition name="slide-l">
       <div class="menu" v-if="show">
@@ -72,6 +72,7 @@ export default Vue.extend({
   display: flex;
   margin-left: 10px;
   padding: 5px 0px 5px 0px;
+  align-items: center;
 }
 .box {
   position: fixed;
@@ -105,11 +106,22 @@ export default Vue.extend({
     text-decoration: none;
     color: var.$link;
   }
+
+  &.nuxt-link-exact-active,
+  &.nuxt-link-exact-active:hover {
+    background-color: color.lightness(var.$white, -2%);
+  }
 }
+
 .myweb {
   font-size: 1.5rem;
+  font-weight: 400;
   margin-bottom: 0;
   display: flex;
   margin-left: 10px;
+}
+
+svg:hover {
+  cursor: pointer;
 }
 </style>

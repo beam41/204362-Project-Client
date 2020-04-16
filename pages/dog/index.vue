@@ -98,8 +98,8 @@ export default Vue.extend({
   overflow: hidden;
   margin: 1rem 0;
   width: 250px;
-  border: 2px solid var.$gray;
-  padding: 7px;
+  padding: 0 7px 7px 7px;
+  box-shadow: 0px 15px 27px -20px rgba(79, 79, 79, 0.45);
 
   &,
   & * {
@@ -107,7 +107,8 @@ export default Vue.extend({
   }
 
   &:hover {
-    border: 2px solid color.lightness(var.$gray, -50%);
+    box-shadow: 0px 15px 27px -10px rgba(79, 79, 79, 1);
+    transform: translateY(-5px);
   }
 
   h6 {
@@ -118,7 +119,7 @@ export default Vue.extend({
 
   img {
     object-fit: cover;
-    size: 230px;
+    size: 250px;
     margin-bottom: 2rem;
     border-radius: var.$b-radius;
   }

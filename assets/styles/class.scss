@@ -45,12 +45,13 @@
 
 .slide-l-enter-active,
 .slide-l-leave-active {
-  transition: transform var.$animation-time;
+  transition: opacity var.$animation-time linear, transform var.$animation-time ease;
 }
 
 .slide-l-enter,
 .slide-l-leave-to {
   transform: translateX(-100%);
+  opacity: 0;
 }
 
 .flip-list-move {

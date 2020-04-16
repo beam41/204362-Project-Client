@@ -33,6 +33,7 @@ export default Vue.extend({
 @use 'assets/styles/responsive';
 
 .nav-con {
+  box-shadow: 0px 5px 9px 1px rgba(79, 79, 79, 0.5);
   .desktop {
     visibility: visible;
   }
@@ -80,12 +81,17 @@ export default Vue.extend({
   color: var.$gray;
   text-decoration: none;
   font-size: 1.5rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
   font-weight: 500;
 
   &:hover {
     text-decoration: none;
     color: var.$link;
+  }
+
+  &.nuxt-link-exact-active,
+  &.nuxt-link-exact-active:hover {
+    background-color: color.lightness(var.$white, -2%);
   }
 }
 

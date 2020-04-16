@@ -82,8 +82,8 @@ export default Vue.extend({
   }
 
   .don-box {
+    @extend %animate-all;
     place-self: center;
-    background-color: color.lightness(var.$violet, 40%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -92,6 +92,12 @@ export default Vue.extend({
     overflow: hidden;
     height: 100%;
     width: 400px;
+    //background: color.lightness(var.$white, -2%);
+    box-shadow: 0px 15px 27px -20px rgba(79, 79, 79, 0.45);
+
+    &:hover {
+      box-shadow: 0px 15px 27px -10px rgba(79, 79, 79, 1);
+    }
 
     h6 {
       margin-bottom: 0.5rem;
@@ -118,12 +124,13 @@ export default Vue.extend({
       object-fit: cover;
       size: 400px;
       margin-bottom: 2rem;
+      border-radius: var.$b-radius;
     }
 
     .qr {
       border: 15px solid white;
-      border-radius: var.$b-radius;
       margin-bottom: 1rem;
+      border-radius: var.$b-radius;
     }
   }
 
