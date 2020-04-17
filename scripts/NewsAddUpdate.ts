@@ -14,7 +14,7 @@ export default Vue.extend({
   data: () => ({
     news: null as News | null,
     editing: false,
-    delShow: false,
+    showDel: false,
     titleErr: false,
     descErr: false,
     imgErr: false,
@@ -30,6 +30,15 @@ export default Vue.extend({
     },
     imgPlacehold() {
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
+    },
+    newsInfo() {
+      const dateWrote = new Date(this.news!.wroteOn!).toLocaleString('th-TH');
+      const txt = `Wrote by ${this.news!.writer} on ${dateWrote}`;
+      if (this.news!.accepted) {
+        const dateAcc = new Date(this.news!.acceptedOn!).toLocaleString('th-TH');
+        return `${txt}, Accepted By ${this.news!.acceptedBy} on ${dateAcc}`;
+      }
+      return txt;
     },
   },
   mounted() {
@@ -77,17 +86,14 @@ export default Vue.extend({
       let newNews: News = new News();
       if (this.news) {
         newNews = {
-          id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
-          // @ts-ignorebuil
+          // @ts-ignore
           title: this.$refs.title.value,
-          writer: undefined,
           accepted: false,
           // @ts-ignore
-          description: this.$refs.desc.value,
+          detail: this.$refs.desc.value,
           // @ts-ignore
           imgPath: this.imgPath,
-          deptNo: undefined,
-        };
+        } as News;
       }
       if (this.$route.params.id === 'add') {
         NewsServ.postNews(this.$store, newNews).then((_) => {
@@ -100,7 +106,7 @@ export default Vue.extend({
       }
     },
     del() {
-      this.delShow = false;
+      this.showDel = false;
       this.editing = true;
       NewsServ.delNews(this.$store, this.$route.params.id).then((_) => {
         this.$router.go(-1);

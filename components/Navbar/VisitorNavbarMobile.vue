@@ -118,7 +118,7 @@ export default Vue.extend({
 }
 
 .myweb {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
   margin-bottom: 0;
   display: flex;

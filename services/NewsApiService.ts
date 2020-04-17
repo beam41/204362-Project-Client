@@ -15,7 +15,7 @@ function getNews($store: any, id: string): Promise<AxiosResponse<News>> {
 }
 
 function postNews($store: any, news: News): Promise<AxiosResponse<News>> {
-  return a.post('api/donate', news, headerWriter($store));
+  return a.post('api/news', news, headerWriter($store));
 }
 
 function delNews($store: any, id: string): Promise<AxiosResponse<News>> {

@@ -12,7 +12,14 @@
       </div>
       <div class="m-bot">
         <button class="btn-success btn-mar" @click="sendAcc()">Accept</button>
-        <button class="btn-default" @click="() => (showAcc = false)">
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              showAcc = false;
+            }
+          "
+        >
           Cancel
         </button>
       </div>
@@ -26,7 +33,14 @@
       </div>
       <div class="m-bot">
         <button class="btn-warn btn-mar" @click="del()">Delete</button>
-        <button class="btn-default" @click="() => (showDel = false)">
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              showDel = false;
+            }
+          "
+        >
           Cancel
         </button>
       </div>
@@ -89,7 +103,11 @@
             :disabled="login.userType === 'S'"
             v-if="!report.accepted"
             class="btn-success"
-            @click="() => (showAcc = true)"
+            @click="
+              () => {
+                showAcc = true;
+              }
+            "
           >
             Accept
           </button>
@@ -97,7 +115,11 @@
             :disabled="login.userType === 'S'"
             v-if="report.accepted"
             class="btn-warn"
-            @click="() => (showDel = true)"
+            @click="
+              () => {
+                showDel = true;
+              }
+            "
           >
             Delete
           </button>
@@ -142,7 +164,7 @@ export default Vue.extend({
     }),
     acceptedInfo() {
       const time = new Date(this.report!.acceptedOn!).toLocaleString('th-TH');
-      return `Accepted By ${this.report!.acceptedBy} on ${time}`;
+      return `Accepted by ${this.report!.acceptedBy} on ${time}`;
     },
   },
   mounted() {

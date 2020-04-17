@@ -9,6 +9,9 @@ function getDonateList($store: any): Promise<AxiosResponse<Donate[]>> {
 function getDonateListVisitor(): Promise<AxiosResponse<Donate[]>> {
   return a.get('api/donate/visitor');
 }
+function getDonateRandomList(): Promise<AxiosResponse<Donate[]>> {
+  return a.get('api/donate/random/3');
+}
 
 function getDonate($store: any, id: string): Promise<AxiosResponse<Donate>> {
   return a.get(`api/donate/${id}`, headerWriter($store));
@@ -38,4 +41,5 @@ export default {
   putDonate,
   acceptDonate,
   getDonateListVisitor,
+  getDonateRandomList,
 };

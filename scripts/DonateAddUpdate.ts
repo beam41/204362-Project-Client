@@ -16,7 +16,7 @@ export default Vue.extend({
   data: () => ({
     donate: null as Donate | null,
     saving: false,
-    delShow: false,
+    showDel: false,
     titleErr: false,
     descErr: false,
     qrErr: false,
@@ -36,7 +36,7 @@ export default Vue.extend({
     },
     acceptedInfo() {
       const time = new Date(this.donate!.acceptedOn!).toLocaleString('th-TH');
-      return `Accepted By ${this.donate!.acceptedBy} on ${time}`;
+      return `Accepted by ${this.donate!.acceptedBy} on ${time}`;
     },
   },
   mounted() {
@@ -112,7 +112,7 @@ export default Vue.extend({
       }
     },
     del() {
-      this.delShow = false;
+      this.showDel = false;
       this.saving = true;
       DonateServ.delDonate(this.$store, this.$route.params.id).then((_) => {
         this.$router.go(-1);

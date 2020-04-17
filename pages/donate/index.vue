@@ -2,7 +2,7 @@
   <div class="donate content">
     <h2>บริจาค</h2>
     <div v-if="donates" class="don-list">
-      <div v-for="don in sortedDonates" :key="don.id" class="don-box">
+      <div v-for="don in sortedDonates" :id="don.id" :key="don.id" class="don-box">
         <div class="sep">
           <v-lazy-image
             :src="don.imgPath | imgUrl"

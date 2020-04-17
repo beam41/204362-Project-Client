@@ -127,11 +127,11 @@ img {
   }
 
   &.Y {
-    background: #66bb6a;
+    background: #ffeb3b;
   }
 
   &.G {
-    background: #ffee58;
+    background: #65ba69;
   }
 }
 </style>

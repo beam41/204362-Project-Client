@@ -3,11 +3,17 @@ export default class News {
 
   title: string | undefined;
 
+  detail: string | undefined;
+
   writer: string | undefined;
+
+  wroteOn: number | undefined;
 
   accepted: boolean | undefined;
 
-  description: string | undefined;
+  acceptedBy: boolean | undefined;
+
+  acceptedOn: number | undefined;
 
   imgPath: string | undefined;
 
