@@ -14,7 +14,7 @@ export default Vue.extend({
   data: () => ({
     news: null as News | null,
     editing: false,
-    delShow: false,
+    showDel: false,
     titleErr: false,
     descErr: false,
     imgErr: false,
@@ -106,7 +106,7 @@ export default Vue.extend({
       }
     },
     del() {
-      this.delShow = false;
+      this.showDel = false;
       this.editing = true;
       NewsServ.delNews(this.$store, this.$route.params.id).then((_) => {
         this.$router.go(-1);

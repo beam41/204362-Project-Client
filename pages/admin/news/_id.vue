@@ -3,7 +3,7 @@
     <div v-if="editing" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
-    <Modal :show="delShow">
+    <Modal :show="showDel">
       <div class="m-top">
         <h5>Delete</h5>
       </div>
@@ -15,7 +15,14 @@
       </div>
       <div class="m-bot">
         <button class="btn-warn" @click="del()">Delete</button>
-        <button class="btn-default" @click="() => (delShow = false)">
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              showDel = false;
+            }
+          "
+        >
           Cancel
         </button>
       </div>
@@ -41,7 +48,7 @@
               <label>เนื้อหาข่าว:</label>
               <textarea
                 ref="desc"
-                v-model="news.description"
+                v-model="news.detail"
                 :class="'txt input-au' + (descErr ? ' error' : '')"
                 type="text"
                 placeholder="กรุณากรอกเนื้อหาข่าว"
@@ -78,7 +85,11 @@
             v-if="$route.params.id !== 'add'"
             class="btn-warn"
             :disabled="uploading"
-            @click="() => (delShow = true)"
+            @click="
+              () => {
+                showDel = true;
+              }
+            "
           >
             Delete
           </button>
