@@ -8,7 +8,12 @@
       </button>
     </div>
     <div v-if="dogList" class="dog_list">
-      <nuxt-link v-for="dog in dogSearch" :key="dog.id" :to="`/dog/${dog.id}`" class="dog_box">
+      <nuxt-link
+        v-for="dog in dogSearch"
+        :key="dog.id"
+        :to="`/dog/${dog.id}`"
+        class="dog_box hover-link"
+      >
         <v-lazy-image
           :src="dog.imgPath | imgUrl"
           :src-placeholder="dog.imgPath | imgPlacehold"
@@ -103,11 +108,6 @@ export default Vue.extend({
   &,
   & * {
     text-decoration: none;
-  }
-
-  &:hover {
-    box-shadow: 0px 15px 27px -10px rgba(79, 79, 79, 1);
-    transform: translateY(-5px);
   }
 
   h6 {

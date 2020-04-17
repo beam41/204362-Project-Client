@@ -73,6 +73,7 @@
               >
                 Upload
               </button>
+              <p class="txt-info">ไฟล์สกุล jpeg หรือ png เท่านั้น</p>
             </div>
           </div>
         </div>
@@ -121,11 +122,18 @@
 }
 
 .txt {
-  height: 23rem;
+  height: 53vh;
 }
 
 .news {
   display: flex;
   flex-direction: column;
+  justify-content: initial !important;
+}
+
+.im {
+  img {
+    object-fit: contain !important;
+  }
 }
 </style>

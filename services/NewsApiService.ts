@@ -9,6 +9,12 @@ function getNewsList($store: any): Promise<AxiosResponse<News[]>> {
 function getNewsListVisitor(): Promise<AxiosResponse<News[]>> {
   return a.get('api/news/visitor');
 }
+function getNewsVisitor(id: string): Promise<AxiosResponse<News>> {
+  return a.get(`api/news/visitor/${id}`);
+}
+function getNewsRandomList(): Promise<AxiosResponse<News[]>> {
+  return a.get('api/news/visitor/3');
+}
 
 function getNews($store: any, id: string): Promise<AxiosResponse<News>> {
   return a.get(`api/news/${id}`, headerWriter($store));
@@ -38,4 +44,6 @@ export default {
   putNews,
   acceptNews,
   getNewsListVisitor,
+  getNewsVisitor,
+  getNewsRandomList,
 };
