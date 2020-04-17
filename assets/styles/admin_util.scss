@@ -10,6 +10,7 @@ $table-body-height: 46px;
   .adminbox {
     grid-column: 2/3;
     grid-row: 2/3;
+    height: calc(100vh - 48px);
   }
 
   .padadmin {
@@ -36,11 +37,12 @@ $table-body-height: 46px;
 
   .sub-table-wrapper {
     overflow-y: scroll;
-    height: calc(100% - #{$table-body-height});
+    height: calc(100% - 46px);
   }
 
   .datalist {
     border-collapse: collapse;
+
     width: 100%;
 
     width: 100%;
@@ -94,6 +96,7 @@ $table-body-height: 46px;
   .admin-btn-pos {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 
     button {
       margin-left: 1rem;
@@ -102,6 +105,7 @@ $table-body-height: 46px;
 
   .input-au {
     display: block;
+    width: 100%;
   }
 
   .img-upload {
@@ -163,5 +167,27 @@ $table-body-height: 46px;
     .warn {
       @extend %txt-warn;
     }
+  }
+
+  .input-box {
+    display: grid;
+    gap: 1rem 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .txt {
+    height: 10rem;
+  }
+
+  .sep {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .acc-in {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #444;
   }
 }

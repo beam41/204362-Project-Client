@@ -15,7 +15,7 @@ export default Vue.extend({
   },
   data: () => ({
     donate: null as Donate | null,
-    editing: false,
+    saving: false,
     delShow: false,
     titleErr: false,
     descErr: false,
@@ -33,6 +33,10 @@ export default Vue.extend({
     },
     imgPlacehold() {
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
+    },
+    acceptedInfo() {
+      const time = new Date(this.donate!.acceptedOn!).toLocaleString('th-TH');
+      return `Accepted By ${this.donate!.acceptedBy} on ${time}`;
     },
   },
   mounted() {
@@ -83,22 +87,19 @@ export default Vue.extend({
       this.save();
     },
     save() {
-      this.editing = true;
+      this.saving = true;
       let newDon: Donate = new Donate();
       if (this.donate) {
         newDon = {
-          id: undefined,
           // @ts-ignore
           title: this.$refs.title.value,
-          creator: undefined,
           accepted: false,
           // @ts-ignore
           description: this.$refs.desc.value,
           // @ts-ignore
           qrLink: this.$refs.qr.value,
           imgPath: this.imgPath,
-          deptNo: undefined,
-        };
+        } as Donate;
       }
       if (this.$route.params.id === 'add') {
         DonateServ.postDonate(this.$store, newDon).then((_) => {
@@ -112,7 +113,7 @@ export default Vue.extend({
     },
     del() {
       this.delShow = false;
-      this.editing = true;
+      this.saving = true;
       DonateServ.delDonate(this.$store, this.$route.params.id).then((_) => {
         this.$router.go(-1);
       });

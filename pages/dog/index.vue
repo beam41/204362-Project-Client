@@ -29,7 +29,7 @@ import Vue from 'vue';
 
 import _ from 'lodash';
 import DogServ from '@/services/DogApiService';
-import dog from '@/models/dog';
+import Dog from '@/models/dog';
 
 export default Vue.extend({
   layout: 'visitor',
@@ -43,7 +43,7 @@ export default Vue.extend({
     },
   },
   data: () => ({
-    dogList: null as null | dog[],
+    dogList: null as null | Dog[],
     currOption: 0,
     descending: false,
     searchString: '',
@@ -53,7 +53,7 @@ export default Vue.extend({
       let filter = this.dogList;
       if (this.searchString !== '') {
         // prettier-ignore
-        filter = _.filter(this.dogList, (o: dog) => _.includes(o.name!.toString(), this.searchString));
+        filter = _.filter(this.dogList, (o: Dog) => _.includes(o.name!.toString(), this.searchString));
       }
       return _.orderBy(filter, 'name');
     },

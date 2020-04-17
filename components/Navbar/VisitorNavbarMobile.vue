@@ -1,22 +1,26 @@
 <template>
   <div class="box">
     <div class="bgicon">
-      <font-awesome-icon :icon="['fas', 'bars']" @click="showMenu()" />
+      <div class="f pad">
+        <font-awesome-icon :icon="['fas', 'bars']" @click="showMenu()" />
+      </div>
       <h1 class="myweb">หมา มช.</h1>
     </div>
     <transition name="slide-l">
       <div v-if="show" class="menu">
         <div class="cross">
-          <font-awesome-icon :icon="['fas', 'times']" @click="hideMenu()" />
+          <div class="f">
+            <font-awesome-icon :icon="['fas', 'times']" @click="hideMenu()" />
+          </div>
         </div>
-        <div class="link" @click="hideMenu()">
+        <nav class="link" @click="hideMenu()">
           <nuxt-link to="/" class="nav-link home"><span>หน้าหลัก</span></nuxt-link>
           <nuxt-link to="/news" class="nav-link news"><span>ข่าว</span></nuxt-link>
           <nuxt-link to="/dog" class="nav-link dogs"><span>สุนัขในโครงการ</span></nuxt-link>
           <nuxt-link to="/donate" class="nav-link donate"><span>บริจาค</span></nuxt-link>
           <nuxt-link to="/contact" class="nav-link contact"><span>ติดต่อเรา</span></nuxt-link>
           <nuxt-link to="/report" class="nav-link report"><span>รายงานปัญหา</span></nuxt-link>
-        </div>
+        </nav>
         <div class="shade" @click="hideMenu()"></div>
       </div>
     </transition>
@@ -67,11 +71,9 @@ export default Vue.extend({
   height: 100vh;
 }
 .bgicon {
-  font-size: 2rem;
+  font-size: 2.5rem;
   width: 100vw;
   display: flex;
-  margin-left: 10px;
-  padding: 5px 0px 5px 0px;
   align-items: center;
 }
 
@@ -84,7 +86,7 @@ export default Vue.extend({
   box-shadow: var.$navbar-shadow;
 }
 .cross {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   display: flex;
   justify-content: flex-end;
   margin: 10px 15px 30px 10px;
@@ -120,10 +122,22 @@ export default Vue.extend({
   font-weight: 400;
   margin-bottom: 0;
   display: flex;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
-svg:hover {
-  cursor: pointer;
+.f {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  size: 52px;
+
+  &.pad {
+    width: 62px;
+    padding: 0 10px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>

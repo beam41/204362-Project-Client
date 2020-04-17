@@ -1,9 +1,9 @@
 <template>
   <div v-if="donate" class="adminbox">
-    <div v-if="editing" class="loader blackcover">
+    <div v-if="saving" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
-    <Modal :show="delShow">
+    <Modal :show="showDel">
       <div class="m-top">
         <h5>Delete</h5>
       </div>
@@ -15,14 +15,7 @@
       </div>
       <div class="m-bot">
         <button class="btn-warn" @click="del()">Delete</button>
-        <button
-          class="btn-default"
-          @click="
-            () => {
-              delShow = false;
-            }
-          "
-        >
+        <button class="btn-default" @click="() => (showDel = false)">
           Cancel
         </button>
       </div>
@@ -79,7 +72,7 @@
           <div class="img-upload">
             <div class="form-control im-wrapper">
               <div class="im">
-                <p v-if="!imgPath && imgPath === ''">ไม่มีรูป</p>
+                <p v-if="!imgPath || imgPath === ''">ไม่มีรูป</p>
                 <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
               </div>
             </div>
@@ -100,17 +93,14 @@
         </div>
       </div>
       <div class="admin-btn-pos">
+        <p v-if="donate.accepted" class="acc-in">{{ acceptedInfo }}</p>
         <span>
           <button class="btn-success" :disabled="uploading" @click="saveValidate()">Save</button>
           <button
             v-if="$route.params.id !== 'add'"
             class="btn-warn"
             :disabled="uploading"
-            @click="
-              () => {
-                delShow = true;
-              }
-            "
+            @click="() => (showDel = true)"
           >
             Delete
           </button>
@@ -130,24 +120,4 @@
 @use 'assets/styles/color';
 @use 'assets/styles/selector';
 @use 'assets/styles/responsive';
-
-.input-au {
-  width: 100%;
-}
-
-.input-box {
-  display: grid;
-  gap: 1rem 1rem;
-  grid-template-columns: 1fr 1fr;
-}
-
-.txt {
-  height: 10rem;
-}
-
-.sep {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 </style>

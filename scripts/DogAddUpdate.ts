@@ -15,7 +15,7 @@ export default Vue.extend({
   },
   data: () => ({
     dog: null as Dog | null,
-    editing: false,
+    saving: false,
     delShow: false,
     // Variable
     sex: undefined as string | undefined,
@@ -203,9 +203,8 @@ export default Vue.extend({
       this.saveData();
     },
     saveData() {
-      this.editing = true;
+      this.saving = true;
       const newDog: Dog = {
-        id: undefined,
         // @ts-ignore
         name: this.$refs.name.value.split(',').map((item) => item.trim()),
         // @ts-ignore
@@ -226,8 +225,7 @@ export default Vue.extend({
         // @ts-ignore
         location: this.$refs.location.value,
         imgPath: this.imgPath,
-        deptNo: undefined,
-      };
+      } as Dog;
       if (this.$route.params.id === 'add') {
         DogApiService.postDog(this.$store, newDog).then((_a) => {
           this.$router.go(-1);
@@ -247,9 +245,9 @@ export default Vue.extend({
     onChangeAlive(event: any) {
       this.isAlive = this.isAliveArr[event.currSelect];
     },
-    Delete() {
+    del() {
       this.delShow = false;
-      this.editing = true;
+      this.saving = true;
       DogApiService.delDog(this.$store, this.$route.params.id).then((_a) => {
         this.$router.go(-1);
       });

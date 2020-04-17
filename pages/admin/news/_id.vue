@@ -99,7 +99,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./NewsAddUpdate.ts"></script>
+<script lang="ts" src="@/scripts/NewsAddUpdate.ts"></script>
 
 <style lang="scss" scoped>
 @use 'assets/styles/var';

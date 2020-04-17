@@ -17,11 +17,14 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    noscript: [
+      { innerHTML: 'This website requires JavaScript. เว็บไซต์นี้ใช้ JavaScipt ในการแสดงผล' },
+    ],
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#733e85' },
+  loading: { color: '#b288bf' },
   /*
    ** Global CSS
    */
@@ -89,5 +92,8 @@ export default {
     // your settings here
     mode: 'postcss',
     whitelistPatterns: [/enter/, /leave/, /move/, /v-lazy-image/],
+  },
+  router: {
+    middleware: ['auth'],
   },
 };
