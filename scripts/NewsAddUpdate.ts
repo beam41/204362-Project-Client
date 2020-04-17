@@ -85,11 +85,12 @@ export default Vue.extend({
           // @ts-ignorebuil
           title: this.$refs.title.value,
           writer: undefined,
+          writeDate: undefined,
           accepted: false,
           acceptor: undefined,
           acceptedDate: undefined,
           // @ts-ignore
-          description: this.$refs.desc.value,
+          detail: this.$refs.desc.value,
           // @ts-ignore
           imgPath: this.imgPath,
           deptNo: undefined,

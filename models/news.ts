@@ -5,13 +5,15 @@ export default class News {
 
   writer: string | undefined;
 
+  writeDate: number | undefined;
+
   accepted: boolean | undefined;
 
   acceptedDate: number | undefined;
 
   acceptor: string | undefined;
 
-  description: string | undefined;
+  detail: string | undefined;
 
   imgPath: string | undefined;
 

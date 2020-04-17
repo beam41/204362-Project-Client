@@ -48,7 +48,7 @@
               <label>เนื้อหาข่าว:</label>
               <textarea
                 ref="desc"
-                v-model="news.description"
+                v-model="news.detail"
                 :class="'txt input-au' + (descErr ? ' error' : '')"
                 type="text"
                 placeholder="กรุณากรอกเนื้อหาข่าว"
@@ -124,5 +124,6 @@
 .sep {
   display: flex;
   flex-direction: column;
+  justify-content: initial !important;
 }
 </style>

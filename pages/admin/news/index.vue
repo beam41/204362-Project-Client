@@ -26,7 +26,7 @@
             <font-awesome-icon :icon="['fas', 'search']" />
           </button>
         </div>
-        <Sorter :options="by" @change="onChange($event)" />
+        <Sorter :options="by" @sort-change="onChange($event)" />
       </div>
       <div class="table-wrapper">
         <div class="head-wrapper">
