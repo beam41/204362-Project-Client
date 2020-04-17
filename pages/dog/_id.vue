@@ -123,15 +123,15 @@ img {
   border-radius: var.$b-radius;
   padding: 0 var.$b-radius;
   &.R {
-    background: #ef4e4c;
+    background: #ef5350;
   }
 
   &.Y {
-    background: #ffdf54;
+    background: #66bb6a;
   }
 
   &.G {
-    background: #8def29;
+    background: #ffee58;
   }
 }
 </style>
