@@ -74,14 +74,11 @@ import Vue from 'vue';
 import _ from 'lodash';
 import { mapState } from 'vuex';
 import Sorter from '@/components/Shared/Sorter.vue';
+import CheckBox from '@/components/Shared/CheckBox.vue';
 import NewsServ from '@/services/NewsApiService';
-<<<<<<< HEAD
 import News from '@/models/news';
 import Modal from '@/components/Shared/Modal.vue';
 import User from '@/models/User';
-import CheckBox from '@/components/Shared/CheckBox.vue';
-=======
->>>>>>> a827642465458d767c8253d795f2c692445ba5e5
 
 export default Vue.extend({
   layout: 'admin',
