@@ -46,7 +46,7 @@ export default Vue.extend({
 .logo {
   width: 100vw;
   max-width: 700px;
-  max-height: 500px;
+  height: 500px;
   background-image: url('~assets/images/maa-parallax/Ma-para-1.png');
   position: absolute;
   background-size: contain;
