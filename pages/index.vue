@@ -18,7 +18,12 @@
         <nuxt-link to="/donate" class="nav-link "><span>Donate</span></nuxt-link>
       </button>
       <div v-if="donates" class="list">
-        <div v-for="don in donates" :key="don.id" class="c-box">
+        <nuxt-link
+          v-for="don in donates"
+          :key="don.id"
+          class="c-box hover-link"
+          :to="`/donate#${don.id}`"
+        >
           <div class="sep">
             <v-lazy-image
               :src="don.imgPath | imgUrl"
@@ -26,7 +31,7 @@
             />
             <h6>{{ don.title }}</h6>
           </div>
-        </div>
+        </nuxt-link>
       </div>
     </div>
   </div>

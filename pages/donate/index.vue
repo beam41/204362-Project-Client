@@ -57,6 +57,12 @@ export default Vue.extend({
   mounted() {
     DonateServ.getDonateListVisitor().then((val) => {
       this.donates = val.data;
+      if (this.$route.hash) {
+        setTimeout(() => {
+          // @ts-ignore
+          document.getElementById(this.$route.hash.slice(1)).scrollIntoView();
+        }, 100);
+      }
     });
   },
 });
