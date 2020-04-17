@@ -142,7 +142,7 @@ export default Vue.extend({
     }),
     acceptedInfo() {
       const time = new Date(this.report!.acceptedOn!).toLocaleString('th-TH');
-      return `Accepted By ${this.report!.acceptedBy} on ${time}`;
+      return `Accepted by ${this.report!.acceptedBy} on ${time}`;
     },
   },
   mounted() {
