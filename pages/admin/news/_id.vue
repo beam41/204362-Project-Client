@@ -15,14 +15,7 @@
       </div>
       <div class="m-bot">
         <button class="btn-warn" @click="del()">Delete</button>
-        <button
-          class="btn-default"
-          @click="
-            () => {
-              delShow = false;
-            }
-          "
-        >
+        <button class="btn-default" @click="() => (delShow = false)">
           Cancel
         </button>
       </div>
@@ -30,7 +23,7 @@
     <div class="padadmin addupdate news-au">
       <div class="top">
         <div class="input-box">
-          <div class="sep">
+          <div class="sep news">
             <div class="form-control">
               <label class="with-warn">
                 <span>หัวข้อข่าว:</span>
@@ -56,9 +49,11 @@
             </div>
           </div>
           <div class="img-upload">
-            <div class="form-control im">
-              <p v-if="!imgPath && imgPath === ''">ภาพประกอบข่าว</p>
-              <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+            <div class="form-control im-wrapper">
+              <div class="im">
+                <p v-if="!imgPath && imgPath === ''">ไม่มีภาพประกอบข่าว</p>
+                <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+              </div>
             </div>
             <div class="form-control">
               <input ref="file" type="file" accept="image/*" :disabled="uploading" />
@@ -76,17 +71,14 @@
         </div>
       </div>
       <div class="admin-btn-pos">
+        <p v-if="$route.params.id !== 'add'" class="acc-in">{{ newsInfo }}</p>
         <span>
           <button class="btn-success" :disabled="uploading" @click="saveValidate()">Save</button>
           <button
             v-if="$route.params.id !== 'add'"
             class="btn-warn"
             :disabled="uploading"
-            @click="
-              () => {
-                delShow = true;
-              }
-            "
+            @click="() => (delShow = true)"
           >
             Delete
           </button>
@@ -99,7 +91,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./NewsAddUpdate.ts"></script>
+<script lang="ts" src="@/scripts/NewsAddUpdate.ts"></script>
 
 <style lang="scss" scoped>
 @use 'assets/styles/var';
@@ -118,10 +110,10 @@
 }
 
 .txt {
-  height: 10rem;
+  height: 23rem;
 }
 
-.sep {
+.news {
   display: flex;
   flex-direction: column;
 }

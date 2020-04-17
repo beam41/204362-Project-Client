@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+// @ts-ignore
 import { KinesisContainer, KinesisElement } from 'vue-kinesis';
 import DonateServ from '@/services/DonateApiService';
 import Donate from '@/models/donate';

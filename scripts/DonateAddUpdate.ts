@@ -36,7 +36,7 @@ export default Vue.extend({
     },
     acceptedInfo() {
       const time = new Date(this.donate!.acceptedOn!).toLocaleString('th-TH');
-      return `Accepted By ${this.donate!.acceptedBy} on ${time}`;
+      return `Accepted by ${this.donate!.acceptedBy} on ${time}`;
     },
   },
   mounted() {

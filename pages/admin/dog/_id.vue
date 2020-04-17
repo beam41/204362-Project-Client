@@ -12,7 +12,14 @@
       </div>
       <div class="m-bot">
         <button class="btn-warn btn-mar" @click="del()">Delete</button>
-        <button class="btn-default" @click="() => (showDel = false)">
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              showDel = false;
+            }
+          "
+        >
           Cancel
         </button>
       </div>
@@ -198,7 +205,11 @@
           v-if="$route.params.id !== 'add'"
           class="btn-warn"
           :disabled="uploading"
-          @click="() => (showDel = true)"
+          @click="
+            () => {
+              showDel = true;
+            }
+          "
         >
           Delete
         </button>
