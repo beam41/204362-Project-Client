@@ -7,9 +7,9 @@ export default class News {
 
   writer: string | undefined;
 
-  wroteOn: number | undefined;
-
   accepted: boolean | undefined;
+
+  wroteOn: number | undefined;
 
   acceptedBy: boolean | undefined;
 

@@ -128,6 +128,7 @@
 .news {
   display: flex;
   flex-direction: column;
+  justify-content: initial !important;
 }
 
 .im {
