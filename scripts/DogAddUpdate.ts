@@ -184,7 +184,7 @@ export default Vue.extend({
           err = true;
         }
       }
-      if (caretaker === '' || /[" "\d!"#$%&\\'()*+,/:;<=>?@[\\\]^_`{|}~-]/gm.test(caretaker)) {
+      if (caretaker === '' || /[\d!"#$%&\\'()*+,/:;<=>?@[\\\]^_`{|}~-]/gm.test(caretaker)) {
         this.caretakerErr = true;
         err = true;
       }
