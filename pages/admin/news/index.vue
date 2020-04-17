@@ -18,9 +18,7 @@
     <div class="padadmin">
       <div class="listpage-top">
         <nuxt-link to="/admin/news/add">
-          <button class="btn-default svg-m">
-            <font-awesome-icon :icon="['fas', 'plus']" />New
-          </button>
+          <button class="btn-default"><font-awesome-icon :icon="['fas', 'plus']" />New</button>
         </nuxt-link>
         <div class="input-group">
           <input v-model="searchString" type="text" placeholder="Search" />
@@ -87,8 +85,8 @@ export default Vue.extend({
   name: 'ListNews',
   components: {
     Sorter,
-    CheckBox,
     Modal,
+    CheckBox,
   },
   data: () => ({
     news: null as Array<News> | null,
@@ -125,9 +123,9 @@ export default Vue.extend({
       this.currOption = currOption;
       this.descending = descending;
     },
-    acceptedChangePrompt(event: any, n: News) {
+    acceptedChangePrompt(event: any, news: News) {
       if (event.target.checked) {
-        this.currAcceptSelect = n;
+        this.currAcceptSelect = news;
         this.currAcceptSelect!.accepted = true;
       }
     },
