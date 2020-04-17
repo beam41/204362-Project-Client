@@ -11,11 +11,9 @@ export default class News {
 
   wroteOn: number | undefined;
 
-  accepted: boolean | undefined;
-
   acceptedBy: boolean | undefined;
 
-  detail: string | undefined;
+  acceptedOn: number | undefined;
 
   imgPath: string | undefined;
 
