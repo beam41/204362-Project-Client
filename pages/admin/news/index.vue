@@ -1,5 +1,6 @@
 <template>
   <div class="adminbox">
+<<<<<<< Updated upstream
     <div class="listpage-top">
       <button class="btn-default"><font-awesome-icon :icon="['fas', 'plus']" />New</button>
       <Sorter :options="by" @change="onChange($event)" />
@@ -13,6 +14,37 @@
             <th>อนุมัติแล้ว</th>
           </tr>
         </table>
+=======
+    <Modal :show="currAcceptSelect ? true : false">
+      <div class="m-top">
+        <h5>Accept</h5>
+      </div>
+      <div v-if="currAcceptSelect" class="m-mid">
+        <p>
+          คุณต้องการอนุมัติ
+          <strong>{{ currAcceptSelect.title }}</strong> หรือไม่
+        </p>
+      </div>
+      <div class="m-bot">
+        <button class="btn-success" @click="acceptedChange()">Accept</button>
+        <button class="btn-default" @click="unAcceptedChange()">Cancel</button>
+      </div>
+    </Modal>
+    <div class="padadmin">
+      <div class="listpage-top">
+        <nuxt-link to="/admin/news/add">
+          <button class="btn-default svg-m">
+            <font-awesome-icon :icon="['fas', 'plus']" />New
+          </button>
+        </nuxt-link>
+        <div class="input-group">
+          <input v-model="searchString" type="text" placeholder="Search" />
+          <button class="btn-default">
+            <font-awesome-icon :icon="['fas', 'search']" />
+          </button>
+        </div>
+        <Sorter :options="by" @sort-change="onChange($event)" />
+>>>>>>> Stashed changes
       </div>
       <div class="sub-table-wrapper">
         <table class="datalist">
@@ -37,6 +69,11 @@ export default Vue.extend({
   name: 'ListDonate',
   components: {
     Sorter,
+<<<<<<< Updated upstream
+=======
+    CheckBox,
+    Modal,
+>>>>>>> Stashed changes
   },
   data: () => ({
     by: ['ชื่อเรื่อง', 'ผู้สร้าง', 'อนุมัติแล้ว'],
@@ -56,6 +93,25 @@ export default Vue.extend({
       this.currOption = currOption;
       this.descending = descending;
     },
+<<<<<<< Updated upstream
+=======
+    acceptedChangePrompt(event: any, n: News) {
+      if (event.target.checked) {
+        this.currAcceptSelect = n;
+        this.currAcceptSelect!.accepted = true;
+      }
+    },
+    unAcceptedChange() {
+      this.currAcceptSelect!.accepted = false;
+      this.currAcceptSelect = null;
+    },
+    acceptedChange() {
+      NewsServ.acceptNews(this.$store, this.currAcceptSelect!.id!, {
+        accepted: true,
+      } as News);
+      this.currAcceptSelect = null;
+    },
+>>>>>>> Stashed changes
   },
   head: () => ({
     title: 'Admin: News',
