@@ -3,7 +3,13 @@
     <div v-if="newsDetail" class="detail">
       <h2>{{ newsDetail.title }}</h2>
       <v-lazy-image :src="imgUrl" :src-placeholder="imgPlacehold" />
-      <p class="news-detail">{{ newsDetail.detail }}</p>
+      <p
+        v-for="line in newsDetail.detail.split('\n').filter((val) => val !== ' ')"
+        :key="line.detail"
+        class="news-detail"
+      >
+        {{ line }}<br />
+      </p>
       <p class="news-writer">Writer : {{ newsDetail.writer }}</p>
     </div>
     <div v-else class="loader">
