@@ -13,9 +13,21 @@
       <kinesis-element class="ma dog9" type="depth" :strength="15" />
     </kinesis-container>
     <div class="showcase">
-      <card>1</card>
-      <card>2</card>
-      <card>3</card>
+      <h3>SUPPORT US</h3>
+      <button class="gobtn">
+        <nuxt-link to="/donate" class="nav-link "><span>Donate</span></nuxt-link>
+      </button>
+      <div v-if="donates" class="list">
+        <div v-for="don in donates" :key="don.id" class="c-box">
+          <div class="sep">
+            <v-lazy-image
+              :src="don.imgPath | imgUrl"
+              :src-placeholder="don.imgPath | imgPlacehold"
+            />
+            <h6>{{ don.title }}</h6>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +35,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import { KinesisContainer, KinesisElement } from 'vue-kinesis';
+import DonateServ from '@/services/DonateApiService';
+import Donate from '@/models/donate';
 
 export default Vue.extend({
   layout: 'visitor',
@@ -31,10 +45,31 @@ export default Vue.extend({
     KinesisContainer,
     KinesisElement,
   },
+  filters: {
+    imgUrl(path: string) {
+      return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${path}`;
+    },
+    imgPlacehold(path: string) {
+      return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${path}`;
+    },
+  },
+  data: () => ({
+    donates: null as null | Donate[],
+  }),
+  mounted() {
+    DonateServ.getDonateRandomList().then((val) => {
+      this.donates = val.data;
+    });
+  },
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@use 'assets/styles/var';
+@use 'assets/styles/color';
+@use 'assets/styles/selector';
+@use 'assets/styles/responsive';
+
 .parent {
   width: 100vw;
   height: 80vh;
@@ -66,9 +101,53 @@ export default Vue.extend({
   flex-direction: column;
 }
 .showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.list {
   display: grid;
-  grid-row: 3;
-  justify-content: center;
+  width: 70%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 3rem 1rem;
+}
+
+.c-box {
+  @extend %animate-all;
+  place-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  //border-radius: var.$b-radius;
+  overflow: hidden;
+  height: 400px;
+  width: 300px;
+  //background: color.lightness(var.$white, -2%);
+  box-shadow: 0px 15px 27px -20px rgba(79, 79, 79, 0.45);
+
+  img {
+    object-fit: cover;
+    size: 300px;
+    margin-bottom: 2rem;
+    //border-radius: var.$b-radius;
+  }
+}
+.sep {
+  text-align: center;
+}
+.gobtn {
+  margin: 50px;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 0px;
+}
+.nav-link {
+  font-size: 2rem;
+  color: black;
+  text-decoration: none;
 }
 .dog1 {
   background-image: url('~assets/images/maa-parallax/2.png');
