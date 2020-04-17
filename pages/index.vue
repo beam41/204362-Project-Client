@@ -13,9 +13,14 @@
       <kinesis-element class="ma dog9" type="depth" :strength="15" />
     </kinesis-container>
     <div class="showcase">
-      <h3>NEWS</h3>
+      <h3>ข่าวเกี่ยวกับโครงการ</h3>
       <div v-if="newsList" class="list">
-        <nuxt-link v-for="news in newsList" :key="news.id" :to="`/news/${news.id}`" class="c-box">
+        <nuxt-link
+          v-for="news in newsList"
+          :key="news.id"
+          :to="`/news/${news.id}`"
+          class="c-box hover-link"
+        >
           <div class="sep">
             <v-lazy-image
               :src="news.imgPath | imgUrl"
@@ -25,15 +30,22 @@
           </div>
         </nuxt-link>
       </div>
-      <button class="gobtn">
-        <nuxt-link to="/news" class="nav-link "><span>MORE</span></nuxt-link>
-      </button>
+      <nuxt-link to="/news" class="more">
+        <button class="gobtn nav-link">
+          <span>ดูเพิ่มเติม</span>
+        </button>
+      </nuxt-link>
       <div class="line"></div>
     </div>
     <div class="showcase">
-      <h3>DOGS</h3>
+      <h3>สุนัขในโครงการ</h3>
       <div v-if="dogList" class="list">
-        <nuxt-link v-for="dog in dogList" :key="dog.id" :to="`/dog/${dog.id}`" class="c-box">
+        <nuxt-link
+          v-for="dog in dogList"
+          :key="dog.id"
+          :to="`/dog/${dog.id}`"
+          class="c-box hover-link"
+        >
           <div class="sep">
             <v-lazy-image
               :src="dog.imgPath | imgUrl"
@@ -43,16 +55,15 @@
           </div>
         </nuxt-link>
       </div>
-      <button class="gobtn">
-        <nuxt-link to="/dog" class="nav-link "><span>MORE</span></nuxt-link>
-      </button>
+      <nuxt-link to="/dog" class="more">
+        <button class="gobtn nav-link">
+          <span>ดูเพิ่มเติม</span>
+        </button>
+      </nuxt-link>
       <div class="line"></div>
     </div>
     <div class="showcase">
-      <h3>SUPPORT US</h3>
-      <button class="gobtn">
-        <nuxt-link to="/donate" class="nav-link "><span>Donate</span></nuxt-link>
-      </button>
+      <h3>ช่วยเหลือเรา</h3>
       <div v-if="donates" class="list">
         <nuxt-link
           v-for="don in donates"
@@ -69,6 +80,11 @@
           </div>
         </nuxt-link>
       </div>
+      <nuxt-link to="/donate" class="more">
+        <button class="gobtn nav-link">
+          <span>บริจาค</span>
+        </button>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -164,7 +180,7 @@ export default Vue.extend({
 .list {
   display: grid;
   width: 70%;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 3rem 1rem;
   margin: 50px;
 }
@@ -196,11 +212,20 @@ export default Vue.extend({
   text-align: center;
 }
 .gobtn {
-  margin: 50px;
+  @extend %animate-all;
   background-color: white;
   color: black;
   border: 2px solid black;
   border-radius: var.$b-radius;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(224, 224, 224);
+  }
+}
+
+.more {
+  margin-bottom: 50px;
 }
 .nav-link {
   font-size: 2rem;

@@ -63,18 +63,23 @@ export default Vue.extend({
   text-decoration: none;
 }
 .n-box {
-  background-color: rgba(230, 230, 230, 0.562);
+  @extend %animate-all;
   color: black;
-  border: 2px solid black;
+  box-shadow: 0px 0px 12px 0px rgba(79, 79, 79, 0.45);
   border-radius: var.$b-radius;
   width: 750px;
-  margin: 10px;
+  margin: 30px;
+  padding: 5px 0;
 
   @include responsive.respond-to(responsive.$desktop-mid) {
     width: 70vw;
   }
   @include responsive.respond-to(responsive.$tablet-portrait) {
     width: 90vw;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 12px 0 rgba(79, 79, 79, 1);
   }
 }
 </style>

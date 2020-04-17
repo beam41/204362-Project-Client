@@ -3,14 +3,8 @@
     <div v-if="newsDetail" class="detail">
       <h2>{{ newsDetail.title }}</h2>
       <v-lazy-image :src="imgUrl" :src-placeholder="imgPlacehold" />
-      <p
-        v-for="line in newsDetail.detail.split('\n').filter((val) => val !== ' ')"
-        :key="line.detail"
-        class="news-detail"
-      >
-        {{ line }}<br />
-      </p>
-      <p class="news-writer">Writer : {{ newsDetail.writer }}</p>
+      <p v-for="line in newsDetailSpilt" :key="line.detail" class="news-detail">{{ line }}</p>
+      <p class="news-writer">เขียนโดย: {{ newsDetail.writer }}</p>
     </div>
     <div v-else class="loader">
       <div class="spinner spinner-black"></div>
@@ -39,6 +33,9 @@ export default Vue.extend({
     imgPlacehold() {
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.newsDetail!.imgPath}`;
     },
+    newsDetailSpilt() {
+      return this.newsDetail!.detail!.split('\n').filter((val) => val !== '');
+    },
   },
   mounted() {
     NewsServ.getNewsVisitor(this.$route.params.id).then((val) => {
@@ -59,6 +56,10 @@ export default Vue.extend({
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+
+  p {
+    text-align: center;
+  }
 }
 .news-detail {
   width: 60vw;
@@ -67,12 +68,15 @@ export default Vue.extend({
   }
 }
 .news-writer {
-  margin-top: 200px;
+  margin-top: 5rem;
+  color: #575757;
 }
 img {
   object-fit: contain;
-  size: 640px;
+  width: 640px;
+  height: 100%;
   border-radius: var.$b-radius;
+  margin: 5rem 0;
   @include responsive.respond-to(responsive.$tablet-portrait) {
     width: 90vw;
   }
