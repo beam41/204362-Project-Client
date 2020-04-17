@@ -3,7 +3,7 @@
     <div v-if="editing" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
-    <Modal :show="delShow">
+    <Modal :show="showDel">
       <div class="m-top">
         <h5>Delete</h5>
       </div>
@@ -19,7 +19,7 @@
           class="btn-default"
           @click="
             () => {
-              delShow = false;
+              showDel = false;
             }
           "
         >
@@ -30,7 +30,7 @@
     <div class="padadmin addupdate news-au">
       <div class="top">
         <div class="input-box">
-          <div class="sep">
+          <div class="sep news">
             <div class="form-control">
               <label class="with-warn">
                 <span>หัวข้อข่าว:</span>
@@ -56,9 +56,11 @@
             </div>
           </div>
           <div class="img-upload">
-            <div class="form-control im">
-              <p v-if="!imgPath && imgPath === ''">ภาพประกอบข่าว</p>
-              <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+            <div class="form-control im-wrapper">
+              <div class="im">
+                <p v-if="!imgPath && imgPath === ''">ไม่มีภาพประกอบข่าว</p>
+                <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+              </div>
             </div>
             <div class="form-control">
               <input ref="file" type="file" accept="image/*" :disabled="uploading" />
@@ -76,6 +78,7 @@
         </div>
       </div>
       <div class="admin-btn-pos">
+        <p v-if="$route.params.id !== 'add'" class="acc-in">{{ newsInfo }}</p>
         <span>
           <button class="btn-success" :disabled="uploading" @click="saveValidate()">Save</button>
           <button
@@ -84,7 +87,7 @@
             :disabled="uploading"
             @click="
               () => {
-                delShow = true;
+                showDel = true;
               }
             "
           >
@@ -118,10 +121,10 @@
 }
 
 .txt {
-  height: 10rem;
+  height: 23rem;
 }
 
-.sep {
+.news {
   display: flex;
   flex-direction: column;
   justify-content: initial !important;

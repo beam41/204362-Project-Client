@@ -5,6 +5,9 @@ import Dog from '@/models/dog';
 function getDogList($store: any): Promise<AxiosResponse<Dog[]>> {
   return a.get('api/dog/list', headerWriter($store));
 }
+function getDogsRandomList(): Promise<AxiosResponse<Dog[]>> {
+  return a.get('api/dog/random/3');
+}
 
 function getDog($store: any, id: string): Promise<AxiosResponse<Dog>> {
   return a.get(`api/dog/${id}`, headerWriter($store));
@@ -39,4 +42,5 @@ export default {
   putDog,
   getDogListVisitor,
   getDogVisitor,
+  getDogsRandomList,
 };
