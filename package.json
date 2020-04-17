@@ -1,7 +1,7 @@
 {
   "name": "mhean-maa",
   "version": "1.0.0",
-  "description": "My splendid Nuxt.js project",
+  "description": "เว็บไซต์จัดการข้อมูลสุนัข มหาวิทยาลัยเชียงใหม่",
   "author": "Mhean Maa Group",
   "private": true,
   "scripts": {
@@ -25,6 +25,7 @@
     "qrcode.vue": "^1.7.0",
     "v-lazy-image": "^1.4.0",
     "vue-clickaway": "^2.2.2",
+    "vue-kinesis": "^1.1.5",
     "vue-smooth-reflow": "^0.1.12"
   },
   "devDependencies": {
