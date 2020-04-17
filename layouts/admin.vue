@@ -52,7 +52,7 @@ export default Vue.extend({
 
   .headstyle {
     display: flex;
-    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: var.$navbar-shadow;
     align-items: center;
     h2 {
       font-size: 1.75rem;
