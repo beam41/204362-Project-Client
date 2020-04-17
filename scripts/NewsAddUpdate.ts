@@ -32,7 +32,7 @@ export default Vue.extend({
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
     },
     acceptedInfo() {
-      const date = new Date(this.news!.acceptedDate!).toLocaleDateString('th-TH');
+      const date = new Date(this.news!.acceptedDate!).toLocaleString('th-TH');
       return `Accepted By ${this.news!.acceptor} on ${date}`;
     },
   },

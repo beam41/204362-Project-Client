@@ -30,7 +30,7 @@
     <div class="padadmin addupdate news-au">
       <div class="top">
         <div class="input-box">
-          <div class="sep">
+          <div class="sep news">
             <div class="form-control">
               <label class="with-warn">
                 <span>หัวข้อข่าว:</span>
@@ -121,7 +121,7 @@
   height: 10rem;
 }
 
-.sep {
+.news {
   display: flex;
   flex-direction: column;
 }

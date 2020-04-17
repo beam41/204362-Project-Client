@@ -1,5 +1,20 @@
 <template>
   <div class="adminbox">
+<<<<<<< Updated upstream
+    <div class="listpage-top">
+      <button class="btn-default"><font-awesome-icon :icon="['fas', 'plus']" />New</button>
+      <Sorter :options="by" @change="onChange($event)" />
+    </div>
+    <div class="table-wrapper">
+      <div class="head-wrapper">
+        <table class="datalist head">
+          <tr class="tablehead">
+            <th>ชื่อเรื่อง</th>
+            <th>ผู้สร้าง</th>
+            <th>อนุมัติแล้ว</th>
+          </tr>
+        </table>
+=======
     <Modal :show="currAcceptSelect ? true : false">
       <div class="m-top">
         <h5>Accept</h5>
@@ -9,6 +24,36 @@
           คุณต้องการอนุมัติ
           <strong>{{ currAcceptSelect.title }}</strong> หรือไม่
         </p>
+      </div>
+      <div class="m-bot">
+        <button class="btn-success" @click="acceptedChange()">Accept</button>
+        <button class="btn-default" @click="unAcceptedChange()">Cancel</button>
+      </div>
+    </Modal>
+    <div class="padadmin">
+      <div class="listpage-top">
+        <nuxt-link to="/admin/news/add">
+          <button class="btn-default svg-m">
+            <font-awesome-icon :icon="['fas', 'plus']" />New
+          </button>
+        </nuxt-link>
+        <div class="input-group">
+          <input v-model="searchString" type="text" placeholder="Search" />
+          <button class="btn-default">
+            <font-awesome-icon :icon="['fas', 'search']" />
+          </button>
+        </div>
+        <Sorter :options="by" @sort-change="onChange($event)" />
+>>>>>>> Stashed changes
+      </div>
+      <div class="sub-table-wrapper">
+        <table class="datalist">
+          <tr v-for="d in sortedArrays" :key="d.id">
+            <td>{{ d.title }}</td>
+            <td>{{ d.creator }}</td>
+            <td>{{ d.accepted }}</td>
+          </tr>
+        </table>
       </div>
       <div class="m-bot">
         <button class="btn-success" @click="acceptedChange()">Accept</button>
@@ -85,8 +130,11 @@ export default Vue.extend({
   name: 'ListNews',
   components: {
     Sorter,
-    Modal,
+<<<<<<< Updated upstream
+=======
     CheckBox,
+    Modal,
+>>>>>>> Stashed changes
   },
   data: () => ({
     news: null as Array<News> | null,
@@ -123,9 +171,11 @@ export default Vue.extend({
       this.currOption = currOption;
       this.descending = descending;
     },
-    acceptedChangePrompt(event: any, news: News) {
+<<<<<<< Updated upstream
+=======
+    acceptedChangePrompt(event: any, n: News) {
       if (event.target.checked) {
-        this.currAcceptSelect = news;
+        this.currAcceptSelect = n;
         this.currAcceptSelect!.accepted = true;
       }
     },
@@ -139,6 +189,7 @@ export default Vue.extend({
       } as News);
       this.currAcceptSelect = null;
     },
+>>>>>>> Stashed changes
   },
   head: () => ({
     title: 'Admin: News',
