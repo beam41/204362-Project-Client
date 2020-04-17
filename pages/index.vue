@@ -22,6 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+// @ts-ignore
 import { KinesisContainer, KinesisElement } from 'vue-kinesis';
 
 export default Vue.extend({

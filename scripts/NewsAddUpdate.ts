@@ -31,9 +31,14 @@ export default Vue.extend({
     imgPlacehold() {
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
     },
-    acceptedInfo() {
-      const date = new Date(this.news!.acceptedDate!).toLocaleString('th-TH');
-      return `Accepted By ${this.news!.acceptor} on ${date}`;
+    newsInfo() {
+      const dateWrote = new Date(this.news!.wroteOn!).toLocaleString('th-TH');
+      const txt = `Wrote by ${this.news!.writer} on ${dateWrote}`;
+      if (this.news!.accepted) {
+        const dateAcc = new Date(this.news!.acceptedOn!).toLocaleString('th-TH');
+        return `${txt}, Accepted By ${this.news!.acceptedBy} on ${dateAcc}`;
+      }
+      return txt;
     },
   },
   mounted() {
@@ -81,19 +86,14 @@ export default Vue.extend({
       let newNews: News = new News();
       if (this.news) {
         newNews = {
-          id: this.$route.params.id !== 'add' ? this.$route.params.id : undefined,
-          // @ts-ignorebuil
-          title: this.$refs.title.value,
-          writer: undefined,
-          accepted: false,
-          acceptor: undefined,
-          acceptedDate: undefined,
           // @ts-ignore
-          description: this.$refs.desc.value,
+          title: this.$refs.title.value,
+          accepted: false,
+          // @ts-ignore
+          detail: this.$refs.desc.value,
           // @ts-ignore
           imgPath: this.imgPath,
-          deptNo: undefined,
-        };
+        } as News;
       }
       if (this.$route.params.id === 'add') {
         NewsServ.postNews(this.$store, newNews).then((_) => {
