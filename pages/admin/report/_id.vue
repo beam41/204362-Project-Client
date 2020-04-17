@@ -12,7 +12,14 @@
       </div>
       <div class="m-bot">
         <button class="btn-success btn-mar" @click="sendAcc()">Accept</button>
-        <button class="btn-default" @click="() => (showAcc = false)">
+        <button
+          class="btn-default"
+          @click="
+            () => {
+              showAcc = false;
+            }
+          "
+        >
           Cancel
         </button>
       </div>
@@ -96,7 +103,11 @@
             :disabled="login.userType === 'S'"
             v-if="!report.accepted"
             class="btn-success"
-            @click="() => (showAcc = true)"
+            @click="
+              () => {
+                showAcc = true;
+              }
+            "
           >
             Accept
           </button>
