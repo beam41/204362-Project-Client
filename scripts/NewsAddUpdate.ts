@@ -31,6 +31,10 @@ export default Vue.extend({
     imgPlacehold() {
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.imgPath}`;
     },
+    acceptedInfo() {
+      const date = new Date(this.news!.acceptedDate!).toLocaleDateString('th-TH');
+      return `Accepted By ${this.news!.acceptor} on ${date}`;
+    },
   },
   mounted() {
     if (this.$route.params.id !== 'add') {
@@ -82,6 +86,8 @@ export default Vue.extend({
           title: this.$refs.title.value,
           writer: undefined,
           accepted: false,
+          acceptor: undefined,
+          acceptedDate: undefined,
           // @ts-ignore
           description: this.$refs.desc.value,
           // @ts-ignore

@@ -7,6 +7,10 @@ export default class News {
 
   accepted: boolean | undefined;
 
+  acceptedDate: number | undefined;
+
+  acceptor: string | undefined;
+
   description: string | undefined;
 
   imgPath: string | undefined;
