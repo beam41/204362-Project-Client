@@ -143,5 +143,29 @@ export default Vue.extend({
   .sep {
     text-align: center;
   }
+
+  @include responsive.respond-to(responsive.$phone) {
+    .don-list {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .don-box {
+      width: 300px;
+
+      img {
+        object-fit: cover;
+        size: 300px;
+        margin-bottom: 2rem;
+        border-radius: var.$b-radius;
+      }
+
+      .qr {
+        &:hover {
+          transform: translateY(-75px) scale(2);
+          box-shadow: 0px 0px 10px -2px rgba(79, 79, 79, 1);
+        }
+      }
+    }
+  }
 }
 </style>

@@ -1,7 +1,7 @@
 {
   "name": "mhean-maa",
   "version": "1.0.0",
-  "description": "My splendid Nuxt.js project",
+  "description": "เว็บไซต์จัดการข้อมูลสุนัข มหาวิทยาลัยเชียงใหม่",
   "author": "Mhean Maa Group",
   "private": true,
   "scripts": {

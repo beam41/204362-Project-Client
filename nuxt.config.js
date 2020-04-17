@@ -96,4 +96,18 @@ export default {
   router: {
     middleware: ['auth'],
   },
+  pwa: {
+    manifest: {
+      name: 'เว็บไซต์จัดการข้อมูลสุนัข มหาวิทยาลัยเชียงใหม่',
+      short_name: 'หมา มช.',
+      lang: 'th',
+      theme_color: '#fefaff',
+    },
+    meta: {
+      name: 'เว็บไซต์จัดการข้อมูลสุนัข มหาวิทยาลัยเชียงใหม่',
+      lang: 'th',
+      theme_color: '#fefaff',
+      nativeUI: true,
+    },
+  },
 };
