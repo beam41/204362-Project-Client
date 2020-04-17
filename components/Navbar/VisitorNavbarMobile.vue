@@ -67,7 +67,7 @@ export default Vue.extend({
   height: 100vh;
 }
 .bgicon {
-  font-size: 2rem;
+  font-size: 2.5rem;
   width: 100vw;
   display: flex;
   margin-left: 10px;
@@ -116,7 +116,7 @@ export default Vue.extend({
 }
 
 .myweb {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
   margin-bottom: 0;
   display: flex;
