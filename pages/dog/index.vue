@@ -103,7 +103,7 @@ export default Vue.extend({
   margin: 1rem 0;
   width: 250px;
   padding: 0 7px 7px 7px;
-  box-shadow: 0px 15px 27px -20px rgba(79, 79, 79, 0.45);
+  box-shadow: 0 15px 27px -20px rgba(79, 79, 79, 0.45);
 
   &,
   & * {

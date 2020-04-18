@@ -61,7 +61,7 @@ export default Vue.extend({
   flex-direction: column;
   width: 300px;
   color: var.$gray;
-  box-shadow: 68px 0px 44px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 68px 0 44px 10px rgba(0, 0, 0, 0.3);
 }
 .shade {
   position: absolute;
@@ -71,7 +71,6 @@ export default Vue.extend({
   height: 100vh;
 }
 .bgicon {
-  font-size: 2.5rem;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -86,10 +85,9 @@ export default Vue.extend({
   box-shadow: var.$navbar-shadow;
 }
 .cross {
-  font-size: 2.5rem;
   display: flex;
   justify-content: flex-end;
-  margin: 10px 15px 30px 10px;
+  margin: 0 0 30px 0;
 }
 .link {
   display: flex;
@@ -99,7 +97,7 @@ export default Vue.extend({
 .nav-link {
   display: flex;
   justify-content: center;
-  margin: 15px 0px 15px 0px;
+  margin: 15px 0 15px 0;
   color: var.$gray;
   text-decoration: none;
   padding: 0.5rem 0;
@@ -122,7 +120,6 @@ export default Vue.extend({
   font-weight: 400;
   margin-bottom: 0;
   display: flex;
-  margin-left: 5px;
 }
 
 .f {
@@ -130,6 +127,7 @@ export default Vue.extend({
   align-items: center;
   justify-content: center;
   size: 52px;
+  font-size: 2rem;
 
   &.pad {
     width: 62px;

@@ -98,10 +98,10 @@ export default Vue.extend({
     height: 100%;
     width: 400px;
     //background: color.lightness(var.$white, -2%);
-    box-shadow: 0px 15px 27px -20px rgba(79, 79, 79, 0.45);
+    box-shadow: 0 15px 27px -20px rgba(79, 79, 79, 0.45);
 
     &:hover {
-      box-shadow: 0px 15px 27px -10px rgba(79, 79, 79, 1);
+      box-shadow: 0 15px 27px -10px rgba(79, 79, 79, 1);
     }
 
     h6 {
@@ -137,11 +137,11 @@ export default Vue.extend({
       border: 15px solid white;
       margin-bottom: 1rem;
       border-radius: var.$b-radius;
-      box-shadow: 0px 0px 8px -2px rgba(79, 79, 79, 0.45);
+      box-shadow: 0 0 8px -2px rgba(79, 79, 79, 0.45);
 
       &:hover {
         transform: translateY(-125px) scale(2.5);
-        box-shadow: 0px 0px 10px -2px rgba(79, 79, 79, 1);
+        box-shadow: 0 0 10px -2px rgba(79, 79, 79, 1);
       }
     }
   }
@@ -168,7 +168,7 @@ export default Vue.extend({
       .qr {
         &:hover {
           transform: translateY(-75px) scale(2);
-          box-shadow: 0px 0px 10px -2px rgba(79, 79, 79, 1);
+          box-shadow: 0 0 10px -2px rgba(79, 79, 79, 1);
         }
       }
     }

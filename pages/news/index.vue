@@ -57,7 +57,7 @@ export default Vue.extend({
 @use 'assets/styles/responsive';
 
 .topic {
-  padding: 0px 50px 0px 20px;
+  padding: 0 50px 0 20px;
   font-size: 1.25rem;
   overflow: hidden;
   display: -webkit-box;
@@ -70,7 +70,7 @@ export default Vue.extend({
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  padding: 0px 50px 4px 30px;
+  padding: 0 50px 4px 30px;
   margin-bottom: 5px;
 }
 .news_box {
@@ -79,7 +79,7 @@ export default Vue.extend({
 .n-box {
   @extend %animate-all;
   color: black;
-  box-shadow: 0px 0px 12px 0px rgba(79, 79, 79, 0.45);
+  box-shadow: 0 0 12px 0 rgba(79, 79, 79, 0.45);
   border-radius: var.$b-radius;
   width: 750px;
   margin: 30px;
@@ -93,7 +93,7 @@ export default Vue.extend({
   }
 
   &:hover {
-    box-shadow: 0px 0px 12px 0 rgba(79, 79, 79, 1);
+    box-shadow: 0 0 12px 0 rgba(79, 79, 79, 1);
   }
 }
 

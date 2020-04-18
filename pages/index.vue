@@ -200,7 +200,7 @@ export default Vue.extend({
   height: 400px;
   width: 300px;
   //background: color.lightness(var.$white, -2%);
-  box-shadow: 0px 15px 27px -20px rgba(79, 79, 79, 0.45);
+  box-shadow: 0 15px 27px -20px rgba(79, 79, 79, 0.45);
   color: var.$black;
   text-decoration: none;
 
@@ -226,7 +226,7 @@ export default Vue.extend({
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0px 0px 5px 2px rgba(79, 79, 79, 0.45);
+    box-shadow: 0 0 5px 2px rgba(79, 79, 79, 0.45);
   }
 }
 

@@ -141,7 +141,7 @@ button,
 
   &:active,
   &:focus {
-    box-shadow: 0px 0px 0px var.$hightlight-width color.alpha($color, -0.4%);
+    box-shadow: 0 0 0 var.$hightlight-width color.alpha($color, -0.4%);
   }
 
   &[disabled] {
@@ -188,7 +188,7 @@ textarea {
   }
 
   &:focus {
-    box-shadow: 0px 0px 0px var.$hightlight-width color.alpha(var.$gray, -0.4%);
+    box-shadow: 0 0 0 var.$hightlight-width color.alpha(var.$gray, -0.4%);
   }
 
   &::placeholder {
@@ -203,7 +203,7 @@ textarea {
     }
 
     &:focus {
-      box-shadow: 0px 0px 0px var.$hightlight-width color.alpha(var.$warn, -0.4%);
+      box-shadow: 0 0 0 var.$hightlight-width color.alpha(var.$warn, -0.4%);
     }
 
     &::placeholder {
@@ -218,7 +218,7 @@ textarea {
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    width: 0px;
+    width: 0;
   }
 }
 
