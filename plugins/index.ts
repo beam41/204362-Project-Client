@@ -1,6 +1,8 @@
 import Vue from 'vue';
 // @ts-ignore
 import { VLazyImagePlugin } from 'v-lazy-image';
+// @ts-ignore
+import VueTimeago from 'vue-timeago';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faPlus,
@@ -44,3 +46,8 @@ Vue.config.productionTip = false;
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(VLazyImagePlugin);
+
+Vue.use(VueTimeago, {
+  name: 'Timeago',
+  locale: 'th',
+});
