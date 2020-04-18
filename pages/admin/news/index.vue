@@ -1,5 +1,8 @@
 <template>
   <div class="adminbox">
+    <div v-if="saving" class="loader blackcover">
+      <div class="spinner spinner-white"></div>
+    </div>
     <Modal :show="currAcceptSelect ? true : false">
       <div class="m-top">
         <h5>Accept</h5>
@@ -93,6 +96,7 @@ export default Vue.extend({
     currOption: 0,
     descending: false,
     searchString: '',
+    saving: false,
     currAcceptSelect: null as News | null,
   }),
   computed: {
@@ -136,8 +140,11 @@ export default Vue.extend({
     acceptedChange() {
       NewsServ.acceptNews(this.$store, this.currAcceptSelect!.id!, {
         accepted: true,
-      } as News);
+      } as News).then((_) => {
+        this.saving = false;
+      });
       this.currAcceptSelect = null;
+      this.saving = true;
     },
   },
   head: () => ({

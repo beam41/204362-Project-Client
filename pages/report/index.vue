@@ -61,7 +61,8 @@
         </div>
       </div>
       <div class="subm">
-        <input type="submit" class="btn-success" value="ส่งรายงาน" />
+        <input v-if="!isSaving" type="submit" class="btn-success" value="ส่งรายงาน" />
+        <input v-else type="submit" class="btn-success" value="กำลังส่ง" disabled />
       </div>
     </form>
   </div>

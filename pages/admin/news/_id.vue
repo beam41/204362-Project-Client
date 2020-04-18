@@ -1,6 +1,6 @@
 <template>
   <div v-if="news" class="adminbox">
-    <div v-if="editing" class="loader blackcover">
+    <div v-if="saving" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
     <Modal :show="showDel">

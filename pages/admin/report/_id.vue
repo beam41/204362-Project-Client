@@ -186,6 +186,7 @@ export default Vue.extend({
       } as Report).then((_) => this.$router.push('/admin/report'));
     },
     del() {
+      this.showDel = false;
       this.saving = true;
       ReportServ.deleteReport(this.$store, this.report!.id!).then((_) =>
         this.$router.push('/admin/report'),
