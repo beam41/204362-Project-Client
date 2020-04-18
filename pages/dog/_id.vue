@@ -16,6 +16,7 @@
         <p>
           <b>สีปลอกคอ: </b>
           <span :class="'collcol ' + dogDetail.collarColor">{{ formatCollarColor }}</span>
+          {{ colDesc }}
         </p>
         <p><b>ผู้ดูแล:</b> {{ dogDetail.caretaker }}</p>
         <p><b>ติดต่อผู้ดูแล:</b> {{ dogDetail.caretakerPhone | arrToString }}</p>
@@ -80,6 +81,15 @@ export default Vue.extend({
       // @ts-ignore
       if (this.dogDetail!.ageMonth > 0) strAge.push(`${this.dogDetail!.ageMonth} เดือน`);
       return strAge.join(' ');
+    },
+    colDesc() {
+      if (this.dogDetail!.collarColor === 'G') {
+        return 'เป็นมิตรทุกคนจับได้';
+      }
+      if (this.dogDetail!.collarColor === 'Y') {
+        return 'ดื้อยอมให้เฉพาะบางคน';
+      }
+      return 'ระวัง ไม่ยอมเข้าใกล้ไม่ให้ใครจับ';
     },
   },
   mounted() {
