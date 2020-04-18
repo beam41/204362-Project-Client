@@ -4,22 +4,22 @@
     <div class="content lowpad"><h3>About Us</h3></div>
     <div class="content lowpad">
       <p class="ph">
-        Two border following algorithms are propose d for the topological analysis of digitized
-        binary images. The first one determines the surrou ndness relations among the borders of a
-        binary image. Since the outer borders and the hole bo most borders .e., the outer borders
-        which are not surrounded by holes. These algorithms can be effectively used in compon nt
-        counting, shrinking, and topological structural analysis of binary images, when a sequential
-        digital computer is used
+        เราเป็นเว็บจัดการ ให้ข้อมูล
+        ที่เกี่ยวข้องกับการดูแลสุนัขภายใต้การดูแลโครงการของมหาวิทยาลัยเชียงใหม่
+        โดยมีจุดประสงค์เพื่อให้เกิดความเป็นระเบียบ
+        พร้อมทั้งช่วยเหลือผู้ที่ได้รับผลกระทบจากสุนัขที่อยู่ภายใน มหาวิทยาลัย
+        โดยหวังว่าจะสามารถจัดการปัญหาและสร้างความเป็นระเบียบแก่สุนัขในมหาวิทยาลัยได้
       </p>
     </div>
     <div class="content lowpad"><h3>Contact</h3></div>
     <div class="content lowpad">
       <pre class="ph">
 Tell : 126-548-6454
-pak wi cha computer
-some where in this world
-why want to know?
-sww that map
+Contact : Mhean-maa group
+some where in com-sci building
+Sutep, Moung, Chaingmai
+50200
+Mhean-maa@nongmaamail.io
       </pre>
     </div>
     <div class="content">
