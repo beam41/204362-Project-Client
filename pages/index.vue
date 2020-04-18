@@ -142,11 +142,11 @@ export default Vue.extend({
 
 .parent {
   width: 100vw;
-  height: 80vh;
-  position: relative;
+  height: calc(100vh - 52px);
   display: flex;
   justify-content: center;
-  margin-top: 200px;
+  align-items: center;
+  margin-top: 52px;
 }
 .logo {
   width: 100vw;
