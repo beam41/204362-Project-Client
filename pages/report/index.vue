@@ -76,6 +76,7 @@ import Modal from '@/components/Shared/Modal.vue';
 
 export default Vue.extend({
   layout: 'visitor',
+  name: 'ReportVisitor',
   components: {
     SmoothReflow,
     Modal,

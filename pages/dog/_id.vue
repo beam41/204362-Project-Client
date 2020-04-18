@@ -35,7 +35,7 @@ import DogServ from '@/services/DogApiService';
 
 export default Vue.extend({
   layout: 'visitor',
-  name: 'DogDetail',
+  name: 'DogDetailVisitor',
   filters: {
     arrToString(arr: string[]) {
       return arr.toString().replace(/,/g, ', ');

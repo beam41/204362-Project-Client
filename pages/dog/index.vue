@@ -38,7 +38,7 @@ import Dog from '@/models/dog';
 
 export default Vue.extend({
   layout: 'visitor',
-  name: 'DogVisitor',
+  name: 'DogListVisitor',
   filters: {
     imgUrl(path: string) {
       return `${process.env.VUE_APP_BACKEND_PATH}/uploads/${path}`;

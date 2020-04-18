@@ -87,7 +87,7 @@ import User from '@/models/User';
 
 export default Vue.extend({
   layout: 'admin',
-  name: 'ListDonate',
+  name: 'DonateList',
   components: {
     Sorter,
     CheckBox,

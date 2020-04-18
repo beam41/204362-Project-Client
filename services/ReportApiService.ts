@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
-import a, { headerWriter } from './_axios';
+import a from './_axios';
+import util from './util';
 import Report from '~/models/report';
 
 function postReport(
@@ -24,19 +25,19 @@ function postReport(
 }
 
 function getReportList($store: any): Promise<AxiosResponse<Report[]>> {
-  return a.get('api/report/list', headerWriter($store));
+  return a.get('api/report/list', util.headerWriter($store));
 }
 
 function getReport($store: any, id: string): Promise<AxiosResponse<Report>> {
-  return a.get(`api/report/${id}`, headerWriter($store));
+  return a.get(`api/report/${id}`, util.headerWriter($store));
 }
 
 function acceptReport($store: any, id: string, rep: Report): Promise<AxiosResponse<Report>> {
-  return a.patch(`api/report/${id}`, rep, headerWriter($store));
+  return a.patch(`api/report/${id}`, rep, util.headerWriter($store));
 }
 
 function deleteReport($store: any, id: string): Promise<AxiosResponse<Report>> {
-  return a.delete(`api/report/${id}`, headerWriter($store));
+  return a.delete(`api/report/${id}`, util.headerWriter($store));
 }
 
 export default { postReport, getReportList, getReport, acceptReport, deleteReport };

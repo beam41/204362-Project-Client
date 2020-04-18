@@ -85,7 +85,7 @@ import User from '@/models/User';
 
 export default Vue.extend({
   layout: 'admin',
-  name: 'ListNews',
+  name: 'NewsList',
   components: {
     Sorter,
     Modal,
