@@ -22,7 +22,7 @@ import News from '@/models/news';
 
 export default Vue.extend({
   layout: 'visitor',
-  name: 'NewsDetail',
+  name: 'NewsDetailVisitor',
 
   data: () => ({
     newsDetail: null as null | News,

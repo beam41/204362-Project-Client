@@ -15,12 +15,6 @@ export default Vue.extend({
   components: {
     VisitorNavbar,
   },
-  data: () => {
-    return {
-      mobileView: false,
-      showNav: false,
-    };
-  },
   head: () => ({
     bodyAttrs: {
       class: 'visitor-body',
