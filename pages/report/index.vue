@@ -50,8 +50,8 @@
           <div class="upload-pos">
             <div class="form-control">
               <input
-                ref="fileIn"
                 id="r-im"
+                ref="fileIn"
                 type="file"
                 accept="image/png,image/jpeg"
                 @change="imgChange"

@@ -59,7 +59,12 @@
             <div class="form-control im-wrapper">
               <div class="im">
                 <p v-if="!imgPath && imgPath === ''">ไม่มีภาพประกอบข่าว</p>
-                <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+                <v-lazy-image
+                  v-else
+                  :src="imgUrl"
+                  :src-placeholder="imgPlacehold"
+                  alt="uploaded image"
+                />
               </div>
             </div>
             <div class="form-control">

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div v-if="dogDetail" class="dogdetail">
-      <v-lazy-image :src="imgUrl" :src-placeholder="imgPlacehold" :alt="dogDetail.description" />
+      <v-lazy-image :src="imgUrl" :src-placeholder="imgPlacehold" :alt="dogDetail.name" />
       <h2>{{ dogDetail.name[0] }}</h2>
       <div class="doginfo">
         <p><b>ชื่อ:</b> {{ dogDetail.name | arrToString }}</p>
