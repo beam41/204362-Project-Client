@@ -58,16 +58,6 @@ export default Vue.extend({
   }
 }
 
-.imgcontainer {
-  width: 100%;
-  height: 360px;
-  background-image: url('~assets/images/tia.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-top: 0px;
-}
-
 .navbar {
   background-color: var.$white;
   display: flex;

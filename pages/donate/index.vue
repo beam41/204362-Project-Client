@@ -7,7 +7,7 @@
           <v-lazy-image
             :src="don.imgPath | imgUrl"
             :src-placeholder="don.imgPath | imgPlacehold"
-            :alt="don.description"
+            :alt="don.title"
           />
           <h6>{{ don.title }}</h6>
           <p class="desc">{{ don.description }}</p>

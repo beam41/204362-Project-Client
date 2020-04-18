@@ -3,7 +3,7 @@
     <div v-if="newsDetail" class="detail">
       <h2>{{ newsDetail.title }}</h2>
       <p class="news-time">{{ newsTimeInfo }}</p>
-      <v-lazy-image :src="imgUrl" :src-placeholder="imgPlacehold" />
+      <v-lazy-image :src="imgUrl" :src-placeholder="imgPlacehold" :alt="newsDetail.title" />
       <p v-for="line in newsDetailSpilt" :key="line.detail" class="news-detail">{{ line }}</p>
       <p class="news-writer">เขียนโดย {{ newsDetail.writer }}</p>
     </div>

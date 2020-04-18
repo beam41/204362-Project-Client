@@ -1,6 +1,6 @@
 <template>
   <div v-if="news" class="adminbox">
-    <div v-if="editing" class="loader blackcover">
+    <div v-if="saving" class="loader blackcover">
       <div class="spinner spinner-white"></div>
     </div>
     <Modal :show="showDel">
@@ -59,7 +59,12 @@
             <div class="form-control im-wrapper">
               <div class="im">
                 <p v-if="!imgPath && imgPath === ''">ไม่มีภาพประกอบข่าว</p>
-                <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+                <v-lazy-image
+                  v-else
+                  :src="imgUrl"
+                  :src-placeholder="imgPlacehold"
+                  alt="uploaded image"
+                />
               </div>
             </div>
             <div class="form-control">

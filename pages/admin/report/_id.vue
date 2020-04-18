@@ -90,7 +90,12 @@
             <div class="im-wrapper">
               <div class="im im-r">
                 <p v-if="!report.imgPath || report.imgPath === ''">ไม่มีรูป</p>
-                <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+                <v-lazy-image
+                  v-else
+                  :src="imgUrl"
+                  :src-placeholder="imgPlacehold"
+                  alt="uploaded image"
+                />
               </div>
             </div>
           </div>
@@ -100,8 +105,8 @@
         <p v-if="report.accepted" class="acc-in">{{ acceptedInfo }}</p>
         <span>
           <button
-            :disabled="login.userType === 'S'"
             v-if="!report.accepted"
+            :disabled="login.userType === 'S'"
             class="btn-success"
             @click="
               () => {
@@ -112,8 +117,8 @@
             Accept
           </button>
           <button
-            :disabled="login.userType === 'S'"
             v-if="report.accepted"
+            :disabled="login.userType === 'S'"
             class="btn-warn"
             @click="
               () => {
@@ -181,6 +186,7 @@ export default Vue.extend({
       } as Report).then((_) => this.$router.push('/admin/report'));
     },
     del() {
+      this.showDel = false;
       this.saving = true;
       ReportServ.deleteReport(this.$store, this.report!.id!).then((_) =>
         this.$router.push('/admin/report'),

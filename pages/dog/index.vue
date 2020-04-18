@@ -17,7 +17,7 @@
         <v-lazy-image
           :src="dog.imgPath | imgUrl"
           :src-placeholder="dog.imgPath | imgPlacehold"
-          :alt="dog.description"
+          :alt="dog.name[0]"
         />
         <h6>{{ dog.name[0] }}</h6>
       </nuxt-link>

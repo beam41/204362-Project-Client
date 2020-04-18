@@ -37,15 +37,15 @@ export default Vue.extend({
   data: () => ({
     newsList: null as null | News[],
   }),
-  mounted() {
-    NewsServ.getNewsListVisitor().then((val) => {
-      this.newsList = val.data;
-    });
-  },
   computed: {
     sortedNews() {
       return _.orderBy(this.newsList, 'acceptedOn', 'desc');
     },
+  },
+  mounted() {
+    NewsServ.getNewsListVisitor().then((val) => {
+      this.newsList = val.data;
+    });
   },
 });
 </script>

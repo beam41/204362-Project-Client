@@ -25,6 +25,7 @@
             <v-lazy-image
               :src="news.imgPath | imgUrl"
               :src-placeholder="news.imgPath | imgPlacehold"
+              :alt="news.title"
             />
             <h6>{{ news.title }}</h6>
           </div>
@@ -50,6 +51,7 @@
             <v-lazy-image
               :src="dog.imgPath | imgUrl"
               :src-placeholder="dog.imgPath | imgPlacehold"
+              :alt="dog.name[0]"
             />
             <h6>{{ dog.name[0] }}</h6>
           </div>
@@ -75,6 +77,7 @@
             <v-lazy-image
               :src="don.imgPath | imgUrl"
               :src-placeholder="don.imgPath | imgPlacehold"
+              :alt="don.title"
             />
             <h6>{{ don.title }}</h6>
           </div>
