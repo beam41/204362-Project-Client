@@ -12,7 +12,7 @@ function getNewsListVisitor(): Promise<AxiosResponse<News[]>> {
 function getNewsVisitor(id: string): Promise<AxiosResponse<News>> {
   return a.get(`api/news/visitor/${id}`);
 }
-function getNewsRandomList(): Promise<AxiosResponse<News[]>> {
+function getNewNewsList(): Promise<AxiosResponse<News[]>> {
   return a.get('api/news/visitor/3');
 }
 
@@ -45,5 +45,5 @@ export default {
   acceptNews,
   getNewsListVisitor,
   getNewsVisitor,
-  getNewsRandomList,
+  getNewNewsList,
 };

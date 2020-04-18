@@ -127,7 +127,7 @@ export default Vue.extend({
     DogServ.getDogsRandomList().then((val) => {
       this.dogList = val.data;
     });
-    NewsServ.getNewsRandomList().then((val) => {
+    NewsServ.getNewNewsList().then((val) => {
       this.newsList = val.data;
     });
   },
