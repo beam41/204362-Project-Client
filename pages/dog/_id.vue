@@ -117,6 +117,12 @@ img {
   object-fit: cover;
   size: 400px;
   border-radius: var.$b-radius;
+
+  @include responsive.respond-to(responsive.$phone) {
+    & {
+      size: 90vw;
+    }
+  }
 }
 
 .collcol {

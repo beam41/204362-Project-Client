@@ -2,9 +2,19 @@
   <div class="list content">
     <h2>ข่าว</h2>
     <div v-if="newsList" class="news_list">
-      <nuxt-link v-for="news in newsList" :key="news.id" :to="`/news/${news.id}`" class="news_box">
+      <nuxt-link
+        v-for="news in sortedNews"
+        :key="news.id"
+        :to="`/news/${news.id}`"
+        class="news_box"
+      >
         <div class="n-box">
-          <h6 class="topic">{{ news.title }}</h6>
+          <h6 class="topic">
+            {{ news.title }}
+            <span class="time-part"
+              >&#183; <timeago :datetime="new Date(news.acceptedOn)"></timeago
+            ></span>
+          </h6>
           <p class="detail">{{ news.detail }}</p>
         </div>
       </nuxt-link>
@@ -17,8 +27,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-// @ts-ignore
-
+import _ from 'lodash';
 import NewsServ from '@/services/NewsApiService';
 import News from '@/models/news';
 
@@ -32,6 +41,11 @@ export default Vue.extend({
     NewsServ.getNewsListVisitor().then((val) => {
       this.newsList = val.data;
     });
+  },
+  computed: {
+    sortedNews() {
+      return _.orderBy(this.newsList, 'acceptedOn', 'desc');
+    },
   },
 });
 </script>
@@ -81,5 +95,11 @@ export default Vue.extend({
   &:hover {
     box-shadow: 0px 0px 12px 0 rgba(79, 79, 79, 1);
   }
+}
+
+.time-part {
+  font-size: 0.75rem;
+  color: #575757;
+  font-weight: normal;
 }
 </style>

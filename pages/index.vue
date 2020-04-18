@@ -127,7 +127,7 @@ export default Vue.extend({
     DogServ.getDogsRandomList().then((val) => {
       this.dogList = val.data;
     });
-    NewsServ.getNewsRandomList().then((val) => {
+    NewsServ.getNewNewsList().then((val) => {
       this.newsList = val.data;
     });
   },
@@ -210,6 +210,9 @@ export default Vue.extend({
 }
 .sep {
   text-align: center;
+  h6 {
+    font-size: 1.25rem;
+  }
 }
 .gobtn {
   @extend %animate-all;
@@ -220,7 +223,7 @@ export default Vue.extend({
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(224, 224, 224);
+    box-shadow: 0px 0px 5px 2px rgba(79, 79, 79, 0.45);
   }
 }
 
