@@ -21,7 +21,9 @@
     <div class="padadmin">
       <div class="listpage-top">
         <nuxt-link to="/admin/news/add">
-          <button class="btn-default"><font-awesome-icon :icon="['fas', 'plus']" />New</button>
+          <button class="btn-default svg-m">
+            <font-awesome-icon :icon="['fas', 'plus']" />New
+          </button>
         </nuxt-link>
         <div class="input-group">
           <input v-model="searchString" type="text" placeholder="Search" />
