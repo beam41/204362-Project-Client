@@ -2,11 +2,6 @@
   <div class="adminbox">
     <div class="padadmin">
       <div class="listpage-top">
-        <nuxt-link to="/admin/report/add">
-          <button class="btn-default svg-m">
-            <font-awesome-icon :icon="['fas', 'plus']" />New
-          </button>
-        </nuxt-link>
         <div class="input-group">
           <input v-model="searchString" type="text" placeholder="Search" />
           <button class="btn-default">
@@ -20,7 +15,7 @@
           <table class="datalist head">
             <tr class="tablehead">
               <th>หัวเรื่อง</th>
-              <th>ผู้สร้าง</th>
+              <th>ผู้แจ้ง</th>
               <th>รับทราบแล้ว</th>
             </tr>
           </table>
@@ -67,7 +62,7 @@ export default Vue.extend({
     CheckBox,
   },
   data: () => ({
-    by: ['หัวเรื่อง', 'ผู้สร้าง', 'รับทราบแล้ว'],
+    by: ['หัวเรื่อง', 'ผู้แจ้ง', 'รับทราบแล้ว'],
     field: ['title', 'reporter', 'accepted'],
     reports: null as Array<Report> | null,
     currOption: 0,
