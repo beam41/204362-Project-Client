@@ -1,6 +1,6 @@
 <template>
   <div class="contactbox">
-    <div class="content"><h1>Mhean-maa</h1></div>
+    <div class="content"><h1>Maa-CMU</h1></div>
     <div class="content lowpad"><h3>About Us</h3></div>
     <div class="content lowpad">
       <p class="ph">
@@ -16,9 +16,8 @@
       <pre class="ph">
 Tell : 126-548-6454
 Contact : Mhean-maa group
-some where in com-sci building
-Sutep, Moung, Chaingmai
-50200
+Suthep, Mueang Chiang Mai District,
+Chiang Mai 50200
 Mhean-maa@nongmaamail.io
       </pre>
     </div>
