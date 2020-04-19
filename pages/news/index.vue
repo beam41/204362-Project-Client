@@ -70,7 +70,7 @@ export default Vue.extend({
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  padding: 0 50px 4px 30px;
+  padding: 0px 50px 0px 30px;
   margin-bottom: 5px;
 }
 .news_box {
