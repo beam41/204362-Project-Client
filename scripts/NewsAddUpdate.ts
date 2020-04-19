@@ -90,7 +90,7 @@ export default Vue.extend({
           title: this.$refs.title.value,
           accepted: false,
           // @ts-ignore
-          detail: this.$refs.desc.value,
+          detail: this.$refs.desc.value.trim(),
           // @ts-ignore
           imgPath: this.imgPath,
         } as News;
