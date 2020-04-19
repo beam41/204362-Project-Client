@@ -57,11 +57,11 @@ export default Vue.extend({
       this.imgErr = false;
       let err = false;
       // @ts-ignore
-      const title: string = this.$refs.title.value;
+      const title: string = this.$refs.title.value.trim();
       // @ts-ignore
-      const desc = this.$refs.desc.value;
+      const desc = this.$refs.desc.value.trim();
       // @ts-ignore
-      const qr = this.$refs.qr.value;
+      const qr = this.$refs.qr.value.trim();
       if (
         title === '' ||
         !/[\wก-์\d]/g.test(title[0]) ||
@@ -92,12 +92,11 @@ export default Vue.extend({
       if (this.donate) {
         newDon = {
           // @ts-ignore
-          title: this.$refs.title.value,
-          accepted: false,
+          title: this.$refs.title.value.trim(),
           // @ts-ignore
-          description: this.$refs.desc.value,
+          description: this.$refs.desc.value.trim(),
           // @ts-ignore
-          qrLink: this.$refs.qr.value,
+          qrLink: this.$refs.qr.value.trim(),
           imgPath: this.imgPath,
         } as Donate;
       }
