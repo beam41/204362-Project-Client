@@ -174,14 +174,16 @@ export default Vue.extend({
         this.caretakerPhoneErr = true;
         err = true;
       }
-      /* eslint-disable */
-      this.allPhone = caretakerPhone.replace(/[\-+" "]/g, '');
-      var Phone = this.allPhone.split(',');
-      var i;
-      for (i = 0; i < Phone.length; i++) {
-        if (Phone[i].length < 9 || !Number.isInteger(+Phone[i])) {
-          this.caretakerPhoneErr = true;
-          err = true;
+      if (caretakerPhone !== '-') {
+        /* eslint-disable */
+        this.allPhone = caretakerPhone.replace(/[\-+" "]/g, '');
+        var Phone = this.allPhone.split(',');
+        var i;
+        for (i = 0; i < Phone.length; i++) {
+          if (Phone[i].length < 9 || !Number.isInteger(+Phone[i])) {
+            this.caretakerPhoneErr = true;
+            err = true;
+          }
         }
       }
       if (caretaker === '' || /[\d!"#$%&\\'()*+,/:;<=>?@[\\\]^_`{|}~-]/gm.test(caretaker)) {

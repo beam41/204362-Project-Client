@@ -87,7 +87,7 @@ export default Vue.extend({
         return 'เป็นมิตรทุกคนจับได้';
       }
       if (this.dogDetail!.collarColor === 'Y') {
-        return 'ดื้อยอมให้เฉพาะบางคน';
+        return 'ดื้อ ยอมให้เฉพาะบางคน';
       }
       return 'ระวัง ไม่ยอมเข้าใกล้ไม่ให้ใครจับ';
     },

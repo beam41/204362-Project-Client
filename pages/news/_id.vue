@@ -35,7 +35,7 @@ export default Vue.extend({
       return `${process.env.VUE_APP_BACKEND_PATH}/placeholder/${this.newsDetail!.imgPath}`;
     },
     newsDetailSpilt() {
-      return this.newsDetail!.detail!.split('\n').filter((val) => val !== '');
+      return this.newsDetail!.detail!.trim().split('\n');
     },
     newsTimeInfo() {
       return new Date(this.newsDetail!.acceptedOn!).toLocaleString('th-TH');
