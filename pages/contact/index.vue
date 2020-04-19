@@ -1,6 +1,6 @@
 <template>
   <div class="contactbox">
-    <div class="content"><h1>Maa-CMU</h1></div>
+    <div class="content"><h1>DOG CMU</h1></div>
     <div class="content lowpad"><h3>About Us</h3></div>
     <div class="content lowpad">
       <p class="ph">
