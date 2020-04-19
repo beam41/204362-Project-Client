@@ -179,7 +179,7 @@ export default Vue.extend({
       var Phone = this.allPhone.split(',');
       var i;
       for (i = 0; i < Phone.length; i++) {
-        if (Phone[i].length < 9 || !Number.isInteger(+Phone[i])) {
+        if (Phone[i].length < 9 || !Number.isInteger(+Phone[i]) || Phone[i].length < 11) {
           this.caretakerPhoneErr = true;
           err = true;
         }
