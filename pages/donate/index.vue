@@ -2,12 +2,12 @@
   <div class="donate content">
     <h2>บริจาค</h2>
     <div v-if="donates" class="don-list">
-      <div v-for="don in sortedDonates" :id="don.id" :key="don.id" class="don-box">
+      <div v-for="don in sortedDonates" :ref="don.id" :key="don.id" class="don-box">
         <div class="sep">
           <v-lazy-image
             :src="don.imgPath | imgUrl"
             :src-placeholder="don.imgPath | imgPlacehold"
-            :alt="don.description"
+            :alt="don.title"
           />
           <h6>{{ don.title }}</h6>
           <p class="desc">{{ don.description }}</p>
@@ -57,6 +57,12 @@ export default Vue.extend({
   mounted() {
     DonateServ.getDonateListVisitor().then((val) => {
       this.donates = val.data;
+      if (this.$route.hash) {
+        setTimeout(() => {
+          // @ts-ignore
+          this.$refs[this.$route.hash.slice(1)][0].scrollIntoView();
+        }, 100);
+      }
     });
   },
 });

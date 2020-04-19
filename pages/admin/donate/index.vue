@@ -1,5 +1,8 @@
 <template>
   <div class="adminbox">
+    <div v-if="saving" class="loader blackcover">
+      <div class="spinner spinner-white"></div>
+    </div>
     <Modal :show="currAcceptSelect ? true : false">
       <div class="m-top">
         <h5>Delete</h5>
@@ -84,7 +87,7 @@ import User from '@/models/User';
 
 export default Vue.extend({
   layout: 'admin',
-  name: 'ListDonate',
+  name: 'DonateList',
   components: {
     Sorter,
     CheckBox,
@@ -95,6 +98,7 @@ export default Vue.extend({
     currOption: 0,
     descending: false,
     searchString: '',
+    saving: false,
     currAcceptSelect: null as Donate | null,
   }),
   computed: {
@@ -138,8 +142,11 @@ export default Vue.extend({
     acceptedChange() {
       DonateServ.acceptDonate(this.$store, this.currAcceptSelect!.id!, {
         accepted: true,
-      } as Donate);
+      } as Donate).then((_) => {
+        this.saving = false;
+      });
       this.currAcceptSelect = null;
+      this.saving = true;
     },
   },
   head: () => ({

@@ -50,8 +50,8 @@
           <div class="upload-pos">
             <div class="form-control">
               <input
-                ref="fileIn"
                 id="r-im"
+                ref="fileIn"
                 type="file"
                 accept="image/png,image/jpeg"
                 @change="imgChange"
@@ -61,7 +61,8 @@
         </div>
       </div>
       <div class="subm">
-        <input type="submit" class="btn-success" value="ส่งรายงาน" />
+        <input v-if="!isSaving" type="submit" class="btn-success" value="ส่งรายงาน" />
+        <input v-else type="submit" class="btn-success" value="กำลังส่ง" disabled />
       </div>
     </form>
   </div>
@@ -75,6 +76,7 @@ import Modal from '@/components/Shared/Modal.vue';
 
 export default Vue.extend({
   layout: 'visitor',
+  name: 'ReportVisitor',
   components: {
     SmoothReflow,
     Modal,

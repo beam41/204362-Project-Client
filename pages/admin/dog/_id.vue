@@ -178,7 +178,12 @@
           <div class="img-upload">
             <div class="form-control im">
               <p v-if="!imgPath || imgPath === ''">ไม่มีรูป</p>
-              <v-lazy-image v-else :src="imgUrl" :src-placeholder="imgPlacehold" />
+              <v-lazy-image
+                v-else
+                :src="imgUrl"
+                :src-placeholder="imgPlacehold"
+                alt="uploaded image"
+              />
             </div>
             <div class="upload-pos">
               <div class="form-control">

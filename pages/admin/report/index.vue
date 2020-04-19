@@ -61,7 +61,7 @@ import CheckBox from '@/components/Shared/CheckBox.vue';
 
 export default Vue.extend({
   layout: 'admin',
-  name: 'ListReport',
+  name: 'ReportList',
   components: {
     Sorter,
     CheckBox,

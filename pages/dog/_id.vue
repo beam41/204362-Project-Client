@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div v-if="dogDetail" class="dogdetail">
-      <v-lazy-image :src="imgUrl" :src-placeholder="imgPlacehold" :alt="dogDetail.description" />
+      <v-lazy-image :src="imgUrl" :src-placeholder="imgPlacehold" :alt="dogDetail.name" />
       <h2>{{ dogDetail.name[0] }}</h2>
       <div class="doginfo">
         <p><b>ชื่อ:</b> {{ dogDetail.name | arrToString }}</p>
@@ -16,6 +16,7 @@
         <p>
           <b>สีปลอกคอ: </b>
           <span :class="'collcol ' + dogDetail.collarColor">{{ formatCollarColor }}</span>
+          {{ colDesc }}
         </p>
         <p><b>ผู้ดูแล:</b> {{ dogDetail.caretaker }}</p>
         <p><b>ติดต่อผู้ดูแล:</b> {{ dogDetail.caretakerPhone | arrToString }}</p>
@@ -35,7 +36,7 @@ import DogServ from '@/services/DogApiService';
 
 export default Vue.extend({
   layout: 'visitor',
-  name: 'DogDetail',
+  name: 'DogDetailVisitor',
   filters: {
     arrToString(arr: string[]) {
       return arr.toString().replace(/,/g, ', ');
@@ -81,6 +82,15 @@ export default Vue.extend({
       if (this.dogDetail!.ageMonth > 0) strAge.push(`${this.dogDetail!.ageMonth} เดือน`);
       return strAge.join(' ');
     },
+    colDesc() {
+      if (this.dogDetail!.collarColor === 'G') {
+        return 'เป็นมิตรทุกคนจับได้';
+      }
+      if (this.dogDetail!.collarColor === 'Y') {
+        return 'ดื้อยอมให้เฉพาะบางคน';
+      }
+      return 'ระวัง ไม่ยอมเข้าใกล้ไม่ให้ใครจับ';
+    },
   },
   mounted() {
     DogServ.getDogVisitor(this.$route.params.id).then((val) => {
@@ -117,6 +127,12 @@ img {
   object-fit: cover;
   size: 400px;
   border-radius: var.$b-radius;
+
+  @include responsive.respond-to(responsive.$phone) {
+    & {
+      size: 90vw;
+    }
+  }
 }
 
 .collcol {

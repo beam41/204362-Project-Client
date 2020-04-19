@@ -30,7 +30,7 @@ export default {
    */
   loadingIndicator: {
     name: 'pulse',
-    color: '#333333',
+    color: '#1b1b1b',
     background: 'white',
   },
   css: ['~/assets/styles/component.scss', '~/assets/styles/class.scss'],

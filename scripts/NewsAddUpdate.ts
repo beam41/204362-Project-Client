@@ -13,7 +13,7 @@ export default Vue.extend({
   },
   data: () => ({
     news: null as News | null,
-    editing: false,
+    saving: false,
     showDel: false,
     titleErr: false,
     descErr: false,
@@ -82,7 +82,7 @@ export default Vue.extend({
       this.save();
     },
     save() {
-      this.editing = true;
+      this.saving = true;
       let newNews: News = new News();
       if (this.news) {
         newNews = {
@@ -107,18 +107,21 @@ export default Vue.extend({
     },
     del() {
       this.showDel = false;
-      this.editing = true;
+      this.saving = true;
       NewsServ.delNews(this.$store, this.$route.params.id).then((_) => {
         this.$router.go(-1);
       });
     },
     upload() {
-      this.uploading = true;
       // @ts-ignore
-      ImageServ.postImage(this.$store, this.$refs.file.files[0]).then((val) => {
-        this.imgPath = val.data.fileName;
-        this.uploading = false;
-      });
+      if (this.$refs.file.files[0]) {
+        this.uploading = true;
+        // @ts-ignore
+        ImageServ.postImage(this.$store, this.$refs.file.files[0]).then((val) => {
+          this.imgPath = val.data.fileName;
+          this.uploading = false;
+        });
+      }
     },
   },
 });
