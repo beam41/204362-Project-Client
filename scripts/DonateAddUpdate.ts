@@ -118,8 +118,12 @@ export default Vue.extend({
       });
     },
     upload() {
-      // @ts-ignore
-      if (this.$refs.file.files[0]) {
+      if (
+        // @ts-ignore
+        this.$refs.file.files[0] &&
+        // @ts-ignore
+        (/jpeg/g.test(this.$refs.file.files[0].type) || /png/g.test(this.$refs.file.files[0].type))
+      ) {
         this.uploading = true;
         // @ts-ignore
         ImageServ.postImage(this.$store, this.$refs.file.files[0]).then((val) => {
