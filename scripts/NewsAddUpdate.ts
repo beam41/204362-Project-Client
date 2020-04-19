@@ -58,9 +58,9 @@ export default Vue.extend({
       this.imgErr = false;
       let err = false;
       // @ts-ignore
-      const title: string = this.$refs.title.value;
+      const title: string = this.$refs.title.value.trim();
       // @ts-ignore
-      const desc = this.$refs.desc.value;
+      const desc = this.$refs.desc.value.trim();
       if (
         title === '' ||
         !/[\wก-์\d]/g.test(title[0]) ||
