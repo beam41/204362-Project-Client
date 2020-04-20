@@ -64,7 +64,7 @@ export default Vue.extend({
             'Mass Communication',
             'Political Science and Public Administration',
             'Law',
-          ][value - 1]
+          ][value - 1]ฤกทรื
         }`;
       else if (value === 21) return 'College of Art, Media and Technology';
       return 'Faculty of Everything Else';

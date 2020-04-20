@@ -193,6 +193,9 @@ export default Vue.extend({
       );
     },
   },
+  head: () => ({
+    title: 'Admin: Report',
+  }),
 });
 </script>
 
