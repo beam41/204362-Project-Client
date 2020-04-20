@@ -50,4 +50,7 @@ Vue.use(VLazyImagePlugin);
 Vue.use(VueTimeago, {
   name: 'Timeago',
   locale: 'th',
+  locales: {
+    th: require('date-fns/locale/th'),
+  },
 });
